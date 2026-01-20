@@ -98,7 +98,7 @@ let lastScrollTop = 0;
 
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
-    
+
     // Add shadow on scroll
     if (scrollTop > 100) {
         navbar.classList.add('scrolled');
@@ -110,22 +110,79 @@ window.addEventListener('scroll', () => {
 });
 
 // ========================================
-// 7. MOBILE MENU TOGGLE
+// 7. MOBILE MENU TOGGLE (Touch & Keyboard)
 // ========================================
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navMenu = document.getElementById('navMenu');
 
+function closeMobileMenu() {
+    if (navMenu && mobileMenuToggle) {
+        navMenu.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+}
+
+function openMobileMenu() {
+    if (navMenu && mobileMenuToggle) {
+        navMenu.classList.add('active');
+        mobileMenuToggle.classList.add('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function toggleMobileMenu() {
+    const isOpen = navMenu?.classList.contains('active');
+    if (isOpen) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
 if (mobileMenuToggle && navMenu) {
-    mobileMenuToggle.addEventListener('click', () => {
-        mobileMenuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
+    // Click/touch handler
+    mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
+
+    // Keyboard support
+    mobileMenuToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMobileMenu();
+        }
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.navbar')) {
-            navMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
+        if (!e.target.closest('.navbar') && navMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMobileMenu();
+            mobileMenuToggle.focus();
+        }
+    });
+
+    // Close menu when nav link clicked
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+
+    // Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            closeMobileMenu();
         }
     });
 }
@@ -332,7 +389,7 @@ if (backToTopBtn) {
             backToTopBtn.classList.remove('visible');
         }
     });
-    
+
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         trackCTAClick('back_to_top');
@@ -348,7 +405,7 @@ if (contactForm) {
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
         const messageInput = document.getElementById('message');
-        
+
         // Basic validation
         if (nameInput && nameInput.value.trim().length < 2) {
             e.preventDefault();
@@ -728,7 +785,7 @@ function renderAllProjects(view = 'business') {
             <!-- Other Projects in Stacked Cards -->
             <h3 class="more-projects-title">More Projects</h3>
             <div class="stacked-projects-container">
-                ${stackedProjects.map((project, index) => renderStackedCard(project, index)).join('')}
+                ${stackedProjects.map((project, index) => renderStackedCard(project, index, view)).join('')}
             </div>
         </div>
     `;
@@ -774,25 +831,29 @@ function renderHeroCard(project, iconConfig, view = 'business') {
     return `
         <div class="hero-project-card project-card" onclick="window.open('${clickUrl}', '_blank')" style="--hero-accent: ${iconConfig?.color || '#4ade80'}">
             <div class="hero-card-content">
-                <h3 class="font-bold text-xl mb-2">${project.title}</h3>
-
-                <p class="mb-2">
-                    <strong>Problem:</strong> ${project.problem || "Business challenge description unavailable."}
-                </p>
-
-                <p class="mb-2">
-                    <strong>Solution:</strong> ${project.solution || "Solution description unavailable."}
-                </p>
-
-                <p>
-                    <strong>Impact:</strong> ${project.outcome || "Measurable result unavailable."}
-                </p>
-
+                <div class="hero-card-header">
+                    <h3 class="hero-card-title">${project.title}</h3>
+                </div>
+                <div class="hero-card-desc" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">
+                     ${isTechnical ? `
+                         <p style="margin-bottom: 8px;"><strong>Technical Details:</strong> ${project.techDetails || project.solution}</p>
+                         <p style="margin-bottom: 8px;"><strong>Architecture:</strong> ${project.architecture || 'Full-stack application with modern frameworks and cloud deployment'}</p>
+                         <p><strong>Key Technologies:</strong> ${project.techStack.slice(0, 4).join(', ')}</p>
+                     ` : `
+                         <p style="margin-bottom: 4px;"><strong>Problem:</strong> ${project.problem ? project.problem.substring(0, 100) + "..." : ""}</p>
+                         <p style="margin-bottom: 4px;"><strong>Solution:</strong> ${project.solution.substring(0, 100)}...</p>
+                         <p><strong>Impact:</strong> ${project.outcome ? project.outcome.substring(0, 100) + "..." : ""}</p>
+                     `}
+                </div>
                 <div class="hero-card-footer">
                     <div class="hero-card-tags">
                         ${project.techStack.slice(0, 3).map(tech => `<span class="hero-card-tag">${tech}</span>`).join('')}
                     </div>
                     <div class="hero-card-links">
+                        <button class="hero-card-link view-project-details" data-id="${project.id}" onclick="event.stopPropagation()" title="View Case Study">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Details
+                        </button>
                         ${demoLink}
                         ${githubLink}
                     </div>
@@ -803,7 +864,8 @@ function renderHeroCard(project, iconConfig, view = 'business') {
 }
 
 // Render stacked card (the overlapping card style from the image)
-function renderStackedCard(project, index) {
+function renderStackedCard(project, index, view = 'business') {
+    const isTechnical = view === 'technical';
     const githubLink = project.links && project.links.github
         ? `<a href="${project.links.github}" target="_blank" class="stacked-card-link" title="View Code" onclick="event.stopPropagation()"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>`
         : '';
@@ -822,28 +884,25 @@ function renderStackedCard(project, index) {
     const icon = projectIcons[project.id] || '🚀';
     const clickUrl = project.links?.demo || project.links?.github || '#';
 
+    const description = isTechnical && project.techDetails
+        ? project.techDetails.substring(0, 80)
+        : project.solution.substring(0, 80);
+
     return `
         <div class="stacked-card project-card" style="--stack-index: ${index}" onclick="window.open('${clickUrl}', '_blank')">
             <div class="stacked-card-content">
-                <h3 class="font-bold text-xl mb-2">${project.title}</h3>
-
-                <p class="mb-2">
-                    <strong>Problem:</strong> ${project.problem || "Business challenge description unavailable."}
-                </p>
-
-                <p class="mb-2">
-                    <strong>Solution:</strong> ${project.solution ? project.solution.substring(0, 100) + "..." : "Solution description unavailable."}
-                </p>
-
-                <p>
-                    <strong>Impact:</strong> ${project.outcome || "Measurable result unavailable."}
-                </p>
-
+                <h4 class="stacked-card-title">${project.title}</h4>
+                <p class="stacked-card-desc">${description}...</p>
                 <div class="stacked-card-footer">
                     <div class="stacked-card-tags">
                         ${project.techStack.slice(0, 2).map(tech => `<span class="stacked-card-tag">${tech}</span>`).join('')}
                     </div>
-                    ${githubLink}
+                    <div class="stacked-card-actions" style="display: flex; gap: 8px;">
+                        <button class="stacked-card-link view-project-details" data-id="${project.id}" onclick="event.stopPropagation()" title="View Details" style="background: none; border: none; cursor: pointer; color: var(--text-secondary);">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        </button>
+                        ${githubLink}
+                    </div>
                 </div>
             </div>
         </div>
@@ -917,20 +976,20 @@ function createIconCloud(container) {
         'postgresql': 'https://cdn.simpleicons.org/postgresql/4169E1',
         'fastapi': 'https://cdn.simpleicons.org/fastapi/009688',
         'langchain': 'https://cdn.simpleicons.org/langchain/1C3C3C',
-        'openai': 'https://cdn.simpleicons.org/openai/412991',
+        'openai': 'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/openai.svg',
         'nextjs': 'https://cdn.simpleicons.org/nextdotjs/000000',
         'tailwindcss': 'https://cdn.simpleicons.org/tailwindcss/06B6D4',
         'vercel': 'https://cdn.simpleicons.org/vercel/000000',
         'github': 'https://cdn.simpleicons.org/github/181717',
-        'azure': 'https://cdn.simpleicons.org/microsoftazure/0078D4',
-        'aws': 'https://cdn.simpleicons.org/amazonaws/232F3E',
+        'azure': 'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoftazure.svg',
+        'aws': 'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/amazonwebservices.svg',
         'firebase': 'https://cdn.simpleicons.org/firebase/FFCA28',
         'mongodb': 'https://cdn.simpleicons.org/mongodb/47A248',
         'redis': 'https://cdn.simpleicons.org/redis/DC382D',
         'graphql': 'https://cdn.simpleicons.org/graphql/E10098',
         'figma': 'https://cdn.simpleicons.org/figma/F24E1E',
-        'powerbi': 'https://cdn.simpleicons.org/powerbi/F2C811',
-        'excel': 'https://cdn.simpleicons.org/microsoftexcel/217346',
+        'powerbi': 'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/powerbi.svg',
+        'excel': 'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoftexcel.svg',
         'jupyter': 'https://cdn.simpleicons.org/jupyter/F37626',
         'pandas': 'https://cdn.simpleicons.org/pandas/150458',
         'numpy': 'https://cdn.simpleicons.org/numpy/013243',
@@ -991,7 +1050,7 @@ function createIconCloud(container) {
 
         items.forEach(item => {
             const { phi, theta } = item.userData;
-            
+
             // Spherical to Cartesian with rotation
             let x = radius * Math.sin(phi) * Math.cos(theta + angleY);
             let y = radius * Math.sin(phi) * Math.sin(theta + angleY);
@@ -1082,7 +1141,411 @@ function initSkillsAccordion() {
 // ========================================
 // INITIALIZATION
 // ========================================
+// ========================================
+// 25. INTERACTIVE CONTACT CARD
+// ========================================
+
+function initModernContact() {
+    const canvas = document.getElementById('particleCanvas');
+    const skillsOrbit = document.getElementById('skillsOrbit');
+
+    if (!canvas || !skillsOrbit) return;
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouseX = 0;
+    let mouseY = 0;
+
+    // Setup canvas
+    function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Particle class
+    class Particle {
+        constructor() {
+            this.reset();
+            this.y = Math.random() * canvas.height;
+            this.alpha = Math.random() * 0.5 + 0.2;
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5 - 0.1;
+            this.size = Math.random() * 2 + 1;
+            this.alpha = Math.random() * 0.5 + 0.2;
+        }
+
+        update() {
+            // Mouse attraction
+            const dx = mouseX - this.x;
+            const dy = mouseY - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+                const force = (100 - distance) / 100;
+                this.vx += (dx / distance) * force * 0.2;
+                this.vy += (dy / distance) * force * 0.2;
+            }
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Damping
+            this.vx *= 0.98;
+            this.vy *= 0.98;
+
+            // Bounds checking
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                this.reset();
+            }
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(100, 150, 255, ${this.alpha})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Initialize particles
+    for (let i = 0; i < 80; i++) {
+        particles.push(new Particle());
+    }
+
+    // Animation loop
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    // Mouse tracking
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+
+    animate();
+
+    // Skill tag cursor animation
+    const skillTags = skillsOrbit.querySelectorAll('.skill-tag');
+    const cursorPointer = document.getElementById('cursor-pointer');
+
+    if (skillTags.length && cursorPointer) {
+        let currentIndex = 0;
+        const positions = [
+            { left: '200px', top: '60px' },
+            { left: '50px', top: '102px' },
+            { left: '224px', top: '170px' },
+            { left: '88px', top: '198px' }
+        ];
+
+        function animateCursor() {
+            // Remove highlight from all tags
+            skillTags.forEach(tag => tag.classList.remove('highlighted'));
+
+            // Add highlight to current tag
+            skillTags[currentIndex].classList.add('highlighted');
+
+            // Move cursor
+            cursorPointer.style.left = positions[currentIndex].left;
+            cursorPointer.style.top = positions[currentIndex].top;
+
+            // Next tag
+            currentIndex = (currentIndex + 1) % skillTags.length;
+
+            setTimeout(animateCursor, 2000);
+        }
+
+        // Start after a short delay
+        setTimeout(animateCursor, 500);
+    }
+}
+
+// Initialize on DOM load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModernContact);
+} else {
+    initModernContact();
+}
+
+// ========================================
+// INITIALIZATION
+// ========================================
 console.log('🚀 Portfolio loaded successfully!');
 console.log('💡 Keyboard shortcuts:');
 console.log('   Ctrl/Cmd + D: Toggle dark mode');
 console.log('   Escape: Close mobile menu');
+
+// ========================================
+// WELCOME TOUR POPUP + GUIDED TOUR
+// ========================================
+(function initWelcomeTour() {
+    const tourOverlay = document.getElementById('tourOverlay');
+    const tourClose = document.getElementById('tourClose');
+    const tourSkip = document.getElementById('tourSkip');
+    const tourStart = document.getElementById('tourStart');
+    const tourDontShow = document.getElementById('tourDontShow');
+
+    if (!tourOverlay) return;
+
+    // Tour steps configuration
+    const tourSteps = [
+        { id: 'home', title: '👋 Welcome!', description: 'This is my portfolio homepage. Let me give you a quick tour!' },
+        { id: 'about', title: '🧠 About Me', description: 'Learn about my background in Psychology & Computer Science.' },
+        { id: 'experience', title: '💼 Experience', description: 'Click on any role to expand and see detailed case studies!' },
+        { id: 'projects', title: '🚀 Projects', description: 'Explore my AI-powered projects. Click any card for details.' },
+        { id: 'skills-universe', title: '🌌 Skills Universe', description: 'Interactive 3D galaxy! Drag to rotate, hover over stars to see my skills.' },
+        { id: 'contact', title: '📧 Get in Touch', description: 'Ready to connect? Send a message or schedule a call. Also try the AI chatbot!' }
+    ];
+    let currentStep = 0;
+    let tourActive = false;
+    let tourTooltip = null;
+
+    // Check if user has dismissed the tour before
+    const tourDismissed = localStorage.getItem('portfolioTourDismissed');
+
+    if (!tourDismissed) {
+        setTimeout(() => {
+            tourOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, 800);
+    }
+
+    function closeTour() {
+        tourOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        endGuidedTour();
+        if (tourDontShow && tourDontShow.checked) {
+            localStorage.setItem('portfolioTourDismissed', 'true');
+        }
+    }
+
+    function createTourTooltip() {
+        // Remove existing tooltip if any
+        if (tourTooltip) tourTooltip.remove();
+        
+        // Create overlay for dimming background
+        let overlay = document.getElementById('guidedTourOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'guidedTourOverlay';
+            document.body.appendChild(overlay);
+        }
+        overlay.classList.add('active');
+        
+        tourTooltip = document.createElement('div');
+        tourTooltip.id = 'guidedTourTooltip';
+        tourTooltip.innerHTML = `
+            <div class="gtt-content">
+                <button class="gtt-close">&times;</button>
+                <div class="gtt-header">
+                    <span class="gtt-step"></span>
+                    <h4 class="gtt-title"></h4>
+                </div>
+                <p class="gtt-desc"></p>
+                <div class="gtt-actions">
+                    <button class="gtt-btn gtt-prev">← Back</button>
+                    <button class="gtt-btn gtt-next">Next →</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(tourTooltip);
+
+        // Event listeners
+        tourTooltip.querySelector('.gtt-prev').addEventListener('click', prevStep);
+        tourTooltip.querySelector('.gtt-next').addEventListener('click', nextStep);
+        tourTooltip.querySelector('.gtt-close').addEventListener('click', endGuidedTour);
+    }
+
+    function showStep(stepIndex) {
+        const step = tourSteps[stepIndex];
+        const element = document.getElementById(step.id);
+        
+        if (!element) {
+            console.warn('Tour element not found:', step.id);
+            nextStep();
+            return;
+        }
+
+        // Remove highlight from previous element
+        document.querySelectorAll('.tour-highlighted').forEach(el => {
+            el.classList.remove('tour-highlighted');
+        });
+
+        // Scroll to element
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Add highlight to current element
+        element.classList.add('tour-highlighted');
+
+        // Wait for scroll to complete
+        setTimeout(() => {
+            // Update tooltip content
+            tourTooltip.querySelector('.gtt-step').textContent = `Step ${stepIndex + 1} of ${tourSteps.length}`;
+            tourTooltip.querySelector('.gtt-title').textContent = step.title;
+            tourTooltip.querySelector('.gtt-desc').textContent = step.description;
+
+            // Update button states
+            const prevBtn = tourTooltip.querySelector('.gtt-prev');
+            const nextBtn = tourTooltip.querySelector('.gtt-next');
+            
+            prevBtn.style.display = stepIndex === 0 ? 'none' : 'inline-flex';
+            nextBtn.textContent = stepIndex === tourSteps.length - 1 ? 'Finish ✓' : 'Next →';
+
+            // Show tooltip
+            tourTooltip.classList.add('active');
+        }, 500);
+    }
+
+    function goToStep(index) {
+        if (index >= 0 && index < tourSteps.length) {
+            currentStep = index;
+            showStep(currentStep);
+        }
+    }
+
+    function nextStep() {
+        if (currentStep < tourSteps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        } else {
+            endGuidedTour();
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    }
+
+    function startGuidedTour() {
+        closeTour();
+        tourActive = true;
+        currentStep = 0;
+        createTourTooltip();
+        document.body.classList.add('tour-active');
+        setTimeout(() => showStep(0), 300);
+    }
+
+    function endGuidedTour() {
+        tourActive = false;
+        document.body.classList.remove('tour-active');
+        
+        // Hide overlay
+        const overlay = document.getElementById('guidedTourOverlay');
+        if (overlay) overlay.classList.remove('active');
+        
+        // Remove highlights
+        document.querySelectorAll('.tour-highlighted').forEach(el => {
+            el.classList.remove('tour-highlighted');
+        });
+        
+        if (tourTooltip) {
+            tourTooltip.classList.remove('active');
+            setTimeout(() => {
+                if (tourTooltip) tourTooltip.remove();
+                tourTooltip = null;
+            }, 300);
+        }
+    }
+
+    // Event listeners for initial popup
+    if (tourClose) tourClose.addEventListener('click', closeTour);
+    if (tourSkip) tourSkip.addEventListener('click', closeTour);
+    if (tourStart) tourStart.addEventListener('click', startGuidedTour);
+
+    tourOverlay.addEventListener('click', (e) => {
+        if (e.target === tourOverlay) closeTour();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (tourOverlay.classList.contains('active')) closeTour();
+            else if (tourActive) endGuidedTour();
+        }
+        if (tourActive) {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextStep(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevStep(); }
+        }
+    });
+})();
+
+// ========================================
+// EXPANDABLE PROCESS STEPS
+// ========================================
+(function initExpandableProcess() {
+    const processSteps = document.querySelectorAll('.expandable-process');
+    
+    processSteps.forEach(step => {
+        const btn = step.querySelector('.step-icon-btn');
+        if (!btn) return;
+        
+        btn.addEventListener('click', () => {
+            const isExpanded = step.classList.contains('expanded');
+            
+            // Close all other steps (accordion behavior)
+            processSteps.forEach(s => {
+                if (s !== step) {
+                    s.classList.remove('expanded');
+                    const sBtn = s.querySelector('.step-icon-btn');
+                    if (sBtn) sBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Toggle current step
+            step.classList.toggle('expanded');
+            btn.setAttribute('aria-expanded', !isExpanded);
+        });
+    });
+})();
+
+// ========================================
+// VIDEO AUTO-RESTART ON PAGE LOAD
+// ========================================
+(function initVideoAutoRestart() {
+    // Get all video elements
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        // Reset video to beginning
+        video.currentTime = 0;
+        
+        // For videos in viewport, attempt to play (muted to comply with autoplay policies)
+        if (video.hasAttribute('muted') || video.muted) {
+            // Use Intersection Observer for efficient playback management
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.currentTime = 0;
+                        video.play().catch(() => {
+                            // Autoplay was prevented, user will need to interact
+                        });
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(video);
+        }
+    });
+})();

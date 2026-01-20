@@ -1,5 +1,9 @@
 // Analytics Tracking - Vercel Serverless Function
-// Tracks page views, referrers, and user behavior
+// Tracks page views, referrers, and user behavior - stores in Airtable
+
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+const AIRTABLE_ANALYTICS_TABLE = 'Analytics';
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -21,20 +25,47 @@ export default async function handler(req, res) {
     const referrer = req.headers['referer'] || 'Direct';
     const timestamp = new Date().toISOString();
 
-    // Log analytics data (visible in Vercel logs)
+    // Prepare analytics data
     const analyticsData = {
-      timestamp,
-      page: page || 'unknown',
-      event: event || 'pageview',
-      userAgent: userAgent.substring(0, 200), // Truncate for storage
-      referrer,
-      ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress
+      Timestamp: timestamp,
+      Page: page || 'unknown',
+      Event: event || 'pageview',
+      UserAgent: userAgent.substring(0, 200),
+      Referrer: referrer,
+      IP: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown'
     };
 
-    console.log('Analytics Event:', JSON.stringify(analyticsData));
+    // Store in Airtable
+    if (AIRTABLE_API_KEY && AIRTABLE_BASE_ID) {
+      try {
+        const airtableResponse = await fetch(
+          `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_ANALYTICS_TABLE)}`,
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              records: [
+                {
+                  fields: analyticsData
+                }
+              ]
+            })
+          }
+        );
 
-    // TODO: Store in database when Vercel Postgres is set up
-    // For now, just log
+        if (!airtableResponse.ok) {
+          console.error('Airtable analytics error:', await airtableResponse.text());
+        }
+      } catch (airtableError) {
+        console.error('Airtable analytics failed:', airtableError);
+      }
+    }
+
+    // Also log to console (backup)
+    console.log('Analytics Event:', JSON.stringify(analyticsData));
 
     return res.status(200).json({ success: true });
 

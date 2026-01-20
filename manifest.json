@@ -1,0 +1,20 @@
+{
+  "name": "Jack Amichai — Portfolio",
+  "short_name": "Jack Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0066cc",
+  "icons": [
+    {
+      "src": "images/me.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "images/me.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

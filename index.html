@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jack (Yaron) Amichai - Business Analyst | Revenue Optimization | AI Product Builder</title>
-    <meta name="description" content="Business Analyst specializing in revenue optimization, forecasting models, and AI product development. Psychology & Computer Science background with research experience at Technion.">
-    <meta name="keywords" content="AI Product Manager, SAP BTP, Deloitte Consultant, Product Management, Machine Learning, Revenue Optimization, Business Analyst, SAP SuccessFactors, Enterprise AI">
+    <meta name="description"
+        content="Business Analyst specializing in revenue optimization, forecasting models, and AI product development. Psychology & Computer Science background with research experience at Technion.">
+    <meta name="keywords"
+        content="AI Product Manager, SAP BTP, Deloitte Consultant, Product Management, Machine Learning, Revenue Optimization, Business Analyst, SAP SuccessFactors, Enterprise AI">
     <meta name="author" content="Jack (Yaron) Amichai">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://new-personal-website-topaz.vercel.app/">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://new-personal-website-topaz.vercel.app/">
     <meta property="og:title" content="Jack Amichai - Business Analyst | Revenue Optimization | AI Product Builder">
-    <meta property="og:description" content="Business Analyst specializing in revenue optimization and forecasting. Psychology & Computer Science background with research experience at Technion.">
+    <meta property="og:description"
+        content="Business Analyst specializing in revenue optimization and forecasting. Psychology & Computer Science background with research experience at Technion.">
     <meta property="og:image" content="https://new-personal-website-topaz.vercel.app/images/me.jpeg">
     <meta property="og:image:width" content="500">
     <meta property="og:image:height" content="500">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://new-personal-website-topaz.vercel.app/">
     <meta name="twitter:title" content="Jack Amichai - Business Analyst | Revenue Optimization">
-    <meta name="twitter:description" content="Business Analyst building data-driven solutions for revenue optimization. Psychology & Computer Science graduate with research experience.">
+    <meta name="twitter:description"
+        content="Business Analyst building data-driven solutions for revenue optimization. Psychology & Computer Science graduate with research experience.">
     <meta name="twitter:image" content="https://new-personal-website-topaz.vercel.app/images/me.jpeg">
-    
+
     <!-- Fonts - Preload for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- Preload critical CSS -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Favicon & Theme -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <meta name="theme-color" content="#0066cc">
-    
+    <link rel="manifest" href="manifest.json">
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -52,141 +62,868 @@
         {"@type": "EducationalOrganization", "name": "Open University of Israel"},
         {"@type": "EducationalOrganization", "name": "Technion"}
       ],
-      "knowsAbout": ["Business Analysis", "Revenue Optimization", "Machine Learning", "Python", "Data Analysis"]
+      "knowsAbout": ["Business Analysis", "Revenue Optimization", "Machine Learning", "Python", "Data Analysis"],
+      "url": "https://new-personal-website-topaz.vercel.app/",
+      "sameAs": [
+        "https://linkedin.com/in/jackamichai",
+        "https://github.com/JackAmichai"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "Hatrick: AI Cyber Defense",
+          "programmingLanguage": "Python, TypeScript",
+          "codeRepository": "https://github.com/JackAmichai"
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "NVIDIA Documentation Navigator",
+          "programmingLanguage": "Python, RAG",
+          "codeRepository": "https://github.com/JackAmichai/Nvidia-doc-agentic-ai"
+        }
+      ]
     }
     </script>
 </head>
+
 <body>
     <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Page Loader / Skeleton -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <span class="loader-text">Loading...</span>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <a href="#home" class="logo">JA</a>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-menu" id="navMenu">
+            <ul class="nav-menu" id="navMenu" role="menubar">
                 <li><a href="#about" class="nav-link" aria-label="About">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="8" r="4"/>
-                        <path d="M20 21a8 8 0 1 0-16 0"/>
-                    </svg>
-                    <span class="nav-text">About</span>
-                </a></li>
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M20 21a8 8 0 1 0-16 0" />
+                        </svg>
+                        <span class="nav-text">About</span>
+                    </a></li>
                 <li><a href="#experience" class="nav-link" aria-label="Experience">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                    </svg>
-                    <span class="nav-text">Experience</span>
-                </a></li>
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                        </svg>
+                        <span class="nav-text">Experience</span>
+                    </a></li>
                 <li><a href="#projects" class="nav-link" aria-label="Projects">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-                        <line x1="12" y1="11" x2="12" y2="17"/>
-                        <line x1="9" y1="14" x2="15" y2="14"/>
-                    </svg>
-                    <span class="nav-text">Projects</span>
-                </a></li>
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                            <line x1="12" y1="11" x2="12" y2="17" />
+                            <line x1="9" y1="14" x2="15" y2="14" />
+                        </svg>
+                        <span class="nav-text">Projects</span>
+                    </a></li>
                 <li><a href="#recommendations" class="nav-link" aria-label="References">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                    <span class="nav-text">References</span>
-                </a></li>
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                        <span class="nav-text">References</span>
+                    </a></li>
                 <li><a href="#contact" class="nav-link" aria-label="Contact">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                    <span class="nav-text">Contact</span>
-                </a></li>
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        <span class="nav-text">Contact</span>
+                    </a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                <div class="recruiter-toggle-wrapper" title="Toggle Recruiter Mode">
+                    <label class="switch">
+                        <input type="checkbox" id="recruiterToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="recruiter-label">Recruiter Mode</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"
+                    title="Toggle dark/light mode">
                     <span class="theme-icon">🌙</span>
                 </button>
-                <a href="resume.pdf" class="btn-primary" download>Resume</a>
+                <a href="documents/Jack_Amichai_Resume.pdf" class="nav-resume-card" download
+                    style="background-image: url('images/Resume.png');">
+                    <span class="nav-resume-label">Resume</span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="py-20">
-      <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl font-bold mb-4">
-          I build AI-powered products that turn data into better decisions,
-          faster growth, and measurable business impact.
-        </h1>
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+        <div class="container">
+            <!-- Hero Photo: Circular on the Left -->
+            <div class="hero-photo-wrapper">
+                <div class="hero-photo-circle">
+                    <img src="images/me.jpeg" alt="Jack Amichai" class="hero-image-circle" width="500" height="500"
+                        loading="eager">
+                </div>
+            </div>
 
-        <p class="text-lg text-gray-600 mb-8">
-          As a business analyst and AI-driven product builder, I bridge strategy,
-          data science, and execution to deliver forecasting tools, automation,
-          and intelligent analytics.
-        </p>
+            <!-- Hero Content: Text on the Right -->
+            <!-- Hero Content: Text on the Right -->
+            <div class="hero-content-minimal">
+                <!-- Availability Badge -->
+                <div class="availability-badge">
+                    <span class="pulse-dot"></span>
+                    Available for Full-Time (Jan 2026) • 📍 Tel Aviv • 🌍 Open to Remote
+                </div>
 
-        <div class="flex justify-center gap-4">
-          <a href="#projects" class="btn-primary">See My Work</a>
-          <a href="/JackAmichai_CV.pdf" class="btn-secondary">Download Resume</a>
+                <!-- Sparkles Text for Name -->
+                <h1 class="hero-name-minimal sparkles-text" data-sparkles-count="15">Jack Amichai</h1>
+
+                <!-- Text Shimmer for Subtitle -->
+                <h2 class="hero-subtitle-minimal">
+                    <span class="text-shimmer">A Bit About Me</span>
+                </h2>
+
+                <p class="hero-description-minimal text-reveal" data-effect="word" data-delay="0.1">
+                    I am a Business Analyst and AI Product Builder, bridging the gap between psychology, data, and
+                    technology.
+                    I design data-driven solutions that connect business goals with measurable improvements in revenue
+                    and decision quality.
+                    My work spans from cognitive neuroscience research to optimizing enterprise operations at Deloitte.
+                </p>
+
+                <!-- Why Hire Me TL;DR Card (Hidden by default, shown in Recruiter Mode) -->
+                <div class="why-hire-me-card hidden" id="whyHireMeCard">
+                    <h3>🚀 Why Hire Me?</h3>
+                    <ul>
+                        <li><strong>Impact:</strong> Improved revenue forecast accuracy & saved 60% analysis time.</li>
+                        <li><strong>Hybrid:</strong> Psychology + CS background for human-centric AI products.</li>
+                        <li><strong>Builder:</strong> Deployed RAG systems & multi-agent simulations.</li>
+                    </ul>
+                    <button class="resume-customizer-btn" onclick="window.cloudChatbot?.startResumeCustomizer()">
+                        <span class="btn-icon">✨</span>
+                        <span class="btn-text">Generate Tailored Pitch</span>
+                        <span class="btn-subtitle">Describe your role, get a custom summary</span>
+                    </button>
+                </div>
+
+                <!-- Hero Image Cards Row -->
+                <div class="hero-cards-row">
+                    <!-- Resume Card -->
+                    <a href="documents/Jack_Amichai_Resume.pdf" download class="hero-card"
+                        style="background-image: url('images/Resume.png');">
+                        <span class="hero-card-label">Resume</span>
+                    </a>
+
+                    <!-- Projects Card -->
+                    <a href="#projects" class="hero-card"
+                        style="background-image: url('images/Projects.png');">
+                        <span class="hero-card-label">Projects</span>
+                    </a>
+
+                    <!-- Contact Card -->
+                    <a href="#contact" class="hero-card"
+                        style="background-image: url('images/Contact.png');">
+                        <span class="hero-card-label">Contact</span>
+                    </a>
+
+                    <!-- Story Card -->
+                    <a href="#story" class="hero-card"
+                        style="background-image: url('images/Story.jpg');">
+                        <span class="hero-card-label">Story</span>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+        <div class="container">
+            <p class="social-proof-label">Trusted by / Worked with:</p>
+            <div class="logo-strip">
+                <span class="proof-logo">Deloitte</span>
+                <span class="proof-logo">Technion</span>
+                <span class="proof-logo">Hebrew University</span>
+                <span class="proof-logo">Open University</span>
+                <span class="proof-logo">Adi Ohayon Consulting</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Story Section -->
+    <section id="story" class="my-story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2 class="section-title sparkles-text" data-sparkles-count="10">My Story</h2>
+                    <div class="story-text">
+                        <p class="story-lead text-reveal" data-effect="word" data-delay="0.2">
+                            I've always been drawn to one question: <em>why do people think and act the way they do —
+                                and how can we build technology that truly serves them?</em>
+                        </p>
+                        <p class="text-reveal" data-effect="word" data-delay="0.3">
+                            In the <strong>IDF</strong>, I served as a <strong>Staff Sergeant</strong>, leading teams in
+                            high-pressure environments. That's where I learned that clear communication, psychological
+                            safety, and honest feedback are the real infrastructure of any successful team — and any
+                            successful product.
+                        </p>
+                        <p class="text-reveal" data-effect="word" data-delay="0.4">
+                            Curiosity about the human mind led me to study <strong>Psychology and Computer
+                                Science</strong> at the <strong>Open University of Israel</strong>. Between 2021–2023, I
+                            worked in cognitive neuroscience research at the <strong>Technion</strong> and the
+                            <strong>Hebrew University</strong>, running experiments, analyzing data, and turning noisy
+                            human behavior into clean, testable models.
+                        </p>
+                        <p class="text-reveal" data-effect="word" data-delay="0.5">
+                            More recently, I've moved closer to the business and product side. I've worked with
+                            <strong>Adi Ohayon Hospitality Consulting</strong> on revenue and pricing analytics for
+                            hotels and resorts, building dashboards and forecasts that decision-makers actually use. In
+                            parallel, I work as a consultant at <strong>Deloitte Israel</strong>, implementing
+                            data-driven systems and learning how large organizations adopt new tools at scale.
+                        </p>
+                        <p class="text-reveal" data-effect="word" data-delay="0.6">
+                            The common thread across all of this: <strong>I sit at the intersection of psychology, data,
+                                and product.</strong> I enjoy taking messy, human problems, structuring them, and then
+                            building simple, trustworthy tools on top.
+                        </p>
+
+                        <blockquote class="vision-quote text-reveal" data-effect="line" data-delay="0.7">
+                            <strong>My vision</strong> is to grow into a <strong>Product Architect</strong> who bridges
+                            technical innovation and real user needs — designing AI systems that are powerful under the
+                            hood, but feel natural, humane, and obvious to the people using them.
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="story-photos">
+                    <img src="images/me2.jpg" alt="Jack Amichai - Hiking in nature" class="story-photo" loading="lazy"
+                        width="400" height="500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Process Section -->
+    <section id="process" class="process-section">
+        <div class="container">
+            <div class="process-header">
+                <div class="process-header-content">
+                    <h2 class="section-title sparkles-text" data-sparkles-count="10">My Product Process</h2>
+                    <p class="section-subtitle">From vague problem to shipped solution</p>
+                </div>
+                <img src="images/Day in a life.png" alt="Day in a life" class="process-header-image">
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step expandable-process" data-step="1">
+                    <button class="step-icon-btn" aria-expanded="false" aria-label="Expand Human-Centric Discovery">
+                        <img src="images/process-discovery.png" alt="Discovery">
+                        <span class="expand-indicator">+</span>
+                    </button>
+                    <h3 class="step-title">Human-Centric Discovery</h3>
+                    <div class="step-content-expandable">
+                        <p class="step-desc">I start by understanding the <strong>human behavior</strong> behind the problem. Using my psychology background, I conduct user interviews and map out emotional journeys, not just functional requirements.</p>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step expandable-process" data-step="2">
+                    <button class="step-icon-btn" aria-expanded="false" aria-label="Expand Data Validation">
+                        <img src="images/process-research.png" alt="Research">
+                        <span class="expand-indicator">+</span>
+                    </button>
+                    <h3 class="step-title">Data Validation</h3>
+                    <div class="step-content-expandable">
+                        <p class="step-desc">I validate assumptions with hard data. I use <strong>Python (Pandas)</strong> and <strong>SQL</strong> to analyze trends, and tools like <strong>Jira</strong> to structure the roadmap based on evidence, not guesses.</p>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step expandable-process" data-step="3">
+                    <button class="step-icon-btn" aria-expanded="false" aria-label="Expand System Architecture">
+                        <img src="images/process-architecture.png" alt="Architecture">
+                        <span class="expand-indicator">+</span>
+                    </button>
+                    <h3 class="step-title">System Architecture</h3>
+                    <div class="step-content-expandable">
+                        <p class="step-desc">Designing scalable solutions. I sketch flows in <strong>Figma</strong> and plan the tech stack—whether it's <strong>SAP BTP</strong> for enterprise or <strong>FastAPI/React</strong> for agile products.</p>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step expandable-process" data-step="4">
+                    <button class="step-icon-btn" aria-expanded="false" aria-label="Expand Rapid Build">
+                        <img src="images/process-mvp.png" alt="Build (MVP)">
+                        <span class="expand-indicator">+</span>
+                    </button>
+                    <h3 class="step-title">Rapid Build (MVP)</h3>
+                    <div class="step-content-expandable">
+                        <p class="step-desc">Shipping to learn. I believe in getting a working prototype into users' hands quickly to test the core value proposition and gather real-world feedback.</p>
+                    </div>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step expandable-process" data-step="5">
+                    <button class="step-icon-btn" aria-expanded="false" aria-label="Expand Data-Driven Iteration">
+                        <img src="images/process-iteration.png" alt="Iteration">
+                        <span class="expand-indicator">+</span>
+                    </button>
+                    <h3 class="step-title">Data-Driven Iteration</h3>
+                    <div class="step-content-expandable">
+                        <p class="step-desc">Refining based on impact. I track metrics (Revenue, Retention) and use <strong>A/B testing</strong> to continuously improve the product, ensuring it delivers measurable business value.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Featured Projects Preview Section -->
+    <section class="featured-preview">
+        <div class="container">
+            <h2 class="section-title sparkles-text" data-sparkles-count="8">Featured Work</h2>
+            <p class="section-subtitle">Real projects with working code — click to try live demos</p>
+
+            <!-- Hatrick Project Group -->
+            <div class="project-group">
+                <div class="project-group-header">
+                    <h3 class="project-group-title">Hatrick: AI Cyber Defense</h3>
+                    <div class="project-group-links">
+                        <a href="https://hatrick.vercel.app" target="_blank" class="btn-demo">Live Demo</a>
+                        <a href="https://github.com/JackAmichai/Hatrick" target="_blank" class="btn-github">GitHub</a>
+                    </div>
+                </div>
+                <p class="project-group-desc">Multi-agent system for cyber attack/defense simulation using LLM
+                    orchestration (LangChain/Groq). 6+ autonomous AI agents with sub-second inference.</p>
+
+                <div class="project-content-grid">
+                    <!-- Videos -->
+                    <div class="videos-column">
+                        <div class="video-wrapper">
+                            <video controls muted loop playsinline preload="none">
+                                <source src="video proj/Project_Video_Generation_With_Music.mp4" type="video/mp4">
+                            </video>
+                            <span class="video-label">Demo Video 1</span>
+                        </div>
+                        <div class="video-wrapper">
+                            <video controls muted loop playsinline preload="none">
+                                <source src="video proj/Screen Recording 2025-12-13 at 20.08.38.mov" type="video/mp4">
+                            </video>
+                            <span class="video-label">Demo Video 2</span>
+                        </div>
+                    </div>
+                    <!-- Live Demo Embed -->
+                    <div class="demo-column">
+                        <div class="live-demo-frame">
+                            <div class="frame-header">
+                                <span class="frame-dot red"></span>
+                                <span class="frame-dot yellow"></span>
+                                <span class="frame-dot green"></span>
+                                <span class="frame-url">hatrick.vercel.app</span>
+                            </div>
+                            <iframe src="https://hatrick.vercel.app" loading="lazy" title="Hatrick Live Demo"></iframe>
+                            <a href="https://hatrick.vercel.app" target="_blank" class="demo-overlay">
+                                <span>Open in New Tab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PawQuest Project Group -->
+            <div class="project-group">
+                <div class="project-group-header">
+                    <h3 class="project-group-title">PawQuest: Dog Social App</h3>
+                    <div class="project-group-links">
+                        <a href="https://paw-quest-f31de0c0.base44.app/Landing" target="_blank" class="btn-demo">Live
+                            Demo</a>
+                        <a href="https://github.com/base44dev/paw-quest-f31de0c0" target="_blank"
+                            class="btn-github">GitHub</a>
+                    </div>
+                </div>
+                <p class="project-group-desc">Social platform for dog owners featuring real-time matching, location
+                    discovery, and event scheduling. Build local pet communities.</p>
+
+                <div class="project-content-grid">
+                    <!-- Videos -->
+                    <div class="videos-column">
+                        <div class="video-wrapper">
+                            <video controls muted loop playsinline preload="none">
+                                <source src="video proj/Find Your Pack Today-VEED.mp4" type="video/mp4">
+                            </video>
+                            <span class="video-label">Promo Video</span>
+                        </div>
+                        <div class="video-wrapper">
+                            <video controls muted loop playsinline preload="none">
+                                <source src="video proj/Screen Recording 2025-12-13 at 20.05.21.mov" type="video/mp4">
+                            </video>
+                            <span class="video-label">App Walkthrough</span>
+                        </div>
+                    </div>
+                    <!-- Live Demo Embed -->
+                    <div class="demo-column">
+                        <div class="live-demo-frame">
+                            <div class="frame-header">
+                                <span class="frame-dot red"></span>
+                                <span class="frame-dot yellow"></span>
+                                <span class="frame-dot green"></span>
+                                <span class="frame-url">paw-quest.base44.app</span>
+                            </div>
+                            <iframe src="https://paw-quest-f31de0c0.base44.app/Landing" loading="lazy"
+                                title="PawQuest Live Demo"></iframe>
+                            <a href="https://paw-quest-f31de0c0.base44.app/Landing" target="_blank"
+                                class="demo-overlay">
+                                <span>Open in New Tab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scholar 2.6 Project -->
+            <div class="project-group project-group-small">
+                <div class="project-group-header">
+                    <h3 class="project-group-title">Scholar 2.6: AI Research Navigator</h3>
+                    <div class="project-group-links">
+                        <a href="https://github.com/JackAmichai/Scholar2.6" target="_blank"
+                            class="btn-github">GitHub</a>
+                    </div>
+                </div>
+                <p class="project-group-desc">Chrome Extension with AI-driven interface for academic research. Knowledge
+                    graph visualization and citation management.</p>
+
+                <div class="single-video-wrapper">
+                    <div class="video-wrapper large">
+                        <video controls muted loop playsinline preload="none">
+                            <source src="video proj/Scholar_Improving_Google_Scholar.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LeAIrn: AI Safety Education Flagship Project -->
+    <section id="leairn" class="leairn-showcase">
+        <div class="container">
+            <div class="leairn-header">
+                <span class="leairn-badge">FLAGSHIP PROJECT</span>
+                <h2 class="section-title sparkles-text" data-sparkles-count="12">LeAIrn: Teaching Safe AI</h2>
+                <p class="section-subtitle">An AI-powered education platform addressing the critical need for AI
+                    literacy in the age of hallucinations, bias, and misinformation.</p>
+            </div>
+
+            <!-- Frontend Preview -->
+            <div class="project-content-grid" style="margin-bottom: 50px;">
+                <!-- Videos -->
+                <div class="videos-column">
+                    <div class="video-wrapper">
+                        <video controls muted loop playsinline preload="none">
+                            <source src="video proj/LeAIrn_promo.mp4" type="video/mp4">
+                        </video>
+                        <span class="video-label">Promo Video</span>
+                    </div>
+                    <div class="video-wrapper">
+                        <video controls muted loop playsinline preload="none">
+                            <source src="video proj/LeAIrn_preview.mp4" type="video/mp4">
+                        </video>
+                        <span class="video-label">App Walkthrough</span>
+                    </div>
+                </div>
+                <!-- Live Demo Embed -->
+                <div class="demo-column">
+                    <div class="live-demo-frame">
+                        <div class="frame-header">
+                            <span class="frame-dot red"></span>
+                            <span class="frame-dot yellow"></span>
+                            <span class="frame-dot green"></span>
+                            <span class="frame-url">leairn.app</span>
+                        </div>
+                        <iframe src="https://le-a-irn.vercel.app/" loading="lazy"
+                            title="LeAIrn Live Demo"></iframe>
+                        <a href="https://le-a-irn.vercel.app/" target="_blank"
+                            class="demo-overlay">
+                            <span>Open in New Tab</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infinite Slider - Topics Covered -->
+            <div class="leairn-topics-wrapper">
+                <p class="topics-label">Topics Covered</p>
+                <div class="infinite-slider">
+                    <div class="slider-track">
+                        <span class="topic-item">AI Hallucinations</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Racial Bias in AI</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Gender Bias Detection</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Misinformation Spread</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">AI Transparency</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Algorithmic Fairness</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Data Privacy</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Critical Evaluation</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">EU AI Act Compliance</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Responsible AI Practices</span>
+                        <span class="topic-divider">•</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span class="topic-item">AI Hallucinations</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Racial Bias in AI</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Gender Bias Detection</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Misinformation Spread</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">AI Transparency</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Algorithmic Fairness</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Data Privacy</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Critical Evaluation</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">EU AI Act Compliance</span>
+                        <span class="topic-divider">•</span>
+                        <span class="topic-item">Responsible AI Practices</span>
+                        <span class="topic-divider">•</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack & CTA -->
+            <div class="leairn-footer">
+                <div class="leairn-tech">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">Next.js</span>
+                    <span class="tech-badge">LLMs</span>
+                    <span class="tech-badge">Python</span>
+                </div>
+                <div class="leairn-cta">
+                    <a href="https://github.com/JackAmichai/LeAIrn" target="_blank" class="btn-leairn">
+                        <span>View on GitHub</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6">About Me</h2>
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title sparkles-text" data-sparkles-count="10">This is where all the magic happens.</h2>
 
-        <p class="mb-4">
-          I began my journey as an IDF Staff Sergeant, where leading teams
-          taught me clarity, discipline, and responsibility under pressure.
-        </p>
+            <div class="about-intro about-content-wrapper">
+                <div class="about-text text-reveal" data-effect="line">
+                    <p>
+                        This is where I introduce myself — not just by title, but by the way I think.
+                    </p>
+                    <p>
+                        I'm a <strong>Business Analyst and emerging AI Product Manager</strong> who builds data-driven
+                        solutions at the intersection of psychology and technology. I turn complex, fuzzy problems into
+                        clear analytics, forecasting models, and AI-powered tools that people can actually make
+                        decisions with.
+                    </p>
+                    <p>
+                        My path so far: <strong>IDF Staff Sergeant</strong> → cognitive neuroscience research
+                        (<strong>Technion & Hebrew University</strong>) → revenue and pricing projects in hospitality →
+                        consulting at <strong>Deloitte Israel</strong>. The common thread is simple: understand how
+                        people really think, then design systems around that reality — not around slides.
+                    </p>
+                    <p>
+                        Right now, my focus is to:
+                    </p>
+                    <ul style="list-style-position: inside; margin: 10px 0; color: var(--text-secondary);">
+                        <li>Translate business questions into data models and experiments</li>
+                        <li>Design AI-assisted workflows that fit how people already work</li>
+                        <li>Measure impact with boring, honest metrics: revenue lift, forecast accuracy, time saved</li>
+                    </ul>
+                    <p>
+                        If you're looking for someone who speaks human, business, and technical with equal comfort — and
+                        enjoys building bridges between them — you're in the right place.
+                    </p>
+                </div>
+                <div class="about-video">
+                    <video controls autoplay muted loop playsinline preload="none">
+                        <source src="Intro video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
 
-        <p class="mb-4">
-          I later studied Psychology and Computer Science, researching cognitive
-          neuroscience to better understand how people think and make decisions.
-        </p>
+            <!-- Skills Accordion -->
+            <div class="skills-accordion" id="skillsAccordion">
+                <h3 class="subsection-title sparkles-text" data-sparkles-count="6">Core Competencies</h3>
 
-        <p class="mb-4">
-          Today I combine leadership, scientific rigor, and technical expertise
-          to build AI-powered tools that solve real business challenges—from
-          forecasting models and risk scoring systems to intelligent automation
-          and data-driven decision dashboards.
-        </p>
+                <div class="skill-item" data-accordion="product">
+                    <button class="skill-header" aria-expanded="false">
+                        <h4 class="skill-title">Product & Domain</h4>
+                        <svg class="skill-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="skill-content">
+                        <ul class="skill-list">
+                            <li>AI and data products for revenue and operations</li>
+                            <li>Hypothesis-driven experimentation</li>
+                            <li>Clear success metrics for every change</li>
+                            <li>User research and stakeholder management</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <p class="font-medium">
-          My philosophy: build solutions rooted in human behavior and real-world
-          data—not tech for its own sake.
-        </p>
-      </div>
-    </section>
+                <div class="skill-item active" data-accordion="tech">
+                    <button class="skill-header" aria-expanded="true">
+                        <h4 class="skill-title">Architecture & Tech</h4>
+                        <svg class="skill-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="skill-content">
+                        <ul class="skill-list">
+                            <li>RAG systems, ML pipelines, SAP BTP extensions</li>
+                            <li>Cloud-native APIs and integrations</li>
+                            <li>Python, SQL, JavaScript/TypeScript</li>
+                            <li>Vector databases, LangChain, Scikit-learn</li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- Core Competencies Section (Moved out of About for clarity as per prompt) -->
-    <section id="skills" class="py-20">
-      <div class="max-w-3xl mx-auto">
-        <h3 class="text-3xl font-bold mb-6">Core Competencies</h3>
-        <ul class="space-y-2 text-gray-700">
-          <li>• AI & data-driven product design (forecasting, scoring, automation)</li>
-          <li>• End-to-end product ownership: discovery → architecture → delivery</li>
-          <li>• Revenue & operations optimization through analytics</li>
-          <li>• Clear measurable success metrics and experimentation frameworks</li>
-          <li>• Strong stakeholder communication across business, data, and engineering</li>
-        </ul>
-      </div>
-    </section>
+                <div class="skill-item" data-accordion="delivery">
+                    <button class="skill-header" aria-expanded="false">
+                        <h4 class="skill-title">Delivery & Process</h4>
+                        <svg class="skill-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="skill-content">
+                        <ul class="skill-list">
+                            <li>From idea to shipped MVP in weeks</li>
+                            <li>Iterative roadmaps, small releases</li>
+                            <li>Obsessed with usage and adoption data</li>
+                            <li>Agile, SAFe, and lean methodologies</li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- Tech Stack -->
-    <section id="tech-stack" class="py-20">
-      <div class="container">
-                <h3 class="subsection-title text-center">Tech Stack & Tools</h3>
+                <div class="skill-item" data-accordion="leadership">
+                    <button class="skill-header" aria-expanded="false">
+                        <h4 class="skill-title">Communication & Leadership</h4>
+                        <svg class="skill-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="skill-content">
+                        <ul class="skill-list">
+                            <li>Translate between execs, HR, and engineers</li>
+                            <li>IDF Staff Sergeant leadership experience</li>
+                            <li>Run workshops, demos, and trainings</li>
+                            <li>Hebrew (native), English (fluent), French (conversational)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Licenses & Certifications Carousel -->
+            <div class="linkedin-skills-section">
+                <h3 class="subsection-title">Licenses & Certifications</h3>
+                <div class="skills-carousel-wrapper">
+                    <div class="skills-carousel">
+                        <div class="skills-track">
+                            <!-- Certifications with issuer logo -->
+                            <div class="skill-badge">
+                                <span class="skill-name">Building Production-Ready AI Agents with Amazon Bedrock</span>
+                                <span class="skill-endorser"><img src="images/logos/aws.svg" alt="Amazon Web Services (AWS)" class="company-logo"> Amazon Web Services (AWS)</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AWS Cloud Practitioner Essentials</span>
+                                <span class="skill-endorser"><img src="images/logos/aws.svg" alt="Amazon Web Services (AWS)" class="company-logo"> Amazon Web Services (AWS)</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Building Generative AI Applications Using Amazon Bedrock</span>
+                                <span class="skill-endorser"><img src="images/logos/aws.svg" alt="Amazon Web Services (AWS)" class="company-logo"> Amazon Web Services (AWS)</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AI For Everyone</span>
+                                <span class="skill-endorser"><img src="images/logos/deeplearningai.svg" alt="DeepLearning.AI" class="company-logo"> DeepLearning.AI</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">SAP Professional Fundamentals</span>
+                                <span class="skill-endorser"><img src="images/logos/sap.png" alt="SAP" class="company-logo"> SAP</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AI Applications in People Management</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Foundations of Project Management</span>
+                                <span class="skill-endorser"><img src="images/logos/google.svg" alt="Google" class="company-logo"> Google</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Financial Accounting</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AI Applications in Marketing and Finance</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Managing Social and Human Capital</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Large Language Models</span>
+                                <span class="skill-endorser"><img src="images/logos/google.svg" alt="Google" class="company-logo"> Google</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Advanced Neurobiology</span>
+                                <span class="skill-endorser"><img src="images/logos/technion.svg" alt="Technion - Israel Institute of Technology" class="company-logo"> Technion - Israel Institute of Technology</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Google IT Support Professional Certificate</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Foundations of Positive Psychology Specialization</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Financial Freedom: A Proven Path to All the Money You Will Ever Need</span>
+                                <span class="skill-endorser"><img src="images/logos/linkedin.svg" alt="LinkedIn" class="company-logo"> LinkedIn</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Artificial Intelligence (AI)</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Augmented Reality and ARCore</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to generative AI learning path</span>
+                                <span class="skill-endorser"><img src="images/logos/google.svg" alt="Google" class="company-logo"> Google</span>
+                            </div>
+
+                            <!-- Duplicate for seamless loop -->
+                            <div class="skill-badge">
+                                <span class="skill-name">Building Production-Ready AI Agents with Amazon Bedrock</span>
+                                <span class="skill-endorser"><img src="images/logos/aws.svg" alt="Amazon Web Services (AWS)" class="company-logo"> Amazon Web Services (AWS)</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AWS Cloud Practitioner Essentials</span>
+                                <span class="skill-endorser"><img src="images/logos/aws.svg" alt="Amazon Web Services (AWS)" class="company-logo"> Amazon Web Services (AWS)</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Building Generative AI Applications Using Amazon Bedrock</span>
+                                <span class="skill-endorser"><img src="images/logos/aws.svg" alt="Amazon Web Services (AWS)" class="company-logo"> Amazon Web Services (AWS)</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AI For Everyone</span>
+                                <span class="skill-endorser"><img src="images/logos/deeplearningai.svg" alt="DeepLearning.AI" class="company-logo"> DeepLearning.AI</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">SAP Professional Fundamentals</span>
+                                <span class="skill-endorser"><img src="images/logos/sap.png" alt="SAP" class="company-logo"> SAP</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AI Applications in People Management</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Foundations of Project Management</span>
+                                <span class="skill-endorser"><img src="images/logos/google.svg" alt="Google" class="company-logo"> Google</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Financial Accounting</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">AI Applications in Marketing and Finance</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Managing Social and Human Capital</span>
+                                <span class="skill-endorser"><img src="images/logos/upenn.svg" alt="University of Pennsylvania" class="company-logo"> University of Pennsylvania</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Large Language Models</span>
+                                <span class="skill-endorser"><img src="images/logos/google.svg" alt="Google" class="company-logo"> Google</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Advanced Neurobiology</span>
+                                <span class="skill-endorser"><img src="images/logos/technion.svg" alt="Technion - Israel Institute of Technology" class="company-logo"> Technion - Israel Institute of Technology</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Google IT Support Professional Certificate</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Foundations of Positive Psychology Specialization</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Financial Freedom: A Proven Path to All the Money You Will Ever Need</span>
+                                <span class="skill-endorser"><img src="images/logos/linkedin.svg" alt="LinkedIn" class="company-logo"> LinkedIn</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Artificial Intelligence (AI)</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to Augmented Reality and ARCore</span>
+                                <span class="skill-endorser"><img src="images/logos/coursera.svg" alt="Coursera" class="company-logo"> Coursera</span>
+                            </div>
+                            <div class="skill-badge">
+                                <span class="skill-name">Introduction to generative AI learning path</span>
+                                <span class="skill-endorser"><img src="images/logos/google.svg" alt="Google" class="company-logo"> Google</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="tech-stack-section">
+                <h3 class="subsection-title sparkles-text" data-sparkles-count="6">Tech Stack & Tools</h3>
                 <div class="tech-stack-grid">
                     <div class="tech-group">
                         <h4>Languages</h4>
@@ -235,111 +972,319 @@
         <div class="container">
             <!-- Icon Cloud Background -->
             <div class="icon-cloud-wrapper">
-                <div class="icon-cloud" data-icons="python,powerbi,excel,postgresql,azure,git,pandas,numpy,jupyter,sap" data-radius="130"></div>
+                <div class="icon-cloud" data-icons="python,powerbi,excel,postgresql,azure,git,pandas,numpy,jupyter,sap"
+                    data-radius="130"></div>
             </div>
 
             <div class="experience-header">
                 <div class="experience-title-section">
-                    <h2 class="section-title">Where I've Worked</h2>
-                    <p class="section-subtitle">From military leadership to research to business analytics — building solutions that deliver measurable impact</p>
+                    <h2 class="section-title sparkles-text" data-sparkles-count="8">Where I've Worked</h2>
+                    <p class="section-subtitle">From military leadership to research to business analytics — building
+                        solutions that deliver measurable impact</p>
                 </div>
                 <div class="experience-photo">
-                    <img src="images/me.jpeg" alt="Jack Amichai in professional work setting at Deloitte" class="work-photo" loading="lazy" width="300" height="400">
+                    <img src="images/Gemini_Generated_Image_2yyu8f2yyu8f2yyu.png"
+                        alt="Jack Amichai - Professional Experience" class="work-photo" loading="lazy" width="300"
+                        height="400">
                 </div>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item" data-expandable>
+                    <div class="timeline-date">Aug 2025 - Present</div>
+                    <div class="timeline-content">
+                        <div class="timeline-summary">
+                            <h3>Junior Consultant <span class="expand-icon">▼</span></h3>
+                            <h4>Deloitte</h4>
+                            <ul>
+                                <li>Implement data-driven systems and enterprise AI solutions</li>
+                                <li>Support large-scale digital transformation projects</li>
+                                <li>Analyze business processes and recommend optimization strategies</li>
+                                <li>Collaborate with cross-functional teams on client deliverables</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>Cloud Computing</span>
+                                <span>Gen AI</span>
+                                <span>Business Analysis</span>
+                                <span>Enterprise Systems</span>
+                            </div>
+                        </div>
+                        <div class="timeline-expanded">
+                            <div class="case-study">
+                                <h5>🎯 Key Focus Areas</h5>
+                                <p>Working at the intersection of technology consulting and AI implementation, helping enterprise clients navigate digital transformation with data-driven insights and modern cloud architectures.</p>
+                                <h5>💡 What I'm Learning</h5>
+                                <ul>
+                                    <li>Enterprise-scale system design and implementation patterns</li>
+                                    <li>Stakeholder management across complex organizational structures</li>
+                                    <li>Translating business requirements into technical specifications</li>
+                                    <li>Agile delivery in consulting environments</li>
+                                </ul>
+                                <h5>🛠️ Technologies Deep Dive</h5>
+                                <p>AWS (Bedrock, Lambda, S3), Azure services, SAP integrations, Power Platform, Python for automation, and various GenAI frameworks for RAG and agent development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-expandable>
                     <div class="timeline-date">Apr 2025 - Present</div>
                     <div class="timeline-content">
-                        <h3>Business Analyst</h3>
-                        <h4>Adi Revenue Management</h4>
-                        <ul>
-                            <li>Analyze demand trends and competitor pricing strategies for hotel portfolios</li>
-                            <li>Build revenue forecasting models and predictive analytics</li>
-                            <li>Create executive dashboards for real-time decision-making</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>Revenue Analytics</span>
-                            <span>Excel</span>
-                            <span>Power BI</span>
+                        <div class="timeline-summary">
+                            <h3>Business Analyst Intern <span class="expand-icon">▼</span></h3>
+                            <h4>Adi Ohayon · Internship</h4>
+                            <ul>
+                                <li>Analyze demand trends and competitor pricing strategies for hotel portfolios</li>
+                                <li>Build revenue forecasting models and predictive analytics</li>
+                                <li>Create executive dashboards for real-time decision-making</li>
+                                <li>Collaborate with sales, marketing, and operations teams on strategy alignment</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>Excel</span>
+                                <span>Power BI</span>
+                                <span>SQL</span>
+                                <span>Revenue Analytics</span>
+                                <span>Data Analysis</span>
+                                <span>Business Intelligence (BI)</span>
+                            </div>
+                        </div>
+                        <div class="timeline-expanded">
+                            <div class="case-study">
+                                <h5>🎯 The Challenge</h5>
+                                <p>Hotel revenue management requires balancing occupancy rates, pricing strategies, and market demand in real-time. Built systems to provide actionable insights from complex hospitality data.</p>
+                                <h5>💡 What I Learned</h5>
+                                <ul>
+                                    <li>Revenue management fundamentals and yield optimization</li>
+                                    <li>Building forecasting models that account for seasonality and events</li>
+                                    <li>Creating dashboards that executives actually use for decisions</li>
+                                    <li>Cross-functional collaboration between revenue, sales, and marketing</li>
+                                </ul>
+                                <h5>🛠️ Technical Approach</h5>
+                                <p>Combined Power BI for visualization, SQL for data extraction, and Excel for rapid prototyping. Developed automated reporting pipelines that reduced manual analysis time significantly.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">2025 - Present</div>
-                    <div class="timeline-content">
-                        <h3>Consultant</h3>
-                        <h4>Deloitte</h4>
-                        <ul>
-                            <li>Collaborate with sales, marketing, and operations teams on strategy alignment</li>
-                            <li>Provide strategic business analysis and data-driven recommendations</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>SQL</span>
-                            <span>Strategy</span>
-                            <span>Business Analysis</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
+                <div class="timeline-item" data-expandable>
                     <div class="timeline-date">2021 - 2023</div>
                     <div class="timeline-content">
-                        <h3>Research Assistant & Team Coordinator</h3>
-                        <h4>Technion</h4>
-                        <ul>
-                            <li>Conducted cognitive psychology research studies</li>
-                            <li>Analyzed experimental data using SPSS and Python</li>
-                            <li>Coordinated lab operations and participant recruitment</li>
-                            <li>Maintained highest research standards</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>Python</span>
-                            <span>SPSS</span>
-                            <span>Data Analysis</span>
-                            <span>Research Design</span>
+                        <div class="timeline-summary">
+                            <h3>Research Assistant & Team Coordinator <span class="expand-icon">▼</span></h3>
+                            <h4>Technion</h4>
+                            <ul>
+                                <li>Conducted cognitive psychology research studies</li>
+                                <li>Analyzed experimental data using SPSS and Python</li>
+                                <li>Coordinated lab operations and participant recruitment</li>
+                                <li>Maintained highest research standards</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>Python</span>
+                                <span>SPSS</span>
+                                <span>Data Analysis</span>
+                                <span>Research Design</span>
+                            </div>
+                        </div>
+                        <div class="timeline-expanded">
+                            <div class="case-study">
+                                <h5>🔬 Research Focus</h5>
+                                <p>Investigated cognitive processes including attention, memory, and decision-making. Designed experiments to understand how humans process information under various conditions.</p>
+                                <h5>💡 What I Learned</h5>
+                                <ul>
+                                    <li>Scientific method and rigorous experimental design</li>
+                                    <li>Statistical analysis and interpreting complex datasets</li>
+                                    <li>Managing research participants and ensuring data quality</li>
+                                    <li>Academic writing and presenting findings</li>
+                                </ul>
+                                <h5>🧠 How This Shapes My Work</h5>
+                                <p>Understanding human cognition directly informs how I design AI products and user experiences. Psychology research taught me to question assumptions and validate with data—skills that transfer perfectly to product analytics.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item" data-expandable>
                     <div class="timeline-date">2020 - 2021</div>
                     <div class="timeline-content">
-                        <h3>Research Project Manager & Software Engineer</h3>
-                        <h4>Project Alpha - Hebrew University</h4>
-                        <ul>
-                            <li>Managed research project timelines and deliverables</li>
-                            <li>Developed software tools for data collection and analysis</li>
-                            <li>Coordinated between technical and research teams</li>
-                            <li>Delivered project milestones on time</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>C++</span>
-                            <span>Project Management</span>
-                            <span>Software Development</span>
-                            <span>Research</span>
+                        <div class="timeline-summary">
+                            <h3>Research Project Manager & Software Engineer <span class="expand-icon">▼</span></h3>
+                            <h4>Project Alpha - Hebrew University</h4>
+                            <ul>
+                                <li>Managed research project timelines and deliverables</li>
+                                <li>Developed software tools for data collection and analysis</li>
+                                <li>Coordinated between technical and research teams</li>
+                                <li>Delivered project milestones on time</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>C++</span>
+                                <span>Project Management</span>
+                                <span>Software Development</span>
+                                <span>Research</span>
+                            </div>
+                        </div>
+                        <div class="timeline-expanded">
+                            <div class="case-study">
+                                <h5>🎯 The Project</h5>
+                                <p>Led development of specialized software tools for academic research, bridging the gap between researchers' needs and technical implementation.</p>
+                                <h5>💡 What I Learned</h5>
+                                <ul>
+                                    <li>Translating research requirements into software specifications</li>
+                                    <li>C++ development for performance-critical applications</li>
+                                    <li>Balancing academic rigor with practical delivery timelines</li>
+                                    <li>Working in interdisciplinary teams</li>
+                                </ul>
+                                <h5>🔗 The Bridge Experience</h5>
+                                <p>This role was pivotal in teaching me to speak both "researcher" and "engineer"—a skill that now helps me communicate effectively between business stakeholders and technical teams.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">2017 - 2020</div>
+                <div class="timeline-item" data-expandable>
+                    <div class="timeline-date">Mar 2017 - Aug 2018</div>
                     <div class="timeline-content">
-                        <h3>Staff Sergeant - Operations & Leadership</h3>
-                        <h4>Israel Defense Forces (IDF)</h4>
-                        <ul>
-                            <li>Led team operations and mission planning</li>
-                            <li>Managed logistics and resource allocation</li>
-                            <li>Trained and mentored junior personnel</li>
-                            <li>Developed leadership skills under pressure</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>Leadership</span>
-                            <span>Project Management</span>
-                            <span>Operations</span>
+                        <div class="timeline-summary">
+                            <h3>Staff Sergeant - Operations & Leadership <span class="expand-icon">▼</span></h3>
+                            <h4>Israel Defense Forces (IDF)</h4>
+                            <ul>
+                                <li>Led team operations and mission planning</li>
+                                <li>Managed logistics and resource allocation</li>
+                                <li>Trained and mentored junior personnel</li>
+                                <li>Developed leadership skills under pressure</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>Leadership</span>
+                                <span>Project Management</span>
+                                <span>Operations</span>
+                            </div>
+                        </div>
+                        <div class="timeline-expanded">
+                            <div class="case-study">
+                                <h5>🎖️ Leadership Experience</h5>
+                                <p>Mandatory military service that became a formative leadership experience. Responsible for team operations, training, and mission execution in high-stakes environments.</p>
+                                <h5>💡 What I Learned</h5>
+                                <ul>
+                                    <li>Leading teams under pressure and uncertainty</li>
+                                    <li>Clear communication in critical situations</li>
+                                    <li>Resource optimization with constraints</li>
+                                    <li>Mentoring and developing team members</li>
+                                </ul>
+                                <h5>🔄 How This Transfers</h5>
+                                <p>Military service taught me that effective leadership isn't about having all the answers—it's about making decisions with incomplete information, supporting your team, and adapting quickly when plans change.</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Universe Section - Interactive 3D Visualization -->
+    <section id="skills-universe" class="skills-universe-section">
+        <div class="container">
+            <h2 class="section-title sparkles-text" data-sparkles-count="12">Skills Universe</h2>
+            <p class="section-subtitle">Explore my skills as an interactive galaxy — drag to rotate, scroll to zoom</p>
+            <div class="skills-universe-wrapper">
+                <div id="milky-way-container"></div>
+                <div id="milky-way-status" class="milky-way-status">Loading galaxy...</div>
+                <div class="skill-tooltip" id="skill-tooltip"></div>
+                <div class="skills-universe-controls">
+                    <button id="start-milky-way-btn" class="milky-way-btn">
+                        <span>✋</span> Enable Hand Control
+                    </button>
+                </div>
+            </div>
+            <div class="skills-legend">
+                <div class="legend-item"><span class="legend-dot" style="background: #60a5fa;"></span> Technical</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #f472b6;"></span> Business</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #34d399;"></span> Research</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #fbbf24;"></span> Leadership</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="hobbies-section">
+        <div class="container">
+            <h2 class="section-title sparkles-text" data-sparkles-count="10">Outside of Work</h2>
+            <div class="hobbies-image-container">
+                <img src="images/Hobbies.png" alt="My Hobbies: Hiking, Reading, Fitness, Violin, Traveling, Gardening"
+                    class="hobbies-collage-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Favorite Books Section -->
+    <section id="books" class="books-section">
+        <div class="container">
+            <h2 class="section-title sparkles-text" data-sparkles-count="12">Favorite Books & Music</h2>
+            <p class="section-subtitle">A curated list of books that shaped my thinking and music that fuels my day</p>
+            <div class="books-actions">
+                <button id="toggle-books-btn" class="btn-toggle-books">See Jack's Recommended Books</button>
+                <a href="https://open.spotify.com/collection/tracks" target="_blank" class="btn-spotify">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="margin-right: 8px; vertical-align: text-bottom;">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.2-1.32 9.6-0.66 13.38 1.68.42.24.6.84.36 1.14zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    My Liked Songs
+                </a>
+            </div>
+            <div id="books-list-container" class="books-container-toggle">
+                <div class="books-grid">
+                    <div class="book-item"><span class="book-num">1</span> אמנות האהבה - אריך פרום</div>
+                    <div class="book-item"><span class="book-num">2</span> תליין האהבה - ארווין יאלום</div>
+                    <div class="book-item"><span class="book-num">3</span> חנויות הקינמון - ברונו שולץ</div>
+                    <div class="book-item"><span class="book-num">4</span> Brené Brown - Daring Greatly</div>
+                    <div class="book-item"><span class="book-num">5</span> סיפור על אהבה וחושך - עמוס עוז</div>
+                    <div class="book-item"><span class="book-num">6</span> האחים קרמזוב - דוסטויבסקי</div>
+                    <div class="book-item"><span class="book-num">7</span> תת ההכרה נפתחת כמו מניפה - יונה וולך</div>
+                    <div class="book-item"><span class="book-num">8</span> The Subtle Art of Not Giving a F*ck</div>
+                    <div class="book-item"><span class="book-num">9</span> שלושה בסירה אחת</div>
+                    <div class="book-item"><span class="book-num">10</span> התופסן בשדה השיפון</div>
+                    <div class="book-item"><span class="book-num">11</span> סיפורים קצרים - קפקא</div>
+                    <div class="book-item"><span class="book-num">12</span> האחים טאנר</div>
+                    <div class="book-item"><span class="book-num">13</span> אשה בורחת מבשורה - גרוסמן</div>
+                    <div class="book-item"><span class="book-num">14</span> סיפורי מעשיות - רבי נחמן</div>
+                    <div class="book-item"><span class="book-num">15</span> ליקוטי מוהרן</div>
+                    <div class="book-item"><span class="book-num">16</span> רודף העפיפונים</div>
+                    <div class="book-item"><span class="book-num">17</span> הנזיר שמכר את הפרארי שלו</div>
+                    <div class="book-item"><span class="book-num">18</span> מורה נבוכים - הרמב"ם</div>
+                    <div class="book-item"><span class="book-num">19</span> זה המקום - אהוד בנאי</div>
+                    <div class="book-item"><span class="book-num">20</span> עלילות טום סוייר</div>
+                    <div class="book-item"><span class="book-num">21</span> אלוהים מבקש את האדם - השל</div>
+                    <div class="book-item"><span class="book-num">22</span> 1984 - George Orwell</div>
+                    <div class="book-item"><span class="book-num">23</span> עלובי החיים - ויקטור הוגו</div>
+                    <div class="book-item"><span class="book-num">24</span> אדם מחפש משמעות - ויקטור פרנקל</div>
+                    <div class="book-item"><span class="book-num">25</span> 7 Habits for Highly Successful Teens</div>
+                    <div class="book-item"><span class="book-num">26</span> יונו של אלכס</div>
+                    <div class="book-item"><span class="book-num">27</span> Feeling Good - David Burns</div>
+                    <div class="book-item"><span class="book-num">28</span> האיש שחשב שאשתו היא כובע - אוליבר סאקס</div>
+                    <div class="book-item"><span class="book-num">29</span> יהודה עמיחי - שירים</div>
+                    <div class="book-item"><span class="book-num">30</span> HHGTTG - Douglas Adams</div>
+                    <div class="book-item"><span class="book-num">31</span> No More Mr. Nice Guy</div>
+                    <div class="book-item"><span class="book-num">32</span> To Kill a Mockingbird</div>
+                    <div class="book-item"><span class="book-num">33</span> Shoe Dog - Phil Knight</div>
+                    <div class="book-item"><span class="book-num">34</span> אסימוב - המוסד</div>
+                    <div class="book-item"><span class="book-num">35</span> "הטנק" - ענברי</div>
+                    <div class="book-item"><span class="book-num">36</span> נוילנד - אשכול נבו</div>
+                    <div class="book-item"><span class="book-num">37</span> נעם חורב - שירים</div>
+                    <div class="book-item"><span class="book-num">38</span> The Almanack of Naval Ravikant</div>
+                    <div class="book-item"><span class="book-num">39</span> החטא ועונשו</div>
+                    <div class="book-item"><span class="book-num">40</span> כתבים מן המחתרת</div>
+                    <div class="book-item"><span class="book-num">41</span> בלתי שביר / הברבור השחור - טאלב</div>
+                    <div class="book-item"><span class="book-num">42</span> גוגול - סיפורים אוקראיניים</div>
+                    <div class="book-item"><span class="book-num">43</span> פוקנר - שדה התירס</div>
+                    <div class="book-item"><span class="book-num">44</span> כל החיים לפניו - אז'אר</div>
+                    <div class="book-item"><span class="book-num">45</span> טירת הזכוכית</div>
+                    <div class="book-item"><span class="book-num">46</span> הרמן הסה - סידהארתה</div>
+                    <div class="book-item"><span class="book-num">47</span> חרדתו של המלך סולומון</div>
+                    <div class="book-item"><span class="book-num">48</span> מות איוון איליץ' - טולסטוי</div>
+                    <div class="book-item"><span class="book-num">49</span> זורבה היווני</div>
+                    <div class="book-item"><span class="book-num">50</span> דיוקן עצמי - מישל קישקה</div>
+                    <div class="book-item"><span class="book-num">51</span> Untamed - Glennon Doyle</div>
+                    <div class="book-item"><span class="book-num">52</span> אליפים</div>
+                    <div class="book-item"><span class="book-num">53</span> מגילת סן מיקל</div>
+                    <div class="book-item"><span class="book-num">54</span> מישהו לרוץ איתו - גרוסמן</div>
+                    <div class="book-item"><span class="book-num">55</span> A Short History of Nearly Everything</div>
+                    <div class="book-item"><span class="book-num">56</span> האמן ומרגריטה - בולגקוב</div>
                 </div>
             </div>
         </div>
@@ -350,26 +1295,29 @@
         <div class="container">
             <!-- Icon Cloud Background -->
             <div class="icon-cloud-wrapper">
-                <div class="icon-cloud" data-icons="react,typescript,fastapi,langchain,openai,nextjs,vite,tailwindcss,python,docker" data-radius="140"></div>
+                <div class="icon-cloud"
+                    data-icons="react,typescript,fastapi,langchain,openai,nextjs,vite,tailwindcss,python,docker"
+                    data-radius="140"></div>
             </div>
 
             <div class="projects-header">
                 <div class="projects-title-section">
-                    <h2 class="section-title">Featured Work</h2>
-                    <p class="section-subtitle">A collection of AI products, tools, and analytics solutions built for impact.</p>
+                    <h2 class="section-title sparkles-text" data-sparkles-count="8">Featured Work</h2>
+                    <p class="section-subtitle">A collection of AI products, tools, and analytics solutions built for
+                        impact.</p>
                 </div>
                 <div class="view-toggle">
-                    <button class="toggle-btn active" data-view="business" id="businessViewBtn">
-                        <span class="toggle-icon">💼</span>
-                        <span>Business Impact</span>
+                    <button class="toggle-card active" data-view="business" id="businessViewBtn"
+                        style="background-image: url('images/Business%20impact.png');">
+                        <span class="toggle-card-label">Business Impact</span>
                     </button>
-                    <button class="toggle-btn" data-view="technical" id="technicalViewBtn">
-                        <span class="toggle-icon">🔧</span>
-                        <span>Technical Details</span>
+                    <button class="toggle-card" data-view="technical" id="technicalViewBtn"
+                        style="background-image: url('images/Coding.png');">
+                        <span class="toggle-card-label">Technical Details</span>
                     </button>
                 </div>
             </div>
-            
+
             <!-- Projects will be dynamically rendered here -->
             <div id="projectsContainer" class="bento-grid" data-current-view="business"></div>
         </div>
@@ -380,12 +1328,15 @@
         <div class="container">
             <!-- Icon Cloud Background -->
             <div class="icon-cloud-wrapper">
-                <div class="icon-cloud" data-icons="github,vercel,figma,tensorflow,pytorch,scikitlearn,mongodb,graphql,aws,firebase" data-radius="120"></div>
+                <div class="icon-cloud"
+                    data-icons="github,vercel,figma,tensorflow,pytorch,scikitlearn,mongodb,graphql,aws,firebase"
+                    data-radius="120"></div>
             </div>
 
-            <h2 class="section-title">📜 References & Recommendations</h2>
-            <p class="section-subtitle">Verified recommendation letters from academic supervisors and professional colleagues</p>
-            
+            <h2 class="section-title sparkles-text" data-sparkles-count="8">📜 References & Recommendations</h2>
+            <p class="section-subtitle">Verified recommendation letters from academic supervisors and professional
+                colleagues</p>
+
             <!-- Retro Testimonial Carousel -->
             <div class="testimonial-carousel">
                 <div class="carousel-track" id="testimonialTrack">
@@ -394,77 +1345,115 @@
                         <div class="card-bg"></div>
                         <div class="card-content">
                             <div class="profile-image">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Dr. Ben Engelhard">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                                    alt="Dr. Ben Engelhard">
                             </div>
-                            <p class="testimonial-quote">"Jack demonstrated exceptional analytical skills and dedication during his time in the lab. His contributions to our research were invaluable."</p>
+                            <p class="testimonial-quote">"Jack demonstrated exceptional analytical skills and dedication
+                                during his time in the lab. His contributions to our research were invaluable."</p>
                             <p class="testimonial-name">Dr. Ben Engelhard</p>
                             <p class="testimonial-role">Lab Head, Technion Engelhard Lab</p>
-                            <a href="documents/Recommendation letter jack.pdf" download class="btn-download-card" onclick="trackCTAClick('download_engelhard')">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <a href="documents/Recommendation letter jack.pdf" download class="btn-download-card"
+                                onclick="trackCTAClick('download_engelhard')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
                                 Download Letter
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Card 2: Technion Supervisor -->
                     <div class="testimonial-card" data-index="1">
                         <div class="card-bg"></div>
                         <div class="card-content">
                             <div class="profile-image">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Research Supervisor">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+                                    alt="Research Supervisor">
                             </div>
-                            <p class="testimonial-quote">"Outstanding research capabilities in cognitive psychology. Showed excellent leadership in coordinating lab experiments and team management."</p>
-                            <p class="testimonial-name">Research Supervisor</p>
-                            <p class="testimonial-role">Technion - Israel Institute of Technology</p>
-                            <a href="documents/Technion recommendation letter English.pdf" download class="btn-download-card" onclick="trackCTAClick('download_technion')">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <p class="testimonial-quote">"Outstanding research capabilities in cognitive psychology.
+                                Showed excellent leadership in coordinating lab experiments and team management."</p>
+                            <p class="testimonial-name">Prof. Tzvi Dwolatzky and Dr. Robert Lubin</p>
+                            <p class="testimonial-role">TEAMS - American medical program Technion</p>
+                            <a href="documents/Technion recommendation letter English.pdf" download
+                                class="btn-download-card" onclick="trackCTAClick('download_technion')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
                                 Download Letter
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Card 3: Sasha -->
                     <div class="testimonial-card" data-index="2">
                         <div class="card-bg"></div>
                         <div class="card-content">
                             <div class="profile-image">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" alt="Sasha">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+                                    alt="Dr. Alexandra Kavushansky">
                             </div>
-                            <p class="testimonial-quote">"A brilliant collaborator on cognitive psychology experiments. Jack's attention to detail and research methodology skills are exceptional."</p>
-                            <p class="testimonial-name">Sasha</p>
-                            <p class="testimonial-role">Research Colleague, Technion Neuroscience Lab</p>
-                            <a href="documents/Recommendation Technion Sasha.pdf" download class="btn-download-card" onclick="trackCTAClick('download_sasha')">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <p class="testimonial-quote">"A brilliant collaborator on cognitive psychology experiments.
+                                Jack's attention to detail and research methodology skills are exceptional."</p>
+                            <p class="testimonial-name">Dr. Alexandra Kavushansky</p>
+                            <p class="testimonial-role">Technion Neuroscience Lab</p>
+                            <a href="documents/Recommendation Technion Sasha.pdf" download class="btn-download-card"
+                                onclick="trackCTAClick('download_sasha')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
                                 Download Letter
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Card 4: Yaron -->
                     <div class="testimonial-card" data-index="3">
                         <div class="card-bg"></div>
                         <div class="card-content">
                             <div class="profile-image">
-                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" alt="Yaron">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face"
+                                    alt="MA. Tomer Nossbaum">
                             </div>
-                            <p class="testimonial-quote">"Demonstrated outstanding leadership and technical abilities. A highly motivated professional with excellent problem-solving skills."</p>
-                            <p class="testimonial-name">Yaron</p>
-                            <p class="testimonial-role">Professional Supervisor</p>
-                            <a href="documents/Yaron - recomendation Letter.pdf" download class="btn-download-card" onclick="trackCTAClick('download_yaron')">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <p class="testimonial-quote">"Demonstrated outstanding leadership and technical abilities. A
+                                highly motivated professional with excellent problem-solving skills."</p>
+                            <p class="testimonial-name">MA. Tomer Nossbaum</p>
+                            <p class="testimonial-role">Hebrew University in Jerusalem</p>
+                            <a href="documents/Yaron - recomendation Letter.pdf" download class="btn-download-card"
+                                onclick="trackCTAClick('download_yaron')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
                                 Download Letter
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Carousel Navigation -->
                 <div class="carousel-nav">
                     <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
                     </button>
                     <button class="carousel-btn next" id="carouselNext" aria-label="Next">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -475,31 +1464,20 @@
     <!-- Downloadable Assets -->
     <section class="downloads">
         <div class="container">
-            <h2 class="section-title">📥 Resources for Recruiters</h2>
+            <h2 class="section-title sparkles-text" data-sparkles-count="8">📥 Resources for Recruiters</h2>
             <div class="resources-grid">
                 <!-- Resume Card -->
-                <div class="resource-card">
-                    <div class="resource-icon">📄</div>
-                    <div class="resource-info">
-                        <h4>Resume</h4>
-                        <p>Complete work history, skills, and education</p>
-                        <a href="resume.pdf" class="btn-resource" download onclick="trackCTAClick('resume_download_section')">
-                            Download PDF
-                        </a>
-                    </div>
-                </div>
+                <a href="documents/Jack_Amichai_Resume.pdf" class="resource-card-new" download
+                    onclick="trackCTAClick('resume_download_section')"
+                    style="background-image: url('images/Resume.png');">
+                    <span class="resource-label">Resume</span>
+                </a>
 
-                <!-- Academic Credentials Card -->
-                <div class="resource-card">
-                    <div class="resource-icon">📋</div>
-                    <div class="resource-info">
-                        <h4>Official Curriculum Verification</h4>
-                        <p>Official academic transcript and curriculum verification from university studies</p>
-                        <a href="documents/‎⁨אישור תוכנית לימודים כללי⁩.pdf" class="btn-resource" download onclick="trackCTAClick('credential_academic')">
-                            📄 Download Document (Hebrew)
-                        </a>
-                    </div>
-                </div>
+                <!-- Curriculum Card -->
+                <a href="documents/‎⁨אישור תוכנית לימודים כללי⁩.pdf" class="resource-card-new" download
+                    onclick="trackCTAClick('credential_academic')" style="background-image: url('images/Degree.png');">
+                    <span class="resource-label">Curriculum</span>
+                </a>
             </div>
         </div>
     </section>
@@ -507,95 +1485,157 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <!-- Icon Cloud Background -->
-            <div class="icon-cloud-wrapper">
-                <div class="icon-cloud" data-icons="javascript,react,python,nodejs,html5,css3,git,docker,postgresql,vercel" data-radius="130"></div>
+            <h2 class="section-title sparkles-text" data-sparkles-count="8">Let's Connect</h2>
+
+            <!-- Modern Interactive Contact Card -->
+            <div class="connect-card-wrapper">
+                <div class="connect-card">
+                    <!-- Particle Canvas Background -->
+                    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+                    <!-- Glassmorphism Card -->
+                    <div class="connect-inner">
+                        <div class="connect-content">
+                            <!-- Animated Skills Area -->
+                            <div class="skills-orbit" id="skillsOrbit">
+                                <div class="orbit-center">
+                                    <svg class="center-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                                    </svg>
+                                </div>
+                                <div class="skill-tag" data-skill="ai" style="--x: 200px; --y: 60px;">AI Products</div>
+                                <div class="skill-tag" data-skill="product" style="--x: 50px; --y: 102px;">Product
+                                    Management</div>
+                                <div class="skill-tag" data-skill="analytics" style="--x: 224px; --y: 170px;">Business
+                                    Analytics</div>
+                                <div class="skill-tag" data-skill="revenue" style="--x: 88px; --y: 198px;">Revenue
+                                    Optimization</div>
+                                <div id="cursor-pointer" class="cursor-pointer">
+                                    <svg width="16.8" height="18.2" viewBox="0 0 12 13" class="pointer-svg"
+                                        stroke="white" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 5.50676L0 0L2.83818 13L6.30623 7.86537L12 5.50676V5.50676Z" />
+                                    </svg>
+                                    <span class="pointer-label">You</span>
+                                </div>
+                            </div>
+
+                            <!-- Text Content -->
+                            <div class="connect-text">
+                                <h3 class="connect-heading">
+                                    <span class="connect-title">Ready to Build Something Great?</span>
+                                </h3>
+                                <p class="connect-description">
+                                    I'm currently seeking <strong>Product Manager or Business Analyst</strong> roles.
+                                    Let's discuss how I can help drive your team's success!
+                                </p>
+
+                                <!-- CTA Buttons -->
+                                <div class="connect-actions">
+                                    <a href="https://calendly.com/jackamichai" target="_blank"
+                                        class="btn-connect-primary" onclick="trackCTAClick('calendly_new_contact')">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                                        </svg>
+                                        Book a Call
+                                    </a>
+                                    <a href="mailto:jackamichai@gmail.com" class="btn-connect-outline"
+                                        onclick="trackCTAClick('email_new_contact')">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                            </path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                        Send Email
+                                    </a>
+                                    <a href="https://wa.me/972544844125" target="_blank" class="btn-connect-outline"
+                                        onclick="trackCTAClick('whatsapp_contact')">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                            </path>
+                                        </svg>
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p class="contact-description">
-                    I'm currently seeking <strong>Product Manager or Business Analyst</strong> roles where I can leverage my AI expertise, 
-                    technical skills, and consulting experience. Whether you have an opportunity or just want to connect, I'd love to hear from you!
-                </p>
-                
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@company.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" name="company" placeholder="Optional">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="4" required placeholder="Tell me about the opportunity..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary btn-submit" onclick="trackCTAClick('contact_form_submit')">Send Message</button>
-                    </form>
-                </div>
-
-                <div class="contact-divider">
-                    <span>OR</span>
-                </div>
-
-                <div class="contact-cta">
-                    <a href="https://calendly.com/jackamichai" target="_blank" class="btn-primary" onclick="trackCTAClick('calendly_contact')">📅 Schedule a Call</a>
-                    <a href="mailto:jackamichai@gmail.com" class="btn-secondary" onclick="trackCTAClick('email_contact')">✉️ Send an Email</a>
-                    <a href="https://linkedin.com/in/jackamichai" target="_blank" class="btn-secondary" onclick="trackCTAClick('linkedin_contact')">💼 Connect on LinkedIn</a>
-                </div>
-                
-                <!-- Interactive Social Icons Bar -->
-                <div class="social-icons-bar">
-                    <a href="https://github.com/JackAmichai" target="_blank" class="social-icon-btn" data-name="GitHub" aria-label="GitHub">
+            <!-- Social Icons Bar (keeping your existing design) -->
+            <div class="social-icons-bar">
+                    <a href="https://github.com/JackAmichai" target="_blank" class="social-icon-btn" data-name="GitHub"
+                        aria-label="GitHub">
                         <span class="icon-bg"></span>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
                         <span class="icon-tooltip">GitHub</span>
                         <span class="icon-indicator"></span>
                     </a>
-                    <a href="https://linkedin.com/in/jackamichai" target="_blank" class="social-icon-btn" data-name="LinkedIn" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/jackamichai" target="_blank" class="social-icon-btn"
+                        data-name="LinkedIn" aria-label="LinkedIn">
                         <span class="icon-bg"></span>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
                         <span class="icon-tooltip">LinkedIn</span>
                         <span class="icon-indicator"></span>
                     </a>
                     <a href="mailto:jackamichai@gmail.com" class="social-icon-btn" data-name="Email" aria-label="Email">
                         <span class="icon-bg"></span>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
                         <span class="icon-tooltip">Email</span>
                         <span class="icon-indicator"></span>
                     </a>
-                    <a href="https://calendly.com/jackamichai" target="_blank" class="social-icon-btn" data-name="Calendly" aria-label="Calendly">
+                    <a href="https://calendly.com/jackamichai" target="_blank" class="social-icon-btn"
+                        data-name="Calendly" aria-label="Calendly">
                         <span class="icon-bg"></span>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
-                        <span class="icon-tooltip">Schedule Call</span>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                        <span class="icon-tooltip">Calendly</span>
                         <span class="icon-indicator"></span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <p>© 2025 Jack (Yaron) Amichai. Built with precision and passion.</p>
             <p class="footer-motto">Integrity • Curiosity • Precision</p>
             <p class="visitor-counter">👀 Visitors: <span id="visitorCount">0</span></p>
+            <a href="https://buymeacoffee.com/jackami" target="_blank" class="btn-coffee">
+                <span>☕️</span> Buy me a coffee
+            </a>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
         </svg>
     </button>
 
@@ -608,8 +1648,177 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
 
+    <!-- Welcome Tour Popup -->
+    <div class="tour-overlay" id="tourOverlay">
+        <div class="tour-popup">
+            <button class="tour-close" id="tourClose" aria-label="Close tour">&times;</button>
+            <div class="tour-content">
+                <div class="tour-header">
+                    <img src="images/Presenting.png" alt="Jack Amichai" class="tour-photo">
+                    <h2>Welcome to My Portfolio!</h2>
+                </div>
+                <p class="tour-intro">I'm Jack Amichai, a Business Analyst & AI Product Builder. Here's a quick guide to explore my work:</p>
+                <div class="tour-steps">
+                    <div class="tour-step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <strong>About Me</strong>
+                            <span>Learn about my background in Psychology & Computer Science</span>
+                        </div>
+                    </div>
+                    <div class="tour-step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <strong>Experience</strong>
+                            <span>Deloitte consulting, SAP BTP, and research at Technion</span>
+                        </div>
+                    </div>
+                    <div class="tour-step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <strong>Projects</strong>
+                            <span>AI-powered apps including LeAIrn, Hatrick, and Scholar 2.6</span>
+                        </div>
+                    </div>
+                    <div class="tour-step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <strong>Resources</strong>
+                            <span>Download my resume, case studies, and recommendations</span>
+                        </div>
+                    </div>
+                    <div class="tour-step">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <strong>AI Chat</strong>
+                            <span>Ask my AI assistant anything about me (bottom right)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-actions">
+                    <button class="tour-btn tour-btn-secondary" id="tourSkip">Skip Tour</button>
+                    <button class="tour-btn tour-btn-primary" id="tourStart">Let's Go!</button>
+                </div>
+                <label class="tour-checkbox">
+                    <input type="checkbox" id="tourDontShow">
+                    <span>Don't show this again</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility Control Panel -->
+    <div class="a11y-panel" id="a11yPanel" hidden>
+        <h3>Accessibility</h3>
+        <button id="a11yContrast">High Contrast</button>
+        <button id="a11yText">Large Text</button>
+        <button id="a11yMotion">Reduce Motion</button>
+        <button id="a11yClose">Close</button>
+    </div>
+    <button class="a11y-trigger" id="a11yTrigger" aria-label="Accessibility Settings" aria-controls="a11yPanel" aria-expanded="false">♿</button>
+
+    <!-- Keyboard Help Modal -->
+    <dialog id="kbdHelp" class="kbd-modal">
+        <h3>Keyboard Shortcuts</h3>
+        <ul>
+            <li><kbd>?</kbd> Toggle this help</li>
+            <li><kbd>R</kbd> Toggle Recruiter Mode</li>
+            <li><kbd>/</kbd> Focus Search</li>
+            <li><kbd>Esc</kbd> Close Modals</li>
+        </ul>
+        <button onclick="document.getElementById('kbdHelp').close()">Close</button>
+    </dialog>
+
+    <!-- Project Details Modal -->
+    <dialog id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <h2 id="modalTitle">Project Title</h2>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>The Challenge</h3>
+                    <p id="modalChallenge">...</p>
+                </div>
+                <div class="modal-section">
+                    <h3>The Solution</h3>
+                    <p id="modalSolution">...</p>
+                </div>
+                <div class="modal-section">
+                    <h3>Tech Stack</h3>
+                    <div id="modalStack" class="tech-tags"></div>
+                </div>
+                <div class="modal-section">
+                    <h3>Impact</h3>
+                    <p id="modalImpact">...</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="#" id="modalLink" target="_blank" class="btn primary-btn">View Code/Live</a>
+            </div>
+        </div>
+    </dialog>
+
     <script src="projects-data.js"></script>
+    <script src="ux-enhancements.js"></script>
     <script src="script.js"></script>
+    <script src="sparkles.js"></script>
+    <script src="text-effects.js"></script>
     <script src="chatbot.js"></script>
+    
+    <!-- Lazy-load Three.js and Skills Universe when section is visible -->
+    <script>
+        // Lazy load Skills Universe
+        const skillsSection = document.getElementById('skills-universe');
+        let milkyWayLoaded = false;
+        
+        const loadMilkyWay = () => {
+            if (milkyWayLoaded) return;
+            milkyWayLoaded = true;
+            
+            // Load Three.js first
+            const threeScript = document.createElement('script');
+            threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+            threeScript.onload = () => {
+                // Then load milky-way.js
+                const milkyScript = document.createElement('script');
+                milkyScript.src = 'milky-way.js';
+                milkyScript.onload = () => {
+                    if (window.initMilkyWay) {
+                        window.initMilkyWay();
+                    }
+                };
+                document.body.appendChild(milkyScript);
+            };
+            document.body.appendChild(threeScript);
+        };
+        
+        // Use Intersection Observer to lazy load
+        if ('IntersectionObserver' in window && skillsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadMilkyWay();
+                        observer.disconnect();
+                    }
+                });
+            }, { rootMargin: '200px' });
+            observer.observe(skillsSection);
+        } else if (skillsSection) {
+            // Fallback for older browsers
+            loadMilkyWay();
+        }
+    </script>
+    
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW failed', err));
+            });
+        }
+    </script>
 </body>
+
 </html>

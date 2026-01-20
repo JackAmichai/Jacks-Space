@@ -35,31 +35,67 @@ const projectsData = [
         evidence: "Live Demo | GitHub Repository"
     },
     {
+        id: "pawquest",
+        title: "PawQuest: Dog Social App",
+        role: "Full Stack Developer",
+        featured: true,
+        image: "https://paw-quest-f31de0c0.base44.app/Landing",
+        video: "video proj/Find Your Pack Today-VEED.mp4",
+        problem: "Dog owners struggle to find compatible playmates for their pets and organize social meetups in their local area.",
+        solution: "A social platform connecting dog owners to find playmates, organize meetups, and build thriving local pet communities. Features dog profiles, matching, event scheduling, and community forums.",
+        approach: [
+            "Built <strong>dog profile matching</strong> based on breed, size, and temperament",
+            "Implemented <strong>location-based discovery</strong> for local meetups",
+            "Created <strong>event scheduling</strong> with RSVP and reminders",
+            "Designed <strong>community forums</strong> for pet advice and tips"
+        ],
+        outcome: "Live app helping dog owners find the perfect playmates for their furry friends.",
+        metrics: [
+            "🐕 <strong>Dog profiles</strong> with matching",
+            "📍 <strong>Location-based</strong> discovery",
+            "📅 <strong>Event scheduling</strong> and RSVPs",
+            "💬 <strong>Community forums</strong>"
+        ],
+        techStack: ["React", "Node.js", "Base44", "Mobile-first", "Social Features"],
+        techDetails: "Built on Base44 platform with React frontend. Features real-time messaging, geolocation services, and profile matching algorithms.",
+        links: {
+            github: "https://github.com/base44dev/paw-quest-f31de0c0.git",
+            demo: "https://paw-quest-f31de0c0.base44.app/Landing"
+        },
+        mediaType: "video",
+        mediaUrl: "video proj/Find Your Pack Today-VEED.mp4",
+        evidence: "Live App | GitHub Repository"
+    },
+    {
         id: "leairn",
-        title: "LeAIrn: AI Education Platform",
-        role: "Product Lead",
-        featured: false,
+        title: "LeAIrn: Teaching Safe AI",
+        role: "Product Lead & Developer",
+        featured: true,
         image: "https://placehold.co/600x400/1a1a2e/4ade80?text=LeAIrn+%F0%9F%8E%93",
         video: "",
-        problem: "Traditional education platforms lack personalized, adaptive learning paths, leading to student disengagement and inefficient learning.",
-        solution: "An AI-powered learning platform that dynamically adapts content, pace, and style to the individual student's needs, creating a truly personalized education experience.",
+        problem: "AI hallucinations (17-33% error rate) and bias perpetuate misinformation. Traditional education lacks AI literacy programs to address these critical issues.",
+        solution: "An AI-powered education platform teaching safe AI practices: identifying hallucinations, detecting bias, and responsible AI use. Personalized curriculum adapts to each learner's pace.",
         approach: [
-            "Developed <strong>adaptive learning algorithms</strong> to tailor content",
-            "Integrated <strong>AI tutors</strong> for real-time assistance",
-            "Created <strong>progress tracking</strong> with predictive analytics"
+            "Developed <strong>interactive modules</strong> on AI hallucinations and bias detection",
+            "Integrated <strong>adaptive learning algorithms</strong> to tailor content difficulty",
+            "Created <strong>hands-on exercises</strong> for verifying AI-generated content",
+            "Built <strong>AI tutors</strong> for real-time assistance"
         ],
-        outcome: "Created a proof-of-concept for a highly personalized learning environment.",
+        outcome: "Flagship project addressing the EU AI Act's mandate for AI literacy education.",
         metrics: [
-            "🎓 <strong>Personalized</strong> learning paths",
-            "📈 <strong>Adaptive</strong> difficulty adjustment",
-            "🧠 <strong>AI-driven</strong> content generation"
+            "🧠 <strong>Hallucination detection</strong> training",
+            "⚖️ <strong>Bias recognition</strong> modules",
+            "🛡️ <strong>Safe AI practices</strong> framework",
+            "📊 <strong>Adaptive learning</strong> paths"
         ],
-        techStack: ["AI", "EdTech", "React", "Python", "LLMs"],
-        techDetails: "Leverages LLMs to generate custom quizzes and explanations based on student performance data.",
-        links: {},
+        techStack: ["React", "TypeScript", "Next.js", "LLMs", "Python"],
+        techDetails: "Full-stack education platform with LLM-powered content generation, adaptive difficulty algorithms, and interactive exercises.",
+        links: {
+            github: "https://github.com/JackAmichai/LeAIrn"
+        },
         mediaType: "image",
         mediaUrl: "https://placehold.co/600x400/1a1a2e/4ade80?text=LeAIrn+%F0%9F%8E%93",
-        evidence: "Internal Project"
+        evidence: "GitHub Repository"
     },
     {
         id: "nvidia-doc-nav",
