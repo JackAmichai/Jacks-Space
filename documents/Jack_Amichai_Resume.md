@@ -1,6 +1,5 @@
 # JACK (YARON) YAKOV AMICHAI
-
-**Business Analyst | AI Product Builder | Full Stack Developer**
+**AI Solutions Engineer | Product Builder | Backend Architect**
 
 Herzliya, Israel | +972 54-484-4125 | jackamichai@gmail.com
 
@@ -10,97 +9,93 @@ Herzliya, Israel | +972 54-484-4125 | jackamichai@gmail.com
 
 ## PROFESSIONAL SUMMARY
 
-**Business Analyst and AI Product Builder** with a dual background in **Psychology and Computer Science**, bridging the gap between human-centric requirements and complex technical implementation. Experienced in designing data-driven solutions that connect business goals with measurable improvements in revenue and decision quality. Proven track record in **Enterprise AI**, **Cloud Computing**, and **Digital Transformation** (Deloitte), with a portfolio of deployed multi-agent systems and consumer applications.
+**AI Solutions Engineer and Product Builder** with a dual background in **Psychology and Computer Science**, bridging the gap between human-centric requirements and complex technical implementation.
+Experienced in designing **Multi-Agent Systems**, **RAG pipelines**, and **Enterprise Integrations** that connect business goals with measurable results.
+Proven track record at **Deloitte** and in independent ventures, delivering scalable architectures that are not just technically robust but cognitively adaptive.
 
 ---
 
-## TECHNICAL & PROFESSIONAL SKILLS
+## TECHNICAL SKILLS
 
-- **AI & ML:** Generative AI (LLMs, RAG), Multi-Agent Systems, LangChain, OpenAI API, Vector DBs (Pinecone), Scikit-learn, Pandas.
-- **Languages:** Python, TypeScript, JavaScript, SQL, Java, C++, C.
-- **Enterprise Systems:** SAP BTP, SAP SuccessFactors, OData, Power BI, Cloud Computing.
-- **Web & Tools:** React, Node.js, FastAPI, Next.js, Git, Jira, Figma, Azure Speech SDK.
-- **Core Competencies:** Business Analysis, Revenue Analytics, Agile/Scrum, SDLC Management, Research Design.
+- **AI & GenAI:** Multi-Agent Systems, RAG Pipelines (Retrieval-Augmented Generation), LangChain, OpenAI API, Vector DBs (Pinecone, MongoDB), NVIDIA Stack (Isaac Sim, TensorRT).
+- **Backend & Cloud:** Python, FastAPI, SAP BTP (Business Technology Platform), AWS (Solutions Architect Track), Node.js, Docker, Microservices.
+- **Development Tools:** Git, Jira, Figma, Chrome Extensions (Manifest V3), WebSocket, REST APIs.
+- **Data & Analytics:** Pandas, Scikit-learn, SQL, Revenue Forecasting, Data Visualization.
 
 ---
 
 ## PROFESSIONAL EXPERIENCE
 
 ### DELOITTE | Tel Aviv, Israel
-**Junior Consultant** | *Aug 2025 – Present*
+**Junior Consultant (SAP BTP & Integrations)** | *Aug 2025 – Present*
 
-- **Implementing enterprise AI solutions** and data-driven systems, leveraging **SAP BTP** and **Gen AI** to optimize large-scale business processes.
-- **Supporting digital transformation projects**, analyzing legacy workflows to recommend and execute automation strategies that improve operational efficiency.
-- **Collaborating with cross-functional teams** to align technical deliverables with client business goals, ensuring seamless adoption of new technologies.
+- **Designing and implementing complex integrations** using SAP Business Technology Platform (BTP), connecting disparate enterprise systems to streamline workflows.
+- **Developing Python/FastAPI microservices** to orchestrate data flow between SAP SuccessFactors and external applications.
+- **Collaborating with clients** to define technical requirements and integration strategies, ensuring scalable and secure architecture.
+- **Driving digital transformation** by replacing legacy manual processes with automated, event-driven architectures.
 
-### ADI OHAYON HOSPITALITY | Hybrid / Remote
-**Business Analyst Intern** | *Apr 2025 – Present*
+### ADI OHAYON REVENUE MANAGEMENT | Remote / Hybrid
+**Freelance Data Engineer & Developer** | *Apr 2025 – Present*
 
-- **Analyzing demand trends** and competitor pricing strategies across hotel portfolios, building **revenue forecasting models** that directly inform pricing decisions.
-- **Developing executive dashboards** (Power BI/Excel) to visualize real-time KPIs, enabling stakeholders to make data-backed strategic adjustments.
-- **Collaborating with sales and marketing** to align promotional activities with operational capacity and profitability targets.
+- **Engineering automated scraping and data analysis tools** to monitor competitor pricing and market demand in real-time.
+- **Building proprietary revenue management algorithms** that identify yield improvement opportunities and dynamic pricing gaps.
+- **Creating interactive dashboards** for revenue managers to visualize market trends and make data-backed decisions instantly.
 
 ### TECHNION - ISRAEL INSTITUTE OF TECHNOLOGY | Haifa, Israel
-**Research Assistant & Team Coordinator** | *2021 – 2023*
+**Research Software Engineer & Team Lead** | *2021 – 2023*
 
-- **Conducted cognitive psychology research**, managing participant recruitment and lab operations.
-- **Analyzed experimental data** using **Python** and **SPSS**, translating complex datasets into actionable research insights.
-- **Coordinated cross-functional teams**, ensuring strict adherence to research protocols and timelines.
+- **Managed a cross-functional team**, translating complex research hypotheses into executable code and experimental protocols.
+- **Engineered robust backend tools in Python** for large-scale cognitive simulations and data collection.
+- **Led the development** of a cutting-edge VR maze environment for behavioral neuroscience research, integrating hardware sensors with software logic.
+- **Coordinated lab operations**, ensuring strict adherence to research protocols and ethics.
 
 ### HEBREW UNIVERSITY OF JERUSALEM | Jerusalem, Israel
-**Research Project Manager & Software Engineer** | *2020 – 2021*
+**Software Engineer (Project Alpha)** | *2020 – 2021*
 
-- **Managed research project timelines**, serving as the technical lead for data collection and analysis tools.
-- **Developed C++ software solutions** to support experimental workflows, bridging the gap between theoretical research needs and technical execution.
-
----
-
-## KEY PROJECTS
-
-### Hatrick: AI Cyber Defense | *AI Lead & Developer*
-- **Built a multi-agent system** for cyber attack/defense simulation using **LLM orchestration** (LangChain/Groq).
-- **Engineered a high-performance architecture** featuring 6+ autonomous AI agents with sub-second inference capabilities.
-- **Stack:** React, TypeScript, FastAPI, LangChain, Groq.
-
-### NVIDIA Documentation Navigator | *AI Engineer* | [Code](https://github.com/JackAmichai/Nvidia-doc-agentic-ai)
-- **Developed an AI-powered unified search engine** using **RAG (Retrieval-Augmented Generation)** to query NVIDIA documentation.
-- **Implemented version-aware answers** and code generation features, utilizing **Pinecone** for vector storage and **FastAPI** for the backend.
-
-### PawQuest: Dog Social App | *Full Stack Developer* | [Live App](https://paw-quest-f31de0c0.base44.app)
-- **Launched a social platform** for dog owners featuring real-time matching, location discovery, and event scheduling.
-- **Designed a community-focused UX**, enabling users to organize meetups and build local networks.
-- **Stack:** React, Node.js, Base44.
-
-### Scholar 2.6: AI Research Navigator | *Frontend Engineer* | [Code](https://github.com/JackAmichai/Scholar2.6)
-- **Created a Chrome Extension** with an AI-driven interface for academic research, integrating with **Semantic Scholar** to visualize knowledge graphs.
-- **Stack:** TypeScript, React, OpenAI API.
-
-### SleepCall: Meeting Sentinel | *Python Developer* | [Code](https://github.com/JackAmichai/SleepCall)
-- **Engineered a real-time audio monitoring tool** using **Azure Speech SDK** to detect specific keywords (e.g., names) and generate AI summaries of missed context.
+- **Co-managed development** of data analysis tools for astrophysical research, bridging research needs with technical execution.
+- **Integrated C++ and Python** modules to run high-performance 3D astrophysics simulations.
+- **Coordinated between research scientists and technical teams** to ensure software deliverables met scientific accuracy standards.
 
 ---
 
-## EDUCATION
-
-### OPEN UNIVERSITY OF ISRAEL
-**B.A. in Psychology & Computer Science**
-- *Focus:* Dual-major combining algorithmic thinking with human behavioral analysis.
-
----
-
-## MILITARY SERVICE
+## PREVIOUS EXPERIENCE
 
 ### ISRAEL DEFENSE FORCES (IDF)
 **Staff Sergeant - Operations & Leadership** | *Mar 2017 – Aug 2018*
-
 - Led team operations and mission planning in high-pressure environments.
 - Managed logistics and resource allocation while training junior personnel.
 
 ---
 
-## LANGUAGES
+## KEY PROJECTS & PRODUCT ENGINEERING
 
-- **Hebrew:** Native
-- **English:** Fluent
-- **Spanish:** Conversational
-- **German:** Conversational
+### Sentinel OS (DignityOS): AI Robotics for Dementia Care | *System Architect*
+*Independent Venture | In Development*
+- **System Architecture:** Developing an ethical AI orchestration layer running on **NVIDIA Isaac Sim** and **TensorRT**.
+- **Strategic MVP:** Scoped "Abigail" agent – integrating behavioral logic with robotic hardware to provide empathetic, context-aware assistance.
+
+### Hatrick: AI Cyber Defense | *Multi-Agent System Architect*
+*Live Demo: hatrick.vercel.app*
+- **Architecture:** Orchestrated a **Multi-Agent System** using **LangChain** and **Groq** to model autonomous cyber attack/defense scenarios.
+- **Performance:** Achieved **sub-second inference** for 6+ simultaneous autonomous agents simulating Red Team vs Blue Team battles.
+
+### Scholar 2.6 & Note2CRM | *Full Stack Developer*
+*Chrome Extensions (Manifest V3)*
+- **Product:** Suite of separate extensions parsing unstructured data (citations, sales leads) and syncing it to external platforms.
+- **Integration:** Knowledge graph visualization (Semantic Scholar) and CRM automated entry.
+
+### PawQuest: Social Platform | *Full Stack Developer*
+- **Product:** Location-based social platform for dog owners with real-time matching algorithm.
+- **Tech:** React, Node.js, Geolocation APIs.
+
+---
+
+## EDUCATION & CERTIFICATIONS
+
+### OPEN UNIVERSITY OF ISRAEL
+**B.A. in Psychology & Computer Science**
+*Focus: Algorithms, Data Structures, Cognitive Psychology, Human-Computer Interaction.*
+
+### CERTIFICATIONS
+- **SAP Certified Associate** - Integration Developer (BTP)
+- **AWS Certified Solutions Architect – Associate** (In Progress)

@@ -7,25 +7,25 @@ const projectsData = [
     {
         id: "hatrick",
         title: "Hatrick: AI Cyber Defense",
-        role: "AI Security Architect",
+        role: "Multi-Agent System Architect",
         featured: true,
         image: "https://opengraph.githubassets.com/1/JackAmichai/Hatrick",
         video: "",
-        problem: "Simulating complex cyber attacks and defense strategies requires extensive manual effort and expertise, making it hard to train for real-world scenarios.",
-        solution: "A real-time cybersecurity platform where autonomous AI agents (Red Team vs Blue Team) battle in simulated scenarios. Features 3D orbital mission selection, live code viewer, and 60+ enterprise features.",
+        problem: "Cyber defense training lacks realistic, autonomous adversaries that adapt to defender actions in real-time.",
+        solution: "A Multi-Agent System using LangChain and Groq to model autonomous cyber attack/defense scenarios. 6+ autonomous agents simulate Red Team vs Blue Team battles with sub-second inference.",
         approach: [
-            "Orchestrated <strong>multi-agent voting system</strong> with confidence-weighted scoring",
-            "Implemented <strong>40+ MITRE ATT&CK</strong> tactics and techniques",
-            "Designed <strong>3D network topology</strong> with real-time attack visualization"
+            "Designed <strong>multi-agent orchestration</strong> using LangChain",
+            "Implemented <strong>Groq LPU integration</strong> for sub-second inference",
+            "Modeled <strong>autonomous decision loops</strong> for attack/defense agents"
         ],
-        outcome: "Live demo at hatrick.vercel.app - demonstrates enterprise-grade cybersecurity simulation.",
+        outcome: "Autonomous simulation environment for testing security protocols against adaptive AI adversaries.",
         metrics: [
-            "🛡️ <strong>60+ features</strong> including APT profiles",
-            "⚡ <strong>Sub-second</strong> Groq LPU inference",
-            "🤖 <strong>6 AI agents</strong> running simultaneously"
+            "🤖 <strong>6+ Autonomous Agents</strong> interacting",
+            "⚡ <strong>Sub-second</strong> inference on Groq",
+            "🛡️ <strong>Real-time</strong> protocol testing"
         ],
-        techStack: ["React", "TypeScript", "FastAPI", "LangChain", "Groq", "WebSockets"],
-        techDetails: "Frontend: Vite + React 18 + TypeScript + Framer Motion + Tailwind. Backend: FastAPI + WebSockets + LangGraph. AI: Groq (Llama-3, Mixtral) for sub-second responses.",
+        techStack: ["React", "TypeScript", "FastAPI", "LangChain", "Groq"],
+        techDetails: "Frontend: React + TypeScript. Backend: FastAPI + LangChain. Orchestration: LangGraph. Inference: Groq LPU (Llama-3, Mixtral).",
         links: {
             github: "https://github.com/JackAmichai/Hatrick",
             demo: "https://hatrick.vercel.app"
@@ -33,6 +33,34 @@ const projectsData = [
         mediaType: "image",
         mediaUrl: "https://opengraph.githubassets.com/1/JackAmichai/Hatrick",
         evidence: "Live Demo | GitHub Repository"
+    },
+    {
+        id: "sentinel-os",
+        title: "Sentinel OS (DignityOS)",
+        role: "System Architect",
+        featured: true,
+        image: "https://placehold.co/600x400/10b981/ffffff?text=Sentinel+OS+Robot",
+        video: "",
+        problem: "Robotic care for the elderly often lacks ethical reasoning and behavioral context, leading to low trust and adoption.",
+        solution: "Ethical AI orchestration layer running on NVIDIA Isaac Sim and TensorRT. Integrates behavioral logic with robotic hardware to provide empathetic, context-aware assistance.",
+        approach: [
+            "Developing <strong>ethical AI layer</strong> for decision making",
+            "Utilizing <strong>NVIDIA Isaac Sim</strong> for photorealistic simulation",
+            "Optimizing inference with <strong>TensorRT</strong> for edge deployment",
+            "Scoped <strong>'Abigail' agent MVP</strong> focused on core empathy limits"
+        ],
+        outcome: "Strategic MVP defined, negotiating with psychology experts to prioritize ethical interactions over complex variables.",
+        metrics: [
+            "🤖 <strong>NVIDIA Isaac Sim</strong> integration",
+            "⚡ <strong>TensorRT</strong> optimization",
+            "🧠 <strong>Behavioral logic</strong> engine"
+        ],
+        techStack: ["NVIDIA Isaac Sim", "TensorRT", "Python", "AI Ethics", "Robotics"],
+        techDetails: "Architecture: Behavioral Analysis → Ethical Safety Layer → Robotic Control. Built on NVIDIA Omniverse/Isaac Sim platform.",
+        links: {},
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/10b981/ffffff?text=Sentinel+OS+Robot",
+        evidence: "Independent Venture | In Development"
     },
     {
         id: "pawquest",
@@ -130,28 +158,28 @@ const projectsData = [
     },
     {
         id: "scholar-2-6",
-        title: "Scholar2.6: AI Research Navigator",
+        title: "Scholar2.6 & Note2CRM",
         role: "Full Stack Developer",
         featured: true,
         image: "https://opengraph.githubassets.com/1/JackAmichai/Scholar2.6",
         video: "",
-        problem: "Academic researchers struggle to discover and organize relevant literature across fragmented sources.",
-        solution: "A Chrome Extension with AI-driven conversational interface and interactive knowledge graph for academic research discovery. Features iterative intent refinement and Semantic Scholar integration.",
+        problem: "Researchers and sales professionals struggle with unstructured data scattered across web pages and disconnected from their workflow tools.",
+        solution: "Suite of complex Chrome Extensions (Manifest V3) that parse unstructured data from web pages (citations, leads) and sync it directly to external platforms (Semantic Scholar, CRM).",
         approach: [
-            "Built <strong>AI conversational loop</strong> for iterative query refinement",
-            "Created <strong>interactive knowledge graph</strong> with force-directed visualization",
-            "Integrated <strong>Semantic Scholar API</strong> with SPECTER2 embeddings",
-            "Implemented <strong>Shadow DOM isolation</strong> for any webpage overlay"
+            "Developed <strong>Manifest V3 extensions</strong> for browser automation",
+            "Implemented <strong>unstructured data parsing</strong> from varying DOMs",
+            "Built <strong>knowledge graph visualization</strong> for research papers",
+            "Optimized <strong>research and sales workflows</strong> through direct integration"
         ],
-        outcome: "Chrome extension that overlays any webpage with research discovery tools.",
+        outcome: "Streamlined data entry and discovery for both academic and sales use cases.",
         metrics: [
-            "🤖 <strong>AI-powered</strong> intent refinement",
-            "🌳 <strong>Interactive</strong> knowledge graph",
-            "🔬 <strong>Real paper data</strong> from Semantic Scholar",
-            "⚡ <strong>HMR</strong> development experience"
+            "🧩 <strong>Manifest V3</strong> architecture",
+            "📊 <strong>Knowledge Graph</strong> visualization",
+            "🔄 <strong>Auto-sync</strong> to external platforms",
+            "⚡ <strong>Productivity boost</strong> for workflows"
         ],
-        techStack: ["TypeScript", "React", "Vite", "Chrome Extension", "Semantic Scholar API", "OpenAI"],
-        techDetails: "Chrome Extension with Vite + CRXJS. AI: GPT-4 Turbo with function calling. Graph: Force-directed D3.js visualization. Papers sized by log(citations) with click-to-expand.",
+        techStack: ["TypeScript", "React", "Chrome Extension", "Manifest V3", "Semantic Scholar API"],
+        techDetails: "Chrome Extensions built with React/Vite. Content scripts for DOM parsing. Background service workers for API sync. Shadow DOM for UI overlay.",
         links: {
             github: "https://github.com/JackAmichai/Scholar2.6"
         },
@@ -240,28 +268,7 @@ const projectsData = [
         mediaType: "image",
         mediaUrl: "https://opengraph.githubassets.com/1/JackAmichai/password-research"
     },
-    {
-        id: "note2crm",
-        title: "Note2CRM",
-        role: "AI Product Developer",
-        featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/Note2CRM",
-        video: "",
-        problem: "Sales teams spend hours manually entering meeting notes into CRM systems.",
-        solution: "AI-powered meeting assistant that automatically captures, structures, and syncs meeting notes to CRM systems. Uses NLP to extract action items and contact details.",
-        metrics: [
-            "⏱️ <strong>80% less</strong> manual entry time",
-            "📝 <strong>Automated capture</strong> of meeting insights",
-            "🎯 <strong>Smart field mapping</strong> to CRM"
-        ],
-        techStack: ["Python", "NLP", "Speech-to-Text", "CRM APIs", "Machine Learning"],
-        techDetails: "Implemented speech recognition using Whisper API. Built named entity recognition (NER) for contact extraction.",
-        links: {
-            github: "https://github.com/JackAmichai/Note2CRM"
-        },
-        mediaType: "image",
-        mediaUrl: "https://opengraph.githubassets.com/1/JackAmichai/Note2CRM"
-    },
+
     {
         id: "orderflow-ai",
         title: "OrderFlow-AI",
@@ -283,6 +290,132 @@ const projectsData = [
         },
         mediaType: "image",
         mediaUrl: "https://opengraph.githubassets.com/1/JackAmichai/OrderFlow-AI"
+    },
+    {
+        id: "openhouse",
+        title: "OpenHouse",
+        role: "Python Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/2c3e50/ffffff?text=OpenHouse",
+        video: "",
+        problem: "Real estate price transparency is limited.",
+        solution: "Real prices of property analysis tool.",
+        metrics: [],
+        techStack: ["Python", "Data Analysis"],
+        techDetails: "Real estate data analysis and pricing tool.",
+        links: {
+            github: "https://github.com/JackAmichai/OpenHouse"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/2c3e50/ffffff?text=OpenHouse"
+    },
+    {
+        id: "ghostorc",
+        title: "GhostOrc-",
+        role: "Kotlin Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/5e35b1/ffffff?text=GhostOrc",
+        video: "",
+        problem: "Orchestrating LLMs can be complex.",
+        solution: "Ghost LLM orchestrater.",
+        metrics: [],
+        techStack: ["Kotlin", "LLM"],
+        techDetails: "LLM Orchestration layer built in Kotlin.",
+        links: {
+            github: "https://github.com/JackAmichai/GhostOrc-"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/5e35b1/ffffff?text=GhostOrc"
+    },
+    {
+        id: "3dasmov",
+        title: "3dAsmov",
+        role: "C Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/e53935/ffffff?text=3dAsmov",
+        video: "",
+        problem: "Robotics ethics implementation.",
+        solution: "Ethics in robotics framework.",
+        metrics: [],
+        techStack: ["C", "Robotics"],
+        techDetails: "Low-level C implementation of ethical constraints for robotics.",
+        links: {
+            github: "https://github.com/JackAmichai/3dAsmov"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/e53935/ffffff?text=3dAsmov"
+    },
+    {
+        id: "flashcorp",
+        title: "FlashCorp",
+        role: "TypeScript Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/fb8c00/ffffff?text=FlashCorp",
+        video: "",
+        problem: "",
+        solution: "TypeScript project.",
+        metrics: [],
+        techStack: ["TypeScript"],
+        techDetails: "",
+        links: {
+            github: "https://github.com/JackAmichai/FlashCorp"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/fb8c00/ffffff?text=FlashCorp"
+    },
+    {
+        id: "learn-machine-learn",
+        title: "Learn-Machine-Learn",
+        role: "JavaScript Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/fdd835/000000?text=Learn+ML",
+        video: "",
+        problem: "",
+        solution: "Machine Learning educational resources.",
+        metrics: [],
+        techStack: ["JavaScript", "ML"],
+        techDetails: "",
+        links: {
+            github: "https://github.com/JackAmichai/Learn-Machine-Learn"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/fdd835/000000?text=Learn+ML"
+    },
+    {
+        id: "teaisty",
+        title: "TeAisty",
+        role: "JavaScript Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/8d6e63/ffffff?text=TeAisty",
+        video: "",
+        problem: "",
+        solution: "JavaScript project.",
+        metrics: [],
+        techStack: ["JavaScript"],
+        techDetails: "",
+        links: {
+            github: "https://github.com/JackAmichai/TeAisty"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/8d6e63/ffffff?text=TeAisty"
+    },
+    {
+        id: "onering",
+        title: "OneRing",
+        role: "Developer",
+        featured: false,
+        image: "https://placehold.co/600x400/ffa726/ffffff?text=OneRing",
+        video: "",
+        problem: "Tool management fragmentation.",
+        solution: "One tool to rule them all.",
+        metrics: [],
+        techStack: ["Tooling"],
+        techDetails: "Unified tooling platform.",
+        links: {
+            github: "https://github.com/JackAmichai/OneRing"
+        },
+        mediaType: "image",
+        mediaUrl: "https://placehold.co/600x400/ffa726/ffffff?text=OneRing"
     },
     {
         id: "safyweb",

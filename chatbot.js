@@ -19,31 +19,31 @@ const jackKnowledgeBase = {
 
     // Career & Experience
     "army|military|idf|service|givati": {
-        answer: "Jack served in the **Israel Defense Forces (IDF)** as a **Staff Sergeant**. He led team operations, managed logistics, and trained personnel. This experience taught him leadership, decision-making under pressure, and team management skills that he applies to his product work today.",
+        answer: "Jack served in the **Israel Defense Forces (IDF)** as a **Staff Sergeant**. He led team operations, managed logistics, and trained personnel. This leadership experience taught him how to handle high-pressure environments and manage complex operational missions—skills he now applies to architecting resilient AI systems.",
         keywords: ["IDF", "military", "leadership", "Staff Sergeant"]
     },
     "hospitality|consultant|consulting|current|work|job|adi|ohayon|deloitte": {
-        answer: "Jack currently works as a **Deloitte Consultant** placed at **Adi Ohayon Hospitality Consulting** as a **Business Analyst** specializing in revenue optimization. He started in **April 2025**, where he analyzes demand trends, builds forecasting models, creates executive dashboards, and collaborates with cross-functional teams to drive strategic decisions.",
-        keywords: ["Deloitte", "Adi Ohayon", "hospitality", "consulting", "Business Analyst", "current role"]
+        answer: "Jack currently wears two hats: \n\n1. **Junior Consultant at Deloitte:** Specializing in **SAP BTP & Integrations**, designing microservices and event-driven architectures for enterprise clients.\n\n2. **Freelance Data Engineer:** Building revenue optimization tools and scrapers for **Adi Ohayon Revenue Management**.\n\nHe bridges the gap between enterprise reliability and agile innovation.",
+        keywords: ["Deloitte", "Adi Ohayon", "hospitality", "consulting", "Business Analyst", "current role", "SAP BTP"]
     },
     "education|university|degree|studied|psychology|computer science": {
-        answer: "Jack holds a **Bachelor's degree in Psychology and Computer Science** from the **Open University of Israel**. He also has research experience at **Technion** (2021-2023) as a Research Assistant & Team Coordinator, and **Hebrew University** (2020-2021) as a Research Project Manager & Software Engineer, where he analyzed experimental data and managed research projects. This unique combination of psychology and tech helps him build data-driven solutions.",
+        answer: "Jack holds a **Bachelor's degree in Psychology and Computer Science** from the **Open University of Israel**.\n\nHe also has 3 years of research engineering experience at the **Technion** and **Hebrew University**, where he built software for cognitive simulations and astrophysical data analysis. This dual background allows him to build AI systems that are technically robust and cognitively adaptive.",
         keywords: ["education", "psychology", "computer science", "Technion", "research"]
     },
     "projects|portfolio|built|work|examples": {
-        answer: "Jack has built a diverse portfolio of AI and analytics projects. You can ask me about specific ones like **Scholar2.6**, **SleepCall**, or **NVIDIA Doc Navigator**. \n\nCheck out the Projects section for videos and details!",
+        answer: "Jack has built a diverse portfolio of AI solutions. You can ask me about:\n\n🤖 **Sentinel OS** - AI Robotics for healthcare\n🛡️ **Hatrick** - Multi-Agent Cyber Defense\n📚 **NVIDIA Doc Navigator** - RAG Agent\n\nCheck out the Projects section for live demos and code!",
         keywords: ["projects", "portfolio"]
     },
     "skills|technologies|tech stack|programming|languages": {
-        answer: "Jack's tech stack includes:\n\n**Languages:** Python, SQL, JavaScript, TypeScript, Java\n**AI/ML:** Scikit-learn, Pandas, LangChain, OpenAI API, Vector DBs\n**Enterprise:** SAP BTP, SAP SuccessFactors, Power BI, OData\n**Product Tools:** Jira, Figma, Git, Analytics\n\nHe specializes in building **RAG systems**, **ML pipelines**, and **enterprise integrations**.",
+        answer: "Jack's toolbox leverages his Psychology + CS background:\n\n**AI/GenAI:** Multi-Agent Systems, RAG Pipelines, LangChain, NVIDIA Stack (Isaac Sim)\n**Backend:** Python, FastAPI, SAP BTP, AWS (Solutions Architect Track)\n**Data:** Pandas, SQL, Scikit-learn, Vector DBs\n\nHe specializes in **Systems Architecture**—building the bridge between business goals and technical implementation.",
         keywords: ["skills", "Python", "AI", "SAP", "tech stack"]
     },
     "contact|email|reach|linkedin|phone|schedule|call": {
-        answer: "You can reach Jack through:\n\n📧 **Email:** jackamichai@gmail.com\n💼 **LinkedIn:** linkedin.com/in/jackamichai\n📅 **Schedule a Call:** calendly.com/jackamichai\n🐙 **GitHub:** github.com/JackAmichai\n\nHe's actively seeking **Product Manager** and **Business Analyst** roles and would love to connect!",
+        answer: "You can reach Jack through:\n\n📧 **Email:** jackamichai@gmail.com\n💼 **LinkedIn:** linkedin.com/in/jackamichai\n📅 **Schedule a Call:** calendly.com/jackamichai\n🐙 **GitHub:** github.com/JackAmichai\n\nHe's actively seeking **AI Solutions Engineer** and **Product Management** roles!",
         keywords: ["contact", "email", "LinkedIn", "schedule"]
     },
     "resume|cv|download|hire|looking": {
-        answer: "Jack is actively seeking **Product Manager or Business Analyst roles**! You can download his materials:\n\n📄 **Resume** - Complete work history and skills\n📊 **One-Pager** - Quick overview with key metrics\n📚 **Case Studies** - Detailed project breakdowns\n\nAll downloads are available in the 'Resources for Recruiters' section below. He's looking for roles where he can leverage his AI expertise and consulting experience!",
+        answer: "Jack is actively seeking **AI Solutions Engineer or Product roles**! You can download his CV here:\n\n📄 **Resume** - Complete technical and product history\n\nHe's looking for roles where he can leverage his expertise in **Multi-Agent Systems**, **SAP BTP**, and **Product Architecture**.",
         keywords: ["resume", "hire", "looking for work", "download"]
     },
     "achievements|impact|results|metrics|numbers": {
@@ -55,7 +55,7 @@ const jackKnowledgeBase = {
         keywords: ["languages", "Hebrew", "English", "French"]
     },
     "research|neuroscience|technion|university|lab": {
-        answer: "Jack has research experience at both **Technion** (2021-2023) and **Hebrew University** (2020-2021):\n\n**Technion (2021-2023):** Research Assistant & Team Coordinator\n🔬 Conducted cognitive psychology experiments\n📊 Analyzed data using SPSS and Python\n👥 Coordinated lab operations\n\n**Hebrew University (2020-2021):** Research Project Manager & Software Engineer\n💻 Developed software tools for research\n📅 Managed project timelines\n\nThis research background gives him a unique edge in understanding user behavior and designing data-driven solutions.",
+        answer: "Jack has extensive research engineering experience:\n\n**Technion (2021-2023):** Research Software Engineer & Team Lead\n💻 Engineered Python backend tools for cognitive simulations\n👥 Managed cross-functional research teams\n\n**Hebrew University (2020-2021):** Software Engineer (Project Alpha)\n🌌 Integrated C++ and Python for 3D astrophysics simulations\n\nHe knows how to translate complex scientific requirements into working software.",
         keywords: ["research", "neuroscience", "Technion", "Hebrew University", "cognitive"]
     },
     "recommendation|reference|letter|vouch|verify|credentials": {
@@ -79,7 +79,7 @@ const jackKnowledgeBase = {
         keywords: ["SleepCall", "audio", "alert", "speech recognition"]
     },
     "inspiration|career|path|architect|future|vision": {
-        answer: "Jack is inspired by the intersection of **AI and Product Management**. His vision is to become a **Product Architect** who bridges the gap between technical innovation and user needs, building systems that are not only powerful but also intuitive and impactful.",
+        answer: "Jack is inspired by the challenge of **Ethical AI**. His vision is to become an **AI Solutions Architect** who builds systems that are powerful, transparent, and aligned with human intent—proving that we don't have to choose between technical efficiency and human values.",
         keywords: ["inspiration", "career path", "product architect", "vision"]
     },
     "pawquest|paw|quest|dog|pet|social|app|community": {
@@ -90,14 +90,12 @@ const jackKnowledgeBase = {
 
 // Sample questions to display
 const sampleQuestions = [
-    "Tell me about Hatrick",
-    "What is LeAIrn?",
-    "What is Jack's inspiration?",
-    "Tell me about Scholar2.6",
-    "What is SleepCall?",
-    "Does Jack know Python?",
+    "Tell me about Sentinel OS",
+    "What is Hatrick?",
+    "Tell me about Jack's research",
+    "Does Jack know SAP BTP?",
+    "What is his tech stack?",
     "How can I contact Jack?",
-    "What are Jack's main projects?",
     "Is Jack looking for work?",
     "Does Jack have recommendations?"
 ];
@@ -242,7 +240,7 @@ class CloudChatbot {
     displayWelcomeMessage() {
         setTimeout(() => {
             this.addMessage(
-                "Hi! I'm Cloud ☁️, Jack's AI assistant! I've been updated with his latest projects like **Scholar2.6** and **SleepCall**. Ask me anything!",
+                "Hi! I'm Cloud ☁️, Jack's AI assistant! I've been updated with his latest work in **AI Solutions Engineering** and **Multi-Agent Systems**. Ask me anything about his projects, skills, or experience!",
                 'bot'
             );
             this.displaySuggestions();
