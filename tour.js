@@ -52,7 +52,7 @@ function createTourModal() {
                         <img src="images/me.jpeg" alt="Jack Amichai">
                     </div>
                     <h2>Welcome to My Portfolio!</h2>
-                    <p>I'm Jack Amichai, an AI Solutions Engineer & Product Builder.<br>Here's a quick guide to explore my work:</p>
+                    <p>I'm Jack Amichai, a Business Analyst & AI Product Builder.<br>Here's a quick guide to explore my work:</p>
                 </div>
 
                 <div class="tour-steps">
