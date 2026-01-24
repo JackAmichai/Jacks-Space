@@ -643,7 +643,7 @@ function renderProject(project, view = 'business') {
         : '';
 
     return `
-        <div class="bento-card ${isFeatured ? 'featured' : ''}" data-project-id="${project.id}">
+        <div class="project-card ${isFeatured ? 'featured' : ''}" data-project-id="${project.id}">
             ${mediaHtml}
             <div class="project-content">
                 <div class="project-header">
@@ -707,8 +707,8 @@ function renderAllProjects(view = 'business') {
     const heroProjectIds = ['leairn', 'hatrick', 'scholar-2-6'];
     const heroProjects = heroProjectIds.map(id => projectsData.find(p => p.id === id)).filter(Boolean);
 
-    // All other projects go in the stacked cards
-    const stackedProjects = projectsData.filter(p => !heroProjectIds.includes(p.id));
+    // All other projects go in the slider
+    const sliderProjects = projectsData.filter(p => !heroProjectIds.includes(p.id));
 
     // Icon types for hero projects
     const heroIcons = {
@@ -725,10 +725,14 @@ function renderAllProjects(view = 'business') {
                 ${heroProjects.map(project => renderHeroCard(project, heroIcons[project.id], view)).join('')}
             </div>
 
-            <!-- Other Projects in Stacked Cards -->
-            <h3 class="more-projects-title">More Projects</h3>
-            <div class="stacked-projects-container">
-                ${stackedProjects.map((project, index) => renderStackedCard(project, index, view)).join('')}
+            <!-- Other Projects in Slider -->
+            <h3 class="more-projects-title" style="margin-top: 60px;">More Projects</h3>
+            <div class="projects-slider-wrapper">
+                <button class="slider-nav-btn slider-prev" onclick="this.parentElement.querySelector('.projects-slider').scrollBy({left: -350, behavior: 'smooth'})">❮</button>
+                <div class="projects-slider">
+                    ${sliderProjects.map((project) => renderProject(project, view)).join('')}
+                </div>
+                <button class="slider-nav-btn slider-next" onclick="this.parentElement.querySelector('.projects-slider').scrollBy({left: 350, behavior: 'smooth'})">❯</button>
             </div>
         </div>
     `;
