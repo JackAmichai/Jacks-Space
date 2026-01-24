@@ -49,7 +49,7 @@ function createTourModal() {
                 
                 <div class="tour-header">
                     <div class="tour-avatar">
-                        <img src="images/me.jpeg" alt="Jack Amichai">
+                        <img src="images/Presenting.png" alt="Jack Amichai">
                     </div>
                     <h2>Welcome to My Portfolio!</h2>
                     <p>I'm Jack Amichai, a Business Analyst & AI Product Builder.<br>Here's a quick guide to explore my work:</p>
@@ -179,20 +179,20 @@ function createTourModal() {
             color: #aaa;
         }
         .tour-avatar {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 15px;
-            border-radius: 50%;
+            border-radius: 16px;
             overflow: hidden;
-            border: 3px solid #0066cc;
-            padding: 2px;
-            background: white;
+            border: none;
+            padding: 0;
+            background: transparent;
         }
         .tour-avatar img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+            object-fit: contain;
+            border-radius: 16px;
         }
         .tour-header h2 {
             font-size: 1.5rem;
