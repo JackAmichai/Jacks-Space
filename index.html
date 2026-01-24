@@ -147,11 +147,10 @@
     <section id="home" class="hero">
         <div class="container">
             <!-- Hero Photo: Circular on the Left -->
-            <div class="hero-photo-wrapper">
-                <div class="hero-photo-circle">
-                    <img src="images/me.jpeg" alt="Jack Amichai" class="hero-image-circle" width="500" height="500"
-                        loading="eager">
-                </div>
+            <div class="process-image-container">
+                <!-- Updated to use the correct real-life image -->
+                <img src="images/day in a life Jack correct.png" alt="A Day in My Life as a Solutions Engineer"
+                    class="process-main-image">
             </div>
 
             <!-- Hero Content: Text on the Right -->
@@ -191,14 +190,14 @@
                         </div>
                     </a>
 
-                    <!-- Contact Card -->
-                    <a href="#contact" class="hero-card-btn" style="background-image: url('images/contact me.png');">
-                        <div class="hero-card-overlay">
-                            <span class="hero-card-text">Contact</span>
-                        </div>
-                    </a>
-
-                    <!-- Story Card -->
+                    <div class="hero-card contact-card">
+                        <a href="#contact" class="hero-card-btn"
+                            style="background-image: url('images/contact me now.png');">
+                            <div class="card-content">
+                                <h3>Contact Me</h3>
+                            </div>
+                        </a>
+                    </div> <!-- Story Card -->
                     <a href="#story" class="hero-card-btn" style="background-image: url('images/My story.png');">
                         <div class="hero-card-overlay">
                             <span class="hero-card-text">Story</span>
@@ -295,13 +294,13 @@
                     <!-- Videos -->
                     <div class="videos-column">
                         <div class="video-wrapper">
-                            <video controls muted loop playsinline preload="metadata">
+                            <video controls muted loop playsinline preload="none">
                                 <source src="video proj/Project_Video_Generation_With_Music.mp4" type="video/mp4">
                             </video>
                             <span class="video-label">Demo Video 1</span>
                         </div>
                         <div class="video-wrapper">
-                            <video controls muted loop playsinline preload="metadata">
+                            <video controls muted loop playsinline preload="none">
                                 <source src="video proj/Screen Recording 2025-12-13 at 20.08.38.mov" type="video/mp4">
                             </video>
                             <span class="video-label">Demo Video 2</span>
@@ -343,13 +342,13 @@
                     <!-- Videos -->
                     <div class="videos-column">
                         <div class="video-wrapper">
-                            <video controls muted loop playsinline preload="metadata">
+                            <video controls muted loop playsinline preload="none">
                                 <source src="video proj/Find Your Pack Today-VEED.mp4" type="video/mp4">
                             </video>
                             <span class="video-label">Promo Video</span>
                         </div>
                         <div class="video-wrapper">
-                            <video controls muted loop playsinline preload="metadata">
+                            <video controls muted loop playsinline preload="none">
                                 <source src="video proj/Screen Recording 2025-12-13 at 20.05.21.mov" type="video/mp4">
                             </video>
                             <span class="video-label">App Walkthrough</span>
@@ -389,7 +388,7 @@
 
                 <div class="single-video-wrapper">
                     <div class="video-wrapper large">
-                        <video controls muted loop playsinline preload="metadata">
+                        <video controls muted loop playsinline preload="none">
                             <source src="video proj/Scholar_Improving_Google_Scholar.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -407,7 +406,7 @@
             <p class="deep-fake-label">Just fun deep fake</p>
 
             <div class="creative-video-wrapper">
-                <video controls muted loop playsinline class="creative-main-video" preload="metadata">
+                <video controls muted loop playsinline class="creative-main-video" preload="none">
                     <source src="video%20proj/VID%20WEBSITE.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -448,95 +447,143 @@
                         <div class="preview-progress">
                             <div class="progress-bar" style="width: 68%"></div>
                         </div>
-                        <p class="preview-stat">68% Complete</p>
-                        <div class="preview-cards">
-                            <div class="mini-card">
-                                <span class="mini-title">Hallucination Detection</span>
-                                <span class="mini-status complete">Completed</span>
+                        <div class="skills-universe-container"
+                            style="background: radial-gradient(circle at center, #1a2a4a 0%, #0a0f1d 100%); padding: 40px; border-radius: 20px; text-align: center; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                            <!-- Decorative background elements -->
+                            <div
+                                style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;">
+                                <div
+                                    style="position: absolute; top: 10%; left: 10%; width: 4px; height: 4px; background: white; border-radius: 50%; box-shadow: 0 0 10px white; opacity: 0.6;">
+                                </div>
+                                <div
+                                    style="position: absolute; top: 80%; left: 85%; width: 3px; height: 3px; background: #60a5fa; border-radius: 50%; box-shadow: 0 0 8px #60a5fa; opacity: 0.7;">
+                                </div>
+                                <div
+                                    style="position: absolute; top: 40%; right: 15%; width: 5px; height: 5px; background: #a78bfa; border-radius: 50%; box-shadow: 0 0 12px #a78bfa; opacity: 0.5;">
+                                </div>
                             </div>
-                            <div class="mini-card">
-                                <span class="mini-title">Bias in AI Models</span>
-                                <span class="mini-status progress">In Progress</span>
-                            </div>
-                            <div class="mini-card">
-                                <span class="mini-title">Responsible AI Use</span>
-                                <span class="mini-status locked">Locked</span>
+
+                            <h3 style="color: white; margin-bottom: 30px; font-weight: 700;">My Skill Universe</h3>
+
+                            <div class="skills-tags-wrapper"
+                                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 800px; margin: 0 auto;">
+                                <!-- AI & ML -->
+                                <span class="universe-tag"
+                                    style="background: rgba(139, 92, 246, 0.2); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">Multi-Agent
+                                    Systems</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(139, 92, 246, 0.2); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">RAG
+                                    Pipelines</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(139, 92, 246, 0.2); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">LangChain</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(139, 92, 246, 0.2); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">LLM
+                                    Orchestration</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(139, 92, 246, 0.2); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">NVIDIA
+                                    NIMs</span>
+
+                                <!-- Backend -->
+                                <span class="universe-tag"
+                                    style="background: rgba(59, 130, 246, 0.2); color: #bfdbfe; border: 1px solid rgba(59, 130, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">Python</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(59, 130, 246, 0.2); color: #bfdbfe; border: 1px solid rgba(59, 130, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">FastAPI</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(59, 130, 246, 0.2); color: #bfdbfe; border: 1px solid rgba(59, 130, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">PostgreSQL</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(59, 130, 246, 0.2); color: #bfdbfe; border: 1px solid rgba(59, 130, 246, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">Docker</span>
+
+                                <!-- Frontend -->
+                                <span class="universe-tag"
+                                    style="background: rgba(16, 185, 129, 0.2); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">React</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(16, 185, 129, 0.2); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">TypeScript</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(16, 185, 129, 0.2); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">Next.js</span>
+
+                                <!-- Tools & Strategy -->
+                                <span class="universe-tag"
+                                    style="background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">AWS</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">SAP
+                                    BTP</span>
+                                <span class="universe-tag"
+                                    style="background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); padding: 8px 16px; border-radius: 20px; font-size: 15px;">Product
+                                    Strategy</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Infinite Slider - Topics Covered -->
-            <div class="leairn-topics-wrapper">
-                <p class="topics-label">Topics Covered</p>
-                <div class="infinite-slider">
-                    <div class="slider-track">
-                        <span class="topic-item">AI Hallucinations</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Racial Bias in AI</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Gender Bias Detection</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Misinformation Spread</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">AI Transparency</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Algorithmic Fairness</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Data Privacy</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Critical Evaluation</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">EU AI Act Compliance</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Responsible AI Practices</span>
-                        <span class="topic-divider">•</span>
-                        <!-- Duplicate for seamless loop -->
-                        <span class="topic-item">AI Hallucinations</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Racial Bias in AI</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Gender Bias Detection</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Misinformation Spread</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">AI Transparency</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Algorithmic Fairness</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Data Privacy</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Critical Evaluation</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">EU AI Act Compliance</span>
-                        <span class="topic-divider">•</span>
-                        <span class="topic-item">Responsible AI Practices</span>
-                        <span class="topic-divider">•</span>
+                    <!-- Infinite Slider - Topics Covered -->
+                    <div class="leairn-topics-wrapper">
+                        <p class="topics-label">Topics Covered</p>
+                        <div class="infinite-slider">
+                            <div class="slider-track">
+                                <span class="topic-item">AI Hallucinations</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Racial Bias in AI</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Gender Bias Detection</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Misinformation Spread</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">AI Transparency</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Algorithmic Fairness</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Data Privacy</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Critical Evaluation</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">EU AI Act Compliance</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Responsible AI Practices</span>
+                                <span class="topic-divider">•</span>
+                                <!-- Duplicate for seamless loop -->
+                                <span class="topic-item">AI Hallucinations</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Racial Bias in AI</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Gender Bias Detection</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Misinformation Spread</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">AI Transparency</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Algorithmic Fairness</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Data Privacy</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Critical Evaluation</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">EU AI Act Compliance</span>
+                                <span class="topic-divider">•</span>
+                                <span class="topic-item">Responsible AI Practices</span>
+                                <span class="topic-divider">•</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack & CTA -->
+                    <div class="leairn-footer">
+                        <div class="leairn-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Next.js</span>
+                            <span class="tech-badge">LLMs</span>
+                            <span class="tech-badge">Python</span>
+                        </div>
+                        <div class="leairn-cta">
+                            <a href="https://github.com/JackAmichai/LeAIrn" target="_blank" class="btn-leairn">
+                                <span>View on GitHub</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Tech Stack & CTA -->
-            <div class="leairn-footer">
-                <div class="leairn-tech">
-                    <span class="tech-badge">React</span>
-                    <span class="tech-badge">TypeScript</span>
-                    <span class="tech-badge">Next.js</span>
-                    <span class="tech-badge">LLMs</span>
-                    <span class="tech-badge">Python</span>
-                </div>
-                <div class="leairn-cta">
-                    <a href="https://github.com/JackAmichai/LeAIrn" target="_blank" class="btn-leairn">
-                        <span>View on GitHub</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- About Section -->
@@ -578,7 +625,7 @@
                     </p>
                 </div>
                 <div class="about-video">
-                    <video controls autoplay muted loop playsinline preload="metadata">
+                    <video controls autoplay muted loop playsinline preload="none">
                         <source src="Intro video.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -671,7 +718,7 @@
                 <div class="day-in-life-container" style="margin-top: 40px; text-align: center;">
                     <div class="day-in-life-image"
                         style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-width: 900px; margin: 0 auto;">
-                        <img src="images/day in a life Jack correct.png" alt="A Day in My Life as a Solutions Engineer"
+                        <img src="images/day in a life Jack real.jpeg" alt="A Day in My Life as a Solutions Engineer"
                             style="width: 100%; height: auto; display: block;">
                     </div>
                     <p
@@ -1589,14 +1636,9 @@
     <script src="text-effects.js"></script>
     <script src="chatbot.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="milky-way.js"></script>
     <script src="tour.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof initMilkyWay === 'function') {
-                initMilkyWay();
-            }
-        });
+        // Milky Way removed
     </script>
 </body>
 
