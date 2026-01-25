@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show the modal after a short delay
         setTimeout(() => {
             showTourModal();
-        }, 1500);
+        }, 500);
     }
 });
 
