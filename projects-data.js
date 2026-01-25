@@ -67,7 +67,7 @@ const projectsData = [
         title: "PawQuest: Dog Social App",
         role: "Full Stack Developer",
         featured: true,
-        image: "https://paw-quest-f31de0c0.base44.app/Landing",
+        image: "images/pawquest-demo.png",
         video: "video proj/Find Your Pack Today-VEED.mp4",
         problem: "Dog owners struggle to find compatible playmates for their pets and organize social meetups in their local area.",
         solution: "A social platform connecting dog owners to find playmates, organize meetups, and build thriving local pet communities. Features dog profiles, matching, event scheduling, and community forums.",
