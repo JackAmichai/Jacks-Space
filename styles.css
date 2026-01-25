@@ -3034,6 +3034,36 @@ html {
     box-shadow: 0 15px 40px -15px rgba(0, 102, 204, 0.8);
 }
 
+/* Tour Trigger Button */
+.tour-trigger-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 90px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.tour-trigger-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px -15px rgba(102, 126, 234, 0.8);
+}
+
+.tour-trigger-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
 /* 9. PAGE LOADER */
 .page-loader {
     position: fixed;
@@ -3718,6 +3748,13 @@ html {
         height: 45px;
         bottom: 20px;
         right: 20px;
+    }
+
+    .tour-trigger-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 75px;
     }
 
     .project-filters {
@@ -7228,4 +7265,298 @@ html {
 
 [data-theme='dark'] .endorsement-text strong {
     color: #fff;
+}
+
+/* ==================== */
+/* PROJECTS CAROUSEL - ONE AT A TIME */
+/* ==================== */
+
+.projects-carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.carousel-nav-btn {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-nav-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: scale(1.1);
+}
+
+.projects-carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.carousel-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.carousel-card-inner {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-card-inner:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 40px rgba(0, 102, 204, 0.15);
+    transform: translateY(-5px);
+}
+
+.carousel-card-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.carousel-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.carousel-card-role {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.carousel-card-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.carousel-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.carousel-tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.carousel-card-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.carousel-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.carousel-card-link:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.carousel-card-link.demo-link {
+    background: var(--accent);
+    color: white;
+}
+
+.carousel-card-link.demo-link:hover {
+    background: var(--accent-hover);
+}
+
+/* Carousel Dots */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot:hover {
+    background: var(--text-muted);
+}
+
+.carousel-dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .projects-carousel-container {
+        padding: 10px;
+    }
+    
+    .carousel-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-card-inner {
+        padding: 25px;
+        min-height: 350px;
+    }
+    
+    .carousel-card-icon {
+        font-size: 45px;
+    }
+    
+    .carousel-card-title {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-card-desc {
+        font-size: 0.85rem;
+    }
+}
+
+/* Hero Projects Grid - 3 boxes */
+.hero-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+    .hero-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* ==================== */
+/* CERTIFICATIONS GRID */
+/* ==================== */
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.certification-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 5px 20px rgba(0, 102, 204, 0.1);
+    transform: translateY(-3px);
+}
+
+.cert-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.cert-info {
+    flex: 1;
+}
+
+.cert-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.cert-issuer {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+}
+
+.cert-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .certification-card {
+        padding: 15px;
+    }
+    
+    .cert-logo {
+        width: 35px;
+        height: 35px;
+    }
 }

@@ -704,7 +704,7 @@ function renderAllProjects(view = 'business') {
     if (!container || typeof projectsData === 'undefined') return;
 
     // Define the 3 hero projects by ID
-    const heroProjectIds = ['leairn', 'hatrick', 'scholar-2-6'];
+    const heroProjectIds = ['leairn', 'hatrick', 'pawquest'];
     const heroProjects = heroProjectIds.map(id => projectsData.find(p => p.id === id)).filter(Boolean);
 
     // All other projects go in the slider
@@ -714,31 +714,160 @@ function renderAllProjects(view = 'business') {
     const heroIcons = {
         'leairn': { icon: '🎓', type: 'education', color: '#4ade80' },
         'hatrick': { icon: '🛡️', type: 'security', color: '#ef4444' },
-        'scholar-2-6': { icon: '🔬', type: 'research', color: '#06b6d4' }
+        'pawquest': { icon: '🐕', type: 'social', color: '#06b6d4' }
     };
 
     // Build the HTML
     let html = `
         <div class="projects-showcase">
-            <!-- Hero Featured Projects - Each in their own box -->
+            <!-- Hero Featured Projects - 3 Main Boxes -->
             <div class="hero-projects-grid">
                 ${heroProjects.map(project => renderHeroCard(project, heroIcons[project.id], view)).join('')}
             </div>
 
-            <!-- Other Projects in Slider -->
-            <h3 class="more-projects-title" style="margin-top: 60px;">More Projects</h3>
-            <div class="projects-slider-wrapper">
-                <button class="slider-nav-btn slider-prev" onclick="this.parentElement.querySelector('.projects-slider').scrollBy({left: -350, behavior: 'smooth'})">❮</button>
-                <div class="projects-slider">
-                    ${sliderProjects.map((project) => renderProject(project, view)).join('')}
+            <!-- More Projects Carousel - One at a time -->
+            <h3 class="more-projects-title" style="margin-top: 60px; text-align: center; font-size: 1.5rem; color: var(--text-primary);">More Projects</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">Browse through my GitHub projects</p>
+            
+            <div class="projects-carousel-container">
+                <button class="carousel-nav-btn carousel-prev" id="carouselPrev" aria-label="Previous project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div class="projects-carousel-track" id="projectsCarouselTrack">
+                    ${sliderProjects.map((project, index) => renderCarouselCard(project, view, index)).join('')}
                 </div>
-                <button class="slider-nav-btn slider-next" onclick="this.parentElement.querySelector('.projects-slider').scrollBy({left: 350, behavior: 'smooth'})">❯</button>
+                
+                <button class="carousel-nav-btn carousel-next" id="carouselNext" aria-label="Next project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                ${sliderProjects.map((_, i) => `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
             </div>
         </div>
     `;
 
     container.innerHTML = html;
     container.setAttribute('data-current-view', view);
+    
+    // Initialize carousel navigation
+    initProjectsCarousel(sliderProjects.length);
+}
+
+// Initialize the carousel navigation
+function initProjectsCarousel(totalItems) {
+    let currentIndex = 0;
+    const track = document.getElementById('projectsCarouselTrack');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    const dotsContainer = document.getElementById('carouselDots');
+    
+    if (!track || !prevBtn || !nextBtn) return;
+    
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update dots
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+        
+        // Update button states
+        prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+        nextBtn.style.opacity = currentIndex === totalItems - 1 ? '0.5' : '1';
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < totalItems - 1) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+    
+    // Click on dots
+    dotsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('carousel-dot')) {
+            currentIndex = parseInt(e.target.dataset.index);
+            updateCarousel();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        } else if (e.key === 'ArrowRight' && currentIndex < totalItems - 1) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+}
+
+// Render a carousel card (single project shown at a time)
+function renderCarouselCard(project, view = 'business', index) {
+    const isTechnical = view === 'technical';
+    
+    const githubLink = project.links && project.links.github
+        ? `<a href="${project.links.github}" target="_blank" class="carousel-card-link" title="View Code" onclick="event.stopPropagation()">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View on GitHub
+           </a>`
+        : '';
+    
+    const demoLink = project.links && project.links.demo
+        ? `<a href="${project.links.demo}" target="_blank" class="carousel-card-link demo-link" title="Live Demo" onclick="event.stopPropagation()">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+            </svg>
+            Live Demo
+           </a>`
+        : '';
+
+    const projectIcons = {
+        'sentinel-os': '🤖', 'nvidia-doc-nav': '📚', 'scholar-2-6': '🔬',
+        'sleepcall': '🔔', 'revenue-optimization': '📊', 'password-research': '🔒',
+        'orderflow-ai': '📦', 'openhouse': '🏠', 'emotion-detection': '😊'
+    };
+    const icon = projectIcons[project.id] || '🚀';
+
+    const description = isTechnical && project.techDetails
+        ? project.techDetails
+        : project.solution;
+
+    return `
+        <div class="carousel-card" data-index="${index}">
+            <div class="carousel-card-inner">
+                <div class="carousel-card-icon">${icon}</div>
+                <h4 class="carousel-card-title">${project.title}</h4>
+                <p class="carousel-card-role">${project.role || 'Developer'}</p>
+                <p class="carousel-card-desc">${description}</p>
+                <div class="carousel-card-tags">
+                    ${project.techStack.slice(0, 4).map(tech => `<span class="carousel-tag">${tech}</span>`).join('')}
+                </div>
+                <div class="carousel-card-links">
+                    ${demoLink}
+                    ${githubLink}
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 // Render hero featured card (LeAIrn, Hatrick, Scholar2.6)
