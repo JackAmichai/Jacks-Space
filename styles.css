@@ -4864,12 +4864,13 @@ html {
 }
 
 /* Layout: Flex/Grid - Photo Left, Text Right */
-.hero .container .hero-grid {
+.hero .container {
     display: flex;
     /* Changed from grid to flex for easy centering */
     align-items: center;
     justify-content: center;
     gap: 80px;
+    min-height: calc(100vh - 100px);
 }
 
 /* Photo Wrapper */
@@ -4987,10 +4988,12 @@ html {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .hero .container .hero-grid {
+    .hero .container {
         flex-direction: column;
         text-align: center;
         gap: 40px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
     .hero-photo-wrapper {
@@ -5002,6 +5005,10 @@ html {
         text-align: center;
     }
 
+    .hero-cards-container {
+        justify-content: center;
+    }
+
     .hero-buttons-circle-row {
         justify-content: center;
     }
@@ -5010,6 +5017,45 @@ html {
         width: 90px;
         height: 90px;
         font-size: 14px;
+    }
+}
+
+/* Mobile - smaller screens */
+@media (max-width: 600px) {
+    .hero .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 30px;
+    }
+
+    .hero-photo-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero-name-minimal {
+        font-size: 36px;
+    }
+
+    .hero-subtitle-minimal {
+        font-size: 18px;
+    }
+
+    .hero-description-minimal {
+        font-size: 15px;
+    }
+
+    .hero-cards-container {
+        gap: 10px;
+    }
+
+    .hero-card-btn {
+        width: 100px;
+        height: 130px;
+    }
+
+    .hero-card-text {
+        font-size: 12px;
     }
 }
 
