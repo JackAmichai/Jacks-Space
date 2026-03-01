@@ -300,7 +300,7 @@ This project is open source and available under the MIT License. Feel free to us
 
 Questions about this portfolio or want to collaborate?
 
-- **Email**: jack.amichai@example.com
+- **Email**: jackamichai@gmail.com
 - **LinkedIn**: [linkedin.com/in/jack-amichai](https://linkedin.com/in/jack-amichai)
 - **GitHub**: [github.com/jack-amichai](https://github.com/jack-amichai)
 
