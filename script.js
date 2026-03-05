@@ -462,7 +462,6 @@ function trackPageView() {
             page_path: window.location.pathname
         });
     }
-    console.log('📊 Page view tracked');
 }
 
 function trackCTAClick(ctaName) {
@@ -473,7 +472,6 @@ function trackCTAClick(ctaName) {
             value: 1
         });
     }
-    console.log(`📊 CTA clicked: ${ctaName}`);
 }
 
 // Track page view on load
