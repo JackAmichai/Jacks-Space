@@ -309,6 +309,7 @@ function createTourModal() {
     document.head.appendChild(style);
 
     // Event Listeners
+    const modal = div;
     modal.querySelector('.tour-close-btn').addEventListener('click', () => closeTourModal());
     modal.querySelector('#tour-skip').addEventListener('click', () => closeTourModal());
 
