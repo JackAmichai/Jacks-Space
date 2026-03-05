@@ -321,7 +321,9 @@ function createTourModal() {
     modal.querySelector('#tour-start').addEventListener('click', () => {
         const dontShow = modal.querySelector('#tour-dont-show').checked;
         closeTourModal(dontShow);
-        // Optional: Scroll to first section or trigger some animation
-        document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
     });
 }
+
+// Make functions globally accessible for the tour button
+window.showTourModal = showTourModal;
+window.closeTourModal = closeTourModal;
