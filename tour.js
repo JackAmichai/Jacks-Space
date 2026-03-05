@@ -119,6 +119,8 @@ function createTourModal() {
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
             z-index: 10000;
@@ -137,6 +139,8 @@ function createTourModal() {
             position: absolute;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
@@ -156,6 +160,7 @@ function createTourModal() {
             transform: translateY(20px);
             transition: transform 0.3s ease;
             color: #333;
+            margin: auto;
         }
         .tour-modal.active .tour-modal-content {
             transform: translateY(0);
