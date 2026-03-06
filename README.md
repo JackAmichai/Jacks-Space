@@ -297,7 +297,7 @@ This project is open source and available under the MIT License. Feel free to us
 **Hosting**: GitHub Pages  
 
 ## 📬 Contact
-
+Waiting to hear from you!
 Questions about this portfolio or want to collaborate?
 
 - **Email**: jackamichai@gmail.com
