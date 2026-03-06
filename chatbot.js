@@ -281,23 +281,65 @@ class CloudChatbot {
         }
     }
 
-    handleUserMessage(message) {
+    async handleUserMessage(message) {
         // Add user message to chat
         this.addMessage(message, 'user');
-
-        // Find matching answer
-        setTimeout(() => {
-            const answer = this.findAnswer(message);
-            this.addMessage(answer, 'bot');
-
-            // Show new suggestions after answer
-            setTimeout(() => this.displaySuggestions(), 500);
-        }, 600);
 
         // Track question
         if (typeof trackCTAClick !== 'undefined') {
             trackCTAClick('chatbot_question_asked');
         }
+
+        // Show thinking indicator
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chatbot-message bot-message typing-status';
+        typingDiv.innerHTML = `
+            <img src="images/cloud-bot.jpg" alt="Cloud" class="message-avatar">
+            <div class="message-content"><em>☁️ Neometron is thinking...</em></div>
+        `;
+        messagesContainer.appendChild(typingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        try {
+            // Update Conversation History
+            this.conversationHistory.push({ role: "user", content: message });
+
+            // Keep history length manageable (last 8 messages)
+            if (this.conversationHistory.length > 8) {
+                this.conversationHistory = this.conversationHistory.slice(-8);
+            }
+
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: this.conversationHistory })
+            });
+
+            if (!response.ok) throw new Error('API failed');
+
+            const data = await response.json();
+
+            if (data.error) throw new Error(data.error);
+
+            const botReply = data.choices[0].message.content;
+
+            this.conversationHistory.push({ role: "assistant", content: botReply });
+
+            typingDiv.remove();
+            this.addMessage(botReply, 'bot');
+
+        } catch (error) {
+            console.warn("API Error, falling back to local mock data:", error);
+            typingDiv.remove();
+
+            // Fallback to local dictionary
+            const answer = this.findAnswer(message);
+            this.addMessage(answer, 'bot');
+        }
+
+        // Show new suggestions after answer
+        setTimeout(() => this.displaySuggestions(), 500);
     }
 
     findAnswer(question) {
