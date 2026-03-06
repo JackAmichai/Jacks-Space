@@ -20,9 +20,9 @@ const projectsData = [
         ],
         outcome: "Autonomous simulation environment for testing security protocols against adaptive AI adversaries.",
         metrics: [
-            "🤖 <strong>6+ Autonomous Agents</strong> interacting",
-            "⚡ <strong>Sub-second</strong> inference on Groq",
-            "🛡️ <strong>Real-time</strong> protocol testing"
+            " <strong>6+ Autonomous Agents</strong> interacting",
+            " <strong>Sub-second</strong> inference on Groq",
+            " <strong>Real-time</strong> protocol testing"
         ],
         techStack: ["React", "TypeScript", "FastAPI", "LangChain", "Groq"],
         techDetails: "Frontend: React + TypeScript. Backend: FastAPI + LangChain. Orchestration: LangGraph. Inference: Groq LPU (Llama-3, Mixtral).",
@@ -51,8 +51,8 @@ const projectsData = [
         ],
         outcome: "Strategic MVP defined, negotiating with psychology experts to prioritize ethical interactions over complex variables.",
         metrics: [
-            "🤖 <strong>NVIDIA Isaac Sim</strong> integration",
-            "⚡ <strong>TensorRT</strong> optimization",
+            " <strong>NVIDIA Isaac Sim</strong> integration",
+            " <strong>TensorRT</strong> optimization",
             "🧠 <strong>Behavioral logic</strong> engine"
         ],
         techStack: ["NVIDIA Isaac Sim", "TensorRT", "Python", "AI Ethics", "Robotics"],
@@ -82,7 +82,7 @@ const projectsData = [
             "🐕 <strong>Dog profiles</strong> with matching",
             "📍 <strong>Location-based</strong> discovery",
             "📅 <strong>Event scheduling</strong> and RSVPs",
-            "💬 <strong>Community forums</strong>"
+            " <strong>Community forums</strong>"
         ],
         techStack: ["React", "Node.js", "Base44", "Mobile-first", "Social Features"],
         techDetails: "Built on Base44 platform with React frontend. Features real-time messaging, geolocation services, and profile matching algorithms.",
@@ -112,9 +112,9 @@ const projectsData = [
         outcome: "Flagship project addressing the EU AI Act's mandate for AI literacy education.",
         metrics: [
             "🧠 <strong>Hallucination detection</strong> training",
-            "⚖️ <strong>Bias recognition</strong> modules",
-            "🛡️ <strong>Safe AI practices</strong> framework",
-            "📊 <strong>Adaptive learning</strong> paths"
+            "⚖ <strong>Bias recognition</strong> modules",
+            " <strong>Safe AI practices</strong> framework",
+            " <strong>Adaptive learning</strong> paths"
         ],
         techStack: ["React", "TypeScript", "Next.js", "LLMs", "Python"],
         techDetails: "Full-stack education platform with LLM-powered content generation, adaptive difficulty algorithms, and interactive exercises.",
@@ -142,10 +142,10 @@ const projectsData = [
         ],
         outcome: "One-stop AI agent for all NVIDIA developer documentation needs.",
         metrics: [
-            "⚡ <strong>60% faster</strong> documentation discovery",
-            "🎯 <strong>Version-aware</strong> compatibility answers",
+            " <strong>60% faster</strong> documentation discovery",
+            " <strong>Version-aware</strong> compatibility answers",
             "🔗 <strong>5 core features</strong> in MVP",
-            "📚 <strong>Multi-source</strong> RAG retrieval"
+            " <strong>Multi-source</strong> RAG retrieval"
         ],
         techStack: ["Python", "FastAPI", "RAG", "Pinecone", "LangChain", "Next.js", "HuggingFace"],
         techDetails: "Backend: FastAPI + LangChain + Pinecone vector DB. Frontend: Next.js + TypeScript. Embeddings: OpenAI text-embedding-ada-002. Retrieves from docs.nvidia.com, GitHub, forums.",
@@ -174,9 +174,9 @@ const projectsData = [
         outcome: "Streamlined data entry and discovery for both academic and sales use cases.",
         metrics: [
             "🧩 <strong>Manifest V3</strong> architecture",
-            "📊 <strong>Knowledge Graph</strong> visualization",
+            " <strong>Knowledge Graph</strong> visualization",
             "🔄 <strong>Auto-sync</strong> to external platforms",
-            "⚡ <strong>Productivity boost</strong> for workflows"
+            " <strong>Productivity boost</strong> for workflows"
         ],
         techStack: ["TypeScript", "React", "Chrome Extension", "Manifest V3", "Semantic Scholar API"],
         techDetails: "Chrome Extensions built with React/Vite. Content scripts for DOM parsing. Background service workers for API sync. Shadow DOM for UI overlay.",
@@ -199,14 +199,14 @@ const projectsData = [
         metrics: [
             "🔔 <strong>Real-time alerts</strong>",
             "🔒 <strong>Privacy-focused</strong> local processing",
-            "⚡ <strong>Low latency</strong> detection"
+            " <strong>Low latency</strong> detection"
         ],
         outcome: "Never miss when your name is mentioned - stay focused and ready to contribute.",
         metrics: [
             "🔔 <strong>Real-time</strong> name detection",
             "🧠 <strong>AI-powered</strong> 5-minute summaries",
             "📢 <strong>Multi-channel</strong> alerts (Teams/Slack/Desktop)",
-            "⏱️ <strong>90-second</strong> cooldown protection"
+            "⏱ <strong>90-second</strong> cooldown protection"
         ],
         techStack: ["Python", "Azure Speech SDK", "Azure OpenAI", "RapidFuzz", "Plyer"],
         techDetails: "Architecture: Audio → Azure Speech SDK (STT) → Rolling Buffer → Name Detection (exact + fuzzy) → LLM Summary → Multi-channel Alert. Modular design with 6 Python modules.",
@@ -234,10 +234,10 @@ const projectsData = [
         ],
         outcome: "Improved forecast accuracy and measurable revenue impact across the portfolio.",
         metrics: [
-            "📈 <strong>Improved accuracy</strong> in revenue forecasts",
+            " <strong>Improved accuracy</strong> in revenue forecasts",
             "💰 <strong>Measurable revenue</strong> impact",
-            "⏱️ <strong>60% time saved</strong> on pricing analysis",
-            "📊 <strong>Weekly usage</strong> by leadership"
+            "⏱ <strong>60% time saved</strong> on pricing analysis",
+            " <strong>Weekly usage</strong> by leadership"
         ],
         techStack: ["Excel", "Power BI", "SQL", "Python", "Revenue Analytics", "Forecasting"],
         techDetails: "Built time-series forecasting models using historical booking patterns. Implemented web scraping automation for competitor rate monitoring. Created interactive Power BI dashboards with drill-down capabilities. Integrated multiple data sources (PMS, market data, events calendar) for holistic view.",
@@ -256,7 +256,7 @@ const projectsData = [
         solution: "A comprehensive research project analyzing password security protocols and common attack vectors. Demonstrates defense mechanisms against brute-force and dictionary attacks.",
         metrics: [
             "🔒 <strong>Vulnerability analysis</strong>",
-            "🛡️ <strong>Defense strategies</strong> implemented",
+            " <strong>Defense strategies</strong> implemented",
             "🎓 <strong>Academic research</strong> grade"
         ],
         techStack: ["Python", "Cryptography", "Web Security", "Data Analysis"],
@@ -275,9 +275,9 @@ const projectsData = [
         problem: "Sales teams spend hours manually entering meeting notes into CRM systems.",
         solution: "AI-powered meeting assistant that automatically captures, structures, and syncs meeting notes to CRM systems. Uses NLP to extract action items and contact details.",
         metrics: [
-            "⏱️ <strong>80% less</strong> manual entry time",
+            "⏱ <strong>80% less</strong> manual entry time",
             "📝 <strong>Automated capture</strong> of meeting insights",
-            "🎯 <strong>Smart field mapping</strong> to CRM"
+            " <strong>Smart field mapping</strong> to CRM"
         ],
         techStack: ["Python", "NLP", "Speech-to-Text", "CRM APIs", "Machine Learning"],
         techDetails: "Implemented speech recognition using Whisper API. Built named entity recognition (NER) for contact extraction.",
@@ -298,7 +298,7 @@ const projectsData = [
         metrics: [
             "📉 <strong>45% fewer stockouts</strong>",
             "💰 <strong>Optimized inventory</strong> costs",
-            "🤖 <strong>Automated ordering</strong> decisions"
+            " <strong>Automated ordering</strong> decisions"
         ],
         techStack: ["Python", "Scikit-learn", "Time Series Analysis", "SQL", "API Integration"],
         techDetails: "Implemented ARIMA and Prophet models for time-series forecasting. Built ensemble approach combining multiple algorithms.",
@@ -445,7 +445,7 @@ const projectsData = [
         solution: "Web security platform that scans for vulnerabilities and provides actionable remediation guidance. Automates checks for OWASP Top 10 threats.",
         metrics: [
             "🔒 <strong>OWASP compliant</strong> scanning",
-            "🎯 <strong>Prioritized fixes</strong>",
+            " <strong>Prioritized fixes</strong>",
             "📋 <strong>Clear guidance</strong> for non-technical users"
         ],
         techStack: ["Python", "Security Testing", "OWASP", "Web Scanning", "API Development"],
@@ -467,8 +467,8 @@ const projectsData = [
         solution: "AI-powered public transport assistant with intelligent route optimization and real-time alerts. Helps users navigate disruptions with alternative route suggestions.",
         metrics: [
             "🚌 <strong>Real-time route</strong> optimization",
-            "⚠️ <strong>Proactive alerts</strong> for disruptions",
-            "🗺️ <strong>Multi-modal</strong> journey planning"
+            "⚠ <strong>Proactive alerts</strong> for disruptions",
+            "🗺 <strong>Multi-modal</strong> journey planning"
         ],
         techStack: ["Python", "Route Optimization", "Real-time APIs", "NLP", "Mobile Development"],
         techDetails: "Integrated GTFS feeds for transit data. Implemented Dijkstra's algorithm with custom cost function.",
@@ -488,9 +488,9 @@ const projectsData = [
         problem: "Investors need reliable tools to analyze stock price trends.",
         solution: "Machine learning model achieving 85%+ accuracy using RandomForestRegressor. Engineers 15+ features from historical market data for robust predictions.",
         metrics: [
-            "🎯 <strong>85%+ accuracy</strong>",
-            "📊 <strong>15+ features</strong> engineered",
-            "⚡ <strong>Real-time pipeline</strong>"
+            " <strong>85%+ accuracy</strong>",
+            " <strong>15+ features</strong> engineered",
+            " <strong>Real-time pipeline</strong>"
         ],
         techStack: ["Python", "Scikit-learn", "Pandas", "Machine Learning", "Financial Data APIs"],
         techDetails: "Implemented feature engineering including moving averages, RSI, MACD. Used RandomForestRegressor with hyperparameter tuning.",
@@ -510,9 +510,9 @@ const projectsData = [
         problem: "Online shoppers are overwhelmed by product choices.",
         solution: "Personalized product recommendation system increasing conversion rates by 25%. Utilizes collaborative filtering and behavioral analysis to suggest relevant items.",
         metrics: [
-            "📈 <strong>25% conversion boost</strong>",
-            "🎯 <strong>Personalized</strong> recommendations",
-            "⚡ <strong>Real-time</strong> adaptation"
+            " <strong>25% conversion boost</strong>",
+            " <strong>Personalized</strong> recommendations",
+            " <strong>Real-time</strong> adaptation"
         ],
         techStack: ["Python", "Collaborative Filtering", "A/B Testing", "Redis", "Real-time Analytics"],
         techDetails: "Implemented matrix factorization using Surprise library. Built hybrid approach combining collaborative and content-based filtering.",
@@ -532,9 +532,9 @@ const projectsData = [
         problem: "Enterprise clients need custom HR workflows outside standard capabilities.",
         solution: "Custom SAP BTP extensions for SuccessFactors, implementing specialized approval workflows and data integration. Ensures seamless connectivity with legacy systems.",
         metrics: [
-            "🏛️ <strong>Enterprise exposure</strong>",
-            "📚 <strong>SAP BTP knowledge</strong>",
-            "🔧 <strong>Custom extensions</strong> understanding"
+            " <strong>Enterprise exposure</strong>",
+            " <strong>SAP BTP knowledge</strong>",
+            " <strong>Custom extensions</strong> understanding"
         ],
         techStack: ["SAP BTP", "SAP SuccessFactors", "JavaScript", "OData", "Cloud Foundry", "Integration"],
         techDetails: "Built custom SAP UI5 applications deployed on BTP. Implemented OData services for data access. Created integration flows using SAP Cloud Integration. Designed multi-tenant architecture for scalability. Established CI/CD pipelines for extension deployments.",

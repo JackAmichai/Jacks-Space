@@ -9,11 +9,11 @@ const jackKnowledgeBase = {
         keywords: ["hello", "hi", "greetings"]
     },
     "thanks|thank you|thx|appreciate": {
-        answer: "You're welcome! 😊 Let me know if you have any other questions about Jack's work.",
+        answer: "You're welcome!  Let me know if you have any other questions about Jack's work.",
         keywords: ["thanks", "thank you"]
     },
     "who are you|what are you|bot|ai": {
-        answer: "I'm Cloud ☁️, a custom-built AI assistant designed to help you navigate Jack's portfolio. I can answer questions about his background, skills, and projects!",
+        answer: "I'm Cloud , a custom-built AI assistant designed to help you navigate Jack's portfolio. I can answer questions about his background, skills, and projects!",
         keywords: ["who are you", "bot", "AI"]
     },
 
@@ -31,7 +31,7 @@ const jackKnowledgeBase = {
         keywords: ["education", "psychology", "computer science", "Technion", "research"]
     },
     "projects|portfolio|built|work|examples": {
-        answer: "Jack has built a diverse portfolio of AI solutions. You can ask me about:\n\n🤖 **Sentinel OS** - AI Robotics for healthcare\n🛡️ **Hatrick** - Multi-Agent Cyber Defense\n📚 **NVIDIA Doc Navigator** - RAG Agent\n\nCheck out the Projects section for live demos and code!",
+        answer: "Jack has built a diverse portfolio of AI solutions. You can ask me about:\n\n **Sentinel OS** - AI Robotics for healthcare\n **Hatrick** - Multi-Agent Cyber Defense\n **NVIDIA Doc Navigator** - RAG Agent\n\nCheck out the Projects section for live demos and code!",
         keywords: ["projects", "portfolio"]
     },
     "skills|technologies|tech stack|programming|languages": {
@@ -47,7 +47,7 @@ const jackKnowledgeBase = {
         keywords: ["resume", "hire", "looking for work", "download"]
     },
     "achievements|impact|results|metrics|numbers": {
-        answer: "Jack's measurable impact includes:\n\n📈 **Improved revenue forecast accuracy** (hospitality consulting)\n💰 **Measurable revenue impact** (pricing optimization)\n⏱️ **60% time saved** on pricing analysis\n🎯 **High-accuracy ML models** (stock prediction & forecasting)\n📚 **Research publications** (Technion & Hebrew University)\n⚡ **Faster documentation discovery** (NVIDIA RAG system)\n\nHe focuses on data-driven solutions with measurable business outcomes!",
+        answer: "Jack's measurable impact includes:\n\n **Improved revenue forecast accuracy** (hospitality consulting)\n💰 **Measurable revenue impact** (pricing optimization)\n⏱ **60% time saved** on pricing analysis\n **High-accuracy ML models** (stock prediction & forecasting)\n **Research publications** (Technion & Hebrew University)\n **Faster documentation discovery** (NVIDIA RAG system)\n\nHe focuses on data-driven solutions with measurable business outcomes!",
         keywords: ["achievements", "impact", "metrics", "results"]
     },
     "languages|speak|hebrew|english|french": {
@@ -55,7 +55,7 @@ const jackKnowledgeBase = {
         keywords: ["languages", "Hebrew", "English", "French"]
     },
     "research|neuroscience|technion|university|lab": {
-        answer: "Jack has extensive research engineering experience:\n\n**Technion (2021-2023):** Research Software Engineer & Team Lead\n💻 Engineered Python backend tools for cognitive simulations\n👥 Managed cross-functional research teams\n\n**Hebrew University (2020-2021):** Software Engineer (Project Alpha)\n🌌 Integrated C++ and Python for 3D astrophysics simulations\n\nHe knows how to translate complex scientific requirements into working software.",
+        answer: "Jack has extensive research engineering experience:\n\n**Technion (2021-2023):** Research Software Engineer & Team Lead\n Engineered Python backend tools for cognitive simulations\n👥 Managed cross-functional research teams\n\n**Hebrew University (2020-2021):** Software Engineer (Project Alpha)\n🌌 Integrated C++ and Python for 3D astrophysics simulations\n\nHe knows how to translate complex scientific requirements into working software.",
         keywords: ["research", "neuroscience", "Technion", "Hebrew University", "cognitive"]
     },
     "recommendation|reference|letter|vouch|verify|credentials": {
@@ -130,7 +130,7 @@ class CloudChatbot {
         popup.className = 'chatbot-popup';
         popup.innerHTML = `
             <div class="chatbot-popup-header">
-                <div class="chatbot-popup-avatar">☁️</div>
+                <div class="chatbot-popup-avatar"></div>
                 <h4 class="chatbot-popup-title">Hey! I'm Cloud</h4>
                 <button class="chatbot-popup-close" id="popup-close">✕</button>
             </div>
@@ -177,7 +177,7 @@ class CloudChatbot {
                 <div class="chatbot-header-content">
                     <img src="images/cloud-bot.jpg" alt="Cloud" class="chatbot-header-avatar">
                     <div class="chatbot-header-text">
-                        <h3>Cloud ☁️</h3>
+                        <h3>Cloud </h3>
                         <p>Jack's AI Assistant</p>
                     </div>
                 </div>
@@ -240,7 +240,7 @@ class CloudChatbot {
     displayWelcomeMessage() {
         setTimeout(() => {
             this.addMessage(
-                "Hi! I'm Cloud ☁️, Jack's AI assistant! I've been updated with his latest work in **AI Solutions Engineering** and **Multi-Agent Systems**. Ask me anything about his projects, skills, or experience!",
+                "Hi! I'm Cloud , Jack's AI assistant! I've been updated with his latest work in **AI Solutions Engineering** and **Multi-Agent Systems**. Ask me anything about his projects, skills, or experience!",
                 'bot'
             );
             this.displaySuggestions();
@@ -378,7 +378,7 @@ class CloudChatbot {
         return text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\n/g, '<br>')
-            .replace(/🎯|💰|🤖|📊|📧|💼|📅|🐙|📄|📚|📈|⏱️|🚀|⚡|🔬|📝|👥|🌍|🇮🇱|🇺🇸|🇫🇷|🔔|🔒|🛡️|🎓/g, '<span class="emoji">$&</span>');
+            .replace(/|💰|||📧|💼|📅|🐙|📄|||⏱||||📝|👥|🌍|🇮🇱|🇺🇸|🇫🇷|🔔|🔒||🎓/g, '<span class="emoji">$&</span>');
     }
 
     escapeHtml(text) {
@@ -391,5 +391,5 @@ class CloudChatbot {
 // Initialize chatbot when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     window.cloudChatbot = new CloudChatbot();
-    console.log('☁️ Cloud Chatbot initialized');
+    console.log(' Cloud Chatbot initialized');
 });

@@ -155,7 +155,7 @@ if (themeToggle) {
 function updateThemeIcon(theme) {
     const icon = themeToggle?.querySelector('.theme-icon');
     if (icon) {
-        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        icon.textContent = theme === 'dark' ? '☀' : '🌙';
     }
 }
 
@@ -352,26 +352,26 @@ if (contactForm) {
         // Basic validation
         if (nameInput && nameInput.value.trim().length < 2) {
             e.preventDefault();
-            showToast('⚠️ Please enter a valid name');
+            showToast('⚠ Please enter a valid name');
             nameInput.focus();
             return;
         }
 
         if (emailInput && !isValidEmail(emailInput.value)) {
             e.preventDefault();
-            showToast('⚠️ Please enter a valid email address');
+            showToast('⚠ Please enter a valid email address');
             emailInput.focus();
             return;
         }
 
         if (messageInput && messageInput.value.trim().length < 10) {
             e.preventDefault();
-            showToast('⚠️ Please enter a message (at least 10 characters)');
+            showToast('⚠ Please enter a message (at least 10 characters)');
             messageInput.focus();
             return;
         }
 
-        showToast('✅ Message sent successfully!');
+        showToast(' Message sent successfully!');
         trackCTAClick('contact_form_submitted');
     });
 }
@@ -661,11 +661,11 @@ function renderStackCard(project, iconType = 'ai') {
         : '';
 
     const icons = {
-        ai: '🤖',
-        security: '🛡️',
-        research: '🔬',
-        analytics: '📊',
-        product: '🚀'
+        ai: '',
+        security: '',
+        research: '',
+        analytics: '',
+        product: ''
     };
 
     return `
@@ -699,7 +699,7 @@ function renderAllProjects(view = 'business') {
     // Icon types for hero projects
     const heroIcons = {
         'leairn': { icon: '🎓', type: 'education', color: '#4ade80' },
-        'hatrick': { icon: '🛡️', type: 'security', color: '#ef4444' },
+        'hatrick': { icon: '', type: 'security', color: '#ef4444' },
         'pawquest': { icon: '🐕', type: 'social', color: '#06b6d4' }
     };
 
@@ -827,11 +827,11 @@ function renderCarouselCard(project, view = 'business', index) {
         : '';
 
     const projectIcons = {
-        'sentinel-os': '🤖', 'nvidia-doc-nav': '📚', 'scholar-2-6': '🔬',
-        'sleepcall': '🔔', 'revenue-optimization': '📊', 'password-research': '🔒',
-        'orderflow-ai': '📦', 'openhouse': '🏠', 'emotion-detection': '😊'
+        'sentinel-os': '', 'nvidia-doc-nav': '', 'scholar-2-6': '',
+        'sleepcall': '🔔', 'revenue-optimization': '', 'password-research': '🔒',
+        'orderflow-ai': '📦', 'openhouse': '🏠', 'emotion-detection': ''
     };
-    const icon = projectIcons[project.id] || '🚀';
+    const icon = projectIcons[project.id] || '';
 
     const description = isTechnical && project.techDetails
         ? project.techDetails
@@ -913,16 +913,16 @@ function renderStackedCard(project, index, view = 'business') {
 
     // Project type icons
     const projectIcons = {
-        'nvidia-doc-nav': '📚',
+        'nvidia-doc-nav': '',
         'sleepcall': '🔔',
-        'revenue-optimization': '📊',
+        'revenue-optimization': '',
         'password-research': '🔒',
-        'emotion-detection': '😊',
-        'ai-debate': '💬',
-        'cloud-portfolio': '☁️'
+        'emotion-detection': '',
+        'ai-debate': '',
+        'cloud-portfolio': ''
     };
 
-    const icon = projectIcons[project.id] || '🚀';
+    const icon = projectIcons[project.id] || '';
     const clickUrl = project.links?.demo || project.links?.github || '#';
 
     const description = isTechnical && project.techDetails
@@ -1324,7 +1324,7 @@ if (document.readyState === 'loading') {
 // ========================================
 // INITIALIZATION
 // ========================================
-console.log('🚀 Portfolio loaded successfully!');
+console.log(' Portfolio loaded successfully!');
 console.log('💡 Keyboard shortcuts:');
 console.log('   Ctrl/Cmd + D: Toggle dark mode');
 console.log('   Escape: Close mobile menu');
