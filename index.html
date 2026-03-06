@@ -185,12 +185,31 @@
                 <!-- Sparkles Text for Name -->
                 <h1 class="hero-name-minimal sparkles-text" data-sparkles-count="15">Jack Amichai</h1>
 
-                <!-- Text Shimmer for Subtitle -->
-                <h2 class="hero-subtitle-minimal">
-                    <span class="text-shimmer">A Bit About Me</span>
-                </h2>
+                <!-- Text Shimmer for Subtitle + Voice Reader -->
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                    <h2 class="hero-subtitle-minimal" style="margin-bottom: 0;">
+                        <span class="text-shimmer">A Bit About Me</span>
+                    </h2>
+                    <button id="readBioBtn" class="voice-reader-btn" aria-label="Listen to bio" title="Read Out Loud">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="22"></line>
+                            <line x1="8" y1="22" x2="16" y2="22"></line>
+                        </svg>
+                    </button>
+                </div>
 
-                <p class="hero-description-minimal text-reveal" data-effect="word" data-delay="0.1">
+                <!-- Voice Avatar Container -->
+                <div id="voiceAvatarContainer" class="voice-avatar-hidden">
+                    <img src="images/me.jpeg" alt="Jack Reading" class="voice-avatar-img">
+                    <div class="voice-waves">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <p class="hero-description-minimal text-reveal" data-effect="word" data-delay="0.1" id="bioParagraph">
                     Bridging the gap between Human Psychology and Artificial Intelligence.
                     With a dual background in Psychology and Computer Science, I don't just write code — I architect
                     systems that understand context and intent. My focus is on AI Solutions Engineering and Backend
@@ -222,6 +241,41 @@
                         </svg>
                         GitHub Profile
                     </a>
+                </div>
+
+                <!-- Does Jack Fit Your Role Button -->
+                <div style="margin-bottom: 30px;">
+                    <button id="roleFitBtn" class="role-fit-btn">
+                        <span>🤔</span> Does Jack Fit Your Role?
+                    </button>
+                </div>
+
+                <!-- Role Fit Modal -->
+                <div id="roleFitModal" class="role-fit-modal">
+                    <div class="role-fit-overlay"></div>
+                    <div class="role-fit-content">
+                        <button class="role-fit-close" aria-label="Close modal">&times;</button>
+                        <h2>Build Your Ideal Candidate</h2>
+                        <p>Check the skills you need for your team:</p>
+
+                        <div class="role-fit-checklist">
+                            <label class="fit-option"><input type="checkbox" value="20"> AI Solutions
+                                Engineering</label>
+                            <label class="fit-option"><input type="checkbox" value="20"> Backend Architecture /
+                                Cloud</label>
+                            <label class="fit-option"><input type="checkbox" value="20"> Natural Language
+                                Processing</label>
+                            <label class="fit-option"><input type="checkbox" value="20"> Psychology & Product
+                                Context</label>
+                            <label class="fit-option"><input type="checkbox" value="20"> Multi-Agent Systems</label>
+                        </div>
+
+                        <div class="role-fit-progress-container">
+                            <div class="role-fit-progress-bar" id="roleFitProgress"></div>
+                        </div>
+                        <h3 id="roleFitScoreText">Match Score: 0%</h3>
+                        <p id="roleFitMessage" class="role-fit-message text-shimmer"></p>
+                    </div>
                 </div>
 
                 <!-- Circular Buttons Row -->

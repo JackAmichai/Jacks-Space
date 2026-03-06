@@ -4215,6 +4215,279 @@ html {
     border-color: var(--accent);
 }
 
+/* ==================== */
+/* INTERACTIVE FEATURES CSS */
+/* ==================== */
+
+/* Voice Reader Avatar & Button */
+.voice-reader-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.voice-reader-btn:hover {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: #10b981;
+    color: #10b981;
+    transform: scale(1.05);
+}
+
+.voice-reader-btn.speaking {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+    animation: pulse 1.5s infinite;
+}
+
+#voiceAvatarContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    transition: all 0.4s ease;
+}
+
+.voice-avatar-hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.voice-avatar-visible {
+    opacity: 1;
+    max-height: 100px;
+    visibility: visible;
+}
+
+.voice-avatar-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #10b981;
+    object-fit: cover;
+}
+
+.voice-avatar-img.animating {
+    animation: bounce 0.5s infinite alternate;
+}
+
+.voice-waves {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    height: 30px;
+}
+
+.voice-waves span {
+    display: inline-block;
+    width: 4px;
+    height: 100%;
+    background: #10b981;
+    border-radius: 2px;
+    animation: voiceRhythm 0.6s infinite ease-in-out alternate;
+}
+
+.voice-waves span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.voice-waves span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes voiceRhythm {
+    0% {
+        height: 10px;
+    }
+
+    100% {
+        height: 30px;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Role Fit Button & Modal */
+.role-fit-btn {
+    background: linear-gradient(135deg, #0066cc, #004494);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.role-fit-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+}
+
+.role-fit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.role-fit-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.role-fit-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 50, 100, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+.role-fit-content {
+    background: var(--bg-primary);
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid #0066cc;
+    text-align: left;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    font-family: 'Caveat', cursive;
+}
+
+[data-theme='dark'] .role-fit-content {
+    background: #001a33;
+    border-color: #66b3ff;
+}
+
+.role-fit-modal.active .role-fit-content {
+    transform: translateY(0);
+}
+
+.role-fit-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #0066cc;
+    cursor: pointer;
+}
+
+[data-theme='dark'] .role-fit-close {
+    color: #66b3ff;
+}
+
+.role-fit-content h2 {
+    font-size: 2.2rem;
+    color: #0066cc;
+    margin-bottom: 5px;
+}
+
+[data-theme='dark'] .role-fit-content h2 {
+    color: #66b3ff;
+}
+
+.role-fit-content p {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.role-fit-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.fit-option {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fit-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #0066cc;
+}
+
+.role-fit-progress-container {
+    width: 100%;
+    height: 10px;
+    background: var(--bg-secondary);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.role-fit-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #10b981;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.role-fit-content h3 {
+    font-size: 1.6rem;
+    color: #0066cc;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+[data-theme='dark'] .role-fit-content h3 {
+    color: #66b3ff;
+}
+
+.role-fit-message {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem !important;
+    min-height: 35px;
+}
+
+/* ==================== */
+
 .project-media {
     width: 100%;
     height: 200px;

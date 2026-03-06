@@ -1377,6 +1377,172 @@ if (document.readyState === 'loading') {
 }
 
 // ========================================
+// 10. VOICE READER & AVATAR LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const readBioBtn = document.getElementById('readBioBtn');
+    const voiceAvatarContainer = document.getElementById('voiceAvatarContainer');
+    const avatarImg = voiceAvatarContainer?.querySelector('.voice-avatar-img');
+    const bioParagraph = document.getElementById('bioParagraph');
+
+    let isSpeaking = false;
+    let speechObj = null;
+
+    if (readBioBtn && voiceAvatarContainer && bioParagraph) {
+        readBioBtn.addEventListener('click', () => {
+            if (isSpeaking) {
+                // Stop speaking
+                window.speechSynthesis.cancel();
+                stopSpeakingAnimation();
+            } else {
+                // Start speaking
+                const text = bioParagraph.innerText || bioParagraph.textContent;
+                speechObj = new SpeechSynthesisUtterance(text);
+
+                // Pick a good English voice if available
+                const voices = window.speechSynthesis.getVoices();
+                const englishVoice = voices.find(v => v.lang.startsWith('en-') && (v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel')));
+                if (englishVoice) speechObj.voice = englishVoice;
+
+                speechObj.rate = 0.95; // Slightly slower for better comprehension
+                speechObj.pitch = 1.0;
+
+                speechObj.onstart = () => {
+                    isSpeaking = true;
+                    readBioBtn.classList.add('speaking');
+                    voiceAvatarContainer.classList.remove('voice-avatar-hidden');
+                    voiceAvatarContainer.classList.add('voice-avatar-visible');
+                    if (avatarImg) avatarImg.classList.add('animating');
+                };
+
+                speechObj.onend = stopSpeakingAnimation;
+                speechObj.onerror = stopSpeakingAnimation;
+
+                window.speechSynthesis.speak(speechObj);
+            }
+        });
+    }
+
+    function stopSpeakingAnimation() {
+        isSpeaking = false;
+        if (readBioBtn) readBioBtn.classList.remove('speaking');
+        if (voiceAvatarContainer) {
+            voiceAvatarContainer.classList.remove('voice-avatar-visible');
+            voiceAvatarContainer.classList.add('voice-avatar-hidden');
+        }
+        if (avatarImg) avatarImg.classList.remove('animating');
+    }
+
+    // Ensure speech synthesis voices are loaded (Chrome bug workaround)
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
+});
+
+// ========================================
+// 11. ROLE FIT MODAL LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const roleFitBtn = document.getElementById('roleFitBtn');
+    const roleFitModal = document.getElementById('roleFitModal');
+    const closeBtn = roleFitModal?.querySelector('.role-fit-close');
+    const checkboxes = roleFitModal?.querySelectorAll('.fit-option input[type="checkbox"]');
+    const progressBar = document.getElementById('roleFitProgress');
+    const scoreText = document.getElementById('roleFitScoreText');
+    const messageText = document.getElementById('roleFitMessage');
+
+    if (!roleFitBtn || !roleFitModal) return;
+
+    // Open Modal
+    roleFitBtn.addEventListener('click', () => {
+        roleFitModal.classList.add('active');
+    });
+
+    // Close Modal
+    const closeModal = () => roleFitModal.classList.remove('active');
+    closeBtn?.addEventListener('click', closeModal);
+    roleFitModal.addEventListener('click', (e) => {
+        if (e.target.classList.contains('role-fit-overlay')) closeModal();
+    });
+
+    // Handle check logic
+    checkboxes?.forEach(box => {
+        box.addEventListener('change', calculateScore);
+    });
+
+    function calculateScore() {
+        let totalScore = 0;
+        let checkedCount = 0;
+
+        checkboxes.forEach(box => {
+            if (box.checked) {
+                totalScore += parseInt(box.value);
+                checkedCount++;
+            }
+        });
+
+        // Update UI
+        progressBar.style.width = `${totalScore}%`;
+        scoreText.innerText = `Match Score: ${totalScore}%`;
+
+        // Fun Messages
+        if (totalScore === 0) {
+            messageText.innerText = "";
+        } else if (totalScore <= 40) {
+            messageText.innerText = "Solid start. I can definitely help with that!";
+            messageText.style.color = "#0066cc";
+        } else if (totalScore <= 80) {
+            messageText.innerText = "Great match! We are definitely speaking the same language.";
+            messageText.style.color = "#004494";
+        } else {
+            messageText.innerText = "🎉 100% PERFECT MATCH! When do we start? 🎉";
+            messageText.style.color = "#10b981";
+            confettiEffect();
+        }
+    }
+
+    // Simple Confetti Effect using Canvas
+    function confettiEffect() {
+        // Only run once per session to avoid annoyance
+        if (window.confettiFired) return;
+        window.confettiFired = true;
+
+        const duration = 3000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+            // Simplified logic: Create a few falling colored divs on the screen
+            const colors = ['#0066cc', '#10b981', '#ffcc00', '#ff6b6b'];
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.zIndex = '10002';
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            confetti.style.pointerEvents = 'none';
+            document.body.appendChild(confetti);
+
+            const animation = confetti.animate([
+                { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
+                { transform: `translate3d(${Math.random() * 100 - 50}px, 100vh, 0) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 1000 + 1000,
+                easing: 'linear'
+            });
+
+            animation.onfinish = () => confetti.remove();
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
+    }
+});
+
+// ========================================
 // INITIALIZATION
 // ========================================
 console.log(' Portfolio loaded successfully!');
