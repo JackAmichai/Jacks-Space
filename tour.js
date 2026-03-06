@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cancelIcon: {
                 enabled: true
             },
-            classes: 'shadow-md bg-purple-800',
+            classes: 'custom-tour-theme',
             scrollTo: { behavior: 'smooth', block: 'center' }
         },
         useModalOverlay: true
@@ -268,6 +268,61 @@ function createTourModal(tour) {
     // Add styles dynamically
     const style = document.createElement('style');
     style.textContent = `
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+      /* Custom Shepherd Theme */
+      .custom-tour-theme {
+          font-family: 'Caveat', cursive;
+          background: #ffffff;
+          border: 3px solid #0066cc;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,102,204,0.3);
+      }
+      .custom-tour-theme .shepherd-text {
+          color: #004494;
+          font-size: 1.4rem;
+          line-height: 1.4;
+      }
+      .custom-tour-theme .shepherd-header {
+          background: #e6f0fa;
+          padding: 15px;
+          border-top-left-radius: 9px;
+          border-top-right-radius: 9px;
+      }
+      .custom-tour-theme .shepherd-title {
+          font-size: 1.8rem;
+          color: #0066cc;
+          font-weight: 600;
+          margin: 0;
+      }
+      .custom-tour-theme .shepherd-button {
+          background: #0066cc;
+          color: white;
+          border-radius: 8px;
+          font-family: 'Caveat', cursive;
+          font-size: 1.3rem;
+          padding: 8px 16px;
+          font-weight: normal;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s;
+      }
+      .custom-tour-theme .shepherd-button:hover {
+          background: #0052a3;
+      }
+      .custom-tour-theme .shepherd-button-secondary {
+          background: #e6f0fa;
+          color: #0066cc;
+          border: 1px solid #0066cc;
+      }
+      .custom-tour-theme .shepherd-button-secondary:hover {
+          background: #cce0ff;
+      }
+      .custom-tour-theme .shepherd-cancel-icon {
+          color: #0066cc;
+      }
+
+      /* Intro Modal Theme */
       .tour-modal {
           position: fixed;
           top: 0;
@@ -296,32 +351,34 @@ function createTourModal(tour) {
           bottom: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.7);
+          background: rgba(0, 50, 100, 0.7);
           backdrop-filter: blur(5px);
       }
       .tour-modal-content {
           position: relative;
-          background: white;
+          background: #ffffff;
           width: 90%;
           max-width: 500px;
           max-height: 90vh;
           overflow-y: auto;
           border-radius: 20px;
+          border: 4px solid #0066cc;
           padding: 30px;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+          box-shadow: 0 20px 50px rgba(0,102,204,0.3);
           text-align: center;
           transform: translateY(20px);
           transition: transform 0.3s ease;
-          color: #333;
+          color: #004494;
+          font-family: 'Caveat', cursive;
           margin: auto;
       }
       .tour-modal.active .tour-modal-content {
           transform: translateY(0);
       }
       [data-theme='dark'] .tour-modal-content {
-          background: #1a1a2e;
+          background: #002244;
           color: #fff;
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 4px solid #66b3ff;
       }
       .tour-close-btn {
           position: absolute;
@@ -331,10 +388,10 @@ function createTourModal(tour) {
           border: none;
           font-size: 24px;
           cursor: pointer;
-          color: #666;
+          color: #0066cc;
       }
       [data-theme='dark'] .tour-close-btn {
-          color: #aaa;
+          color: #66b3ff;
       }
       .tour-avatar {
           width: 200px;
@@ -353,21 +410,23 @@ function createTourModal(tour) {
           border-radius: 12px;
       }
       .tour-header h2 {
-          font-size: 1.5rem;
-          margin-bottom: 10px;
+          font-size: 2.8rem;
+          margin-bottom: 5px;
           color: #0066cc;
+          font-family: 'Caveat', cursive;
+          line-height: 1.1;
       }
       [data-theme='dark'] .tour-header h2 {
-          color: #4ade80;
+          color: #66b3ff;
       }
       .tour-header p {
-          font-size: 0.95rem;
-          color: #666;
+          font-size: 1.35rem;
+          color: #004494;
           margin-bottom: 25px;
-          line-height: 1.5;
+          line-height: 1.3;
       }
       [data-theme='dark'] .tour-header p {
-          color: #ccc;
+          color: #cce0ff;
       }
       .tour-steps {
           text-align: left;
@@ -378,39 +437,47 @@ function createTourModal(tour) {
           align-items: flex-start;
           margin-bottom: 15px;
           padding: 10px;
-          background: #f8f9fa;
+          background: #e6f0fa;
           border-radius: 10px;
+          border: 1px dashed #0066cc;
       }
       [data-theme='dark'] .tour-step {
-          background: rgba(255,255,255,0.05);
+          background: rgba(0, 102, 204, 0.2);
+          border-color: #66b3ff;
       }
       .step-number {
-          width: 24px;
-          height: 24px;
+          width: 30px;
+          height: 30px;
           background: #0066cc;
           color: white;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 14px;
+          font-size: 18px;
           font-weight: bold;
           margin-right: 15px;
           flex-shrink: 0;
           margin-top: 2px;
+          font-family: inherit;
       }
       .step-info strong {
           display: block;
           margin-bottom: 2px;
-          font-size: 0.95rem;
+          font-size: 1.5rem;
+          color: #0066cc;
+      }
+      [data-theme='dark'] .step-info strong {
+          color: #66b3ff;
       }
       .step-info p {
-          font-size: 0.85rem;
-          color: #666;
+          font-size: 1.25rem;
+          color: #004494;
           margin: 0;
+          line-height: 1.2;
       }
       [data-theme='dark'] .step-info p {
-          color: #aaa;
+          color: #cce0ff;
       }
       .tour-footer {
           margin-top: 20px;
@@ -424,7 +491,9 @@ function createTourModal(tour) {
       .tour-buttons button {
           padding: 10px 24px;
           border-radius: 8px;
-          font-weight: 600;
+          font-weight: normal;
+          font-family: 'Caveat', cursive;
+          font-size: 1.5rem;
           cursor: pointer;
           transition: all 0.2s;
       }
@@ -437,31 +506,32 @@ function createTourModal(tour) {
           background: #0052a3;
       }
       .btn-secondary {
-          background: transparent;
-          border: 1px solid #ccc;
-          color: #666;
+          background: #e6f0fa;
+          border: 1px solid #0066cc;
+          color: #0066cc;
       }
       [data-theme='dark'] .btn-secondary {
-          border-color: #444;
-          color: #aaa;
+          border-color: #66b3ff;
+          color: #66b3ff;
+          background: transparent;
       }
       .btn-secondary:hover {
-          background: #f0f0f0;
+          background: #cce0ff;
       }
       [data-theme='dark'] .btn-secondary:hover {
-          background: rgba(255,255,255,0.1);
+          background: rgba(102, 179, 255, 0.2);
       }
       .tour-checkbox {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
-          font-size: 0.85rem;
-          color: #666;
+          font-size: 1.1rem;
+          color: #004494;
           cursor: pointer;
       }
       [data-theme='dark'] .tour-checkbox {
-          color: #aaa;
+          color: #cce0ff;
       }
   `;
     document.head.appendChild(style);
