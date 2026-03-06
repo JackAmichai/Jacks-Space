@@ -1209,9 +1209,10 @@ function initSkillsAccordion() {
     skillHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const skillItem = header.closest('.skill-item');
+            console.log('Accordion header clicked:', header.innerText, 'Parent classes:', skillItem.className);
             const isActive = skillItem.classList.contains('active');
 
-            // Close all other items (optional: remove this block for multi-open)
+            // Close all other items
             document.querySelectorAll('.skill-item.active').forEach(item => {
                 if (item !== skillItem) {
                     item.classList.remove('active');
@@ -1220,6 +1221,7 @@ function initSkillsAccordion() {
 
             // Toggle current item
             skillItem.classList.toggle('active', !isActive);
+            console.log('New active state:', skillItem.classList.contains('active'));
         });
     });
 
@@ -1593,30 +1595,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ========================================
-// 13. FAQ ACCORDION LOGIC
-// ========================================
-document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const questionBtn = item.querySelector('.faq-question');
-
-        questionBtn.addEventListener('click', () => {
-            // Check if this item is currently active
-            const isActive = item.classList.contains('active');
-
-            // Close all items first (for accordion style)
-            // Optional: Remove this loop if you want multiple items open at once
-            faqItems.forEach(faq => faq.classList.remove('active'));
-
-            // If it wasn't active, open it
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-});
 
 // ========================================
 // INITIALIZATION
