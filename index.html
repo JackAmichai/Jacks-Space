@@ -64,6 +64,8 @@
       "knowsAbout": ["AI Solutions Engineering", "SAP BTP", "Multi-Agent Systems", "Backend Architecture", "Cloud Computing", "Python", "Product Management"]
     }
     </script>
+    <!-- Shepherd.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@11.1.1/dist/css/shepherd.css" />
 </head>
 
 <body>
@@ -134,6 +136,10 @@
                     </a></li>
             </ul>
             <div class="nav-actions">
+                <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Toggle font size"
+                    title="Toggle font size">
+                    <span class="accessibility-icon">♿️</span>
+                </button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"
                     title="Toggle dark/light mode">
                     <span class="theme-icon">🌙</span>
@@ -1954,15 +1960,17 @@
     <script src="text-effects.js"></script>
     <script src="chatbot.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Shepherd.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@11.1.1/dist/js/shepherd.min.js"></script>
     <script src="tour.js"></script>
     <script>
         // Milky Way removed
-        
+
         // Tour trigger button
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const tourBtn = document.getElementById('tourTriggerBtn');
             if (tourBtn) {
-                tourBtn.addEventListener('click', function() {
+                tourBtn.addEventListener('click', function () {
                     if (typeof showTourModal === 'function') {
                         showTourModal();
                     }

@@ -160,6 +160,24 @@ function updateThemeIcon(theme) {
 }
 
 // ========================================
+// 6.5 ACCESSIBILITY TOGGLE
+// ========================================
+const accessibilityToggle = document.getElementById('accessibilityToggle');
+const isLargeText = localStorage.getItem('largeText') === 'true';
+
+if (isLargeText) {
+    document.body.classList.add('large-text');
+}
+
+if (accessibilityToggle) {
+    accessibilityToggle.addEventListener('click', () => {
+        const isNowLarge = document.body.classList.toggle('large-text');
+        localStorage.setItem('largeText', isNowLarge);
+        showToast(isNowLarge ? 'Large text enabled' : 'Normal text restored');
+    });
+}
+
+// ========================================
 // 7. TYPING ANIMATION
 // ========================================
 const typingElements = document.querySelectorAll('.typing-text');
@@ -741,7 +759,7 @@ function renderAllProjects(view = 'business') {
 
     container.innerHTML = html;
     container.setAttribute('data-current-view', view);
-    
+
     // Initialize carousel navigation
     initProjectsCarousel(sliderProjects.length);
 }
@@ -753,37 +771,37 @@ function initProjectsCarousel(totalItems) {
     const prevBtn = document.getElementById('carouselPrev');
     const nextBtn = document.getElementById('carouselNext');
     const dotsContainer = document.getElementById('carouselDots');
-    
+
     if (!track || !prevBtn || !nextBtn) return;
-    
+
     function updateCarousel() {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
+
         // Update dots
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentIndex);
         });
-        
+
         // Update button states
         prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
         nextBtn.style.opacity = currentIndex === totalItems - 1 ? '0.5' : '1';
     }
-    
+
     prevBtn.addEventListener('click', () => {
         if (currentIndex > 0) {
             currentIndex--;
             updateCarousel();
         }
     });
-    
+
     nextBtn.addEventListener('click', () => {
         if (currentIndex < totalItems - 1) {
             currentIndex++;
             updateCarousel();
         }
     });
-    
+
     // Click on dots
     dotsContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('carousel-dot')) {
@@ -791,7 +809,7 @@ function initProjectsCarousel(totalItems) {
             updateCarousel();
         }
     });
-    
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft' && currentIndex > 0) {
@@ -807,7 +825,7 @@ function initProjectsCarousel(totalItems) {
 // Render a carousel card (single project shown at a time)
 function renderCarouselCard(project, view = 'business', index) {
     const isTechnical = view === 'technical';
-    
+
     const githubLink = project.links && project.links.github
         ? `<a href="${project.links.github}" target="_blank" class="carousel-card-link" title="View Code" onclick="event.stopPropagation()">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -816,7 +834,7 @@ function renderCarouselCard(project, view = 'business', index) {
             View on GitHub
            </a>`
         : '';
-    
+
     const demoLink = project.links && project.links.demo
         ? `<a href="${project.links.demo}" target="_blank" class="carousel-card-link demo-link" title="Live Demo" onclick="event.stopPropagation()">
             <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
