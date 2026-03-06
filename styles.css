@@ -1319,22 +1319,16 @@ section {
 .social-icons-bar {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 16px;
     padding: 8px 12px;
-    background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
+    background: transparent;
+    border: none;
     margin-top: 30px;
     position: relative;
 }
 
 .social-icons-bar::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent);
-    pointer-events: none;
+    display: none;
 }
 
 .social-icon-btn {
@@ -1342,10 +1336,10 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    color: #737373;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1360,12 +1354,13 @@ section {
 
 .icon-bg {
     position: absolute;
-    inset: 4px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
+    inset: 0;
+    background: var(--bg-tertiary);
+    border-radius: 50%;
     opacity: 0;
     transform: scale(0.9);
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .social-icon-btn:hover .icon-bg {
@@ -1374,8 +1369,8 @@ section {
 }
 
 .social-icon-btn:hover svg {
-    color: white;
-    transform: scale(1.1);
+    color: var(--text-primary);
+    transform: scale(1.15);
 }
 
 .icon-indicator {
@@ -1429,15 +1424,16 @@ section {
 }
 
 /* Light theme override for social bar */
-[data-theme="light"] .social-icons-bar,
-.social-icons-bar {
-    background: #0a0a0a;
+[data-theme="light"] .social-icon-btn:hover svg {
+    color: #1a1a1a;
 }
 
-/* Dark mode - already dark */
-[data-theme="dark"] .social-icons-bar {
-    background: #0a0a0a;
-    border-color: rgba(255, 255, 255, 0.1);
+[data-theme="light"] .icon-indicator {
+    background: #1a1a1a;
+}
+
+[data-theme="light"] .icon-bg {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 /* ==================== */

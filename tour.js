@@ -175,7 +175,11 @@ function displayTourModal(tour) {
     }
 
     const modal = document.getElementById('tour-modal');
-    modal.classList.add('active');
+    modal.style.display = 'flex';
+    // Force a small delay to allow display:flex to apply before opacity transition
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
     document.body.style.overflow = 'hidden'; // Prevent scrolling
 }
 
