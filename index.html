@@ -136,10 +136,29 @@
                     </a></li>
             </ul>
             <div class="nav-actions">
-                <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Toggle font size"
-                    title="Toggle font size">
-                    <span class="accessibility-icon">♿️</span>
-                </button>
+                <div class="accessibility-wrapper">
+                    <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Accessibility settings"
+                        title="Accessibility Menu">
+                        <span class="accessibility-icon">♿️</span>
+                    </button>
+                    <div class="accessibility-dropdown" id="accessibilityMenu">
+                        <div class="a11y-header">Accessibility Settings</div>
+                        <div class="a11y-options">
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-large-text"> Large Text
+                            </label>
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-high-contrast"> High Contrast
+                            </label>
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-highlight-links"> Highlight Links
+                            </label>
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-dyslexic-font"> Dyslexic Font
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"
                     title="Toggle dark/light mode">
                     <span class="theme-icon">🌙</span>

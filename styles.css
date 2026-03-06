@@ -2875,6 +2875,56 @@ html {
     gap: 15px;
 }
 
+.accessibility-wrapper {
+    position: relative;
+}
+
+.accessibility-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 220px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+}
+
+.accessibility-dropdown.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.a11y-header {
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.a11y-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.a11y-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.a11y-option:hover {
+    color: var(--text-primary);
+}
+
 .theme-toggle,
 .accessibility-toggle {
     background: var(--bg-secondary);
@@ -4738,6 +4788,104 @@ html {
     .resources-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ==================== */
+/* ACCESSIBILITY MODIFIERS */
+/* ==================== */
+
+/* Large Text */
+body.large-text p,
+body.large-text a,
+body.large-text span,
+body.large-text li,
+body.large-text button,
+body.large-text input,
+body.large-text textarea,
+body.large-text .nav-text,
+body.large-text .story-lead,
+body.large-text .hero-subtitle,
+body.large-text .section-subtitle,
+body.large-text .highlight-text {
+    font-size: 115% !important;
+    line-height: 1.7 !important;
+}
+
+body.large-text h1,
+body.large-text h2,
+body.large-text h3,
+body.large-text h4,
+body.large-text h5,
+body.large-text h6,
+body.large-text .section-title,
+body.large-text .hero-title {
+    font-size: 125% !important;
+}
+
+body.large-text .hero-card-text {
+    font-size: 110% !important;
+}
+
+/* High Contrast mode */
+body.high-contrast {
+    --bg-primary: #000000 !important;
+    --bg-secondary: #000000 !important;
+    --text-primary: #ffffff !important;
+    --text-secondary: #ffffff !important;
+    --text-muted: #cccccc !important;
+    --accent: #ffff00 !important;
+    --accent-light: #444400 !important;
+    --border: #ffff00 !important;
+}
+
+body.high-contrast * {
+    border-color: #ffff00 !important;
+}
+
+body.high-contrast .navbar {
+    background: #000000 !important;
+    border-bottom: 2px solid #ffff00 !important;
+}
+
+body.high-contrast .glass-card,
+body.high-contrast .project-card,
+body.high-contrast .timeline-content,
+body.high-contrast .testimonial-card,
+body.high-contrast .resource-card {
+    background: #000000 !important;
+    border: 2px solid #ffff00 !important;
+    box-shadow: none !important;
+}
+
+body.high-contrast .btn-primary {
+    background: #ffff00 !important;
+    color: #000000 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+body.high-contrast .btn-secondary,
+body.high-contrast .btn-outline {
+    background: transparent !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+/* Highlight Links */
+body.highlight-links a {
+    text-decoration: underline !important;
+    text-decoration-color: var(--accent) !important;
+    text-decoration-thickness: 3px !important;
+    background-color: rgba(255, 255, 0, 0.2) !important;
+    color: var(--text-primary) !important;
+    padding: 2px !important;
+}
+
+/* Dyslexic Font */
+body.dyslexic-font,
+body.dyslexic-font * {
+    font-family: 'Comic Sans MS', 'OpenDyslexic', sans-serif !important;
+    letter-spacing: 1px !important;
+    word-spacing: 2px !important;
 }
 
 /* ==================== */

@@ -267,7 +267,7 @@ function createTourModal(tour) {
 
     // Add styles dynamically
     const style = document.createElement('style');
-    style.textContent = \`
+    style.textContent = `
       .tour-modal {
           position: fixed;
           top: 0;
@@ -463,17 +463,17 @@ function createTourModal(tour) {
       [data-theme='dark'] .tour-checkbox {
           color: #aaa;
       }
-  \`;
-  document.head.appendChild(style);
+  `;
+    document.head.appendChild(style);
 
-  // Event Listeners
-  const modal = div;
-  modal.querySelector('.tour-close-btn').addEventListener('click', () => closeTourModal(tour));
-  modal.querySelector('#tour-skip').addEventListener('click', () => closeTourModal(tour, modal.querySelector('#tour-dont-show').checked));
+    // Event Listeners
+    const modal = div;
+    modal.querySelector('.tour-close-btn').addEventListener('click', () => closeTourModal(tour));
+    modal.querySelector('#tour-skip').addEventListener('click', () => closeTourModal(tour, modal.querySelector('#tour-dont-show').checked));
 
-  modal.querySelector('#tour-start').addEventListener('click', () => {
-      const dontShow = modal.querySelector('#tour-dont-show').checked;
-      closeTourModal(tour, dontShow);
-      tour.start();
-  });
+    modal.querySelector('#tour-start').addEventListener('click', () => {
+        const dontShow = modal.querySelector('#tour-dont-show').checked;
+        closeTourModal(tour, dontShow);
+        tour.start();
+    });
 }

@@ -163,17 +163,54 @@ function updateThemeIcon(theme) {
 // 6.5 ACCESSIBILITY TOGGLE
 // ========================================
 const accessibilityToggle = document.getElementById('accessibilityToggle');
-const isLargeText = localStorage.getItem('largeText') === 'true';
+const accessibilityMenu = document.getElementById('accessibilityMenu');
 
-if (isLargeText) {
-    document.body.classList.add('large-text');
-}
+// Options
+const a11yOptions = {
+    'largeText': 'large-text',
+    'highContrast': 'high-contrast',
+    'highlightLinks': 'highlight-links',
+    'dyslexicFont': 'dyslexic-font'
+};
 
-if (accessibilityToggle) {
-    accessibilityToggle.addEventListener('click', () => {
-        const isNowLarge = document.body.classList.toggle('large-text');
-        localStorage.setItem('largeText', isNowLarge);
-        showToast(isNowLarge ? 'Large text enabled' : 'Normal text restored');
+// Initialize options from localStorage
+Object.entries(a11yOptions).forEach(([key, className]) => {
+    const isEnabled = localStorage.getItem(`a11y_${key}`) === 'true';
+    if (isEnabled) {
+        document.body.classList.add(className);
+    }
+    const checkbox = document.getElementById(`a11y-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`);
+    if (checkbox) {
+        checkbox.checked = isEnabled;
+
+        checkbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add(className);
+                localStorage.setItem(`a11y_${key}`, 'true');
+            } else {
+                document.body.classList.remove(className);
+                localStorage.setItem(`a11y_${key}`, 'false');
+            }
+        });
+    }
+});
+
+if (accessibilityToggle && accessibilityMenu) {
+    accessibilityToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        accessibilityMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!accessibilityMenu.contains(e.target) && e.target !== accessibilityToggle) {
+            accessibilityMenu.classList.remove('active');
+        }
+    });
+
+    // Prevent closing menu when clicking inside
+    accessibilityMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
 }
 
