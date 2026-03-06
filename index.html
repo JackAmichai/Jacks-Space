@@ -281,7 +281,8 @@
                             style="margin-top:20px; text-align: left; display: none; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.3);">
                             <h3 id="roleFitScoreText"
                                 style="color: #10b981; font-size: 1.6rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                                <span>💯</span> 100% Match!</h3>
+                                <span>💯</span> 100% Match!
+                            </h3>
                             <p id="roleFitMessage"
                                 style="font-size: 1.05rem; line-height: 1.5; color: var(--text-primary); margin: 0;">
                             </p>
@@ -1062,7 +1063,7 @@
                         </div>
                         <div class="skill-badge">
                             <span class="skill-name">Machine Learning</span>
-                            <span class="skill-endorser"><img src="images/logos/technion.png" alt="Technion"
+                            <span class="skill-endorser"><img src="images/logos/technion-new.png" alt="Technion"
                                     class="company-logo"> Technion</span>
                         </div>
                         <div class="skill-badge">
@@ -1077,7 +1078,7 @@
                         </div>
                         <div class="skill-badge">
                             <span class="skill-name">Problem Solving</span>
-                            <span class="skill-endorser"><img src="images/logos/technion.png" alt="Technion"
+                            <span class="skill-endorser"><img src="images/logos/technion-new.png" alt="Technion"
                                     class="company-logo"> Technion</span>
                         </div>
                         <div class="skill-badge">
@@ -1093,7 +1094,7 @@
                         </div>
                         <div class="skill-badge">
                             <span class="skill-name">Machine Learning</span>
-                            <span class="skill-endorser"><img src="images/logos/technion.png" alt="Technion"
+                            <span class="skill-endorser"><img src="images/logos/technion-new.png" alt="Technion"
                                     class="company-logo"> Technion</span>
                         </div>
                         <div class="skill-badge">
@@ -1108,7 +1109,7 @@
                         </div>
                         <div class="skill-badge">
                             <span class="skill-name">Problem Solving</span>
-                            <span class="skill-endorser"><img src="images/logos/technion.png" alt="Technion"
+                            <span class="skill-endorser"><img src="images/logos/technion-new.png" alt="Technion"
                                     class="company-logo"> Technion</span>
                         </div>
                         <div class="skill-badge">
@@ -1132,7 +1133,7 @@
                     </div>
                 </div>
                 <div class="certification-card">
-                    <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" alt="AWS" class="cert-logo">
+                    <img src="images/logos/aws.svg" alt="AWS" class="cert-logo">
                     <div class="cert-info">
                         <h4>Building Production-Ready AI Agents with Amazon Bedrock AgentCore</h4>
                         <p class="cert-issuer">Amazon Web Services (AWS)</p>
@@ -1148,7 +1149,7 @@
                     </div>
                 </div>
                 <div class="certification-card">
-                    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" class="cert-logo">
+                    <img src="images/logos/linkedin.svg" alt="LinkedIn" class="cert-logo">
                     <div class="cert-info">
                         <h4>AI Orchestration: Foundation</h4>
                         <p class="cert-issuer">LinkedIn</p>
@@ -1156,7 +1157,7 @@
                     </div>
                 </div>
                 <div class="certification-card">
-                    <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" alt="AWS" class="cert-logo">
+                    <img src="images/logos/aws.svg" alt="AWS" class="cert-logo">
                     <div class="cert-info">
                         <h4>AWS Cloud Practitioner Essentials</h4>
                         <p class="cert-issuer">Amazon Web Services (AWS)</p>
@@ -1755,8 +1756,7 @@
                         serverless to Kubernetes, I love optimizing for both performance and cost.
                     </p>
                     <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-                        <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" alt="AWS"
-                            style="width: 24px; height: 24px;">
+                        <img src="images/logos/aws.svg" alt="AWS" style="width: 24px; height: 24px;">
                         <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="GCP"
                             style="width: 24px; height: 24px;">
                         <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure"
@@ -1826,8 +1826,7 @@
             <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 20px;">
                 <div
                     style="background: linear-gradient(135deg, rgba(255, 153, 0, 0.15), rgba(255, 153, 0, 0.05)); border: 1px solid rgba(255, 153, 0, 0.4); padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px;">
-                    <img src="https://cdn.simpleicons.org/amazonwebservices/FF9900" alt="AWS"
-                        style="width: 24px; height: 24px;">
+                    <img src="images/logos/aws.svg" alt="AWS" style="width: 24px; height: 24px;">
                     <div>
                         <div style="font-weight: 600; color: var(--text-primary); font-size: 0.95rem;">AWS Solutions
                             Architect</div>
@@ -2019,72 +2018,97 @@
         <div class="container">
             <h2 class="section-title sparkles-text" style="text-align: center; margin-bottom: 40px;">Most Frequently
                 Asked Questions</h2>
-            <div class="faq-accordion">
+            <div class="skills-accordion faq-accordion">
                 <!-- FAQ Item 1 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Why should we hire Jack instead of a standard Full-Stack developer?</span>
-                        <span class="faq-icon">+</span>
+                <div class="skill-item faq-item">
+                    <button class="skill-header faq-question" aria-expanded="false">
+                        <h4 class="skill-title">Why should we hire Jack instead of a standard Full-Stack developer?</h4>
+                        <svg class="skill-chevron faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
-                    <div class="faq-answer">
-                        <p>Standard developers write code; I architect systems that understand intent. With my dual
-                            background in Psychology and Computer Science, I specialize in building AI agents and
-                            human-centric workflows that don't just "work"—they adapt, reason, and solve real business
-                            problems without needing constant micro-management.</p>
+                    <div class="skill-content faq-answer">
+                        <div style="padding: 0 25px 25px;">
+                            <p>Standard developers write code; I architect systems that understand intent. With my dual
+                                background in Psychology and Computer Science, I specialize in building AI agents and
+                                human-centric workflows that don't just "work"—they adapt, reason, and solve real
+                                business problems without needing constant micro-management.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Can he handle large-scale enterprise environments?</span>
-                        <span class="faq-icon">+</span>
+                <div class="skill-item faq-item">
+                    <button class="skill-header faq-question" aria-expanded="false">
+                        <h4 class="skill-title">Can he handle large-scale enterprise environments?</h4>
+                        <svg class="skill-chevron faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
-                    <div class="faq-answer">
-                        <p>Absolutely. At Deloitte, I've designed microservices and event-driven architectures using SAP
-                            BTP and AWS for massive corporate clients. I know exactly how to bridge the gap between
-                            cutting-edge AI innovation and strict enterprise reliability.</p>
+                    <div class="skill-content faq-answer">
+                        <div style="padding: 0 25px 25px;">
+                            <p>Absolutely. At Deloitte, I've designed microservices and event-driven architectures using
+                                SAP BTP and AWS for massive corporate clients. I know exactly how to bridge the gap
+                                between cutting-edge AI innovation and strict enterprise reliability.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Does he have leadership or cross-functional experience?</span>
-                        <span class="faq-icon">+</span>
+                <div class="skill-item faq-item">
+                    <button class="skill-header faq-question" aria-expanded="false">
+                        <h4 class="skill-title">Does he have leadership or cross-functional experience?</h4>
+                        <svg class="skill-chevron faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
-                    <div class="faq-answer">
-                        <p>Yes! During my service as an IDF Staff Sergeant, I learned true leadership under pressure.
-                            Later, as a Research Software Engineer at the Technion, I managed entire cross-functional
-                            teams, translating incredibly complex scientific requirements into scalable Python backends.
-                        </p>
+                    <div class="skill-content faq-answer">
+                        <div style="padding: 0 25px 25px;">
+                            <p>Yes! During my service as an IDF Staff Sergeant, I learned true leadership under
+                                pressure. Later, as a Research Software Engineer at the Technion, I managed entire
+                                cross-functional teams, translating incredibly complex scientific requirements into
+                                scalable Python backends.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Is Jack available for relocation?</span>
-                        <span class="faq-icon">+</span>
+                <div class="skill-item faq-item">
+                    <button class="skill-header faq-question" aria-expanded="false">
+                        <h4 class="skill-title">Is Jack available for relocation?</h4>
+                        <svg class="skill-chevron faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
-                    <div class="faq-answer">
-                        <p>Yes. I am currently based in Tel Aviv, Israel, but I am entirely open to relocation for the
-                            right opportunity—especially for roles focusing on AI Solutions Engineering or Technical
-                            Product Management.</p>
+                    <div class="skill-content faq-answer">
+                        <div style="padding: 0 25px 25px;">
+                            <p>Yes. I am currently based in Tel Aviv, Israel, but I am entirely open to relocation for
+                                the right opportunity—especially for roles focusing on AI Solutions Engineering or
+                                Technical Product Management.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 5 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Okay, but is he actually fun to work with?</span>
-                        <span class="faq-icon">+</span>
+                <div class="skill-item faq-item">
+                    <button class="skill-header faq-question" aria-expanded="false">
+                        <h4 class="skill-title">Okay, but is he actually fun to work with?</h4>
+                        <svg class="skill-chevron faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
                     </button>
-                    <div class="faq-answer">
-                        <p>I built an autonomous cyber-defense multi-agent system, an AI that detects when people say my
-                            name in meetings so I don't get caught sleeping on Zoom, and a Tinder for Dogs (PawQuest). I
-                            bring intense technical rigor to my projects, but I always make sure we're building things
-                            that are genuinely creative and engaging.</p>
+                    <div class="skill-content faq-answer">
+                        <div style="padding: 0 25px 25px;">
+                            <p>I built an autonomous cyber-defense multi-agent system, an AI that detects when people
+                                say my name in meetings so I don't get caught sleeping on Zoom, and a Tinder for Dogs
+                                (PawQuest). I bring intense technical rigor to my projects, but I always make sure we're
+                                building things that are genuinely creative and engaging.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2137,12 +2161,12 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
 
-    <script src="projects-data.js"></script>
-    <script src="ux-enhancements.js"></script>
-    <script src="script.js"></script>
-    <script src="sparkles.js"></script>
-    <script src="text-effects.js"></script>
-    <script src="chatbot.js"></script>
+    <script src="projects-data.js?v=2.1"></script>
+    <script src="ux-enhancements.js?v=2.1"></script>
+    <script src="script.js?v=2.1"></script>
+    <script src="sparkles.js?v=2.1"></script>
+    <script src="text-effects.js?v=2.1"></script>
+    <script src="chatbot.js?v=2.1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Shepherd.js JS -->
     <script src="https://cdn.jsdelivr.net/npm/shepherd.js@11.1.1/dist/js/shepherd.min.js"></script>
