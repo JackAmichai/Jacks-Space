@@ -1543,6 +1543,96 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
+// 12. VIDEO PITCH MODAL LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const openPitchBtn = document.getElementById('openPitchBtn');
+    const videoModal = document.getElementById('videoModal');
+    const closeBtn = videoModal?.querySelector('.video-modal-close');
+    const videoElement = document.getElementById('pitchVideo');
+    let hasAutoTriggered = false;
+
+    if (!videoModal || !videoElement) return;
+
+    // Function to open modal & play video
+    const openVideoModal = () => {
+        videoModal.classList.add('active');
+        // Prevent scrolling on body
+        document.body.style.overflow = 'hidden';
+        videoElement.play().catch(e => console.log('Auto-play prevented:', e));
+    };
+
+    // Function to close modal & pause video
+    const closeVideoModal = () => {
+        videoModal.classList.remove('active');
+        document.body.style.overflow = '';
+        videoElement.pause();
+    };
+
+    // Manual Trigger
+    if (openPitchBtn) {
+        openPitchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hasAutoTriggered = true; // prevent auto-trigger if they already clicked it
+            openVideoModal();
+        });
+    }
+
+    // Auto Trigger after 15 seconds
+    setTimeout(() => {
+        const tourModal = document.getElementById('tour-modal');
+        const roleFitModal = document.getElementById('roleFitModal');
+        const isAnotherModalOpen =
+            (tourModal && tourModal.classList.contains('active')) ||
+            (roleFitModal && roleFitModal.classList.contains('active'));
+
+        // Only auto-trigger if no other modals are open and user hasn't already clicked it
+        if (!hasAutoTriggered && !isAnotherModalOpen) {
+            hasAutoTriggered = true;
+            openVideoModal();
+        }
+    }, 15000);
+
+    // Event Listeners for closing
+    closeBtn?.addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', (e) => {
+        if (e.target.classList.contains('video-modal-overlay')) closeVideoModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeVideoModal();
+        }
+    });
+});
+
+// ========================================
+// 13. FAQ ACCORDION LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+
+        questionBtn.addEventListener('click', () => {
+            // Check if this item is currently active
+            const isActive = item.classList.contains('active');
+
+            // Close all items first (for accordion style)
+            // Optional: Remove this loop if you want multiple items open at once
+            faqItems.forEach(faq => faq.classList.remove('active'));
+
+            // If it wasn't active, open it
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+});
+
+// ========================================
 // INITIALIZATION
 // ========================================
 console.log(' Portfolio loaded successfully!');
