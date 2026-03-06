@@ -130,10 +130,10 @@ const projectsData = [
         title: "NVIDIA Documentation Navigator",
         role: "Product Lead & Technical Builder",
         featured: true,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/Nvidia-doc-agentic-ai",
-        video: "",
-        problem: "NVIDIA documentation is fragmented across docs.nvidia.com, GitHub, forums - causing slow onboarding and version mismatch errors.",
-        solution: "AI-powered unified search agent using RAG to provide version-aware answers from CUDA, TensorRT, NeMo, Triton docs. Features code example generation and step-by-step debugging guides.",
+        image: "images/hero-bg-1.jpg",
+        // video: "videos/nvidia_demo.mp4", // Removed placeholder
+        problem: "NVIDIA engineers and developers waste 2-3 hours daily searching across fragmented documentation for CUDA, Triton, TensorRT, and NeMo.",
+        solution: "A retrieval-augmented generation (RAG) system with semantic search that synthesizes insights from multiple documentation sources. Features intelligent filtering and conversational UI for complex technical queries.",
         approach: [
             "Built <strong>unified RAG search</strong> across NVIDIA docs, GitHub, forums",
             "Implemented <strong>version compatibility reasoner</strong> for CUDA/TensorRT combos",
@@ -161,10 +161,10 @@ const projectsData = [
         title: "Scholar2.6 & Note2CRM",
         role: "Full Stack Developer",
         featured: true,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/Scholar2.6",
-        video: "",
-        problem: "Researchers and sales professionals struggle with unstructured data scattered across web pages and disconnected from their workflow tools.",
-        solution: "Suite of complex Chrome Extensions (Manifest V3) that parse unstructured data from web pages (citations, leads) and sync it directly to external platforms (Semantic Scholar, CRM).",
+        image: "images/hero-bg-2.jpg",
+        // video: "videos/scholar_demo.mp4", // Removed placeholder
+        problem: "Academic researchers struggle to manage and organize vast amounts of literature efficiently.",
+        solution: "A modern academic search and organization tool built with TypeScript. Streamlines the research process with intuitive library management and citation tools.",
         approach: [
             "Developed <strong>Manifest V3 extensions</strong> for browser automation",
             "Implemented <strong>unstructured data parsing</strong> from varying DOMs",
@@ -191,16 +191,15 @@ const projectsData = [
         id: "sleepcall",
         title: "SleepCall - Meeting Sentinel",
         role: "Python Developer",
-        featured: true,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/SleepCall",
-        video: "",
-        problem: "People miss important mentions of their name during long calls while multitasking.",
-        solution: "Real-time meeting assistant that detects your name (like 'Hey Siri') and instantly alerts you with an AI-generated 5-minute summary. Features exact + fuzzy matching and multi-channel alerts.",
-        approach: [
-            "Built <strong>real-time speech recognition</strong> with Azure Speech SDK",
-            "Implemented <strong>fuzzy name matching</strong> with RapidFuzz (88% threshold)",
-            "Created <strong>rolling 10-minute transcript buffer</strong>",
-            "Integrated <strong>Teams/Slack webhooks</strong> + desktop notifications"
+        featured: false,
+        image: "images/hero-bg-3.jpg",
+        // video: "videos/sleepcall_demo.mp4", // Removed placeholder
+        problem: "People often miss important mentions of their name during long calls or while multitasking.",
+        solution: "An intelligent audio monitoring tool that alerts you whenever your name is spoken in a call. Uses lightweight speech recognition to run locally without compromising privacy.",
+        metrics: [
+            "🔔 <strong>Real-time alerts</strong>",
+            "🔒 <strong>Privacy-focused</strong> local processing",
+            "⚡ <strong>Low latency</strong> detection"
         ],
         outcome: "Never miss when your name is mentioned - stay focused and ready to contribute.",
         metrics: [
@@ -223,8 +222,8 @@ const projectsData = [
         title: "Revenue Optimization Platform",
         role: "Business Analyst & Product Strategist",
         featured: true,
-        image: "https://placehold.co/600x400/1e293b/60a5fa?text=Revenue+Analytics+%F0%9F%93%8A",
-        video: "",
+        image: "images/hero-bg-2.jpg",
+        // video: "videos/revenue_demo.mp4", // Removed placeholder
         problem: "Multi-property hotel portfolio struggling with manual pricing decisions based on outdated competitor analysis.",
         solution: "Built demand forecasting models using 3+ years of historical data to automate pricing decisions. Dashboard provides real-time recommendations and competitor tracking.",
         approach: [
@@ -251,8 +250,8 @@ const projectsData = [
         title: "Password Security Research",
         role: "Security Researcher",
         featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/password-research",
-        video: "",
+        image: "images/hero-bg-1.jpg",
+        // video: "videos/security_demo.mp4", // Removed placeholder
         problem: "Understanding common vulnerabilities in password management systems is critical for web security.",
         solution: "A comprehensive research project analyzing password security protocols and common attack vectors. Demonstrates defense mechanisms against brute-force and dictionary attacks.",
         metrics: [
@@ -264,9 +263,27 @@ const projectsData = [
         techDetails: "Analyzed password strength entropy and implemented secure hashing comparisons. Simulates attack scenarios to test resilience.",
         links: {
             github: "https://github.com/JackAmichai/password-research"
-        },
-        mediaType: "image",
-        mediaUrl: "https://opengraph.githubassets.com/1/JackAmichai/password-research"
+        }
+    },
+    {
+        id: "note2crm",
+        title: "Note2CRM",
+        role: "AI Product Developer",
+        featured: false,
+        image: "images/hero-bg-3.jpg",
+        // video: "videos/note2crm_demo.mp4", // Removed placeholder
+        problem: "Sales teams spend hours manually entering meeting notes into CRM systems.",
+        solution: "AI-powered meeting assistant that automatically captures, structures, and syncs meeting notes to CRM systems. Uses NLP to extract action items and contact details.",
+        metrics: [
+            "⏱️ <strong>80% less</strong> manual entry time",
+            "📝 <strong>Automated capture</strong> of meeting insights",
+            "🎯 <strong>Smart field mapping</strong> to CRM"
+        ],
+        techStack: ["Python", "NLP", "Speech-to-Text", "CRM APIs", "Machine Learning"],
+        techDetails: "Implemented speech recognition using Whisper API. Built named entity recognition (NER) for contact extraction.",
+        links: {
+            github: "https://github.com/JackAmichai/Note2CRM"
+        }
     },
 
     {
@@ -274,8 +291,8 @@ const projectsData = [
         title: "OrderFlow-AI",
         role: "AI Product Developer",
         featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/OrderFlow-AI",
-        video: "",
+        image: "images/hero-bg-4.jpg",
+        // video: "videos/orderflow_demo.mp4", // Removed placeholder
         problem: "Inventory managers struggle with unpredictable demand patterns leading to stockouts.",
         solution: "Smart order management system using ML to predict demand patterns and optimize inventory levels. Automatically calculates reorder points based on historical sales.",
         metrics: [
@@ -422,8 +439,8 @@ const projectsData = [
         title: "SafyWeb",
         role: "Security Product Developer",
         featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/SafyWeb",
-        video: "",
+        image: "images/hero-bg-1.jpg",
+        // video: "videos/safyweb_demo.mp4", // Removed placeholder
         problem: "Small businesses lack affordable, easy-to-use web security tools.",
         solution: "Web security platform that scans for vulnerabilities and provides actionable remediation guidance. Automates checks for OWASP Top 10 threats.",
         metrics: [
@@ -444,8 +461,8 @@ const projectsData = [
         title: "ArtiBus",
         role: "AI Product Developer",
         featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/ArtiBus",
-        video: "",
+        image: "images/hero-bg-2.jpg",
+        // video: "videos/artibus_demo.mp4", // Removed placeholder
         problem: "Public transport users struggle with complex route planning during service disruptions.",
         solution: "AI-powered public transport assistant with intelligent route optimization and real-time alerts. Helps users navigate disruptions with alternative route suggestions.",
         metrics: [
@@ -466,8 +483,8 @@ const projectsData = [
         title: "Stock Price Prediction Model",
         role: "ML Engineer",
         featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/stock-predictor",
-        video: "",
+        image: "images/hero-bg-3.jpg",
+        // video: "videos/stock_demo.mp4", // Removed placeholder
         problem: "Investors need reliable tools to analyze stock price trends.",
         solution: "Machine learning model achieving 85%+ accuracy using RandomForestRegressor. Engineers 15+ features from historical market data for robust predictions.",
         metrics: [
@@ -488,8 +505,8 @@ const projectsData = [
         title: "E-commerce Recommendation Engine",
         role: "ML Product Developer",
         featured: false,
-        image: "https://opengraph.githubassets.com/1/JackAmichai/ecommerce-recommendations",
-        video: "",
+        image: "images/hero-bg-4.jpg",
+        // video: "videos/ecommerce_demo.mp4", // Removed placeholder
         problem: "Online shoppers are overwhelmed by product choices.",
         solution: "Personalized product recommendation system increasing conversion rates by 25%. Utilizes collaborative filtering and behavioral analysis to suggest relevant items.",
         metrics: [
@@ -510,8 +527,8 @@ const projectsData = [
         title: "SAP SuccessFactors Extensions",
         role: "Solution Architect",
         featured: false,
-        image: "https://placehold.co/600x400/0a66c2/ffffff?text=SAP+BTP+Extensions",
-        video: "",
+        image: "images/hero-bg-1.jpg",
+        // video: "videos/sap_demo.mp4", // Removed placeholder
         problem: "Enterprise clients need custom HR workflows outside standard capabilities.",
         solution: "Custom SAP BTP extensions for SuccessFactors, implementing specialized approval workflows and data integration. Ensures seamless connectivity with legacy systems.",
         metrics: [

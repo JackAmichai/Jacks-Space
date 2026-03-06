@@ -4170,50 +4170,29 @@ html {
     border-bottom: 1px solid var(--border);
 }
 
-.project-media img,
-.project-media video {
+.media-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+}
+
+/* Skills Enhancements */
+.skill-category li {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.bento-card:hover .project-media img {
-    transform: scale(1.05);
-}
-
-.project-content {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-}
-
-.project-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-}
-
-.project-links-mini {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.icon-link {
-    color: var(--text-muted);
-    transition: var(--transition);
-}
-
-.icon-link:hover {
+.skill-category li:hover {
+    transform: translateX(5px);
     color: var(--accent);
 }
 
@@ -4269,7 +4248,7 @@ html {
 }
 
 /* ==================== */
-/* GENERATED VISUALS (Fallback) */
+/* GENERATED VISUALS */
 /* ==================== */
 
 .visual-container {
@@ -4334,14 +4313,69 @@ html {
 
 .visual-wrapper {
     transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
 }
 
-.project-media:hover .visual-wrapper {
+/* "Playing" State (Hover/Active) */
+.project-media:hover .visual-wrapper,
+.project-media.playing .visual-wrapper {
+    opacity: 1; /* Keep visual visible as it acts as the "video" */
+}
+
+.project-media:hover .visual-svg,
+.project-media.playing .visual-svg {
+    transform: scale(1.1);
+}
+
+.project-media:hover .visual-node,
+.project-media.playing .visual-node {
+    fill: #0052a3;
+    filter: drop-shadow(0 0 5px rgba(0, 102, 204, 0.4));
+}
+
+.project-media:hover .visual-link,
+.project-media.playing .visual-link {
+    stroke: #0066cc;
+    stroke-dasharray: 5 5;
+    animation: dash 1s linear infinite;
+}
+
+/* Specific Animations */
+@keyframes dash {
+    to { stroke-dashoffset: -10; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.pulse { animation: pulse 3s infinite; }
+
+/* Simulating Activity */
+.project-media:hover .pulse,
+.project-media.playing .pulse {
+    animation-duration: 1s;
+}
+
+.visual-cursor {
     opacity: 0;
 }
 
-.project-media:hover video {
-    opacity: 1 !important;
+.project-media:hover .visual-cursor,
+.project-media.playing .visual-cursor {
+    opacity: 1;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
 }
 
 [data-theme="dark"] .visual-container {
