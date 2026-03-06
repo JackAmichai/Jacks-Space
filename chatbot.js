@@ -378,7 +378,7 @@ class CloudChatbot {
         return text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\n/g, '<br>')
-            .replace(/|💰|||📧|💼|📅|🐙|📄|||⏱||||📝|👥|🌍|🇮🇱|🇺🇸|🇫🇷|🔔|🔒||🎓/g, '<span class="emoji">$&</span>');
+            .replace(/(💰|📧|💼|📅|🐙|📄|⏱|📝|👥|🌍|🇮🇱|🇺🇸|🇫🇷|🔔|🔒|🎓)/g, '<span class="emoji">$1</span>');
     }
 
     escapeHtml(text) {

@@ -1446,9 +1446,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const roleFitBtn = document.getElementById('roleFitBtn');
     const roleFitModal = document.getElementById('roleFitModal');
     const closeBtn = roleFitModal?.querySelector('.role-fit-close');
-    const checkboxes = roleFitModal?.querySelectorAll('.fit-option input[type="checkbox"]');
-    const progressBar = document.getElementById('roleFitProgress');
-    const scoreText = document.getElementById('roleFitScoreText');
+    const radios = roleFitModal?.querySelectorAll('.fit-option input[type="radio"]');
+    const resultContainer = document.getElementById('roleFitResultContainer');
     const messageText = document.getElementById('roleFitMessage');
 
     if (!roleFitBtn || !roleFitModal) return;
@@ -1465,40 +1464,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('role-fit-overlay')) closeModal();
     });
 
-    // Handle check logic
-    checkboxes?.forEach(box => {
-        box.addEventListener('change', calculateScore);
-    });
+    // Handle Radio Changes
+    if (radios) {
+        // Data mapping for custom tailored messages
+        const roleMessages = {
+            'genai': 'Jack brings hands-on experience building GenAI applications. He created Hatrick, an AI Agents orchestrator for multi-agent cyber defense, and Scholar 2.6. He works daily with LangChain, foundational models, and agent routing.',
+            'arch': 'As a certified SAP BTP Solution Architect and AWS builder, Jack designs cloud-native, event-driven architectures and API integrations for Deloitte\'s enterprise clients.',
+            'devex': 'Jack prioritizes human-centric design. He built LeAIrn (an adaptive AI education platform) and SleepCall (an audio accessibility tool), focusing heavily on Human-Computer Interaction and seamless UX.',
+            'pm': 'Jack led Project Alpha at Hebrew University, co-managing software delivery from user requirements to deployed Python/C++ astrophysics simulations.',
+            'comms': 'Jack\'s dual background in Psychology & Computer Science allows him to translate complex business needs into technical architecture—he speaks both "Business" and "Code".'
+        };
 
-    function calculateScore() {
-        let totalScore = 0;
-        let checkedCount = 0;
-
-        checkboxes.forEach(box => {
-            if (box.checked) {
-                totalScore += parseInt(box.value);
-                checkedCount++;
-            }
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const selectedVal = e.target.value;
+                if (roleMessages[selectedVal]) {
+                    resultContainer.style.display = 'block';
+                    messageText.innerHTML = `<strong>Jack has demonstrated this:</strong> ${roleMessages[selectedVal]}`;
+                    confettiEffect();
+                }
+            });
         });
-
-        // Update UI
-        progressBar.style.width = `${totalScore}%`;
-        scoreText.innerText = `Match Score: ${totalScore}%`;
-
-        // Fun Messages
-        if (totalScore === 0) {
-            messageText.innerText = "";
-        } else if (totalScore <= 40) {
-            messageText.innerText = "Solid start. I can definitely help with that!";
-            messageText.style.color = "#0066cc";
-        } else if (totalScore <= 80) {
-            messageText.innerText = "Great match! We are definitely speaking the same language.";
-            messageText.style.color = "#004494";
-        } else {
-            messageText.innerText = "🎉 100% PERFECT MATCH! When do we start? 🎉";
-            messageText.style.color = "#10b981";
-            confettiEffect();
-        }
     }
 
     // Simple Confetti Effect using Canvas

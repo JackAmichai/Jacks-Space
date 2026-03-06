@@ -220,21 +220,21 @@
                 </p>
 
                 <!-- Availability Badge -->
-                <div class="availability-badge"
-                    style="display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); padding: 8px 16px; border-radius: 20px; margin-bottom: 20px;">
+                <h4 class="section-title sparkles-text" data-sparkles-count="5"
+                    style="display: inline-block; font-size: 1.3rem; margin-bottom: 30px; border-bottom: none; text-align: left;">
                     <span
-                        style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite;"></span>
-                    <span style="color: #10b981; font-weight: 600; font-size: 0.9rem;">Available for
-                        Opportunities</span>
-                    <span style="color: var(--text-secondary); font-size: 0.85rem;">| 📍 Tel Aviv, Israel | Open to
-                        Relocation</span>
-                </div>
+                        style="display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; margin-right: 8px; vertical-align: middle; margin-bottom: 3px;"></span>
+                    <span style="color: var(--text-primary);">Available for Opportunities</span>
+                    <span
+                        style="color: var(--text-secondary); font-size: 0.8em; font-weight: normal; font-family: 'Inter', sans-serif; display: inline-block; margin-left: 10px;">|
+                        📍 Tel Aviv, Israel | Open to Relocation</span>
+                </h4>
 
                 <!-- 60-Second Pitch -->
                 <div style="margin-bottom: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
                     <a href="#pitch" id="openPitchBtn" class="video-pitch-btn"
-                        style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #ff6b6b, #ee5a5a); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, box-shadow 0.2s;">
-                        <span>▶</span> Watch my Pitch
+                        style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #ff0000, #cc0000); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, box-shadow 0.2s;">
+                        <i class="fa-brands fa-youtube" style="font-size: 1.2rem;"></i> Watch my Pitch
                     </a>
                     <a href="https://github.com/JackAmichai" target="_blank"
                         style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 500; font-size: 0.9rem;">
@@ -249,35 +249,43 @@
                 <!-- Does Jack Fit Your Role Button -->
                 <div style="margin-bottom: 30px;">
                     <button id="roleFitBtn" class="role-fit-btn">
-                        <span>🤔</span> Does Jack Fit Your Role?
+                        <span>📝✅</span> Does your role include any of the following?
                     </button>
                 </div>
 
                 <!-- Role Fit Modal -->
                 <div id="roleFitModal" class="role-fit-modal">
                     <div class="role-fit-overlay"></div>
-                    <div class="role-fit-content">
+                    <div class="role-fit-content" style="max-width: 600px;">
                         <button class="role-fit-close" aria-label="Close modal">&times;</button>
-                        <h2>Build Your Ideal Candidate</h2>
-                        <p>Check the skills you need for your team:</p>
+                        <h2>My Top Skills</h2>
+                        <p>Select any of the skills below to see how I match your needs:</p>
 
-                        <div class="role-fit-checklist">
-                            <label class="fit-option"><input type="checkbox" value="20"> AI Solutions
-                                Engineering</label>
-                            <label class="fit-option"><input type="checkbox" value="20"> Backend Architecture /
-                                Cloud</label>
-                            <label class="fit-option"><input type="checkbox" value="20"> Natural Language
-                                Processing</label>
-                            <label class="fit-option"><input type="checkbox" value="20"> Psychology & Product
-                                Context</label>
-                            <label class="fit-option"><input type="checkbox" value="20"> Multi-Agent Systems</label>
+                        <div class="role-fit-checklist" style="text-align: left;">
+                            <label class="fit-option"><input type="radio" name="roleSkill" value="genai"
+                                    data-label="Generative AI & Applied Machine Learning"> Generative AI & Applied
+                                Machine Learning</label>
+                            <label class="fit-option"><input type="radio" name="roleSkill" value="arch"
+                                    data-label="Solution Architecture"> Solution Architecture</label>
+                            <label class="fit-option"><input type="radio" name="roleSkill" value="devex"
+                                    data-label="Developer Experience (DevEx) & Human-Computer Interaction"> Developer
+                                Experience (DevEx) & Human-Computer Interaction</label>
+                            <label class="fit-option"><input type="radio" name="roleSkill" value="pm"
+                                    data-label="Software Product Management"> Software Product Management</label>
+                            <label class="fit-option"><input type="radio" name="roleSkill" value="comms"
+                                    data-label="Cross-Functional Technical Communication"> Cross-Functional Technical
+                                Communication</label>
                         </div>
 
-                        <div class="role-fit-progress-container">
-                            <div class="role-fit-progress-bar" id="roleFitProgress"></div>
+                        <div id="roleFitResultContainer"
+                            style="margin-top:20px; text-align: left; display: none; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h3 id="roleFitScoreText"
+                                style="color: #10b981; font-size: 1.6rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span>💯</span> 100% Match!</h3>
+                            <p id="roleFitMessage"
+                                style="font-size: 1.05rem; line-height: 1.5; color: var(--text-primary); margin: 0;">
+                            </p>
                         </div>
-                        <h3 id="roleFitScoreText">Match Score: 0%</h3>
-                        <p id="roleFitMessage" class="role-fit-message text-shimmer"></p>
                     </div>
                 </div>
 
@@ -2003,6 +2011,107 @@
             </div>
         </div>
     </section>
+
+    <!-- ========================================== -->
+    <!-- FAQ SECTION -->
+    <!-- ========================================== -->
+    <section id="faq" class="faq-section" style="padding: 80px 0; max-width: 800px; margin: 0 auto;">
+        <div class="container">
+            <h2 class="section-title sparkles-text" style="text-align: center; margin-bottom: 40px;">Most Frequently
+                Asked Questions</h2>
+            <div class="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Why should we hire Jack instead of a standard Full-Stack developer?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Standard developers write code; I architect systems that understand intent. With my dual
+                            background in Psychology and Computer Science, I specialize in building AI agents and
+                            human-centric workflows that don't just "work"—they adapt, reason, and solve real business
+                            problems without needing constant micro-management.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can he handle large-scale enterprise environments?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. At Deloitte, I've designed microservices and event-driven architectures using SAP
+                            BTP and AWS for massive corporate clients. I know exactly how to bridge the gap between
+                            cutting-edge AI innovation and strict enterprise reliability.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does he have leadership or cross-functional experience?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! During my service as an IDF Staff Sergeant, I learned true leadership under pressure.
+                            Later, as a Research Software Engineer at the Technion, I managed entire cross-functional
+                            teams, translating incredibly complex scientific requirements into scalable Python backends.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is Jack available for relocation?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. I am currently based in Tel Aviv, Israel, but I am entirely open to relocation for the
+                            right opportunity—especially for roles focusing on AI Solutions Engineering or Technical
+                            Product Management.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Okay, but is he actually fun to work with?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I built an autonomous cyber-defense multi-agent system, an AI that detects when people say my
+                            name in meetings so I don't get caught sleeping on Zoom, and a Tinder for Dogs (PawQuest). I
+                            bring intense technical rigor to my projects, but I always make sure we're building things
+                            that are genuinely creative and engaging.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIDEO PITCH MODAL -->
+    <!-- ========================================== -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-overlay"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close" aria-label="Close video">&times;</button>
+            <div class="video-container">
+                <video id="pitchVideo" controls preload="metadata">
+                    <source src="videos/PawQuest_intro_WIX.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-modal-caption">
+                <h3>PawQuest - AI Matching Platform</h3>
+                <p>A quick 60-second walkthrough of my social networking project combining geospatial pairing and
+                    algorithmic temperament matching.</p>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="footer">
