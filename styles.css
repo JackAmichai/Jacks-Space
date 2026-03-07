@@ -7297,11 +7297,20 @@ html {
     background: var(--bg-secondary, #f8fafc);
     border: 1px solid var(--border, #e2e8f0);
     border-radius: 12px;
-    padding: 16px 24px;
-    width: 180px;
-    min-width: 180px;
-    height: 120px;
+    padding: 20px 24px;
+    width: 220px;
+    min-width: 220px;
+    height: 110px;
     transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.skill-badge .company-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 4px;
+    flex-shrink: 0;
 }
 
 .skill-badge:hover {
