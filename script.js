@@ -1603,3 +1603,101 @@ console.log(' Portfolio loaded successfully!');
 console.log('💡 Keyboard shortcuts:');
 console.log('   Ctrl/Cmd + D: Toggle dark mode');
 console.log('   Escape: Close mobile menu');
+
+// ========================================
+// 21. STAY CONNECTED POPUP LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const scModal = document.getElementById('stayConnectedModal');
+    const scOverlay = document.getElementById('stayConnectedOverlay');
+    const scCloseBtn = document.getElementById('closeStayConnected');
+    const scForm = document.getElementById('stayConnectedForm');
+    const scSuccessMessage = document.getElementById('scSuccessMessage');
+
+    if (!scModal) return;
+
+    let hasShownPopup = sessionStorage.getItem('hasShownStayConnected');
+
+    const openStayConnectedModal = () => {
+        if (!hasShownPopup && !document.querySelector('.role-fit-modal.active:not(#stayConnectedModal)')) {
+            scModal.classList.add('active');
+            sessionStorage.setItem('hasShownStayConnected', 'true');
+            hasShownPopup = true;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            trackCTAClick('stay_connected_popup_shown');
+        }
+    };
+
+    const closeStayConnectedModal = () => {
+        scModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    // 1. Timer Trigger - 60 seconds
+    const stayConnectedTimer = setTimeout(() => {
+        openStayConnectedModal();
+    }, 60000); // 60 seconds
+
+    // 2. Scroll Trigger - Bottom of page
+    const scrollTrigger = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        // Trigger when 95% down the page
+        if ((scrollTop / docHeight) > 0.95 && !hasShownPopup) {
+            openStayConnectedModal();
+            window.removeEventListener('scroll', scrollTrigger); // Remove after triggering once
+        }
+    };
+    window.addEventListener('scroll', scrollTrigger);
+
+    // Close logic
+    scCloseBtn?.addEventListener('click', closeStayConnectedModal);
+    scOverlay?.addEventListener('click', closeStayConnectedModal);
+
+    // Form Submission (Using Formspree to send to Jackamichai@gmail.com)
+    if (scForm) {
+        scForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('scName').value;
+            const email = document.getElementById('scEmail').value;
+            const company = document.getElementById('scCompany').value;
+            const submitBtn = scForm.querySelector('button[type="submit"]');
+
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('https://formspree.io/f/xbjnzkgp', { // You can replace this with your own Formspree endpoint later if needed
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        company: company,
+                        _subject: `New Connection Request from ${name} via Portfolio!`,
+                        _replyto: email
+                    })
+                });
+
+                if (response.ok) {
+                    scSuccessMessage.style.display = 'block';
+                    setTimeout(closeStayConnectedModal, 3000);
+                    trackCTAClick('stay_connected_form_submitted');
+                } else {
+                    showToast('⚠ Failed to send. Please try again or email directly.');
+                    submitBtn.innerHTML = 'Send Details';
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                showToast('⚠ Network error. Please try again.');
+                submitBtn.innerHTML = 'Send Details';
+                submitBtn.disabled = false;
+            }
+        });
+    }
+});
