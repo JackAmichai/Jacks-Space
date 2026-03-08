@@ -1385,44 +1385,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const readBioBtn = document.getElementById('readBioBtn');
     const voiceAvatarContainer = document.getElementById('voiceAvatarContainer');
     const avatarImg = voiceAvatarContainer?.querySelector('.voice-avatar-img');
-    const bioParagraph = document.getElementById('bioParagraph');
 
     let isSpeaking = false;
-    let speechObj = null;
+    const audioIntro = new Audio('audio intro.opus');
 
-    if (readBioBtn && voiceAvatarContainer && bioParagraph) {
+    if (readBioBtn && voiceAvatarContainer) {
         readBioBtn.addEventListener('click', () => {
             if (isSpeaking) {
-                // Stop speaking
-                window.speechSynthesis.cancel();
+                // Stop playing
+                audioIntro.pause();
+                audioIntro.currentTime = 0;
                 stopSpeakingAnimation();
             } else {
-                // Start speaking
-                const text = bioParagraph.innerText || bioParagraph.textContent;
-                speechObj = new SpeechSynthesisUtterance(text);
-
-                // Pick a good English voice if available
-                const voices = window.speechSynthesis.getVoices();
-                const englishVoice = voices.find(v => v.lang.startsWith('en-') && (v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel')));
-                if (englishVoice) speechObj.voice = englishVoice;
-
-                speechObj.rate = 0.95; // Slightly slower for better comprehension
-                speechObj.pitch = 1.0;
-
-                speechObj.onstart = () => {
+                // Start playing
+                audioIntro.play().then(() => {
                     isSpeaking = true;
                     readBioBtn.classList.add('speaking');
                     voiceAvatarContainer.classList.remove('voice-avatar-hidden');
                     voiceAvatarContainer.classList.add('voice-avatar-visible');
                     if (avatarImg) avatarImg.classList.add('animating');
-                };
-
-                speechObj.onend = stopSpeakingAnimation;
-                speechObj.onerror = stopSpeakingAnimation;
-
-                window.speechSynthesis.speak(speechObj);
+                    trackCTAClick('audio_intro_played');
+                }).catch(err => {
+                    console.error('Audio playback failed:', err);
+                    stopSpeakingAnimation();
+                });
             }
         });
+
+        audioIntro.addEventListener('ended', stopSpeakingAnimation);
+        audioIntro.addEventListener('error', stopSpeakingAnimation);
     }
 
     function stopSpeakingAnimation() {
@@ -1434,11 +1425,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (avatarImg) avatarImg.classList.remove('animating');
     }
-
-    // Ensure speech synthesis voices are loaded (Chrome bug workaround)
-    window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-    };
 });
 
 // ========================================
