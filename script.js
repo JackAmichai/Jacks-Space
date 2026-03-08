@@ -1428,6 +1428,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
+// 10b. MY STORY VOICE READER LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const readStoryBtn = document.getElementById('readStoryBtn');
+    const storyAvatarContainer = document.getElementById('storyVoiceAvatarContainer');
+    const storyAvatarImg = storyAvatarContainer?.querySelector('.voice-avatar-img');
+
+    let isStoryPlaying = false;
+    const storyAudio = new Audio('My story Audio.opus');
+
+    if (readStoryBtn && storyAvatarContainer) {
+        readStoryBtn.addEventListener('click', () => {
+            if (isStoryPlaying) {
+                storyAudio.pause();
+                storyAudio.currentTime = 0;
+                stopStoryAnimation();
+            } else {
+                storyAudio.play().then(() => {
+                    isStoryPlaying = true;
+                    readStoryBtn.classList.add('speaking');
+                    storyAvatarContainer.classList.remove('voice-avatar-hidden');
+                    storyAvatarContainer.classList.add('voice-avatar-visible');
+                    if (storyAvatarImg) storyAvatarImg.classList.add('animating');
+                    trackCTAClick('story_audio_played');
+                }).catch(err => {
+                    console.error('Story audio playback failed:', err);
+                    stopStoryAnimation();
+                });
+            }
+        });
+
+        storyAudio.addEventListener('ended', stopStoryAnimation);
+        storyAudio.addEventListener('error', stopStoryAnimation);
+    }
+
+    function stopStoryAnimation() {
+        isStoryPlaying = false;
+        if (readStoryBtn) readStoryBtn.classList.remove('speaking');
+        if (storyAvatarContainer) {
+            storyAvatarContainer.classList.remove('voice-avatar-visible');
+            storyAvatarContainer.classList.add('voice-avatar-hidden');
+        }
+        if (storyAvatarImg) storyAvatarImg.classList.remove('animating');
+    }
+});
+
+// ========================================
 // 11. ROLE FIT MODAL LOGIC
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {

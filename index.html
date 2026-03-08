@@ -343,7 +343,29 @@
         <div class="container">
             <div class="story-grid">
                 <div class="story-content">
-                    <h2 class="section-title sparkles-text" data-sparkles-count="10">My Story</h2>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                        <h2 class="section-title sparkles-text" data-sparkles-count="10" style="margin-bottom: 0;">My
+                            Story</h2>
+                        <button id="readStoryBtn" class="voice-reader-btn" aria-label="Listen to my story"
+                            title="Read Out Loud">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="22"></line>
+                                <line x1="8" y1="22" x2="16" y2="22"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Story Voice Avatar Container -->
+                    <div id="storyVoiceAvatarContainer" class="voice-avatar-hidden">
+                        <img src="images/me.jpeg" alt="Jack Reading" class="voice-avatar-img">
+                        <div class="voice-waves">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+
                     <div class="story-text">
                         <p class="story-lead text-reveal" data-effect="word" data-delay="0.2">
                             I've always been drawn to one question: <em>how can we build AI systems that truly
