@@ -870,7 +870,7 @@ function renderCarouselCard(project, view = 'business', index) {
             </svg>
             View on GitHub
            </a>`
-        : '';
+        : `<span class="carousel-card-link" style="color: var(--text-secondary); font-size: 0.85rem; font-style: italic; cursor: default;">Private project: would be shown upon request</span>`;
 
     const demoLink = project.links && project.links.demo
         ? `<a href="${project.links.demo}" target="_blank" class="carousel-card-link demo-link" title="Live Demo" onclick="event.stopPropagation()">
@@ -1176,8 +1176,8 @@ function createIconCloud(container) {
 // ========================================
 function initTestimonialCarousel() {
     const track = document.getElementById('testimonialTrack');
-    const prevBtn = document.getElementById('carouselPrev');
-    const nextBtn = document.getElementById('carouselNext');
+    const prevBtn = document.getElementById('testimonialPrev');
+    const nextBtn = document.getElementById('testimonialNext');
 
     if (!track || !prevBtn || !nextBtn) return;
 
