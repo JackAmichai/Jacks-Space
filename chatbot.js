@@ -296,7 +296,13 @@ class CloudChatbot {
         typingDiv.className = 'chatbot-message bot-message typing-status';
         typingDiv.innerHTML = `
             <img src="images/cloud-bot.jpg" alt="Cloud" class="message-avatar">
-            <div class="message-content"><em>🧠 Thinking with Nemotron...</em><div class="ai-thinking-dots"><span></span><span></span><span></span></div></div>
+            <div class="message-content">
+                <div class="skeleton-loader">
+                    <div class="skeleton-line" style="width: 85%"></div>
+                    <div class="skeleton-line" style="width: 65%"></div>
+                    <div class="skeleton-line" style="width: 75%"></div>
+                </div>
+            </div>
         `;
         messagesContainer.appendChild(typingDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -316,6 +322,20 @@ class CloudChatbot {
                 body: JSON.stringify({ messages: this.conversationHistory })
             });
 
+            // Check for rate limiting
+            const remaining = response.headers.get('X-RateLimit-Remaining');
+            const retryAfter = response.headers.get('Retry-After');
+
+            if (response.status === 429) {
+                const data = await response.json();
+                typingDiv.remove();
+                this.showRateLimitWarning(data.retryAfter || retryAfter || 60);
+                this.addMessage('⏳ You\'ve reached the message limit. Please wait a moment before trying again.', 'bot');
+                // Track rate limit hit
+                this.trackAIUsage('chatbot', 'rate_limited');
+                return;
+            }
+
             if (!response.ok) throw new Error('API failed');
 
             const data = await response.json();
@@ -328,6 +348,14 @@ class CloudChatbot {
 
             typingDiv.remove();
             this.addMessage(botReply, 'bot');
+
+            // Show remaining requests indicator
+            if (remaining !== null && parseInt(remaining) <= 3) {
+                this.showRemainingHint(parseInt(remaining));
+            }
+
+            // Track successful AI usage
+            this.trackAIUsage('chatbot', 'success');
 
         } catch (error) {
             console.warn("API Error, falling back to local knowledge base:", error);
@@ -393,6 +421,57 @@ class CloudChatbot {
 
         // Default response if no match
         return "That's a great question! I don't have specific information about that, but I recommend:\n\n📧 **Emailing Jack directly:** jackamichai@gmail.com\n💼 **Connecting on LinkedIn:** linkedin.com/in/jackamichai\n📅 **Scheduling a call:** calendly.com/jackamichai\n\nYou can also browse his portfolio sections above to learn more about his experience and projects!";
+    }
+
+    showRateLimitWarning(retryAfter) {
+        const seconds = parseInt(retryAfter);
+        const toast = document.createElement('div');
+        toast.className = 'rate-limit-toast';
+        toast.innerHTML = `
+            <div class="rate-limit-icon">⏱️</div>
+            <div class="rate-limit-text">
+                <strong>Rate limit reached</strong>
+                <span class="rate-limit-countdown">Try again in <b>${seconds}s</b></span>
+            </div>
+        `;
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('visible'));
+
+        let remaining = seconds;
+        const countdownEl = toast.querySelector('.rate-limit-countdown b');
+        const interval = setInterval(() => {
+            remaining--;
+            if (remaining <= 0) {
+                clearInterval(interval);
+                toast.classList.remove('visible');
+                setTimeout(() => toast.remove(), 300);
+            } else {
+                countdownEl.textContent = `${remaining}s`;
+            }
+        }, 1000);
+    }
+
+    showRemainingHint(remaining) {
+        const hint = document.createElement('div');
+        hint.className = 'chatbot-message bot-message rate-hint';
+        hint.innerHTML = `<div class="message-content" style="font-size: 0.8rem; opacity: 0.7; padding: 4px 8px;">💡 ${remaining} message${remaining !== 1 ? 's' : ''} remaining this minute</div>`;
+        document.getElementById('chatbot-messages').appendChild(hint);
+        setTimeout(() => hint.remove(), 5000);
+    }
+
+    trackAIUsage(feature, status) {
+        try {
+            const key = 'ai_usage_analytics';
+            const analytics = JSON.parse(localStorage.getItem(key) || '[]');
+            analytics.push({
+                feature,
+                status,
+                timestamp: new Date().toISOString(),
+            });
+            // Keep last 100 entries
+            if (analytics.length > 100) analytics.splice(0, analytics.length - 100);
+            localStorage.setItem(key, JSON.stringify(analytics));
+        } catch (e) { /* silent */ }
     }
 
     addMessage(text, sender) {

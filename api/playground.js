@@ -1,30 +1,11 @@
+import { callNvidiaAPI, handleCorsAndRateLimit } from './_nvidia.js';
+
 export default async function handler(req, res) {
-    // Enable CORS
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    );
-
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
-
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
+    const { proceed } = handleCorsAndRateLimit(req, res);
+    if (!proceed) return;
 
     try {
         const { messages } = req.body;
-
-        if (!process.env.NVIDIA_API_KEY) {
-            return res.status(500).json({
-                error: 'Server is missing NVIDIA API credentials.'
-            });
-        }
 
         const systemPrompt = {
             role: "system",
@@ -52,18 +33,9 @@ Behavior guidelines:
 
         const apiMessages = [systemPrompt, ...messages];
 
-        const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${process.env.NVIDIA_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                model: "meta/llama-3.3-70b-instruct",
-                messages: apiMessages,
-                temperature: 0.7,
-                max_tokens: 600,
-            })
+        const response = await callNvidiaAPI(apiMessages, {
+            temperature: 0.7,
+            max_tokens: 600,
         });
 
         if (!response.ok) {
@@ -77,6 +49,9 @@ Behavior guidelines:
 
     } catch (error) {
         console.error("Playground API error:", error);
+        if (error.message === 'NVIDIA_API_KEY not configured') {
+            return res.status(500).json({ error: 'Server is missing NVIDIA API credentials.' });
+        }
         return res.status(500).json({ error: 'Internal server error.' });
     }
 }

@@ -8698,3 +8698,134 @@ html {
         height: 300px;
     }
 }
+
+/* ==================== */
+/* SKELETON LOADER */
+/* ==================== */
+.skeleton-loader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.skeleton-line {
+    height: 12px;
+    border-radius: 6px;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.08) 25%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.08) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Light theme skeleton */
+.chatbot-messages .skeleton-line {
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.06) 25%,
+            rgba(0, 0, 0, 0.12) 50%,
+            rgba(0, 0, 0, 0.06) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ==================== */
+/* RATE LIMIT TOAST */
+/* ==================== */
+.rate-limit-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    z-index: 10000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 320px;
+    backdrop-filter: blur(10px);
+}
+
+.rate-limit-toast.visible {
+    transform: translateX(0);
+}
+
+.rate-limit-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.rate-limit-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.rate-limit-text strong {
+    font-size: 14px;
+    color: #f59e0b;
+}
+
+.rate-limit-countdown {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.rate-limit-countdown b {
+    color: #fbbf24;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.rate-limit-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.rate-limit-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b, #ef4444);
+    border-radius: 4px;
+}
+
+/* ==================== */
+/* DARK MODE ICON FIXES */
+/* ==================== */
+body.dark-mode .icon-cloud img[src^="data:image/svg"],
+[data-theme="dark"] .icon-cloud img[src^="data:image/svg"] {
+    filter: brightness(1.8) saturate(1.2);
+}
+
+/* ==================== */
+/* RATE HINT IN CHATBOT */
+/* ==================== */
+.rate-hint .message-content {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}

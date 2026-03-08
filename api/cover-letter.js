@@ -1,33 +1,14 @@
+import { callNvidiaAPI, handleCorsAndRateLimit } from './_nvidia.js';
+
 export default async function handler(req, res) {
-    // Enable CORS
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    );
-
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
-
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
+    const { proceed } = handleCorsAndRateLimit(req, res);
+    if (!proceed) return;
 
     try {
         const { companyName } = req.body;
 
         if (!companyName || companyName.trim().length < 2) {
             return res.status(400).json({ error: 'Please provide a valid company name.' });
-        }
-
-        if (!process.env.NVIDIA_API_KEY) {
-            return res.status(500).json({
-                error: 'Server is missing NVIDIA API credentials.'
-            });
         }
 
         const systemPrompt = {
@@ -61,18 +42,9 @@ Your task: Write a compelling, personalized 200-250 word pitch for why Jack is p
             content: `Generate a personalized pitch for Jack applying to: ${companyName.trim()}`
         };
 
-        const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${process.env.NVIDIA_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                model: "meta/llama-3.3-70b-instruct",
-                messages: [systemPrompt, userMessage],
-                temperature: 0.7,
-                max_tokens: 800,
-            })
+        const response = await callNvidiaAPI([systemPrompt, userMessage], {
+            temperature: 0.7,
+            max_tokens: 800,
         });
 
         if (!response.ok) {
@@ -86,6 +58,9 @@ Your task: Write a compelling, personalized 200-250 word pitch for why Jack is p
 
     } catch (error) {
         console.error("Cover Letter API error:", error);
+        if (error.message === 'NVIDIA_API_KEY not configured') {
+            return res.status(500).json({ error: 'Server is missing NVIDIA API credentials.' });
+        }
         return res.status(500).json({ error: 'Internal server error.' });
     }
 }

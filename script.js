@@ -1815,7 +1815,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show typing indicator
         const typingDiv = document.createElement('div');
         typingDiv.className = 'pg-message ai-message pg-typing';
-        typingDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content"><p><em>Thinking with Nemotron...</em></p><div class="ai-thinking-dots"><span></span><span></span><span></span></div></div>`;
+        typingDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content"><div class="skeleton-loader"><div class="skeleton-line" style="width:90%"></div><div class="skeleton-line" style="width:70%"></div><div class="skeleton-line" style="width:80%"></div></div></div>`;
         playgroundMessages.appendChild(typingDiv);
         playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
 
@@ -1830,10 +1830,27 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ messages: playgroundHistory })
         })
             .then(res => {
+                // Check rate limiting
+                const remaining = res.headers.get('X-RateLimit-Remaining');
+
+                if (res.status === 429) {
+                    return res.json().then(data => {
+                        typingDiv.remove();
+                        showRateLimitToast(data.retryAfter || 60);
+                        const errDiv = document.createElement('div');
+                        errDiv.className = 'pg-message ai-message';
+                        errDiv.innerHTML = `<span class="pg-avatar">⏳</span><div class="pg-content"><p>You've reached the request limit. Please wait a moment before trying again.</p></div>`;
+                        playgroundMessages.appendChild(errDiv);
+                        playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
+                        trackAIAnalytics('playground', 'rate_limited');
+                        throw new Error('rate_limited');
+                    });
+                }
+
                 if (!res.ok) throw new Error('API failed');
-                return res.json();
+                return res.json().then(data => ({ data, remaining }));
             })
-            .then(data => {
+            .then(({ data, remaining }) => {
                 typingDiv.remove();
                 const botReply = data.choices[0].message.content;
                 playgroundHistory.push({ role: 'assistant', content: botReply });
@@ -1843,8 +1860,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 aiDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content">${formatMarkdownPG(botReply)}</div>`;
                 playgroundMessages.appendChild(aiDiv);
                 playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
+
+                // Show remaining hint when low
+                if (remaining !== null && parseInt(remaining) <= 3) {
+                    const hintDiv = document.createElement('div');
+                    hintDiv.className = 'pg-message ai-message';
+                    hintDiv.style.opacity = '0.6';
+                    hintDiv.style.fontSize = '0.8rem';
+                    hintDiv.innerHTML = `<span class="pg-avatar">💡</span><div class="pg-content"><p>${parseInt(remaining)} request${parseInt(remaining) !== 1 ? 's' : ''} remaining this minute</p></div>`;
+                    playgroundMessages.appendChild(hintDiv);
+                    setTimeout(() => hintDiv.remove(), 5000);
+                }
+
+                trackAIAnalytics('playground', 'success');
             })
             .catch(err => {
+                if (err.message === 'rate_limited') return;
                 console.error('Playground error:', err);
                 typingDiv.remove();
                 const errDiv = document.createElement('div');
@@ -1852,6 +1883,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 errDiv.innerHTML = `<span class="pg-avatar">⚠️</span><div class="pg-content"><p>Couldn't reach the AI server. This feature works on the live deployed site (Vercel) with the NVIDIA API key configured.</p></div>`;
                 playgroundMessages.appendChild(errDiv);
                 playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
+                trackAIAnalytics('playground', 'error');
             });
 
         if (typeof trackCTAClick !== 'undefined') trackCTAClick('playground_message_sent');
@@ -1913,6 +1945,25 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Check localStorage cache first (24h TTL)
+        const cacheKey = `pitch_cache_${company.toLowerCase()}`;
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+            try {
+                const { pitch, timestamp } = JSON.parse(cached);
+                const age = Date.now() - timestamp;
+                if (age < 24 * 60 * 60 * 1000) { // 24 hours
+                    pitchLoading.style.display = 'none';
+                    pitchOutputArea.style.display = 'block';
+                    pitchContent.innerHTML = formatPitchMarkdown(pitch) + '<p style="font-size:0.75rem;color:var(--text-secondary);opacity:0.6;margin-top:12px;">⚡ Loaded from cache • <a href="#" onclick="localStorage.removeItem(\'' + cacheKey + '\');location.reload();return false;" style="color:var(--accent);">Regenerate</a></p>';
+                    showToast('⚡ Loaded cached pitch — click Regenerate for a fresh one');
+                    trackAIAnalytics('pitch', 'cache_hit');
+                    if (typeof trackCTAClick !== 'undefined') trackCTAClick('pitch_cached_' + company);
+                    return;
+                }
+            } catch (e) { localStorage.removeItem(cacheKey); }
+        }
+
         // Show loading, hide output
         pitchLoading.style.display = 'flex';
         pitchOutputArea.style.display = 'none';
@@ -1926,22 +1977,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ companyName: company })
             });
 
+            // Handle rate limiting
+            if (response.status === 429) {
+                const data = await response.json();
+                pitchLoading.style.display = 'none';
+                pitchOutputArea.style.display = 'block';
+                pitchContent.innerHTML = `<p style="color: #f59e0b;">⏳ Rate limit reached. Please wait ${data.retryAfter || 60} seconds before generating another pitch.</p>`;
+                showRateLimitToast(data.retryAfter || 60);
+                trackAIAnalytics('pitch', 'rate_limited');
+                return;
+            }
+
             if (!response.ok) throw new Error('API failed');
 
             const data = await response.json();
             const pitch = data.choices[0].message.content;
+
+            // Cache the result
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify({ pitch, timestamp: Date.now() }));
+            } catch (e) { /* quota exceeded, ignore */ }
 
             // Show output
             pitchLoading.style.display = 'none';
             pitchOutputArea.style.display = 'block';
             pitchContent.innerHTML = formatPitchMarkdown(pitch);
 
+            trackAIAnalytics('pitch', 'success');
             if (typeof trackCTAClick !== 'undefined') trackCTAClick('pitch_generated_' + company);
         } catch (err) {
             console.error('Pitch generation error:', err);
             pitchLoading.style.display = 'none';
             pitchOutputArea.style.display = 'block';
             pitchContent.innerHTML = '<p style="color: #ef4444;">⚠ Couldn\'t generate the pitch. This feature works on the live deployed site (Vercel) with the NVIDIA API key configured.</p>';
+            trackAIAnalytics('pitch', 'error');
         } finally {
             generateBtn.disabled = false;
             generateBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> Generate Pitch`;
@@ -1979,3 +2048,53 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/$/, '</p>');
     }
 });
+
+// ========================================
+// SHARED: Rate Limit Toast & AI Analytics
+// ========================================
+function showRateLimitToast(retryAfter) {
+    // Remove existing toast if any
+    document.querySelector('.rate-limit-toast')?.remove();
+
+    const seconds = parseInt(retryAfter);
+    const toast = document.createElement('div');
+    toast.className = 'rate-limit-toast';
+    toast.innerHTML = `
+        <div class="rate-limit-icon">⏱️</div>
+        <div class="rate-limit-text">
+            <strong>Rate limit reached</strong>
+            <span class="rate-limit-countdown">Try again in <b>${seconds}s</b></span>
+        </div>
+        <div class="rate-limit-bar"><div class="rate-limit-bar-fill"></div></div>
+    `;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('visible'));
+
+    // Animate the progress bar
+    const barFill = toast.querySelector('.rate-limit-bar-fill');
+    barFill.style.transition = `width ${seconds}s linear`;
+    requestAnimationFrame(() => { barFill.style.width = '0%'; });
+
+    let remaining = seconds;
+    const countdownEl = toast.querySelector('.rate-limit-countdown b');
+    const interval = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+            clearInterval(interval);
+            toast.classList.remove('visible');
+            setTimeout(() => toast.remove(), 300);
+        } else {
+            countdownEl.textContent = `${remaining}s`;
+        }
+    }, 1000);
+}
+
+function trackAIAnalytics(feature, status) {
+    try {
+        const key = 'ai_usage_analytics';
+        const analytics = JSON.parse(localStorage.getItem(key) || '[]');
+        analytics.push({ feature, status, timestamp: new Date().toISOString() });
+        if (analytics.length > 100) analytics.splice(0, analytics.length - 100);
+        localStorage.setItem(key, JSON.stringify(analytics));
+    } catch (e) { /* silent */ }
+}
