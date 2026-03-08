@@ -1668,7 +1668,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             try {
-                const response = await fetch('https://formspree.io/f/xbjnzkgp', { // You can replace this with your own Formspree endpoint later if needed
+                const response = await fetch('https://formsubmit.co/ajax/jackamichai@gmail.com', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -1677,9 +1677,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({
                         name: name,
                         email: email,
-                        company: company,
+                        company: company || 'Not specified',
                         _subject: `New Connection Request from ${name} via Portfolio!`,
-                        _replyto: email
+                        _replyto: email,
+                        _template: 'table'
                     })
                 });
 
