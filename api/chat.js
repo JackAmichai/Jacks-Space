@@ -62,7 +62,7 @@ Answer questions based ONLY on this data. If asked something unrelated, redirect
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "nvidia/llama-3.1-nemotron-70b-instruct",
+                model: "meta/llama-3.3-70b-instruct",
                 messages: apiMessages,
                 temperature: 0.5,
                 max_tokens: 512,

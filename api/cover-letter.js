@@ -68,7 +68,7 @@ Your task: Write a compelling, personalized 200-250 word pitch for why Jack is p
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "nvidia/llama-3.1-nemotron-70b-instruct",
+                model: "meta/llama-3.3-70b-instruct",
                 messages: [systemPrompt, userMessage],
                 temperature: 0.7,
                 max_tokens: 800,
