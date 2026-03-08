@@ -1475,6 +1475,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
+// 10c. MAGIC HAPPENS VOICE READER LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const readMagicBtn = document.getElementById('readMagicBtn');
+    const magicAvatarContainer = document.getElementById('magicVoiceAvatarContainer');
+    const magicAvatarImg = magicAvatarContainer?.querySelector('.voice-avatar-img');
+
+    let isMagicPlaying = false;
+    const magicAudio = new Audio('magic happens audio.opus');
+
+    if (readMagicBtn && magicAvatarContainer) {
+        readMagicBtn.addEventListener('click', () => {
+            if (isMagicPlaying) {
+                magicAudio.pause();
+                magicAudio.currentTime = 0;
+                stopMagicAnimation();
+            } else {
+                magicAudio.play().then(() => {
+                    isMagicPlaying = true;
+                    readMagicBtn.classList.add('speaking');
+                    magicAvatarContainer.classList.remove('voice-avatar-hidden');
+                    magicAvatarContainer.classList.add('voice-avatar-visible');
+                    if (magicAvatarImg) magicAvatarImg.classList.add('animating');
+                    trackCTAClick('magic_audio_played');
+                }).catch(err => {
+                    console.error('Magic audio playback failed:', err);
+                    stopMagicAnimation();
+                });
+            }
+        });
+
+        magicAudio.addEventListener('ended', stopMagicAnimation);
+        magicAudio.addEventListener('error', stopMagicAnimation);
+    }
+
+    function stopMagicAnimation() {
+        isMagicPlaying = false;
+        if (readMagicBtn) readMagicBtn.classList.remove('speaking');
+        if (magicAvatarContainer) {
+            magicAvatarContainer.classList.remove('voice-avatar-visible');
+            magicAvatarContainer.classList.add('voice-avatar-hidden');
+        }
+        if (magicAvatarImg) magicAvatarImg.classList.remove('animating');
+    }
+});
+
+// ========================================
 // 11. ROLE FIT MODAL LOGIC
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -1733,5 +1780,202 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = false;
             }
         });
+    }
+});
+
+// ========================================
+// AI PLAYGROUND LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const playgroundInput = document.getElementById('playgroundInput');
+    const playgroundSend = document.getElementById('playgroundSend');
+    const playgroundMessages = document.getElementById('playgroundMessages');
+    const playgroundPrompts = document.getElementById('playgroundPrompts');
+
+    if (!playgroundInput || !playgroundSend || !playgroundMessages) return;
+
+    let playgroundHistory = [];
+
+    // Send message handler
+    function sendPlaygroundMessage(message) {
+        if (!message.trim()) return;
+
+        // Add user message to UI
+        const userDiv = document.createElement('div');
+        userDiv.className = 'pg-message user-message';
+        userDiv.innerHTML = `<div class="pg-content"><p>${escapeHtmlPG(message)}</p></div>`;
+        playgroundMessages.appendChild(userDiv);
+
+        // Clear input
+        playgroundInput.value = '';
+
+        // Hide prompt chips after first message
+        if (playgroundPrompts) playgroundPrompts.style.display = 'none';
+
+        // Show typing indicator
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'pg-message ai-message pg-typing';
+        typingDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content"><p><em>Thinking with Nemotron...</em></p><div class="ai-thinking-dots"><span></span><span></span><span></span></div></div>`;
+        playgroundMessages.appendChild(typingDiv);
+        playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
+
+        // Add to history
+        playgroundHistory.push({ role: 'user', content: message });
+        if (playgroundHistory.length > 10) playgroundHistory = playgroundHistory.slice(-10);
+
+        // Call API
+        fetch('/api/playground', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: playgroundHistory })
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('API failed');
+                return res.json();
+            })
+            .then(data => {
+                typingDiv.remove();
+                const botReply = data.choices[0].message.content;
+                playgroundHistory.push({ role: 'assistant', content: botReply });
+
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'pg-message ai-message';
+                aiDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content">${formatMarkdownPG(botReply)}</div>`;
+                playgroundMessages.appendChild(aiDiv);
+                playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
+            })
+            .catch(err => {
+                console.error('Playground error:', err);
+                typingDiv.remove();
+                const errDiv = document.createElement('div');
+                errDiv.className = 'pg-message ai-message';
+                errDiv.innerHTML = `<span class="pg-avatar">⚠️</span><div class="pg-content"><p>Couldn't reach the AI server. This feature works on the live deployed site (Vercel) with the NVIDIA API key configured.</p></div>`;
+                playgroundMessages.appendChild(errDiv);
+                playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
+            });
+
+        if (typeof trackCTAClick !== 'undefined') trackCTAClick('playground_message_sent');
+    }
+
+    // Bind events
+    playgroundSend.addEventListener('click', () => sendPlaygroundMessage(playgroundInput.value));
+    playgroundInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendPlaygroundMessage(playgroundInput.value);
+    });
+
+    // Prompt chip click handlers
+    playgroundPrompts.querySelectorAll('.prompt-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            sendPlaygroundMessage(chip.dataset.prompt);
+        });
+    });
+
+    // Helper functions
+    function escapeHtmlPG(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function formatMarkdownPG(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+            .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+            .replace(/^- (.*$)/gm, '<li>$1</li>')
+            .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>')
+            .replace(/^/, '<p>')
+            .replace(/$/, '</p>');
+    }
+});
+
+// ========================================
+// AI RESUME TAILORING LOGIC
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const companyInput = document.getElementById('companyNameInput');
+    const generateBtn = document.getElementById('generatePitchBtn');
+    const pitchOutputArea = document.getElementById('pitchOutputArea');
+    const pitchContent = document.getElementById('pitchContent');
+    const pitchLoading = document.getElementById('pitchLoading');
+    const copyPitchBtn = document.getElementById('copyPitchBtn');
+
+    if (!companyInput || !generateBtn) return;
+
+    generateBtn.addEventListener('click', async () => {
+        const company = companyInput.value.trim();
+        if (!company) {
+            showToast('⚠ Please enter a company name');
+            companyInput.focus();
+            return;
+        }
+
+        // Show loading, hide output
+        pitchLoading.style.display = 'flex';
+        pitchOutputArea.style.display = 'none';
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = '<div class="pitch-loading-spinner" style="width:18px;height:18px;border-width:2px;"></div> Generating...';
+
+        try {
+            const response = await fetch('/api/cover-letter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ companyName: company })
+            });
+
+            if (!response.ok) throw new Error('API failed');
+
+            const data = await response.json();
+            const pitch = data.choices[0].message.content;
+
+            // Show output
+            pitchLoading.style.display = 'none';
+            pitchOutputArea.style.display = 'block';
+            pitchContent.innerHTML = formatPitchMarkdown(pitch);
+
+            if (typeof trackCTAClick !== 'undefined') trackCTAClick('pitch_generated_' + company);
+        } catch (err) {
+            console.error('Pitch generation error:', err);
+            pitchLoading.style.display = 'none';
+            pitchOutputArea.style.display = 'block';
+            pitchContent.innerHTML = '<p style="color: #ef4444;">⚠ Couldn\'t generate the pitch. This feature works on the live deployed site (Vercel) with the NVIDIA API key configured.</p>';
+        } finally {
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> Generate Pitch`;
+        }
+    });
+
+    // Enter key support
+    companyInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') generateBtn.click();
+    });
+
+    // Copy to clipboard
+    if (copyPitchBtn) {
+        copyPitchBtn.addEventListener('click', () => {
+            const text = pitchContent.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('📋 Pitch copied to clipboard!');
+                copyPitchBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+                setTimeout(() => {
+                    copyPitchBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy';
+                }, 2000);
+            });
+        });
+    }
+
+    function formatPitchMarkdown(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/^- (.*$)/gm, '<li>$1</li>')
+            .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>')
+            .replace(/^/, '<p>')
+            .replace(/$/, '</p>');
     }
 });

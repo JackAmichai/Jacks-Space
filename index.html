@@ -656,7 +656,72 @@
         </div>
     </section>
 
+    <!-- AI Playground Section -->
+    <section id="ai-playground" class="ai-playground-section">
+        <div class="container">
+            <div class="playground-header">
+                <span class="playground-badge">LIVE AI DEMO</span>
+                <h2 class="section-title sparkles-text" data-sparkles-count="12">🧠 AI Playground</h2>
+                <p class="section-subtitle">Interact with a real AI agent — powered by <strong>NVIDIA Nemotron</strong>.
+                    This isn't a mockup. Ask anything.</p>
+            </div>
 
+            <div class="playground-container">
+                <div class="playground-terminal">
+                    <!-- Terminal header -->
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">jack@nemotron ~ AI Playground</span>
+                        <span class="terminal-nvidia-badge">⚡ NVIDIA Nemotron</span>
+                    </div>
+
+                    <!-- Messages area -->
+                    <div class="playground-messages" id="playgroundMessages">
+                        <div class="pg-message ai-message">
+                            <span class="pg-avatar">🧠</span>
+                            <div class="pg-content">
+                                <p>Welcome to the AI Playground! I'm powered by <strong>NVIDIA Nemotron</strong>,
+                                    running live on this portfolio.</p>
+                                <p>Try asking me to explain an AI concept, design a system, or tell you why Jack is the
+                                    right hire. I'm not scripted — I think on the fly.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sample prompts -->
+                    <div class="playground-prompts" id="playgroundPrompts">
+                        <button class="prompt-chip" data-prompt="Explain RAG pipelines like I'm 5">Explain RAG like I'm
+                            5</button>
+                        <button class="prompt-chip"
+                            data-prompt="Design a multi-agent system for customer support">Design a multi-agent
+                            system</button>
+                        <button class="prompt-chip" data-prompt="Why should I hire Jack over other candidates?">Why hire
+                            Jack?</button>
+                        <button class="prompt-chip" data-prompt="What makes a great Solutions Architect?">What makes a
+                            great SA?</button>
+                    </div>
+
+                    <!-- Input -->
+                    <div class="playground-input-wrapper">
+                        <input type="text" id="playgroundInput"
+                            placeholder="Ask me anything about AI, system design, or Jack's experience..."
+                            autocomplete="off">
+                        <button id="playgroundSend" class="playground-send-btn" aria-label="Send">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- LeAIrn: AI Safety Education Flagship Project -->
     <section id="leairn" class="leairn-showcase">
@@ -700,10 +765,30 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title sparkles-text" data-sparkles-count="10">This is where all the magic happens.</h2>
-
             <div class="about-intro about-content-wrapper">
                 <div class="about-text text-reveal" data-effect="line">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <h2 class="section-title sparkles-text" data-sparkles-count="10" style="margin-bottom: 0;">This
+                            is where all the magic happens.</h2>
+                        <button id="readMagicBtn" class="voice-reader-btn" aria-label="Listen to this section"
+                            title="Read Out Loud">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="22"></line>
+                                <line x1="8" y1="22" x2="16" y2="22"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Magic Voice Avatar Container -->
+                    <div id="magicVoiceAvatarContainer" class="voice-avatar-hidden">
+                        <img src="images/me.jpeg" alt="Jack Reading" class="voice-avatar-img">
+                        <div class="voice-waves">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
                     <p>
                         This is where I introduce myself — not just by title, but by the way I think.
                     </p>
@@ -1759,6 +1844,56 @@
                     style="background-image: url('images/Cover letter image.png');">
                     <span class="resource-label">Cover Letter</span>
                 </a>
+            </div>
+
+            <!-- AI Resume Tailoring -->
+            <div class="ai-tailoring-section" style="margin-top: 50px;">
+                <h3 class="subsection-title sparkles-text" data-sparkles-count="8">
+                    🤖 AI-Powered Pitch Generator
+                </h3>
+                <p class="section-subtitle" style="margin-bottom: 25px;">Enter your company name and let AI generate a
+                    personalized pitch for why Jack is the perfect fit.</p>
+
+                <div class="tailoring-card">
+                    <div class="tailoring-input-row">
+                        <div class="tailoring-input-wrapper">
+                            <label for="companyNameInput" class="tailoring-label">Company Name</label>
+                            <input type="text" id="companyNameInput" class="tailoring-input"
+                                placeholder="e.g. Google, NVIDIA, Wix, Microsoft..." autocomplete="off">
+                        </div>
+                        <button id="generatePitchBtn" class="tailoring-generate-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                            Generate Pitch
+                        </button>
+                    </div>
+
+                    <!-- Output area -->
+                    <div id="pitchOutputArea" class="pitch-output-area" style="display: none;">
+                        <div class="pitch-output-header">
+                            <span class="pitch-badge">🧠 AI-Generated Pitch</span>
+                            <button id="copyPitchBtn" class="copy-pitch-btn" title="Copy to clipboard">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+                        <div id="pitchContent" class="pitch-content"></div>
+                        <p class="pitch-disclaimer">Powered by NVIDIA Nemotron • Generated in real-time</p>
+                    </div>
+
+                    <!-- Loading state -->
+                    <div id="pitchLoading" class="pitch-loading" style="display: none;">
+                        <div class="pitch-loading-spinner"></div>
+                        <span>🧠 Crafting your personalized pitch with Nemotron...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

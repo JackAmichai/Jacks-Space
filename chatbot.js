@@ -177,8 +177,8 @@ class CloudChatbot {
                 <div class="chatbot-header-content">
                     <img src="images/cloud-bot.jpg" alt="Cloud" class="chatbot-header-avatar">
                     <div class="chatbot-header-text">
-                        <h3>Cloud </h3>
-                        <p>Jack's AI Assistant</p>
+                        <h3>Cloud</h3>
+                        <p>Powered by NVIDIA Nemotron 🧠</p>
                     </div>
                 </div>
                 <button class="chatbot-close" id="chatbot-close">✕</button>
@@ -240,7 +240,7 @@ class CloudChatbot {
     displayWelcomeMessage() {
         setTimeout(() => {
             this.addMessage(
-                "Hi! I'm Cloud , Jack's AI assistant! I've been updated with his latest work in **AI Solutions Engineering** and **Multi-Agent Systems**. Ask me anything about his projects, skills, or experience!",
+                "Hi! I'm Cloud, Jack's AI assistant powered by **NVIDIA Nemotron** 🧠\n\nI can answer questions about his projects, skills, experience, or even discuss AI concepts. Ask me anything!",
                 'bot'
             );
             this.displaySuggestions();
@@ -296,7 +296,7 @@ class CloudChatbot {
         typingDiv.className = 'chatbot-message bot-message typing-status';
         typingDiv.innerHTML = `
             <img src="images/cloud-bot.jpg" alt="Cloud" class="message-avatar">
-            <div class="message-content"><em>☁️ Neometron is thinking...</em></div>
+            <div class="message-content"><em>🧠 Thinking with Nemotron...</em><div class="ai-thinking-dots"><span></span><span></span><span></span></div></div>
         `;
         messagesContainer.appendChild(typingDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -330,12 +330,12 @@ class CloudChatbot {
             this.addMessage(botReply, 'bot');
 
         } catch (error) {
-            console.warn("API Error, falling back to local mock data:", error);
+            console.warn("API Error, falling back to local knowledge base:", error);
             typingDiv.remove();
 
-            // Fallback to local dictionary
+            // Fallback to local dictionary with visible indicator
             const answer = this.findAnswer(message);
-            this.addMessage(answer, 'bot');
+            this.addMessage(answer + "\n\n---\n_⚡ Offline mode — using local knowledge base. [Deploy to Vercel](https://vercel.com) with NVIDIA_API_KEY for full AI responses._", 'bot');
         }
 
         // Show new suggestions after answer
