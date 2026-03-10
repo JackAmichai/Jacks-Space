@@ -8829,3 +8829,265 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     border: none !important;
     box-shadow: none !important;
 }
+/* MOBILE OVERRIDES */
+@media (max-width: 480px) {
+    .container { padding: 0 16px !important; }
+    section { padding: 40px 0 !important; }
+    .hero-name, .hero-name-minimal { font-size: 32px !important; }
+    .section-title { font-size: 24px !important; }
+    .nav-menu { width: 85% !important; height: 100vh !important; }
+    .hero-photo-wrapper { width: 180px !important; height: 180px !important; }
+}
+
+/* ============================================================ */
+/* MOBILE OPTIMIZATION OVERRIDES (For iPhone/Android Scales)    */
+/* ============================================================ */
+
+@media (max-width: 480px) {
+    /* 1. Global Scale & Padding */
+    .container {
+        padding: 0 16px !important;
+    }
+    
+    section {
+        padding: 40px 0 !important;
+    }
+
+    /* 2. Typography Scaling */
+    .hero-name, 
+    .hero-name-minimal {
+        font-size: 32px !important;
+        line-height: 1.1 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .section-title {
+        font-size: 24px !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .section-title::after {
+        width: 60px !important;
+        margin-left: 10px !important;
+    }
+
+    .hero-subtitle-minimal {
+        font-size: 16px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .hero-description-minimal {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+
+    /* 3. Navigation / Dock Fixes */
+    .nav-menu {
+        width: 85% !important;
+        max-width: none !important;
+        border-radius: 24px 0 0 24px !important;
+        padding: 30px 20px !important;
+        height: 100vh !important;
+        top: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 30px !important;
+        backdrop-filter: blur(20px) !important;
+        transition: right 0.3s ease !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+        right: 0 !important;
+    }
+
+    /* Disable Dock Hover/Magnification on Mobile */
+    .nav-link {
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        flex-direction: row !important;
+        gap: 15px !important;
+        padding: 10px !important;
+    }
+
+    .nav-link:hover {
+        width: auto !important;
+        height: auto !important;
+        margin-top: 0 !important;
+        background: transparent !important;
+        transform: none !important;
+    }
+
+    .nav-link .nav-icon {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .nav-link .nav-text {
+        position: static !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        transform: none !important;
+        color: var(--text-primary) !important;
+    }
+
+    /* 4. Hero Section (Minimalist Version) */
+    .hero .container {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 25px !important;
+        padding-top: 60px !important;
+    }
+
+    .hero-photo-wrapper {
+        width: 180px !important;
+        height: 180px !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-cards-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    .hero-card-btn {
+        width: 100% !important;
+        height: 120px !important;
+    }
+
+    .hobbies-card-btn {
+        grid-column: span 2 !important;
+        width: 100% !important;
+        height: 100px !important;
+    }
+
+    .hero-buttons-circle-row {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        justify-content: center !important;
+    }
+
+    .btn-circle {
+        width: 45% !important;
+        height: 50px !important;
+        border-radius: 12px !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* 5. Experience / Timeline Fixes */
+    .timeline {
+        padding-left: 15px !important;
+    }
+
+    .timeline-item {
+        padding-left: 20px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .timeline-item::before {
+        left: -23px !important;
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .experience-header {
+        margin-bottom: 30px !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .work-photo {
+        max-width: 100% !important;
+        margin: 20px 0 !important;
+    }
+
+    /* 6. Bento Grid / Project Cards */
+    .project-card.featured {
+        grid-template-columns: 1fr !important;
+    }
+
+    .project-image {
+        height: 180px !important;
+    }
+
+    .project-content {
+        padding: 20px !important;
+    }
+
+    /* 7. Skill Galaxy / Orbit */
+    .skills-orbit {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 200px !important;
+        transform: scale(0.9) !important;
+        margin: 0 auto !important;
+    }
+
+    .skill-tag {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+    }
+
+    /* 8. Connect Card */
+    .connect-inner {
+        padding: 30px 15px !important;
+    }
+
+    .connect-title {
+        font-size: 22px !important;
+    }
+
+    .connect-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .btn-connect-primary, 
+    .btn-connect-outline {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 14px !important;
+    }
+
+    /* 9. Accessibility Menu Fix */
+    .accessibility-dropdown {
+        width: 280px !important;
+        right: -10px !important;
+        left: auto !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+    }
+
+    /* 10. AI Playground Terminal */
+    .playground-terminal {
+        height: auto !important;
+        max-height: 500px !important;
+    }
+
+    .playground-messages {
+        height: 250px !important;
+        padding: 15px !important;
+    }
+
+    .playground-prompts {
+        padding: 0 15px 15px !important;
+        gap: 5px !important;
+    }
+
+    .prompt-chip {
+        font-size: 11px !important;
+        padding: 6px 10px !important;
+    }
+}
