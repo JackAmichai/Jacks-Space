@@ -10,7 +10,7 @@ const projectsData = [
         role: "Multi-Agent System Architect",
         featured: true,
         image: "https://opengraph.githubassets.com/1/JackAmichai/Hatrick",
-        video: "",
+        video: "video proj/VID WEBSITE.mp4",
         problem: "Cyber defense training lacks realistic, autonomous adversaries that adapt to defender actions in real-time.",
         solution: "A Multi-Agent System using LangChain and Groq to model autonomous cyber attack/defense scenarios. 6+ autonomous agents simulate Red Team vs Blue Team battles with sub-second inference.",
         approach: [
@@ -30,37 +30,39 @@ const projectsData = [
             github: "https://github.com/JackAmichai/Hatrick",
             demo: "https://hatrick.vercel.app"
         },
-        mediaType: "image",
-        mediaUrl: "https://opengraph.githubassets.com/1/JackAmichai/Hatrick",
+        mediaType: "video",
+        mediaUrl: "video proj/Project_Video_Generation_With_Music.mp4",
         evidence: "Live Demo | GitHub Repository"
     },
     {
-        id: "sentinel-os",
-        title: "Sentinel OS (DignityOS)",
-        role: "System Architect",
+        id: "learn-machine-learn",
+        title: "Learn Machine Learn",
+        role: "JavaScript Developer",
         featured: true,
-        image: "https://placehold.co/600x400/10b981/ffffff?text=Sentinel+OS+Robot",
+        image: "https://placehold.co/600x400/fdd835/000000?text=Learn+ML",
         video: "",
-        problem: "Robotic care for the elderly often lacks ethical reasoning and behavioral context, leading to low trust and adoption.",
-        solution: "Ethical AI orchestration layer running on NVIDIA Isaac Sim and TensorRT. Integrates behavioral logic with robotic hardware to provide empathetic, context-aware assistance.",
+        problem: "Grasp complex machine learning concepts through interactive visualizations and educational resources.",
+        solution: "A collection of interactive machine learning educational tools and resources designed to simplify complex AI concepts for developers and students.",
         approach: [
-            "Developing <strong>ethical AI layer</strong> for decision making",
-            "Utilizing <strong>NVIDIA Isaac Sim</strong> for photorealistic simulation",
-            "Optimizing inference with <strong>TensorRT</strong> for edge deployment",
-            "Scoped <strong>'Abigail' agent MVP</strong> focused on core empathy limits"
+            "Built <strong>interactive visualizations</strong> for core ML algorithms",
+            "Developed <strong>hands-on coding exercises</strong> in JavaScript",
+            "Created <strong>comprehensive documentation</strong> and learning paths"
         ],
-        outcome: "Strategic MVP defined, negotiating with psychology experts to prioritize ethical interactions over complex variables.",
+        outcome: "A resource for developers to learn ML fundamentals through code and visual feedback.",
         metrics: [
-            " <strong>NVIDIA Isaac Sim</strong> integration",
-            " <strong>TensorRT</strong> optimization",
-            "🧠 <strong>Behavioral logic</strong> engine"
+            "🎓 <strong>Educational focus</strong>",
+            "💻 <strong>Interactive code</strong> examples",
+            "📊 <strong>Visual intuition</strong> tools"
         ],
-        techStack: ["NVIDIA Isaac Sim", "TensorRT", "Python", "AI Ethics", "Robotics"],
-        techDetails: "Architecture: Behavioral Analysis → Ethical Safety Layer → Robotic Control. Built on NVIDIA Omniverse/Isaac Sim platform.",
-        links: {},
-        mediaType: "image",
-        mediaUrl: "https://placehold.co/600x400/10b981/ffffff?text=Sentinel+OS+Robot",
-        evidence: "Independent Venture | In Development"
+        techStack: ["JavaScript", "D3.js", "ML Fundamentals", "Web Dev"],
+        techDetails: "Frontend: JavaScript with D3.js for interactive visualizations. Educational content structured for progressive learning of ML concepts.",
+        links: {
+            github: "https://github.com/JackAmichai/Learn-Machine-Learn",
+            demo: "https://learn-machine-learn.vercel.app/"
+        },
+        mediaType: "video",
+        mediaUrl: "Machine_Learning_Demo_Ad_Creation.mp4",
+        evidence: "GitHub Repository | Live Demo"
     },
     {
         id: "pawquest",
@@ -379,24 +381,6 @@ const projectsData = [
         },
         mediaType: "image",
         mediaUrl: "https://placehold.co/600x400/fb8c00/ffffff?text=FlashCorp"
-    },
-    {
-        id: "learn-machine-learn",
-        title: "Learn-Machine-Learn",
-        role: "JavaScript Developer",
-        featured: false,
-        image: "https://placehold.co/600x400/fdd835/000000?text=Learn+ML",
-        video: "",
-        problem: "",
-        solution: "Machine Learning educational resources.",
-        metrics: [],
-        techStack: ["JavaScript", "ML"],
-        techDetails: "",
-        links: {
-            github: "https://github.com/JackAmichai/Learn-Machine-Learn"
-        },
-        mediaType: "image",
-        mediaUrl: "https://placehold.co/600x400/fdd835/000000?text=Learn+ML"
     },
     {
         id: "teaisty",

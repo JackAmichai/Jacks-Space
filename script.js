@@ -90,9 +90,7 @@ function updateScrollProgress() {
 
 window.addEventListener('scroll', updateScrollProgress);
 
-// ========================================
-// 4. NAVBAR SCROLL EFFECT
-// ========================================
+// Navbar Scroll Effect
 const navbar = document.querySelector('.navbar');
 let lastScrollTop = 0;
 
@@ -742,10 +740,11 @@ function renderStackCard(project, iconType = 'ai') {
 
 function renderAllProjects(view = 'business') {
     const container = document.getElementById('projectsContainer');
-    if (!container || typeof projectsData === 'undefined') return;
+    const heroGrid = document.getElementById('heroProjectsGrid');
+    if (typeof projectsData === 'undefined') return;
 
     // Define the 3 hero projects by ID
-    const heroProjectIds = ['leairn', 'hatrick', 'pawquest'];
+    const heroProjectIds = ['hatrick', 'learn-machine-learn', 'pawquest'];
     const heroProjects = heroProjectIds.map(id => projectsData.find(p => p.id === id)).filter(Boolean);
 
     // All other projects go in the slider
@@ -754,51 +753,47 @@ function renderAllProjects(view = 'business') {
     // Icon types for hero projects
     const heroIcons = {
         'leairn': { icon: '🎓', type: 'education', color: '#4ade80' },
-        'hatrick': { icon: '', type: 'security', color: '#ef4444' },
-        'pawquest': { icon: '🐕', type: 'social', color: '#06b6d4' }
+        'hatrick': { icon: '🛡️', type: 'security', color: '#ef4444' },
+        'pawquest': { icon: '🐕', type: 'social', color: '#06b6d4' },
+        'learn-machine-learn': { icon: '🧠', type: 'education', color: '#fdd835' }
     };
 
-    // Build the HTML
-    let html = `
-        <div class="projects-showcase">
-            <!-- Hero Featured Projects - 3 Main Boxes -->
-            <div class="hero-projects-grid">
-                ${heroProjects.map(project => renderHeroCard(project, heroIcons[project.id], view)).join('')}
-            </div>
+    // Render Hero Grid (3 squares)
+    if (heroGrid) {
+        heroGrid.innerHTML = heroProjects.map(project => renderHeroCard(project, heroIcons[project.id], view)).join('');
+    }
 
-            <!-- More Projects Carousel - One at a time -->
-            <h3 class="more-projects-title" style="margin-top: 60px; text-align: center; font-size: 1.5rem; color: var(--text-primary);">More Projects</h3>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">Browse through my GitHub projects</p>
-            
-            <div class="projects-carousel-container">
-                <button class="carousel-nav-btn carousel-prev" id="carouselPrev" aria-label="Previous project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-                
-                <div class="projects-carousel-track" id="projectsCarouselTrack">
-                    ${sliderProjects.map((project, index) => renderCarouselCard(project, view, index)).join('')}
+    // Render Slider Projects
+    if (container) {
+        let html = `
+            <div class="projects-showcase">
+                <div class="projects-carousel-container">
+                    <button class="carousel-nav-btn carousel-prev" id="carouselPrev" aria-label="Previous project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    
+                    <div class="projects-carousel-track" id="projectsCarouselTrack">
+                        ${sliderProjects.map((project, index) => renderCarouselCard(project, view, index)).join('')}
+                    </div>
+                    
+                    <button class="carousel-nav-btn carousel-next" id="carouselNext" aria-label="Next project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
                 </div>
                 
-                <button class="carousel-nav-btn carousel-next" id="carouselNext" aria-label="Next project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
+                <div class="carousel-dots" id="carouselDots">
+                    ${sliderProjects.map((_, i) => `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
+                </div>
             </div>
-            
-            <div class="carousel-dots" id="carouselDots">
-                ${sliderProjects.map((_, i) => `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
-            </div>
-        </div>
-    `;
-
-    container.innerHTML = html;
-    container.setAttribute('data-current-view', view);
-
-    // Initialize carousel navigation
-    initProjectsCarousel(sliderProjects.length);
+        `;
+        container.innerHTML = html;
+        container.setAttribute('data-current-view', view);
+        initProjectsCarousel(sliderProjects.length);
+    }
 }
 
 // Initialize the carousel navigation
@@ -913,51 +908,104 @@ function renderCarouselCard(project, view = 'business', index) {
 
 // Render hero featured card (LeAIrn, Hatrick, Scholar2.6)
 function renderHeroCard(project, iconConfig, view = 'business') {
-    const isTechnical = view === 'technical';
-
-    const githubLink = project.links && project.links.github
-        ? `<a href="${project.links.github}" target="_blank" class="hero-card-link" title="View Code" onclick="event.stopPropagation(); trackCTAClick('github_${project.id}')"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>`
-        : '';
-
-    const demoLink = project.links && project.links.demo
-        ? `<a href="${project.links.demo}" target="_blank" class="hero-card-link hero-card-demo" title="Live Demo" onclick="event.stopPropagation(); trackCTAClick('demo_${project.id}')"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg> Demo</a>`
-        : '';
-
-    const clickUrl = project.links?.demo || project.links?.github || '#';
-
     return `
-        <div class="hero-project-card" onclick="window.open('${clickUrl}', '_blank')" style="--hero-accent: ${iconConfig?.color || '#4ade80'}">
-            <div class="hero-card-icon" style="background: linear-gradient(135deg, ${iconConfig?.color || '#4ade80'}33, ${iconConfig?.color || '#4ade80'}11)">
-                <span>${iconConfig?.icon || '✨'}</span>
-            </div>
-            <div class="hero-card-content">
-                <div class="hero-card-header">
-                    <h3 class="hero-card-title">${project.title}</h3>
-                </div>
-                <div class="hero-card-desc" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">
-                     ${isTechnical ? `
-                         <p style="margin-bottom: 8px;"><strong>Technical Details:</strong> ${project.techDetails || project.solution}</p>
-                         <p style="margin-bottom: 8px;"><strong>Architecture:</strong> ${project.architecture || 'Full-stack application with modern frameworks and cloud deployment'}</p>
-                         <p><strong>Key Technologies:</strong> ${project.techStack.slice(0, 4).join(', ')}</p>
-                     ` : `
-                         <p style="margin-bottom: 4px;"><strong>Problem:</strong> ${project.problem ? project.problem.substring(0, 100) + "..." : ""}</p>
-                         <p style="margin-bottom: 4px;"><strong>Solution:</strong> ${project.solution.substring(0, 100)}...</p>
-                         <p><strong>Impact:</strong> ${project.outcome ? project.outcome.substring(0, 100) + "..." : ""}</p>
-                     `}
-                </div>
-                <div class="hero-card-footer">
-                    <div class="hero-card-tags">
-                        ${project.techStack.slice(0, 3).map(tech => `<span class="hero-card-tag">${tech}</span>`).join('')}
-                    </div>
-                    <div class="hero-card-links">
-                        ${demoLink}
-                        ${githubLink}
-                    </div>
-                </div>
-            </div>
+        <div class="hero-project-card" style="border-top: 4px solid ${iconConfig?.color || 'var(--accent)'}">
+            <div class="hero-card-icon">${iconConfig?.icon || '✨'}</div>
+            <h3 class="hero-card-title">${project.title}</h3>
+            <button class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('${project.id}')">
+                <i class="fab fa-youtube"></i> View More
+            </button>
         </div>
     `;
 }
+
+// Function to open project modal with PSI and Video
+function openProjectModal(projectId) {
+    if (typeof projectsData === 'undefined') return;
+    const project = projectsData.find(p => p.id === projectId);
+    if (!project) return;
+
+    const modal = document.getElementById('projectModal');
+    const video = document.getElementById('projectModalVideo');
+    const title = document.getElementById('modalTitle');
+    const role = document.getElementById('modalRole');
+    const problem = document.getElementById('modalProblem');
+    const solution = document.getElementById('modalSolution');
+    const impact = document.getElementById('modalImpact');
+    const links = document.getElementById('modalLinks');
+
+    if (!modal || !video) {
+        console.error('Modal or video element not found');
+        return;
+    }
+
+    // Populate data
+    title.textContent = project.title;
+    role.textContent = project.role || 'Lead Developer';
+    problem.innerHTML = project.problem || 'N/A';
+    solution.innerHTML = project.solution || 'N/A';
+    impact.innerHTML = project.outcome || project.metrics?.join(', ') || 'N/A';
+
+    // Video handling - using mediaUrl or video field
+    const videoSrc = project.video || project.mediaUrl;
+    if (project.mediaType === 'video' || (videoSrc && videoSrc.endsWith('.mp4'))) {
+        video.src = videoSrc;
+        video.style.display = 'block';
+        video.parentElement.style.display = 'flex';
+        video.play().catch(e => console.log('Auto-play prevented:', e));
+    } else {
+        video.style.display = 'none';
+        video.parentElement.style.display = 'none'; // Maybe show image instead?
+    }
+
+    // Links handling
+    links.innerHTML = '';
+    if (project.links?.demo) {
+        links.innerHTML += `<a href="${project.links.demo}" target="_blank" class="cta-button primary" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">Live Demo</a>`;
+    }
+    if (project.links?.github) {
+        links.innerHTML += `<a href="${project.links.github}" target="_blank" class="cta-button secondary" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">GitHub</a>`;
+    }
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Initialize Project Modal Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const projectModal = document.getElementById('projectModal');
+    const closeBtn = document.getElementById('closeProjectModal');
+    const overlay = projectModal?.querySelector('.project-modal-overlay');
+
+    if (!projectModal) return;
+
+    const closeModal = () => {
+        projectModal.classList.remove('active');
+        document.body.style.overflow = '';
+        const video = document.getElementById('projectModalVideo');
+        if (video) {
+            video.pause();
+            video.src = '';
+        }
+    };
+
+    closeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal();
+    });
+
+    overlay?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+});
 
 // Render stacked card (the overlapping card style from the image)
 function renderStackedCard(project, index, view = 'business') {
@@ -1783,146 +1831,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ========================================
-// AI PLAYGROUND LOGIC
-// ========================================
-document.addEventListener('DOMContentLoaded', () => {
-    const playgroundInput = document.getElementById('playgroundInput');
-    const playgroundSend = document.getElementById('playgroundSend');
-    const playgroundMessages = document.getElementById('playgroundMessages');
-    const playgroundPrompts = document.getElementById('playgroundPrompts');
-
-    if (!playgroundInput || !playgroundSend || !playgroundMessages) return;
-
-    let playgroundHistory = [];
-
-    // Send message handler
-    function sendPlaygroundMessage(message) {
-        if (!message.trim()) return;
-
-        // Add user message to UI
-        const userDiv = document.createElement('div');
-        userDiv.className = 'pg-message user-message';
-        userDiv.innerHTML = `<div class="pg-content"><p>${escapeHtmlPG(message)}</p></div>`;
-        playgroundMessages.appendChild(userDiv);
-
-        // Clear input
-        playgroundInput.value = '';
-
-        // Hide prompt chips after first message
-        if (playgroundPrompts) playgroundPrompts.style.display = 'none';
-
-        // Show typing indicator
-        const typingDiv = document.createElement('div');
-        typingDiv.className = 'pg-message ai-message pg-typing';
-        typingDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content"><div class="skeleton-loader"><div class="skeleton-line" style="width:90%"></div><div class="skeleton-line" style="width:70%"></div><div class="skeleton-line" style="width:80%"></div></div></div>`;
-        playgroundMessages.appendChild(typingDiv);
-        playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
-
-        // Add to history
-        playgroundHistory.push({ role: 'user', content: message });
-        if (playgroundHistory.length > 10) playgroundHistory = playgroundHistory.slice(-10);
-
-        // Call API
-        fetch('/api/playground', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ messages: playgroundHistory })
-        })
-            .then(res => {
-                // Check rate limiting
-                const remaining = res.headers.get('X-RateLimit-Remaining');
-
-                if (res.status === 429) {
-                    return res.json().then(data => {
-                        typingDiv.remove();
-                        showRateLimitToast(data.retryAfter || 60);
-                        const errDiv = document.createElement('div');
-                        errDiv.className = 'pg-message ai-message';
-                        errDiv.innerHTML = `<span class="pg-avatar">⏳</span><div class="pg-content"><p>You've reached the request limit. Please wait a moment before trying again.</p></div>`;
-                        playgroundMessages.appendChild(errDiv);
-                        playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
-                        trackAIAnalytics('playground', 'rate_limited');
-                        throw new Error('rate_limited');
-                    });
-                }
-
-                if (!res.ok) throw new Error('API failed');
-                return res.json().then(data => ({ data, remaining }));
-            })
-            .then(({ data, remaining }) => {
-                typingDiv.remove();
-                const botReply = data.choices[0].message.content;
-                playgroundHistory.push({ role: 'assistant', content: botReply });
-
-                const aiDiv = document.createElement('div');
-                aiDiv.className = 'pg-message ai-message';
-                aiDiv.innerHTML = `<span class="pg-avatar">🧠</span><div class="pg-content">${formatMarkdownPG(botReply)}</div>`;
-                playgroundMessages.appendChild(aiDiv);
-                playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
-
-                // Show remaining hint when low
-                if (remaining !== null && parseInt(remaining) <= 3) {
-                    const hintDiv = document.createElement('div');
-                    hintDiv.className = 'pg-message ai-message';
-                    hintDiv.style.opacity = '0.6';
-                    hintDiv.style.fontSize = '0.8rem';
-                    hintDiv.innerHTML = `<span class="pg-avatar">💡</span><div class="pg-content"><p>${parseInt(remaining)} request${parseInt(remaining) !== 1 ? 's' : ''} remaining this minute</p></div>`;
-                    playgroundMessages.appendChild(hintDiv);
-                    setTimeout(() => hintDiv.remove(), 5000);
-                }
-
-                trackAIAnalytics('playground', 'success');
-            })
-            .catch(err => {
-                if (err.message === 'rate_limited') return;
-                console.error('Playground error:', err);
-                typingDiv.remove();
-                const errDiv = document.createElement('div');
-                errDiv.className = 'pg-message ai-message';
-                errDiv.innerHTML = `<span class="pg-avatar">⚠️</span><div class="pg-content"><p>Couldn't reach the AI server. This feature works on the live deployed site (Vercel) with the NVIDIA API key configured.</p></div>`;
-                playgroundMessages.appendChild(errDiv);
-                playgroundMessages.scrollTop = playgroundMessages.scrollHeight;
-                trackAIAnalytics('playground', 'error');
-            });
-
-        if (typeof trackCTAClick !== 'undefined') trackCTAClick('playground_message_sent');
-    }
-
-    // Bind events
-    playgroundSend.addEventListener('click', () => sendPlaygroundMessage(playgroundInput.value));
-    playgroundInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendPlaygroundMessage(playgroundInput.value);
-    });
-
-    // Prompt chip click handlers
-    playgroundPrompts.querySelectorAll('.prompt-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            sendPlaygroundMessage(chip.dataset.prompt);
-        });
-    });
-
-    // Helper functions
-    function escapeHtmlPG(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    function formatMarkdownPG(text) {
-        return text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/^### (.*$)/gm, '<h4>$1</h4>')
-            .replace(/^## (.*$)/gm, '<h3>$1</h3>')
-            .replace(/^- (.*$)/gm, '<li>$1</li>')
-            .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
-            .replace(/\n\n/g, '</p><p>')
-            .replace(/\n/g, '<br>')
-            .replace(/^/, '<p>')
-            .replace(/$/, '</p>');
-    }
-});
+// AI PLAYGROUND LOGIC REMOVED
 
 // ========================================
 // AI RESUME TAILORING LOGIC

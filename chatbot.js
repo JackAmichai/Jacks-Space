@@ -117,14 +117,16 @@ class CloudChatbot {
         // Chatbot bubble button
         const bubble = document.createElement('div');
         bubble.id = 'chatbot-bubble';
-        bubble.className = 'chatbot-bubble';
+        bubble.className = 'chatbot-bubble floating-btn';
         bubble.innerHTML = `
             <img src="images/cloud-bot.jpg" alt="Cloud Assistant" class="chatbot-avatar">
             <div class="chatbot-bubble-pulse"></div>
         `;
-        document.body.appendChild(bubble);
+        
+        const container = document.querySelector('.floating-actions') || document.body;
+        container.appendChild(bubble);
 
-        // Chatbot popup notification
+        // Chatbot popup notification (leaving it in body)
         const popup = document.createElement('div');
         popup.id = 'chatbot-popup';
         popup.className = 'chatbot-popup';
