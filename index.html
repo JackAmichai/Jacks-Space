@@ -214,72 +214,67 @@
                                 Resume</a>
                         </div>
                     </div>
-                </div>
-
-                <!-- Right: High-Impact Portrait & Navigation -->
+                <                <!-- Right: Bento Box Navigation -->
                 <div class="hero-photo-tldr">
-                    <div class="portrait-container">
-                        <div class="portrait-frame">
-                            <img src="images/me.jpeg" alt="Jack Amichai" width="500" height="500" loading="eager">
-                            <div class="portrait-glow"></div>
-                        </div>
-
-                        <!-- Restored High-Impact Buttons -->
-                        <div class="hero-action-buttons"
-                            style="margin-top: 25px; display: flex; flex-direction: column; gap: 8px;">
-                            <div style="display: flex; gap: 8px; align-items: center;">
-                                <button id="openPitchBtn" class="btn-hero-action btn-pitch"
-                                    style="background: #e60000; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; flex: 1; max-width: 180px;">
-                                    <i class="fab fa-youtube"></i> Watch my Pitch
-                                </button>
-                                <a href="https://github.com/JackAmichai" target="_blank"
-                                    class="btn-hero-action btn-github-profile"
-                                    style="color: var(--text-primary); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.3s; flex: 1;">
-                                    <i class="fab fa-github"></i> GitHub Profile
-                                </a>
+                    <div class="hero-bento-grid">
+                        <!-- Profile & Main Actions (Large Item) -->
+                        <div class="bento-item bento-profile">
+                            <div class="portrait-frame">
+                                <img src="images/me.jpeg" alt="Jack Amichai" loading="eager">
+                                <div class="portrait-glow"></div>
                             </div>
-                            <button id="roleFitBtn" class="btn-hero-action btn-is-role"
-                                style="background: #0056b3; color: white; border: none; padding: 10px 24px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; width: fit-content; box-shadow: 0 4px 15px rgba(0,86,179,0.3);">
-                                Is your role for Jack
-                            </button>
+                            <div class="bento-profile-overlay">
+                                <div class="bento-actions-row">
+                                    <button id="openPitchBtn" class="btn-hero-action btn-pitch">
+                                        <i class="fab fa-youtube"></i> Pitch
+                                    </button>
+                                    <a href="https://github.com/JackAmichai" target="_blank" class="btn-hero-action btn-github">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                                <button id="roleFitBtn" class="btn-hero-action btn-is-role">
+                                    Is your role for Jack?
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Restored Navigation Cards -->
-                        <div class="hero-cards-container"
-                            style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-start;">
-                            <a href="Jack solutions architect 20-1-26.pdf" download class="hero-card-btn"
-                                style="background-image: url('images/Resume.png');">
-                                <div class="hero-card-overlay">
-                                    <span class="hero-card-text">Resume</span>
-                                </div>
-                            </a>
-                            <a href="#projects" class="hero-card-btn"
-                                style="background-image: url('images/Coding.png');">
-                                <div class="hero-card-overlay">
-                                    <span class="hero-card-text">Projects</span>
-                                </div>
-                            </a>
-                            <a href="#contact" class="hero-card-btn"
-                                style="background-image: url('images/contact me.png');">
-                                <div class="hero-card-overlay">
-                                    <span class="hero-card-text">Contact</span>
-                                </div>
-                            </a>
-                            <a href="#about" class="hero-card-btn hobbies-card-btn"
-                                style="background-image: url('images/my story image real.png');">
-                                <div class="hero-card-overlay">
-                                    <span class="hero-card-text">Story</span>
-                                </div>
-                            </a>
-                            <a href="#hobbies" class="hero-card-btn hobbies-card-btn"
-                                style="background-image: url('images/Hobbies button.png');">
-                                <div class="hero-card-overlay">
-                                    <span class="hero-card-text">Hobbies</span>
-                                </div>
-                            </a>
-                        </div>
+                        <!-- Resume (Small Square) -->
+                        <a href="Jack solutions architect 20-1-26.pdf" download class="bento-item bento-card bento-resume" style="background-image: url('images/Resume.png');">
+                            <div class="bento-card-content">
+                                <span class="bento-card-label">Resume</span>
+                            </div>
+                        </a>
+
+                        <!-- Projects (Small Square) -->
+                        <a href="#projects" class="bento-item bento-card bento-projects" style="background-image: url('images/Coding.png');">
+                            <div class="bento-card-content">
+                                <span class="bento-card-label">Projects</span>
+                            </div>
+                        </a>
+
+                        <!-- Contact (Small Square) -->
+                        <a href="#contact" class="bento-item bento-card bento-contact" style="background-image: url('images/contact me.png');">
+                            <div class="bento-card-content">
+                                <span class="bento-card-label">Contact</span>
+                            </div>
+                        </a>
+
+                        <!-- Hobbies (Small Square) -->
+                        <a href="#hobbies" class="bento-item bento-card bento-hobbies" style="background-image: url('images/Hobbies button.png');">
+                            <div class="bento-card-content">
+                                <span class="bento-card-label">Hobbies</span>
+                            </div>
+                        </a>
+
+                        <!-- Story (Rectangular Square) -->
+                        <a href="#about" class="bento-item bento-card bento-story" style="background-image: url('images/my story image real.png');">
+                            <div class="bento-card-content">
+                                <span class="bento-card-label">Story</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
+</div>
             </div>
         </div>
     </section>
