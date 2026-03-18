@@ -1509,13 +1509,15 @@ section {
 .connect-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
+    align-items: center;
 }
 
 .btn-connect-primary,
 .btn-connect-outline {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 12px 24px;
     border-radius: 12px;
@@ -1524,6 +1526,9 @@ section {
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    line-height: 1;
+    height: 48px;
+    box-sizing: border-box;
 }
 
 .btn-connect-primary {
@@ -9589,9 +9594,11 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    min-width: 260px; /* Equalized width */
+    width: 280px; /* Standardized fixed width */
+    height: 54px; /* Standardized height */
     text-decoration: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
 }
 
 .btn-toggle-books {
