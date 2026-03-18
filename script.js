@@ -913,20 +913,21 @@ function renderHeroCard(project, iconConfig, view = 'business') {
     const imageUrl = project.image || 'images/hero-bg-1.jpg';
 
     return `
-        <div class="relative rounded-xl overflow-hidden h-48 w-full" style="position: relative; border-radius: 0.75rem; overflow: hidden; height: 12rem; width: 100%;">
+        <div class="relative rounded-xl overflow-hidden w-full" style="position: relative; border-radius: 1rem; overflow: hidden; aspect-ratio: 1 / 1; width: 100%; transition: transform 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
             <!-- Full background image -->
             <div class="absolute inset-0 bg-cover bg-center" style="position: absolute; inset: 0; background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
             <!-- Dark overlay for readability -->
-            <div class="absolute inset-0 bg-black/40" style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.4);"></div>
+            <div class="absolute inset-0 bg-black/50" style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
             <!-- Content on top -->
-            <div class="relative z-10 flex flex-col justify-end h-full p-4" style="position: relative; z-index: 10; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; padding: 1rem;">
-                <h3 class="text-white font-bold text-lg" style="color: white; font-weight: 700; font-size: 1.125rem; margin: 0;">${project.title}</h3>
-                <div class="flex gap-2 mt-2" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                    <a href="#" onclick="event.stopPropagation(); openProjectModal('${project.id}'); return false;" class="flex items-center gap-1 px-3 py-1 bg-red-600 text-white text-xs rounded-full" style="display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.75rem; background-color: #dc2626; color: white; font-size: 0.75rem; border-radius: 9999px; text-decoration: none;">
+            <div class="relative z-10 flex flex-col justify-end h-full p-6" style="position: relative; z-index: 10; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; padding: 1.5rem;">
+                <h3 class="text-white font-bold text-xl" style="color: white; font-weight: 800; font-size: 1.5rem; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">${project.title}</h3>
+                <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 1rem; font-weight: 500;">${project.role || 'Developer'}</p>
+                <div class="flex gap-3 mt-2" style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+                    <a href="#" onclick="event.stopPropagation(); openProjectModal('${project.id}'); return false;" class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white text-sm rounded-full font-bold hover:bg-red-700 transition" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background-color: #dc2626; color: white; font-size: 0.875rem; border-radius: 9999px; text-decoration: none; font-weight: 700;">
                         ▶ Video
                     </a>
                     ${siteUrl ? `
-                    <a href="${siteUrl}" target="_blank" onclick="event.stopPropagation();" class="flex items-center gap-1 px-3 py-1 bg-gray-800 text-white text-xs rounded-full" style="display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.75rem; background-color: #1f2937; color: white; font-size: 0.75rem; border-radius: 9999px; text-decoration: none;">
+                    <a href="${siteUrl}" target="_blank" onclick="event.stopPropagation();" class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm rounded-full font-bold hover:bg-gray-900 transition" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background-color: #1f2937; color: white; font-size: 0.875rem; border-radius: 9999px; text-decoration: none; font-weight: 700;">
                         🔗 Live Site
                     </a>
                     ` : ''}
