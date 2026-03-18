@@ -217,7 +217,7 @@ section {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 100px 0 80px;
+    padding: 80px 0 60px;
     background: var(--bg-primary);
     position: relative;
     overflow: hidden;
@@ -225,11 +225,11 @@ section {
 
 .hero-grid-tldr {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -387,6 +387,8 @@ section {
 
 .btn-pitch {
     background: #FF0000;
+    background-size: cover;
+    background-position: center;
     color: white;
     flex: 1;
 }
@@ -399,6 +401,8 @@ section {
 
 .btn-github {
     background: rgba(255,255,255,0.15);
+    background-size: cover;
+    background-position: center;
     backdrop-filter: blur(10px);
     color: white;
     width: 44px;
