@@ -910,26 +910,28 @@ function renderCarouselCard(project, view = 'business', index) {
 function renderHeroCard(project, iconConfig, view = 'business') {
     const demoUrl = project.links?.demo;
     const mediaUrl = project.image || project.mediaUrl;
-    const isVideo = project.mediaType === 'video' || (mediaUrl && mediaUrl.endsWith('.mp4'));
     
-    // Determine the cover content (Image vs Emoji)
-    const cardIconHtml = project.image 
-        ? `<img src="${project.image}" alt="${project.title}" class="hero-card-project-img">`
-        : `<div class="hero-card-emoji">${iconConfig?.icon || '✨'}</div>`;
+    // Determine the background image
+    const backgroundImage = project.image || 'images/hero-bg-1.jpg'; // Fallback image
 
     return `
-        <div class="hero-project-card" style="border-top: 4px solid ${iconConfig?.color || 'var(--accent)'}">
-            <div class="hero-card-icon-container">${cardIconHtml}</div>
-            <h3 class="hero-card-title">${project.title}</h3>
-            <div class="hero-card-actions">
-                <button class="btn-card-action btn-view-more" onclick="event.stopPropagation(); openProjectModal('${project.id}')">
-                    <i class="fab fa-youtube"></i> Video
-                </button>
-                ${demoUrl ? `
-                <button class="btn-card-action btn-live-preview" onclick="event.stopPropagation(); openLivePreview('${demoUrl}')">
-                    <i class="fas fa-external-link-alt"></i> Live Site
-                </button>
-                ` : ''}
+        <div class="hero-project-card">
+            <div class="hero-card-icon-container">
+                <img src="${backgroundImage}" alt="${project.title}" class="hero-card-project-img">
+                <div class="hero-card-overlay"></div>
+            </div>
+            <div class="hero-project-card-content">
+                <h3 class="hero-card-title">${project.title}</h3>
+                <div class="hero-card-actions">
+                    <button class="btn-card-action btn-view-more" onclick="event.stopPropagation(); openProjectModal('${project.id}')">
+                        <i class="fab fa-youtube"></i> Video
+                    </button>
+                    ${demoUrl ? `
+                    <button class="btn-card-action btn-live-preview" onclick="event.stopPropagation(); openLivePreview('${demoUrl}')">
+                        <i class="fas fa-external-link-alt"></i> Live Site
+                    </button>
+                    ` : ''}
+                </div>
             </div>
         </div>
     `;

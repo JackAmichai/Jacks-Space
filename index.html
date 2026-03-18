@@ -69,6 +69,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@11.1.1/dist/css/shepherd.css" />
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="background.css">
 </head>
 
 <body>
@@ -105,6 +106,28 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-right-new">
+                <div class="accessibility-wrapper">
+                    <button class="accessibility-toggle theme-toggle-new" id="accessibilityToggle" aria-label="Accessibility settings" title="Accessibility Menu" style="border-radius: 8px;">
+                        <span class="accessibility-icon">♿️</span>
+                    </button>
+                    <div class="accessibility-dropdown" id="accessibilityMenu">
+                        <div class="a11y-header">Accessibility Settings</div>
+                        <div class="a11y-options">
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-large-text"> Large Text
+                            </label>
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-high-contrast"> High Contrast
+                            </label>
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-highlight-links"> Highlight Links
+                            </label>
+                            <label class="a11y-option">
+                                <input type="checkbox" id="a11y-dyslexic-font"> Dyslexic Font
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <button class="theme-toggle-new" id="themeToggle" aria-label="Toggle theme">
                     <span class="theme-icon-new">🌙</span>
                 </button>
@@ -798,42 +821,42 @@
 
             <div class="hobbies-grid">
                 <!-- Traveling -->
-                <button class="hobby-mode-btn skill-card" onclick="setHobbyMode('traveling')">
+                <button class="hobby-mode-btn skill-card" onclick="firePaws('dog')">
                     <img src="images/hobbies/airplane.png" alt="Travel" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
                     <div class="hobby-card-title" style="margin-top: 10px;">Traveling</div>
                 </button>
 
                 <!-- Violin -->
-                <button class="hobby-mode-btn skill-card" onclick="setHobbyMode('violin')">
+                <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/violin.png" alt="Violin" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
                     <div class="hobby-card-title" style="margin-top: 10px;">Violin</div>
                 </button>
 
                 <!-- Drawing -->
-                <button class="hobby-mode-btn skill-card" onclick="setHobbyMode('drawing')">
+                <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/drawing_comic.jpg" alt="Drawing" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
                     <div class="hobby-card-title" style="margin-top: 10px;">Drawing</div>
                 </button>
 
                 <!-- Reading -->
-                <button class="hobby-mode-btn skill-card" onclick="setHobbyMode('reading')">
+                <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/reading.png" alt="Reading" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
                     <div class="hobby-card-title" style="margin-top: 10px;">Reading</div>
                 </button>
 
                 <!-- Plants -->
-                <button class="hobby-mode-btn skill-card" onclick="setHobbyMode('plants')">
+                <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/garden.jpg" alt="Gardening" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
                     <div class="hobby-card-title" style="margin-top: 10px;">Plants</div>
                 </button>
 
                 <!-- Gym -->
-                <button class="hobby-mode-btn skill-card" onclick="setHobbyMode('gym')">
+                <button class="hobby-mode-btn skill-card" onclick="firePaws('dog')">
                     <img src="images/hobbies/fitness.png" alt="Gym" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
                     <div class="hobby-card-title" style="margin-top: 10px;">Gym</div>
@@ -1794,10 +1817,11 @@
     <script src="script.js?v=3"></script>
     <script src="ux-enhancements.js?v=3"></script>
     <script src="competencies.js?v=3"></script>
+    <script src="background.js?v=1"></script>
     
     <!-- Paw Print Animation -->
     <div id="paw-print-container"></div>
-    <script src="paw-animation.js?v=1"></script>
+    <script src="paw-easter-egg.js?v=2"></script>
     
     <script src="tour.js?v=3"></script>
 

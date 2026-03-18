@@ -1,0 +1,65 @@
+/* background.css */
+#portfolio-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: #f0f4f8; /* Light mode base */
+    transition: background-color 0.3s ease;
+}
+
+#portfolio-bg.dark-mode {
+    background-color: #080c18; /* Dark mode base */
+}
+
+/* Light mode Glass Grid */
+#portfolio-bg .bg-glass-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 3px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#portfolio-bg.dark-mode .bg-glass-grid {
+    opacity: 0;
+}
+
+#portfolio-bg .glass-cell {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Light mode texture layer */
+#portfolio-bg .bg-texture {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#94a3b8 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.25;
+    transition: opacity 0.3s ease;
+}
+
+#portfolio-bg.dark-mode .bg-texture {
+    opacity: 0;
+}
+
+/* Dark mode Canvas */
+#portfolio-bg canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#portfolio-bg.dark-mode canvas {
+    opacity: 1;
+}
