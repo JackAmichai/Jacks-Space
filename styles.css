@@ -306,6 +306,7 @@ section {
     gap: 15px;
     width: 100%;
     max-width: 580px;
+    margin: 0 auto;
 }
 
 .bento-item {
@@ -315,6 +316,8 @@ section {
     background: var(--bg-secondary);
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
 }
 
 .bento-item:hover {
@@ -337,6 +340,14 @@ section {
     margin: 0;
     max-width: none;
     box-shadow: none;
+    position: relative;
+}
+
+.bento-profile .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .bento-profile-overlay {
@@ -358,16 +369,18 @@ section {
 /* Action Buttons */
 .btn-hero-action {
     border: none;
-    padding: 12px 20px;
+    padding: 10px 16px;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .btn-pitch {
@@ -376,34 +389,46 @@ section {
     flex: 1;
 }
 
-.btn-pitch:hover { background: #cc0000; transform: scale(1.05); }
+.btn-pitch:hover { 
+    background: #cc0000; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
 
 .btn-github {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
     color: white;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.btn-github:hover { background: rgba(255,255,255,0.25); transform: rotate(12deg); }
+.btn-github:hover { 
+    background: rgba(255,255,255,0.25); 
+    transform: rotate(12deg) scale(1.1); 
+}
 
 .btn-is-role {
     background: var(--accent);
     color: white;
     width: 100%;
-    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
 }
 
-.btn-is-role:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5); }
+.btn-is-role:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4); 
+}
 
 /* Card Styling */
 .bento-card {
     background-size: cover;
     background-position: center;
     text-decoration: none;
+    height: 100%;
+    width: 100%;
 }
 
 .bento-card-content {
@@ -412,7 +437,7 @@ section {
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
     display: flex;
     align-items: flex-end;
-    padding: 20px;
+    padding: 15px;
     transition: all 0.3s ease;
 }
 
@@ -423,7 +448,7 @@ section {
 .bento-card-label {
     color: white;
     font-weight: 800;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 0.5px;
 }
 
@@ -443,14 +468,74 @@ section {
     color: #4fc1ff;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 900px) {
+/* Responsive Bento Grid */
+@media (max-width: 1100px) {
+    .hero-grid-tldr {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 950px) {
     .hero-grid-tldr {
         grid-template-columns: 1fr;
-        padding-top: 40px;
+        padding-top: 20px;
     }
+    
     .hero-photo-tldr {
         order: -1;
+        margin-bottom: 40px;
+    }
+    
+    .hero-bento-grid {
+        max-width: 650px;
+    }
+}
+
+@media (max-width: 650px) {
+    .hero-bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 150px);
+        gap: 12px;
+    }
+    
+    .bento-profile {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+    .bento-story {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    
+    .bento-card-content {
+        padding: 12px;
+    }
+    
+    .bento-card-label {
+        font-size: 0.75rem;
+    }
+
+    .btn-hero-action {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .bento-item {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        height: 160px;
+    }
+    
+    .bento-profile {
+        height: 350px;
     }
 }
 
@@ -7354,6 +7439,8 @@ html {
 
 [data-theme="dark"] .btn-github {
     background: rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
 }
 
 /* Mobile responsive */
