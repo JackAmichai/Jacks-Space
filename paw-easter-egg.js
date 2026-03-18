@@ -15,32 +15,34 @@
         return audioCtx;
     }
 
-    function playRaindropSound() {
+    function playRelaxingTune() {
         const ctx = getAudioContext();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        
-        osc.type = 'sine';
         const now = ctx.currentTime;
         
-        // Quick pitch drop
-        osc.frequency.setValueAtTime(800 + Math.random() * 200, now);
-        osc.frequency.exponentialRampToValueAtTime(400, now + 0.1);
+        // Pentatonic notes (C5, E5, G5)
+        const notes = [523.25, 659.25, 783.99];
         
-        // Quick fade out
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.2, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-        
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        
-        osc.start(now);
-        osc.stop(now + 0.1);
+        notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + i * 0.15);
+            
+            gain.gain.setValueAtTime(0, now + i * 0.15);
+            gain.gain.linearRampToValueAtTime(0.1, now + i * 0.15 + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.15 + 0.4);
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.start(now + i * 0.15);
+            osc.stop(now + i * 0.15 + 0.4);
+        });
     }
 
     window.firePaws = function(animalType) {
-        playRaindropSound();
+        playRelaxingTune();
 
         const paws = [];
         const isLeftEdge = Math.random() > 0.5;
