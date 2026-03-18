@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tour.addStep({
         id: 'contact',
-        title: 'AI Chat',
+        title: 'AI Assistant',
         text: 'Ask my AI assistant anything about me (bottom right)',
         attachTo: {
-            element: '#contact',
+            element: '#chatbot-bubble',
             on: 'top'
         },
         buttons: [
@@ -244,7 +244,7 @@ function createTourModal(tour) {
                   <div class="tour-step">
                       <div class="step-number">5</div>
                       <div class="step-info">
-                          <strong>AI Chat</strong>
+                          <strong>AI Assistant</strong>
                           <p>Ask my AI assistant anything about me (bottom right)</p>
                       </div>
                   </div>

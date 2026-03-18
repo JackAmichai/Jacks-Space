@@ -908,35 +908,33 @@ function renderCarouselCard(project, view = 'business', index) {
 
 // Render hero featured card (LeAIrn, Hatrick, Scholar2.6)
 function renderHeroCard(project, iconConfig, view = 'business') {
-    const demoUrl = project.links?.demo;
-    const mediaUrl = project.image || project.mediaUrl;
-    
-    // Determine the background image
-    const backgroundImage = project.image || 'images/hero-bg-1.jpg'; // Fallback image
+    const siteUrl = project.links?.demo;
+    const videoUrl = project.video || project.mediaUrl;
+    const imageUrl = project.image || 'images/hero-bg-1.jpg';
 
     return `
-        <div class="hero-project-card">
-            <div class="hero-card-icon-container">
-                <img src="${backgroundImage}" alt="${project.title}" class="hero-card-project-img">
-                <div class="hero-card-overlay"></div>
-            </div>
-            <div class="hero-project-card-content">
-                <h3 class="hero-card-title">${project.title}</h3>
-                <div class="hero-card-actions">
-                    <button class="btn-card-action btn-view-more" onclick="event.stopPropagation(); openProjectModal('${project.id}')">
-                        <i class="fab fa-youtube"></i> Video
-                    </button>
-                    ${demoUrl ? `
-                    <button class="btn-card-action btn-live-preview" onclick="event.stopPropagation(); openLivePreview('${demoUrl}')">
-                        <i class="fas fa-external-link-alt"></i> Live Site
-                    </button>
+        <div class="relative rounded-xl overflow-hidden h-48 w-full" style="position: relative; border-radius: 0.75rem; overflow: hidden; height: 12rem; width: 100%;">
+            <!-- Full background image -->
+            <div class="absolute inset-0 bg-cover bg-center" style="position: absolute; inset: 0; background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
+            <!-- Dark overlay for readability -->
+            <div class="absolute inset-0 bg-black/40" style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.4);"></div>
+            <!-- Content on top -->
+            <div class="relative z-10 flex flex-col justify-end h-full p-4" style="position: relative; z-index: 10; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; padding: 1rem;">
+                <h3 class="text-white font-bold text-lg" style="color: white; font-weight: 700; font-size: 1.125rem; margin: 0;">${project.title}</h3>
+                <div class="flex gap-2 mt-2" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <a href="#" onclick="event.stopPropagation(); openProjectModal('${project.id}'); return false;" class="flex items-center gap-1 px-3 py-1 bg-red-600 text-white text-xs rounded-full" style="display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.75rem; background-color: #dc2626; color: white; font-size: 0.75rem; border-radius: 9999px; text-decoration: none;">
+                        ▶ Video
+                    </a>
+                    ${siteUrl ? `
+                    <a href="${siteUrl}" target="_blank" onclick="event.stopPropagation();" class="flex items-center gap-1 px-3 py-1 bg-gray-800 text-white text-xs rounded-full" style="display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.75rem; background-color: #1f2937; color: white; font-size: 0.75rem; border-radius: 9999px; text-decoration: none;">
+                        🔗 Live Site
+                    </a>
                     ` : ''}
                 </div>
             </div>
         </div>
     `;
 }
-
 // Function to open project modal with PSI and Video
 function openProjectModal(projectId) {
     if (typeof projectsData === 'undefined') return;

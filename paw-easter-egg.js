@@ -15,61 +15,32 @@
         return audioCtx;
     }
 
-    function playDogSound() {
-        const ctx = getAudioContext();
-        // Synthesize a double bark
-        const playBark = (time) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sawtooth';
-            
-            // Frequency envelope
-            osc.frequency.setValueAtTime(300, time);
-            osc.frequency.exponentialRampToValueAtTime(100, time + 0.1);
-            
-            // Gain envelope
-            gain.gain.setValueAtTime(0, time);
-            gain.gain.linearRampToValueAtTime(0.5, time + 0.02);
-            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.15);
-            
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            
-            osc.start(time);
-            osc.stop(time + 0.15);
-        };
-        const now = ctx.currentTime;
-        playBark(now);
-        playBark(now + 0.2);
-    }
-
-    function playCatSound() {
+    function playRaindropSound() {
         const ctx = getAudioContext();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
+        
         osc.type = 'sine';
-        
         const now = ctx.currentTime;
-        // Meow pitch contour
-        osc.frequency.setValueAtTime(400, now);
-        osc.frequency.linearRampToValueAtTime(600, now + 0.3);
-        osc.frequency.exponentialRampToValueAtTime(300, now + 0.8);
         
-        // Volume contour
+        // Quick pitch drop
+        osc.frequency.setValueAtTime(800 + Math.random() * 200, now);
+        osc.frequency.exponentialRampToValueAtTime(400, now + 0.1);
+        
+        // Quick fade out
         gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.3, now + 0.2);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+        gain.gain.linearRampToValueAtTime(0.2, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
         
         osc.connect(gain);
         gain.connect(ctx.destination);
         
         osc.start(now);
-        osc.stop(now + 0.8);
+        osc.stop(now + 0.1);
     }
 
     window.firePaws = function(animalType) {
-        if (animalType === 'dog') playDogSound();
-        if (animalType === 'cat') playCatSound();
+        playRaindropSound();
 
         const paws = [];
         const isLeftEdge = Math.random() > 0.5;
