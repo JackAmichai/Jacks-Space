@@ -72,6 +72,16 @@
 </head>
 
 <body>
+    <!-- Maintenance Popup -->
+    <div id="maintenance-popup" class="maintenance-overlay">
+        <div class="maintenance-card">
+            <div class="maintenance-icon">🚧</div>
+            <h3>Website Under Reservation</h3>
+            <p>Website under reservation, sorry. see u soon</p>
+            <button onclick="document.getElementById('maintenance-popup').style.display='none'" class="maintenance-close">Got it</button>
+        </div>
+    </div>
+
     <div class="cursor-pointer" id="cursorPointer"></div>
     <!-- Scroll Progress Bar -->
     <div id="scrollProgress" class="scroll-progress"></div>
@@ -85,199 +95,143 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#home" class="logo">JA</a>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about" class="nav-link" aria-label="About">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="8" r="4" />
-                            <path d="M20 21a8 8 0 1 0-16 0" />
-                        </svg>
-                        <span class="nav-text">About</span>
-                    </a></li>
-                <li><a href="#experience" class="nav-link" aria-label="Experience">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                        </svg>
-                        <span class="nav-text">Experience</span>
-                    </a></li>
-                <li><a href="#projects" class="nav-link" aria-label="Projects">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-                            <line x1="12" y1="11" x2="12" y2="17" />
-                            <line x1="9" y1="14" x2="15" y2="14" />
-                        </svg>
-                        <span class="nav-text">Projects</span>
-                    </a></li>
-                <li><a href="#recommendations" class="nav-link" aria-label="References">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <line x1="16" y1="13" x2="8" y2="13" />
-                            <line x1="16" y1="17" x2="8" y2="17" />
-                            <polyline points="10 9 9 9 8 9" />
-                        </svg>
-                        <span class="nav-text">References</span>
-                    </a></li>
-                <li><a href="#contact" class="nav-link" aria-label="Contact">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg>
-                        <span class="nav-text">Contact</span>
-                    </a></li>
+    <nav class="site-nav-new">
+        <div class="container-new">
+            <div class="logo-new">JA</div>
+            <ul class="nav-links-new">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="nav-actions">
-                <div class="accessibility-wrapper">
-                    <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Accessibility settings"
-                        title="Accessibility Menu">
-                        <span class="accessibility-icon">♿️</span>
-                    </button>
-                    <div class="accessibility-dropdown" id="accessibilityMenu">
-                        <div class="a11y-header">Accessibility Settings</div>
-                        <div class="a11y-options">
-                            <label class="a11y-option">
-                                <input type="checkbox" id="a11y-large-text"> Large Text
-                            </label>
-                            <label class="a11y-option">
-                                <input type="checkbox" id="a11y-high-contrast"> High Contrast
-                            </label>
-                            <label class="a11y-option">
-                                <input type="checkbox" id="a11y-highlight-links"> Highlight Links
-                            </label>
-                            <label class="a11y-option">
-                                <input type="checkbox" id="a11y-dyslexic-font"> Dyslexic Font
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"
-                    title="Toggle dark/light mode">
-                    <span class="theme-icon">🌙</span>
+            <div class="nav-right-new">
+                <button class="theme-toggle-new" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-icon-new">🌙</span>
                 </button>
-                <a href="Jack solutions architect 20-1-26.pdf" class="btn-primary" download>Resume</a>
+                <a href="https://github.com/JackAmichai" class="nav-github-new" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Recruiter-Mode: Technical Split) -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-grid-tldr">
-                <!-- Left: Terminal Card (Data & Context) -->
-                <div class="terminal-card">
-                    <div class="terminal-header">
-                        <div class="terminal-dot dot-red"></div>
-                        <div class="terminal-dot dot-yellow"></div>
-                        <div class="terminal-dot dot-green"></div>
+    <!-- Main Hero -->
+    <main class="hero-new" id="home">
+        <div class="container-new">
+            <div class="main-grid-new">
+                <!-- LEFT COLUMN -->
+                <div class="hero-left-new">
+                    <div class="badge-new">
+                        <div class="badge-dot-new"></div>
+                        OPEN TO OPPORTUNITIES
                     </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="term-prompt">jack@portfolio:~$</span> <span class="term-key">cat</span>
-                            profile.yml
+
+                    <div class="eyebrow-new">01 / JACK YARON</div>
+                    <h1 class="h1-new sparkles-text" data-sparkles-count="15">Amichai</h1>
+                    <div class="accent-line-new"></div>
+
+                    <p class="role-new">AI Solutions Engineer · Cloud Architect</p>
+                    <p class="tagline-new">Applying psychology & CS to architect scalable, adaptive AI solutions for enterprise environments.</p>
+
+                    <div class="chips-new">
+                        <span class="chip-new">Python</span>
+                        <span class="chip-new">AWS / GCP</span>
+                        <span class="chip-new">SAP BTP</span>
+                        <span class="chip-new">LangChain</span>
+                        <span class="chip-new">RAG</span>
+                        <span class="chip-new">React</span>
+                        <span class="chip-new">Multi-Agent</span>
+                    </div>
+
+                    <div class="ctas-new">
+                        <button id="openPitchBtn" class="btn-youtube-new">
+                            <svg width="14" height="10" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.7S23.2 0.8 22.4 0c-1-.9-2-.9-2.5-1C16.7-.1 12 0 12 0S7.3-.1 4.1 0c-.5.1-1.5.1-2.5 1C.8.8.5 2.7.5 2.7S.2 4.9.2 7.1v2.1c0 2.2.3 4.4.3 4.4s.3 1.9 1.1 2.7c1 .9 2.3.9 2.9 1 2.1.2 8.9.3 9.1.3s5.5-.1 7.3-.6c.5-.1 1.5-.1 2.5-1 .8-.8 1.1-2.7 1.1-2.7s.3-2.2.3-4.4V7.1C23.8 4.9 23.5 2.7 23.5 2.7zM9.7 11.5V4.9l6.6 3.3-6.6 3.3z"/></svg>
+                            Watch my Pitch
+                        </button>
+                        <a href="https://github.com/JackAmichai" class="btn-ghost-new" target="_blank">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub Profile
+                        </a>
+                    </div>
+
+                    <div class="ctas-new">
+                        <button id="roleFitBtn" class="btn-ai-new">✦ Is your role for Jack?</button>
+                        <a href="Jack solutions architect 20-1-26.pdf" class="btn-primary-new" download>Download Resume →</a>
+                    </div>
+
+                    <div class="location-row-new">
+                        <div class="location-dot-new"></div>
+                        <span>Tel Aviv, Israel</span>
+                        <span class="location-sep-new">·</span>
+                        <span class="location-highlight-new">Open to Relocation / Remote</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="right-col-new">
+                    <!-- PHOTO + STATS -->
+                    <div class="photo-stats-row-new">
+                        <div class="photo-wrap-new">
+                            <div class="photo-ring-outer-new"></div>
+                            <div class="photo-ring-new"></div>
+                            <img class="photo-img-new" src="images/me.jpeg" alt="Jack Yaron Amichai" />
                         </div>
-
-                        <div class="terminal-line" style="margin: 20px 0;">
-                            <h1 class="hero-name-tldr sparkles-text" data-sparkles-count="15">Jack Amichai</h1>
-                            <h2 class="hero-role-tldr">AI Solutions Engineer | Cloud Architect</h2>
-                        </div>
-
-                        <ul class="quick-facts-tldr">
-                            <li><span class="term-key">Experience:</span> <span class="term-value">2+ Years (Enterprise
-                                    Consulting & Research)</span></li>
-                            <li><span class="term-key">Location:</span> <span class="term-value">Israel (Open to
-                                    Relocation/Remote)</span></li>
-                            <li><span class="term-key">Core Stack:</span> <span class="term-value">Python, AWS/GCP, SAP
-                                    BTP, LangChain, React</span></li>
-                        </ul>
-
-                        <div class="terminal-line">
-                            <span class="term-comment"># Applying psychology & CS to architect scalable, adaptive AI
-                                solutions.</span>
-                        </div>
-
-                        <div class="hero-cta" style="margin-top: 30px; display: flex; gap: 15px;">
-                            <a href="#projects" class="btn-primary">View Flagship Projects</a>
-                            <a href="Jack solutions architect 20-1-26.pdf" download class="btn-secondary">Download
-                                Resume</a>
+                        <div class="stat-col-new">
+                            <div class="stat-card-new">
+                                <div class="stat-label-new">Experience</div>
+                                <div class="stat-value-new">2+</div>
+                                <div class="stat-sub-new">years</div>
+                            </div>
+                            <div class="stat-card-new">
+                                <div class="stat-label-new">Projects</div>
+                                <div class="stat-value-new">15+</div>
+                                <div class="stat-sub-new">shipped</div>
+                            </div>
                         </div>
                     </div>
-                <                <!-- Right: Bento Box Navigation -->
-                <div class="hero-photo-tldr">
-                    <div class="hero-bento-grid">
-                        <!-- Profile & Main Actions (Large Item) -->
-                        <div class="bento-item bento-profile">
-                            <div class="portrait-frame">
-                                <img src="images/me.jpeg" alt="Jack Amichai" loading="eager">
-                                <div class="portrait-glow"></div>
-                            </div>
-                            <div class="bento-profile-overlay">
-                                <div class="bento-actions-row">
-                                    <button id="openPitchBtn" class="btn-hero-action btn-pitch" style="background-image: url('images/Resume.png');">
-                                        <i class="fab fa-youtube"></i> Pitch
-                                    </button>
-                                    <a href="https://github.com/JackAmichai" target="_blank" class="btn-hero-action btn-github" style="background-image: url('images/Coding.png');">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                </div>
-                                    <button id="roleFitBtn" class="btn-hero-action btn-is-role" style="background-image: url('images/Business impact.png');">
-                                    Is your role for Jack?
-                                </button>
-                            </div>
-                        </div>
 
-                        <!-- Resume (Small Square) -->
-                        <a href="Jack solutions architect 20-1-26.pdf" download class="bento-item bento-card bento-resume" style="background-image: url('images/Resume.png');">
-                            <div class="bento-card-content">
-                                <span class="bento-card-label">Resume</span>
-                            </div>
+                    <!-- TILES GRID -->
+                    <div class="tiles-new">
+                        <a href="Jack solutions architect 20-1-26.pdf" download class="tile-new">
+                            <img src="images/Resume.png" alt="Resume" />
+                            <div class="tile-label-new">Resume</div>
                         </a>
-
-                        <!-- Projects (Small Square) -->
-                        <a href="#projects" class="bento-item bento-card bento-projects" style="background-image: url('images/Coding.png');">
-                            <div class="bento-card-content">
-                                <span class="bento-card-label">Projects</span>
-                            </div>
+                        <a href="#projects" class="tile-new">
+                            <img src="images/Coding.png" alt="Projects" />
+                            <div class="tile-label-new">Projects</div>
                         </a>
-
-                        <!-- Contact (Small Square) -->
-                        <a href="#contact" class="bento-item bento-card bento-contact" style="background-image: url('images/contact me.png');">
-                            <div class="bento-card-content">
-                                <span class="bento-card-label">Contact</span>
-                            </div>
+                        <a href="#contact" class="tile-new">
+                            <img src="images/contact me.png" alt="Contact" />
+                            <div class="tile-label-new">Contact</div>
                         </a>
-
-                        <!-- Hobbies (Small Square) -->
-                        <a href="#hobbies" class="bento-item bento-card bento-hobbies" style="background-image: url('images/Hobbies button.png');">
-                            <div class="bento-card-content">
-                                <span class="bento-card-label">Hobbies</span>
-                            </div>
+                        <a href="#about" class="tile-new">
+                            <img src="images/my story image real.png" alt="Story" />
+                            <div class="tile-label-new">Story</div>
                         </a>
-
-                        <!-- Story (Rectangular Square) -->
-                        <a href="#about" class="bento-item bento-card bento-story" style="background-image: url('images/my story image real.png');">
-                            <div class="bento-card-content">
-                                <span class="bento-card-label">Story</span>
-                            </div>
+                        <a href="#hobbies" class="tile-new tile-wide-new">
+                            <img src="images/Hobbies button.png" alt="Hobbies" />
+                            <div class="tile-label-new">Hobbies</div>
                         </a>
                     </div>
                 </div>
-</div>
+            </div>
+
+            <!-- FOOTER BAR -->
+            <div class="footer-bar-new">
+                <span class="footer-label-new">STACK</span>
+                <span class="footer-item-new">Enterprise Consulting</span>
+                <span class="footer-sep-new">·</span>
+                <span class="footer-item-new">Data Engineering</span>
+                <span class="footer-sep-new">·</span>
+                <span class="footer-item-new">Research Software</span>
+                <span class="footer-sep-new">·</span>
+                <span class="footer-item-new">GenAI / RAG</span>
+                <span class="footer-sep-new">·</span>
+                <span class="footer-item-new">Multi-Agent Frameworks</span>
             </div>
         </div>
-    </section>
+    </main>
 
 
 
