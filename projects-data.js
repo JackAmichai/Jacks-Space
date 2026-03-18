@@ -10,7 +10,7 @@ const projectsData = [
         role: "Multi-Agent System Architect",
         featured: true,
         image: "https://opengraph.githubassets.com/1/JackAmichai/Hatrick",
-        video: "video proj/VID WEBSITE.mp4",
+        video: "video proj/Project_Video_Generation_With_Music.mp4",
         problem: "Cyber defense training lacks realistic, autonomous adversaries that adapt to defender actions in real-time.",
         solution: "A Multi-Agent System using LangChain and Groq to model autonomous cyber attack/defense scenarios. 6+ autonomous agents simulate Red Team vs Blue Team battles with sub-second inference.",
         approach: [

@@ -3772,24 +3772,77 @@ html {
 }
 
 .btn-view-more {
-    margin-top: 1.5rem;
     background: #FF0000; /* YouTube Red */
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: 0.3s;
 }
 
 .btn-view-more:hover {
     background: #cc0000;
-    transform: scale(1.05);
+}
+
+.hero-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-card-action {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-card-action:hover {
+    transform: translateY(-2px);
+}
+
+.btn-live-preview {
+    background: #2a2a2a;
+    color: white;
+}
+
+.btn-live-preview:hover {
+    background: #000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.live-preview-content {
+    width: 95% !important;
+    height: 90vh !important;
+    max-width: 1400px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    display: flex;
+    flex-direction: column;
+}
+
+#livePreviewIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.modal-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 5;
 }
 
 /* Enhanced Project Modal */

@@ -908,13 +908,21 @@ function renderCarouselCard(project, view = 'business', index) {
 
 // Render hero featured card (LeAIrn, Hatrick, Scholar2.6)
 function renderHeroCard(project, iconConfig, view = 'business') {
+    const demoUrl = project.links?.demo;
     return `
         <div class="hero-project-card" style="border-top: 4px solid ${iconConfig?.color || 'var(--accent)'}">
             <div class="hero-card-icon">${iconConfig?.icon || '✨'}</div>
             <h3 class="hero-card-title">${project.title}</h3>
-            <button class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('${project.id}')">
-                <i class="fab fa-youtube"></i> View More
-            </button>
+            <div class="hero-card-actions">
+                <button class="btn-card-action btn-view-more" onclick="event.stopPropagation(); openProjectModal('${project.id}')">
+                    <i class="fab fa-youtube"></i> Video
+                </button>
+                ${demoUrl ? `
+                <button class="btn-card-action btn-live-preview" onclick="event.stopPropagation(); openLivePreview('${demoUrl}')">
+                    <i class="fas fa-external-link-alt"></i> Live Site
+                </button>
+                ` : ''}
+            </div>
         </div>
     `;
 }
@@ -970,6 +978,36 @@ function openProjectModal(projectId) {
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+// Function to open live preview in iframe
+function openLivePreview(url) {
+    if (!url) return;
+    const modal = document.getElementById('livePreviewModal');
+    const iframe = document.getElementById('livePreviewIframe');
+    const loader = document.getElementById('livePreviewLoader');
+
+    if (!modal || !iframe) return;
+
+    if (loader) loader.style.display = 'flex';
+    iframe.src = url;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    iframe.onload = () => {
+        if (loader) loader.style.display = 'none';
+    };
+}
+
+// Function to close live preview
+function closeLivePreview() {
+    const modal = document.getElementById('livePreviewModal');
+    const iframe = document.getElementById('livePreviewIframe');
+    if (!modal || !iframe) return;
+
+    modal.classList.remove('active');
+    iframe.src = ''; // Clear source to stop media/scripts
+    document.body.style.overflow = '';
 }
 
 // Initialize Project Modal Logic
