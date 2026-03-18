@@ -287,27 +287,20 @@
                     </div>
 
                     <p class="story-lead">
-                        I build cognitively adaptive AI systems at the intersection of <strong>Psychology and Computer
-                            Science</strong>.
+                        Most engineers optimize for performance. I optimize for <strong>adoption</strong>. With a dual background in <strong>Psychology and Computer Science</strong>, I build cognitively adaptive AI systems where human-centric design meets complex technical execution.
                     </p>
 
                     <p>
-                        My journey began in the <strong>IDF</strong> as a Staff Sergeant, leading teams in high-pressure
-                        environments. That's where I learned that clear communication and rapid decision-making are the
-                        real infrastructure of any success.
+                        My journey began in the <strong>IDF</strong> as a Staff Sergeant. Leading operations in high-pressure environments taught me that clear communication, empathy, and rapid decision-making are the real infrastructure of any successful mission.
                     </p>
 
                     <p>
-                        After studying Psychology and CS, I spent years as a <strong>Research Software Engineer at the
-                            Technion</strong>, managing cross-functional teams and engineering tools for large-scale
-                        cognitive simulations. Today, I architect <strong>Cloud and AI integration strategies at
-                            Deloitte</strong>, delivering scalable Python/FastAPI solutions for enterprise clients.
+                        Later, as a <strong>Research Software Engineer at the Technion</strong>, I led cross-functional teams to translate complex scientific hypotheses into production-grade software—including a cutting-edge VR maze for neuroscience research. Today, as a Consultant at <strong>Deloitte</strong>, I architect event-driven enterprise integrations using <strong>SAP BTP, Python, and FastAPI</strong> to replace legacy workflows with scalable, automated solutions.
                     </p>
 
                     <blockquote class="vision-quote"
                         style="margin: 25px 0; border-left: 4px solid var(--accent); padding-left: 20px; font-style: italic; color: var(--text-primary);">
-                        "My vision is to architect systems that are powerful under the hood, but feel natural, ethical,
-                        and obvious to the people using them."
+                        "I believe the best technology disappears into the workflow. My goal is to build systems that work so seamlessly, people forget there's complex engineering behind them."
                     </blockquote>
 
                     <!-- Quantified Impact Metrics -->
@@ -1667,63 +1660,174 @@
     <!-- Role Fit Modal -->
     <div id="roleFitModal" class="role-fit-modal">
         <div class="role-fit-overlay"></div>
-        <div class="role-fit-content">
-            <button class="role-fit-close">&times;</button>
-            <h3 class="role-fit-title">Is Jack a Fit for Your Role?</h3>
-            <p class="role-fit-subtitle">Select your role type to see how Jack's experience aligns with your specific
-                needs.</p>
+        <div class="role-fit-content new-design">
+            <!-- ── Main view ── -->
+            <div id="rf-main-view">
+              <div class="rf-header">
+                <button class="rf-close-btn role-fit-close">✕</button>
+                <p class="rf-eyebrow">Role fit assessment</p>
+                <h1 class="rf-title">Is <span>Jack</span> right for your team?</h1>
+                <p class="rf-sub">Select a role to see how Jack's background maps to your needs.</p>
+              </div>
 
-            <div class="fit-options">
-                <label class="fit-option">
-                    <input type="radio" name="role-type" value="genai">
-                    <div class="option-card">
-                        <div class="option-icon">🤖</div>
-                        <div class="option-text">
-                            <strong>GenAI Player</strong>
-                            <span>Building Agents & RAG</span>
-                        </div>
+              <div class="rf-cards">
+                <!-- GenAI -->
+                <div class="rf-card" onclick="showRFResult('genai')">
+                  <div class="rf-card-top">
+                    <div class="rf-icon rf-icon-blue">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1a56c4" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     </div>
-                </label>
+                    <span class="rf-arrow">↗</span>
+                  </div>
+                  <p class="rf-label">GenAI Engineer</p>
+                  <p class="rf-desc">Building agents, RAG pipelines, multi-modal</p>
+                  <div class="rf-tags">
+                    <span class="rf-tag rf-tag-blue">LangChain</span><span class="rf-tag rf-tag-blue">RAG</span>
+                  </div>
+                </div>
+                <!-- Solutions Architect -->
+                <div class="rf-card" onclick="showRFResult('architect')">
+                  <div class="rf-card-top">
+                    <div class="rf-icon rf-icon-amber">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#b45309" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <span class="rf-arrow">↗</span>
+                  </div>
+                  <p class="rf-label">Solutions Architect</p>
+                  <p class="rf-desc">Cloud integrations, API design, enterprise systems</p>
+                  <div class="rf-tags">
+                    <span class="rf-tag rf-tag-amber">SAP BTP</span><span class="rf-tag rf-tag-amber">APIs</span>
+                  </div>
+                </div>
+                <!-- Data Engineer -->
+                <div class="rf-card" onclick="showRFResult('pm')">
+                  <div class="rf-card-top">
+                    <div class="rf-icon rf-icon-green">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1e7e34" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                    </div>
+                    <span class="rf-arrow">↗</span>
+                  </div>
+                  <p class="rf-label">Data Engineer</p>
+                  <p class="rf-desc">Pipelines, analytics, research software</p>
+                  <div class="rf-tags">
+                    <span class="rf-tag rf-tag-green">Freelance</span><span class="rf-tag rf-tag-green">Research</span>
+                  </div>
+                </div>
+                <!-- Solutions Engineer -->
+                <div class="rf-card" onclick="showRFResult('solutions')">
+                  <div class="rf-card-top">
+                    <div class="rf-icon rf-icon-red">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#b91c1c" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                    </div>
+                    <span class="rf-arrow">↗</span>
+                  </div>
+                  <p class="rf-label">Solutions Engineer</p>
+                  <p class="rf-desc">Client-facing, enterprise sales, technical demos</p>
+                  <div class="rf-tags">
+                    <span class="rf-tag rf-tag-red">Big 4</span><span class="rf-tag rf-tag-red">Enterprise</span>
+                  </div>
+                </div>
+              </div>
 
-                <label class="fit-option">
-                    <input type="radio" name="role-type" value="arch">
-                    <div class="option-card">
-                        <div class="option-icon">☁️</div>
-                        <div class="option-text">
-                            <strong>Solution Architect</strong>
-                            <span>Cloud & API Integration</span>
-                        </div>
-                    </div>
-                </label>
-
-                <label class="fit-option">
-                    <input type="radio" name="role-type" value="pm">
-                    <div class="option-card">
-                        <div class="option-icon">📊</div>
-                        <div class="option-text">
-                            <strong>Product Manager</strong>
-                            <span>Strategy & Delivery</span>
-                        </div>
-                    </div>
-                </label>
-
-                <label class="fit-option">
-                    <input type="radio" name="role-type" value="devex">
-                    <div class="option-card">
-                        <div class="option-icon">✨</div>
-                        <div class="option-text">
-                            <strong>UX/DevEx Designer</strong>
-                            <span>Human-Centric Design</span>
-                        </div>
-                    </div>
-                </label>
+              <div class="rf-footer">
+                <div class="rf-dots">
+                  <div class="rf-dot active"></div><div class="rf-dot"></div><div class="rf-dot"></div>
+                </div>
+                <p class="rf-hint">4 role types · click to explore</p>
+              </div>
             </div>
 
-            <div id="roleFitResultContainer" class="fit-result" style="display: none;">
-                <p id="roleFitMessage"></p>
+            <!-- ── Result view ── -->
+            <div id="rf-result-view" class="rf-result-view">
+              <div class="rf-result-header">
+                <button class="rf-back" onclick="showRFMain()">← Back</button>
+                <p class="rf-result-title" id="rf-result-title"></p>
+              </div>
+              <div class="rf-match-bar-wrap">
+                <p class="rf-match-label">
+                  <span>Fit score</span>
+                  <span id="rf-match-pct"></span>
+                </p>
+                <div class="rf-match-bar">
+                  <div class="rf-match-fill" id="rf-match-fill" style="width:0%"></div>
+                </div>
+              </div>
+              <div class="rf-skills-list" id="rf-skills-list"></div>
+              <button class="rf-ask-btn" id="rf-ask-btn" onclick="openCloudAssistant()">Ask about this fit →</button>
             </div>
         </div>
     </div>
+    
+    <script>
+      const rfRoles = {
+        genai: {
+          title: "GenAI Engineer", pct: 94,
+          skills: [
+            "Built multi-agent workflows using LangChain and RAG pipelines",
+            "Hands-on with LLM orchestration and embedding-based retrieval",
+            "Applied GenAI in real client engagements",
+            "Holds relevant AI/GenAI certifications"
+          ]
+        },
+        architect: {
+          title: "Solutions Architect", pct: 88,
+          skills: [
+            "Big Four consulting background with deep SAP BTP experience",
+            "Designed cloud API integrations for enterprise clients",
+            "Strong cross-system and middleware knowledge",
+            "Comfortable owning end-to-end technical architecture"
+          ]
+        },
+        pm: {
+          title: "Data Engineer", pct: 82,
+          skills: [
+            "Freelance data engineering across multiple domains",
+            "Research software engineering experience",
+            "Pipelines, analytics, and structured data workflows",
+            "Bridges technical delivery with business context"
+          ]
+        },
+        solutions: {
+          title: "Solutions Engineer", pct: 97,
+          skills: [
+            "Currently pursuing a Solutions Engineer role at Wix",
+            "Enterprise client experience in North American markets",
+            "Consulting background ideal for technical pre-sales",
+            "Combines GenAI + SAP expertise for complex deals"
+          ]
+        }
+      };
+
+      function showRFResult(key) {
+        const r = rfRoles[key];
+        document.getElementById('rf-main-view').style.display = 'none';
+        const rv = document.getElementById('rf-result-view');
+        rv.style.display = 'block';
+        document.getElementById('rf-result-title').textContent = r.title;
+        document.getElementById('rf-match-pct').textContent = r.pct + '% match';
+        const fill = document.getElementById('rf-match-fill');
+        fill.style.width = '0%';
+        setTimeout(() => { fill.style.width = r.pct + '%'; }, 50);
+        document.getElementById('rf-skills-list').innerHTML =
+          r.skills.map(s => `<div class="rf-skill-row"><div class="rf-skill-dot"></div><span>${s}</span></div>`).join('');
+      }
+
+      function showRFMain() {
+        document.getElementById('rf-result-view').style.display = 'none';
+        document.getElementById('rf-main-view').style.display = 'block';
+      }
+
+      function openCloudAssistant() {
+        // Close modal
+        document.getElementById('roleFitModal').classList.remove('active');
+        // Open Cloud Assistant
+        if(window.cloudChatbot && typeof window.cloudChatbot.toggleChat === 'function') {
+            if(!window.cloudChatbot.isOpen) {
+                window.cloudChatbot.toggleChat();
+            }
+        }
+      }
+    </script>
 
     <!-- Stay Connected Modal -->
     <div id="stayConnectedModal" class="role-fit-modal" style="z-index: 10000;">
