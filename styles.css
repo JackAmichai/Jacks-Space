@@ -10682,6 +10682,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 .btn-connect-primary:hover {
     background-color: #1d4ed8;
+    transform: translateY(-1px);
 }
 
 .btn-connect-outline {
@@ -10691,7 +10692,8 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 .btn-connect-outline:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: #f9fafb;
+    transform: translateY(-1px);
 }
 
 /* Fix 2: Media Buttons sizing */
@@ -10717,6 +10719,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 .btn-toggle-books:hover {
     background-color: #1d4ed8;
+    transform: translateY(-1px);
 }
 
 .btn-spotify {
@@ -10728,6 +10731,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 .btn-spotify:hover {
     background-color: #16a34a;
+    transform: translateY(-1px);
 }
 
 /* Fix 3: Project Cards full background image */
@@ -10735,9 +10739,9 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    height: 240px; /* Adjust height as needed */
+    height: 192px; /* h-48 = 12rem = 192px */
     width: 100%;
-    border: none !important; /* Override border-top if needed */
+    border: none !important;
     transition: transform 0.3s ease;
 }
 
@@ -10761,7 +10765,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 .hero-card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4); /* bg-black/40 */
     z-index: 1;
 }
 
@@ -10777,7 +10781,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 .hero-card-title {
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
     font-weight: 700;
     font-size: 1.125rem;
     color: white !important;
@@ -10804,11 +10808,11 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 .btn-view-more {
-    background-color: #ef4444;
+    background-color: #ef4444; /* bg-red-600 */
 }
 
 .btn-live-preview {
-    background-color: #1f2937;
+    background-color: #1f2937; /* bg-gray-800 */
 }
 
 @keyframes pulse {
