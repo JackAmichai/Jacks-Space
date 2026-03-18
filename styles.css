@@ -217,7 +217,7 @@ section {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 0 60px;
+    padding: 100px 0 80px;
     background: var(--bg-primary);
     position: relative;
     overflow: hidden;
@@ -225,10 +225,12 @@ section {
 
 .hero-grid-tldr {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
     align-items: center;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Terminal Card (Left) */
@@ -302,16 +304,16 @@ section {
 .hero-bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 160px);
-    gap: 15px;
+    grid-template-rows: repeat(3, 140px);
+    gap: 12px;
     width: 100%;
-    max-width: 580px;
+    max-width: 520px;
     margin: 0 auto;
 }
 
 .bento-item {
     position: relative;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     background: var(--bg-secondary);
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -352,27 +354,27 @@ section {
 
 .bento-profile-overlay {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     z-index: 10;
 }
 
 .bento-actions-row {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 /* Action Buttons */
 .btn-hero-action {
     border: none;
-    padding: 10px 16px;
+    padding: 12px 18px;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -494,8 +496,8 @@ section {
 @media (max-width: 650px) {
     .hero-bento-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(4, 150px);
-        gap: 12px;
+        grid-template-rows: repeat(4, 120px);
+        gap: 10px;
     }
     
     .bento-profile {
@@ -509,7 +511,7 @@ section {
     }
     
     .bento-card-content {
-        padding: 12px;
+        padding: 10px;
     }
     
     .bento-card-label {
@@ -517,8 +519,8 @@ section {
     }
 
     .btn-hero-action {
-        padding: 8px 12px;
-        font-size: 0.75rem;
+        padding: 10px 14px;
+        font-size: 0.8rem;
     }
 }
 
@@ -1670,13 +1672,15 @@ section {
 
 .connect-heading {
     margin: 0 0 16px 0;
+    text-align: center;
 }
 
 .connect-title {
-    font-size: 32px;
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: 1.3;
+    text-align: center;
 }
 
 .connect-description {
@@ -1766,7 +1770,8 @@ section {
     }
 
     .connect-title {
-        font-size: 26px;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        text-align: center;
     }
 
     .connect-actions {
@@ -1793,7 +1798,8 @@ section {
     }
 
     .connect-title {
-        font-size: 22px;
+        font-size: clamp(1.3rem, 6vw, 2rem);
+        text-align: center;
     }
 
     .btn-connect-primary,
@@ -9263,7 +9269,8 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     }
 
     .connect-title {
-        font-size: 22px !important;
+        font-size: clamp(1.3rem, 5vw, 2rem) !important;
+        text-align: center;
     }
 
     .connect-actions {
@@ -9617,24 +9624,69 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 #animation-layer.active {
     pointer-events: auto;
-    cursor: crosshair;
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23ff6b6b" stroke="white" stroke-width="2"/></svg>') 16 16, crosshair;
 }
 
 .easter-arm {
-    position: absolute;
-    width: 120px;
+    position: fixed;
+    width: 220px;
     height: auto;
     z-index: 10010;
     pointer-events: none;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
 }
 
 .easter-stamp {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: auto;
     transform: translate(-50%, -50%);
     z-index: 10009;
     pointer-events: none;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+}
+
+.easter-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 16px 28px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10011;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    animation: hint-bounce 2s ease-in-out infinite;
+    backdrop-filter: blur(10px);
+}
+
+.easter-hint .hint-icon {
+    font-size: 1.5rem;
+    animation: wiggle 1s ease-in-out infinite;
+}
+
+.easter-hint kbd {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+@keyframes hint-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
 }
 
 .hobby-mode-btn {
@@ -9853,8 +9905,6 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    width: 280px; /* Standardized fixed width */
-    height: 54px; /* Standardized height */
     text-decoration: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
