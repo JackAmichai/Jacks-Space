@@ -10701,20 +10701,26 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 /* Fix 2: Media Buttons sizing */
 .btn-media-control {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 24px;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    transition: all 0.2s;
-    min-width: 200px;
-    justify-content: center;
-    height: 46px;
-    box-sizing: border-box;
-    line-height: 1;
-    border: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 0 28px !important;
+    border-radius: 9999px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease !important;
+    min-width: 210px !important;
+    height: 48px !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+    border: none !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
 }
 
 .btn-toggle-books {
