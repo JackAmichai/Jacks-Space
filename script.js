@@ -913,7 +913,7 @@ function renderHeroCard(project, iconConfig, view = 'business') {
     const imageUrl = project.image || 'images/hero-bg-1.jpg';
 
     return `
-        <div class="relative rounded-xl overflow-hidden w-full" style="position: relative; border-radius: 1rem; overflow: hidden; aspect-ratio: 1 / 1; width: 100%; transition: transform 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+        <div class="relative rounded-xl overflow-hidden w-full hero-featured-card-new" style="position: relative; border-radius: 1rem; overflow: hidden; width: 100%; transition: transform 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
             <!-- Full background image -->
             <div class="absolute inset-0 bg-cover bg-center" style="position: absolute; inset: 0; background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
             <!-- Dark overlay for readability -->

@@ -3,47 +3,7 @@
 
     const pawSvg = `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="currentColor"><path d="M12 8.5c-1.5 0-2.7-1.2-2.7-2.7S10.5 3.1 12 3.1s2.7 1.2 2.7 2.7-1.2 2.7-2.7 2.7zm-5.4 1.1c-1.2 0-2.2-1-2.2-2.2s1-2.2 2.2-2.2 2.2 1 2.2 2.2-1 2.2-2.2 2.2zm10.8 0c-1.2 0-2.2-1-2.2-2.2s1-2.2 2.2-2.2 2.2 1 2.2 2.2-1 2.2-2.2 2.2zm-5.4 11.3c-3 0-5.4-2.1-5.4-4.8 0-2 1.4-3.8 3.3-4.5 1.1-.4 2.2-.4 3.3 0 1.9.7 3.3 2.5 3.3 4.5 0 2.7-2.4 4.8-5.4 4.8z"/></svg>`;
 
-    // Audio context (singleton)
-    let audioCtx = null;
-    function getAudioContext() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-        return audioCtx;
-    }
-
-    function playRelaxingTune() {
-        const ctx = getAudioContext();
-        const now = ctx.currentTime;
-        
-        // Pentatonic notes (C5, E5, G5)
-        const notes = [523.25, 659.25, 783.99];
-        
-        notes.forEach((freq, i) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + i * 0.15);
-            
-            gain.gain.setValueAtTime(0, now + i * 0.15);
-            gain.gain.linearRampToValueAtTime(0.1, now + i * 0.15 + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.15 + 0.4);
-            
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            
-            osc.start(now + i * 0.15);
-            osc.stop(now + i * 0.15 + 0.4);
-        });
-    }
-
     window.firePaws = function(animalType) {
-        playRelaxingTune();
-
         const paws = [];
         const isLeftEdge = Math.random() > 0.5;
         
