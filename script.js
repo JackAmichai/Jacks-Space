@@ -1813,18 +1813,6 @@ document.addEventListener('DOMContentLoaded', () => {
         openStayConnectedModal();
     }, 60000); // 60 seconds
 
-    // 2. Scroll Trigger - Bottom of page
-    const scrollTrigger = () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        // Trigger when 95% down the page
-        if ((scrollTop / docHeight) > 0.95 && !hasShownPopup) {
-            openStayConnectedModal();
-            window.removeEventListener('scroll', scrollTrigger); // Remove after triggering once
-        }
-    };
-    window.addEventListener('scroll', scrollTrigger);
-
     // Close logic
     scCloseBtn?.addEventListener('click', closeStayConnectedModal);
     scOverlay?.addEventListener('click', closeStayConnectedModal);
