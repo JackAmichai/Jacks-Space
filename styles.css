@@ -11267,5 +11267,50 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     .hero-featured-card-new {
         aspect-ratio: 16 / 9;
     }
+
+    /* Modal Responsiveness */
+    .project-modal-content {
+        grid-template-columns: 1fr;
+        width: 95%;
+        max-height: 95vh;
+        margin: 10px;
+    }
+
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal-video-area {
+        min-height: 200px;
+    }
+
+    .modal-info-area {
+        padding: 20px 15px;
+    }
+
+    .video-modal-content {
+        width: 95%;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .video-modal-close {
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .role-fit-content {
+        width: 95%;
+        padding: 20px;
+        margin: auto;
+    }
+
+    .fit-options {
+        grid-template-columns: 1fr;
+    }
 }
 
