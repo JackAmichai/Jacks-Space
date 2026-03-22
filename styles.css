@@ -11017,17 +11017,18 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 /* ── New Role Fit Modal Styles ── */
 .role-fit-content.new-design {
   padding: 0;
-  max-width: 800px;
-  width: 90%;
+  max-width: 850px;
+  width: 95%;
   background: var(--bg-secondary);
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
   border: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
 }
 
 .rf-header {
-  padding: 2.5rem 2.5rem 2rem;
+  padding: 3rem 3rem 2.5rem;
   position: relative;
   border-bottom: 0.5px solid var(--border);
   background: var(--bg-primary);
@@ -11035,10 +11036,10 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 .rf-close-btn {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 32px;
-  height: 32px;
+  top: 1.75rem;
+  right: 1.75rem;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 0.5px solid var(--border);
   background: var(--bg-secondary);
@@ -11047,32 +11048,33 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 18px;
   transition: background 0.15s;
 }
 .rf-close-btn:hover { background: var(--border); }
 
 .rf-eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-secondary);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .rf-title {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 0;
+  letter-spacing: -0.02em;
 }
 .rf-title span { color: var(--accent); }
 
 .rf-sub {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-secondary);
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
   line-height: 1.6;
 }
 
@@ -11089,14 +11091,14 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 .rf-card {
-  padding: 1.75rem 2rem;
+  padding: 2rem 2.5rem;
   cursor: pointer;
   transition: background 0.15s;
   border-right: 0.5px solid var(--border);
   border-bottom: 0.5px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .rf-card:nth-child(even) { border-right: none; }
 .rf-card:nth-last-child(-n+2) { border-bottom: none; }
@@ -11110,9 +11112,9 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 .rf-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11122,36 +11124,36 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
   opacity: 0;
   transition: opacity 0.15s, transform 0.15s;
   color: var(--text-secondary);
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .rf-label {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--text-primary);
   margin-top: 0.5rem;
   margin-bottom: 0;
 }
 
 .rf-desc {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   margin-bottom: 0;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .rf-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 6px;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .rf-tag {
-  font-size: 12px;
-  padding: 4px 10px;
+  font-size: 13px;
+  padding: 4px 12px;
   border-radius: 999px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .rf-tag-blue { background: rgba(26, 115, 232, 0.1); color: #1a73e8; }
@@ -11165,7 +11167,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 .rf-icon-red { background: rgba(185, 28, 28, 0.1); }
 
 .rf-footer {
-  padding: 1.5rem 2.5rem;
+  padding: 1.75rem 3rem;
   border-top: 0.5px solid var(--border);
   display: flex;
   align-items: center;
@@ -11173,92 +11175,94 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
   background: var(--bg-primary);
 }
 
-.rf-dots { display: flex; gap: 8px; }
-.rf-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.rf-dots { display: flex; gap: 10px; }
+.rf-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
 .rf-dot.active { background: var(--accent); }
-.rf-hint { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+.rf-hint { font-size: 15px; color: var(--text-secondary); margin-bottom: 0; }
 
 .rf-result-view {
   display: none;
-  padding: 2.5rem;
+  padding: 3rem;
   background: var(--bg-primary);
+  font-family: 'Inter', sans-serif;
 }
 
 .rf-result-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 2rem;
+  gap: 18px;
+  margin-bottom: 2.5rem;
 }
 
 .rf-back {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--accent);
   cursor: pointer;
   border: none;
   background: none;
   padding: 0;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .rf-result-title {
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0;
+  letter-spacing: -0.01em;
 }
 
-.rf-match-bar-wrap { margin-bottom: 2rem; }
+.rf-match-bar-wrap { margin-bottom: 2.5rem; }
 .rf-match-label {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
 }
 .rf-match-bar {
-  height: 6px;
+  height: 8px;
   background: var(--border);
-  border-radius: 3px;
+  border-radius: 4px;
   overflow: hidden;
 }
 .rf-match-fill {
   height: 100%;
-  border-radius: 3px;
+  border-radius: 4px;
   background: var(--accent);
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.rf-skills-list { display: flex; flex-direction: column; gap: 12px; }
+.rf-skills-list { display: flex; flex-direction: column; gap: 14px; }
 .rf-skill-row {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 16px;
+  gap: 14px;
+  font-size: 18px;
   color: var(--text-secondary);
   line-height: 1.5;
 }
 .rf-skill-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--accent);
-  margin-top: 7px;
+  margin-top: 8px;
   flex-shrink: 0;
 }
 
 .rf-ask-btn {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   width: 100%;
-  padding: 14px;
-  font-size: 16px;
+  padding: 16px;
+  font-size: 18px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: all 0.2s ease;
-  font-weight: 600;
+  font-weight: 700;
 }
 .rf-ask-btn:hover { 
   background: var(--accent); 
