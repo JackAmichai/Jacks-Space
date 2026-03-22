@@ -1813,6 +1813,17 @@ document.addEventListener('DOMContentLoaded', () => {
         openStayConnectedModal();
     }, 60000); // 60 seconds
 
+    // Bento Contact Button Trigger
+    const bentoSendEmailBtn = document.getElementById('bentoSendEmailBtn');
+    if (bentoSendEmailBtn) {
+        bentoSendEmailBtn.addEventListener('click', () => {
+            // Bypass the hasShownPopup check when manually clicking
+            scModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            trackCTAClick('bento_email_form_opened');
+        });
+    }
+
     // Close logic
     scCloseBtn?.addEventListener('click', closeStayConnectedModal);
     scOverlay?.addEventListener('click', closeStayConnectedModal);
