@@ -129,11 +129,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     tour.addStep({
-        id: 'contact',
+        id: 'ai-assistant',
         title: 'AI Assistant',
         text: 'Ask my AI assistant anything about me (bottom right)',
         attachTo: {
             element: '#chatbot-bubble',
+            on: 'top'
+        },
+        buttons: [
+            {
+                action() {
+                    return this.back();
+                },
+                secondary: true,
+                text: 'Back'
+            },
+            {
+                action() {
+                    return this.next();
+                },
+                text: 'Next'
+            }
+        ]
+    });
+
+    tour.addStep({
+        id: 'contact',
+        title: 'Contact Me',
+        text: 'Ready to build something great? Connect with me directly through any of these channels!',
+        attachTo: {
+            element: '#contact',
             on: 'top'
         },
         buttons: [
@@ -246,6 +271,13 @@ function createTourModal(tour) {
                       <div class="step-info">
                           <strong>AI Assistant</strong>
                           <p>Ask my AI assistant anything about me (bottom right)</p>
+                      </div>
+                  </div>
+                  <div class="tour-step">
+                      <div class="step-number">6</div>
+                      <div class="step-info">
+                          <strong>Contact Me</strong>
+                          <p>Ready to build? Let's connect directly!</p>
                       </div>
                   </div>
               </div>
