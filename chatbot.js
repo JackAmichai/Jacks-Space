@@ -39,7 +39,7 @@ const jackKnowledgeBase = {
         keywords: ["skills", "Python", "AI", "SAP", "tech stack"]
     },
     "contact|email|reach|linkedin|phone|schedule|call": {
-        answer: "You can reach Jack through:\n\n📧 **Email:** jackamichai@gmail.com\n💼 **LinkedIn:** linkedin.com/in/jackamichai\n📅 **Schedule a Call:** calendly.com/jackamichai\n🐙 **GitHub:** github.com/JackAmichai\n\nHe's actively seeking **AI Solutions Engineer** and **Product Management** roles!",
+        answer: "You can reach Jack through:\n\n📧 **Email:** jackamichai@gmail.com\n💼 **LinkedIn:** linkedin.com/in/jack-amichai-1157181a4/\n📅 **Schedule a Call:** calendly.com/jackamichai\n🐙 **GitHub:** github.com/JackAmichai\n\nHe's actively seeking **AI Solutions Engineer** and **Product Management** roles!",
         keywords: ["contact", "email", "LinkedIn", "schedule"]
     },
     "resume|cv|download|hire|looking": {
@@ -422,7 +422,7 @@ class CloudChatbot {
         }
 
         // Default response if no match
-        return "That's a great question! I don't have specific information about that, but I recommend:\n\n📧 **Emailing Jack directly:** jackamichai@gmail.com\n💼 **Connecting on LinkedIn:** linkedin.com/in/jackamichai\n📅 **Scheduling a call:** calendly.com/jackamichai\n\nYou can also browse his portfolio sections above to learn more about his experience and projects!";
+        return "That's a great question! I don't have specific information about that, but I recommend:\n\n📧 **Emailing Jack directly:** jackamichai@gmail.com\n💼 **Connecting on LinkedIn:** linkedin.com/in/jack-amichai-1157181a4/\n📅 **Scheduling a call:** calendly.com/jackamichai\n\nYou can also browse his portfolio sections above to learn more about his experience and projects!";
     }
 
     showRateLimitWarning(retryAfter) {
