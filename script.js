@@ -2084,10 +2084,15 @@ function trackAIAnalytics(feature, status) {
 // POKER CARD ANIMATION
 // ====================
 
-const CERTS = [
+const CERTS_ALL = [
+    // Top 6 - Featured (show first)
     { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
     { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
     { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
+    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
+    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
+    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
+    // Remaining 12 - show during reshuffles
     { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
     { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
     { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
@@ -2100,11 +2105,9 @@ const CERTS = [
     { id: 13, title: "Foundations of Positive Psychology Specialization", issuer: "Coursera / UPenn", date: "2024", category: "Psychology" },
     { id: 14, title: "Foundations of Project Management", issuer: "Google", date: "Jun 2025", category: "Psychology" },
     { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
-    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
-    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
-    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
 ];
 
+const CERTS = CERTS_ALL;
 const CATS = {
     "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
     "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
@@ -2112,12 +2115,12 @@ const CATS = {
     "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
 };
 
-const N = CERTS.length;
+const FAN_CARDS = 6; // Show 6 cards in the fan
 const FAN_SPREAD = 76;
 const PIVOT_Y = 570;
 
 function getAngle(i) {
-    return -FAN_SPREAD / 2 + (i / (N - 1)) * FAN_SPREAD;
+    return -FAN_SPREAD / 2 + (i / (FAN_CARDS - 1)) * FAN_SPREAD;
 }
 
 function initCertPoker() {
@@ -2127,6 +2130,8 @@ function initCertPoker() {
     let selectedId = null;
     let flipped = false;
     let hoveredId = null;
+    let currentFanCerts = CERTS.slice(0, FAN_CARDS); // First 6 certs
+    let reshuffleCount = 0;
 
     const table = document.createElement('div');
     table.className = 'cert-poker-table';
@@ -2171,9 +2176,7 @@ function initCertPoker() {
     const hint = document.getElementById('pokerHint');
     const reshuffleBtn = document.getElementById('pokerReshuffle');
     
-    let reshuffleIndex = 0;
     let isReshuffling = false;
-    let shuffledOrder = [...Array(CERTS.length).keys()];
     
     function shuffleArray(array) {
         const newArray = [...array];
@@ -2191,15 +2194,16 @@ function initCertPoker() {
         reshuffleBtn.classList.add('shuffling');
         prompt.textContent = 'Reshuffling...';
         hint.style.display = 'none';
+        reshuffleCount++;
         
         const cards = fan.querySelectorAll('.cert-poker-fan-card');
-        const cardDelay = 100;
-        shuffledOrder = shuffleArray(shuffledOrder);
+        const cardDelay = 80;
+        const allCertsShuffled = shuffleArray([...CERTS_ALL]);
         
         let currentIndex = 0;
         
         function animateCard() {
-            if (currentIndex >= CERTS.length) {
+            if (currentIndex >= CERTS_ALL.length) {
                 setTimeout(() => {
                     isReshuffling = false;
                     reshuffleBtn.disabled = false;
@@ -2207,35 +2211,43 @@ function initCertPoker() {
                     prompt.textContent = 'Pick a card — any card';
                     hint.style.display = 'block';
                     
-                    let nextCardIndex = shuffledOrder[Math.floor(Math.random() * shuffledOrder.length)];
-                    let nextCert = CERTS.find(c => c.id === nextCardIndex);
+                    // Pick random from all certifications
+                    let randomCert;
+                    do {
+                        randomCert = CERTS_ALL[Math.floor(Math.random() * CERTS_ALL.length)];
+                    } while (randomCert.id === selectedId && CERTS_ALL.length > 1);
                     
-                    while (nextCert.id === selectedId && CERTS.length > 1) {
-                        nextCardIndex = shuffledOrder[Math.floor(Math.random() * shuffledOrder.length)];
-                        nextCert = CERTS.find(c => c.id === nextCardIndex);
-                    }
-                    
-                    handleCardClick(nextCert.id);
+                    handleCardClick(randomCert.id);
                 }, 400);
                 return;
             }
             
-            const card = cards[currentIndex];
-            const certIndex = shuffledOrder[currentIndex];
-            const cert = CERTS[certIndex];
+            // Cycle through cards (6 visible cards)
+            const cardIndex = currentIndex % FAN_CARDS;
+            const card = cards[cardIndex];
+            const cert = allCertsShuffled[currentIndex];
             const cat = CATS[cert.category];
             
-            card.style.transition = 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(-50px) scale(1.1)`;
+            card.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            card.style.transform = `rotate(${getAngle(cardIndex)}deg) translateY(-50px) scale(1.1)`;
             card.style.zIndex = 50;
             card.innerHTML = createCardFace(cert);
             card.dataset.certId = cert.id;
+            card.dataset.currentIndex = currentIndex;
             
             setTimeout(() => {
-                card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(0) scale(1)`;
-                card.innerHTML = createCardBack(false, cat.color);
-                card.style.zIndex = currentIndex;
-            }, cardDelay - 30);
+                // After reshuffle count 1+, show different initial fan
+                if (reshuffleCount > 0) {
+                    const newFanCerts = shuffleArray([...CERTS_ALL]).slice(0, FAN_CARDS);
+                    const newCert = newFanCerts[cardIndex];
+                    const newCat = CATS[newCert.category];
+                    card.innerHTML = createCardBack(false, newCat.color);
+                } else {
+                    card.innerHTML = createCardBack(false, cat.color);
+                }
+                card.style.transform = `rotate(${getAngle(cardIndex)}deg) translateY(0) scale(1)`;
+                card.style.zIndex = cardIndex;
+            }, cardDelay - 20);
             
             currentIndex++;
             setTimeout(animateCard, cardDelay);
@@ -2273,6 +2285,7 @@ function initCertPoker() {
 
     function handleCardClick(id) {
         const cert = CERTS.find(c => c.id === id);
+        if (!cert) return;
         const cat = CATS[cert.category];
 
         if (selectedId === id) {
@@ -2328,7 +2341,8 @@ function initCertPoker() {
     function updateFanCards() {
         const cards = fan.querySelectorAll('.cert-poker-fan-card');
         cards.forEach((card, i) => {
-            const cert = CERTS[i];
+            const cert = currentFanCerts[i];
+            if (!cert) return;
             const isSelected = selectedId === cert.id;
             const isHovered = hoveredId === cert.id && !isSelected;
             const cat = CATS[cert.category];
@@ -2339,28 +2353,33 @@ function initCertPoker() {
         });
     }
 
-    CERTS.forEach((cert, i) => {
-        const cat = CATS[cert.category];
-        const angle = getAngle(i);
+    function createFanCards() {
+        fan.innerHTML = '';
+        currentFanCerts.forEach((cert, i) => {
+            const cat = CATS[cert.category];
+            const angle = getAngle(i);
 
-        const cardEl = document.createElement('div');
-        cardEl.className = 'cert-poker-fan-card';
-        cardEl.style.transform = `rotate(${angle}deg)`;
-        cardEl.style.transformOrigin = `45px ${PIVOT_Y}px`;
-        cardEl.innerHTML = createCardBack(false, cat.color);
+            const cardEl = document.createElement('div');
+            cardEl.className = 'cert-poker-fan-card';
+            cardEl.style.transform = `rotate(${angle}deg)`;
+            cardEl.style.transformOrigin = `45px ${PIVOT_Y}px`;
+            cardEl.innerHTML = createCardBack(false, cat.color);
 
-        cardEl.addEventListener('click', () => handleCardClick(cert.id));
-        cardEl.addEventListener('mouseenter', () => {
-            hoveredId = cert.id;
-            updateFanCards();
+            cardEl.addEventListener('click', () => handleCardClick(cert.id));
+            cardEl.addEventListener('mouseenter', () => {
+                hoveredId = cert.id;
+                updateFanCards();
+            });
+            cardEl.addEventListener('mouseleave', () => {
+                hoveredId = null;
+                updateFanCards();
+            });
+
+            fan.appendChild(cardEl);
         });
-        cardEl.addEventListener('mouseleave', () => {
-            hoveredId = null;
-            updateFanCards();
-        });
+    }
 
-        fan.appendChild(cardEl);
-    });
+    createFanCards();
 }
 
 document.addEventListener('DOMContentLoaded', initCertPoker);
