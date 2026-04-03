@@ -11735,10 +11735,10 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 .cert-poker-fan {
     position: absolute;
-    bottom: -105px;
+    bottom: -95px;
     left: 50%;
-    margin-left: -45px;
-    width: 90px;
+    margin-left: -90px;
+    width: 180px;
     height: 130px;
 }
 
@@ -11752,12 +11752,12 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 .cert-poker-fan-card.selected {
-    transform: translateY(-22px) scale(1.06);
+    transform: translateY(-20px) scale(1.08);
     z-index: 40;
 }
 
 .cert-poker-fan-card.hovered:not(.selected) {
-    transform: translateY(-18px);
+    transform: translateY(-15px);
     z-index: 35;
 }
 
@@ -11834,15 +11834,14 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     }
 
     .cert-poker-fan {
-        bottom: -95px;
-        margin-left: -40px;
-        width: 80px;
+        bottom: -85px;
+        margin-left: -85px;
+        width: 170px;
         height: 115px;
-        transform: scale(0.85);
     }
 
     .cert-poker-fan-card {
-        width: 80px;
+        width: 85px;
         height: 115px;
     }
 
@@ -12361,10 +12360,19 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     transition: background 0.2s;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
 }
 
 .refs-download-btn:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+.refs-li-badge {
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
 }
 
 .refs-card-arrow {

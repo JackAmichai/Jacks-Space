@@ -2084,15 +2084,16 @@ function trackAIAnalytics(feature, status) {
 // POKER CARD ANIMATION
 // ====================
 
-const CERTS_ALL = [
-    // Top 6 - Featured (show first)
+const FEATURED_CERTS = [
     { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
     { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
     { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
     { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
     { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
     { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
-    // Remaining 12 - show during reshuffles
+];
+
+const OTHER_CERTS = [
     { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
     { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
     { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
@@ -2107,7 +2108,7 @@ const CERTS_ALL = [
     { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
 ];
 
-const CERTS = CERTS_ALL;
+const CERTS_ALL = [...FEATURED_CERTS, ...OTHER_CERTS];
 const CATS = {
     "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
     "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
@@ -2115,12 +2116,37 @@ const CATS = {
     "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
 };
 
-const FAN_CARDS = 6; // Show 6 cards in the fan
-const FAN_SPREAD = 76;
+const FAN_CARDS = 4; // Show 4 cards in the fan
+const FAN_SPREAD = 80;
 const PIVOT_Y = 570;
 
 function getAngle(i) {
     return -FAN_SPREAD / 2 + (i / (FAN_CARDS - 1)) * FAN_SPREAD;
+}
+
+function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+
+function getInitialFanCerts(round) {
+    const shuffledFeatured = shuffleArray(FEATURED_CERTS);
+    const shuffledOther = shuffleArray(OTHER_CERTS);
+    
+    if (round === 0) {
+        // First round: 3 featured + 1 other
+        return [...shuffledFeatured.slice(0, 3), shuffledOther[0]];
+    } else if (round === 1) {
+        // Second round: 3 different featured + 1 other
+        return [...shuffledFeatured.slice(3, 6), shuffledOther[1]];
+    } else {
+        // Third+ round: all random
+        return shuffleArray(CERTS_ALL).slice(0, FAN_CARDS);
+    }
 }
 
 function initCertPoker() {
@@ -2130,8 +2156,9 @@ function initCertPoker() {
     let selectedId = null;
     let flipped = false;
     let hoveredId = null;
-    let currentFanCerts = CERTS.slice(0, FAN_CARDS); // First 6 certs
+    let currentFanCerts = getInitialFanCerts(0);
     let reshuffleCount = 0;
+    let featuredUsed = [];
 
     const table = document.createElement('div');
     table.className = 'cert-poker-table';
@@ -2178,15 +2205,6 @@ function initCertPoker() {
     
     let isReshuffling = false;
     
-    function shuffleArray(array) {
-        const newArray = [...array];
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-    }
-    
     function reshuffleCards() {
         if (isReshuffling) return;
         isReshuffling = true;
@@ -2197,13 +2215,15 @@ function initCertPoker() {
         reshuffleCount++;
         
         const cards = fan.querySelectorAll('.cert-poker-fan-card');
-        const cardDelay = 80;
-        const allCertsShuffled = shuffleArray([...CERTS_ALL]);
+        const cardDelay = 100;
+        
+        // Get new fan certs based on reshuffle round
+        const newFanCerts = getInitialFanCerts(reshuffleCount);
         
         let currentIndex = 0;
         
         function animateCard() {
-            if (currentIndex >= CERTS_ALL.length) {
+            if (currentIndex >= FAN_CARDS) {
                 setTimeout(() => {
                     isReshuffling = false;
                     reshuffleBtn.disabled = false;
@@ -2211,43 +2231,33 @@ function initCertPoker() {
                     prompt.textContent = 'Pick a card — any card';
                     hint.style.display = 'block';
                     
-                    // Pick random from all certifications
-                    let randomCert;
-                    do {
-                        randomCert = CERTS_ALL[Math.floor(Math.random() * CERTS_ALL.length)];
-                    } while (randomCert.id === selectedId && CERTS_ALL.length > 1);
+                    // Pick random card from the new fan
+                    let randomCert = newFanCerts[Math.floor(Math.random() * newFanCerts.length)];
+                    while (randomCert.id === selectedId && newFanCerts.length > 1) {
+                        randomCert = newFanCerts[Math.floor(Math.random() * newFanCerts.length)];
+                    }
                     
+                    currentFanCerts = newFanCerts;
+                    createFanCards();
                     handleCardClick(randomCert.id);
                 }, 400);
                 return;
             }
             
-            // Cycle through cards (6 visible cards)
-            const cardIndex = currentIndex % FAN_CARDS;
-            const card = cards[cardIndex];
-            const cert = allCertsShuffled[currentIndex];
+            const card = cards[currentIndex];
+            const cert = newFanCerts[currentIndex];
             const cat = CATS[cert.category];
             
             card.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            card.style.transform = `rotate(${getAngle(cardIndex)}deg) translateY(-50px) scale(1.1)`;
+            card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(-50px) scale(1.1)`;
             card.style.zIndex = 50;
             card.innerHTML = createCardFace(cert);
             card.dataset.certId = cert.id;
-            card.dataset.currentIndex = currentIndex;
             
             setTimeout(() => {
-                // After reshuffle count 1+, show different initial fan
-                if (reshuffleCount > 0) {
-                    const newFanCerts = shuffleArray([...CERTS_ALL]).slice(0, FAN_CARDS);
-                    const newCert = newFanCerts[cardIndex];
-                    const newCat = CATS[newCert.category];
-                    card.innerHTML = createCardBack(false, newCat.color);
-                } else {
-                    card.innerHTML = createCardBack(false, cat.color);
-                }
-                card.style.transform = `rotate(${getAngle(cardIndex)}deg) translateY(0) scale(1)`;
-                card.style.zIndex = cardIndex;
-            }, cardDelay - 20);
+                card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(0) scale(1)`;
+                card.style.zIndex = currentIndex;
+            }, cardDelay - 30);
             
             currentIndex++;
             setTimeout(animateCard, cardDelay);
@@ -2382,7 +2392,10 @@ function initCertPoker() {
     createFanCards();
 }
 
-document.addEventListener('DOMContentLoaded', initCertPoker);
+document.addEventListener('DOMContentLoaded', () => {
+    initCertPoker();
+    initRefsCarousel();
+});
 
 // ====================
 // REFERENCES CAROUSEL
@@ -2493,8 +2506,20 @@ function initRefsCarousel() {
         quoteEl.innerHTML = `"${ref.quote} <span class="refs-quote-highlight">${ref.highlight}</span>"`;
         nameEl.textContent = ref.name;
         roleEl.textContent = ref.role;
+        
+        // Properly set LinkedIn link
         linkedinEl.href = ref.linkedin;
+        linkedinEl.setAttribute('href', ref.linkedin);
+        linkedinEl.setAttribute('target', '_blank');
+        linkedinEl.setAttribute('rel', 'noopener noreferrer');
+        linkedinEl.onclick = function(e) { e.stopPropagation(); };
+        
+        // Properly set download link
         downloadBtn.href = ref.letter;
+        downloadBtn.setAttribute('href', ref.letter);
+        const filename = ref.letter.split('/').pop();
+        downloadBtn.setAttribute('download', filename);
+        downloadBtn.onclick = function(e) { e.stopPropagation(); };
     }
 
     function goTo(idx) {
@@ -2518,8 +2543,6 @@ function initRefsCarousel() {
     createDots();
     updateCard(REFS[0]);
 }
-
-document.addEventListener('DOMContentLoaded', initRefsCarousel);
 
 function toggleAllCerts() {
     const grid = document.getElementById('allCertsGrid');
