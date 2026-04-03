@@ -2147,6 +2147,16 @@ function initCertPoker() {
         <div class="cert-poker-chip" style="background: #2471a3; bottom: 36px; left: 64px;">10</div>
         <div class="cert-poker-chip" style="background: #239b56; bottom: 38px; right: 28px;">5</div>
         <div class="cert-poker-hint" id="pokerHint">Hover to preview · Click to reveal</div>
+        <button class="cert-poker-reshuffle" id="pokerReshuffle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 3 21 3 21 8"/>
+                <line x1="4" y1="20" x2="21" y2="3"/>
+                <polyline points="21 16 21 21 16 21"/>
+                <line x1="15" y1="15" x2="21" y2="21"/>
+                <line x1="4" y1="4" x2="9" y2="9"/>
+            </svg>
+            Reshuffle
+        </button>
         <div id="selectedCardContainer"></div>
         <div id="infoPanelContainer"></div>
         <div class="cert-poker-fan" id="pokerFan"></div>
@@ -2159,6 +2169,62 @@ function initCertPoker() {
     const infoContainer = document.getElementById('infoPanelContainer');
     const prompt = document.getElementById('pokerPrompt');
     const hint = document.getElementById('pokerHint');
+    const reshuffleBtn = document.getElementById('pokerReshuffle');
+    
+    let reshuffleIndex = 0;
+    let isReshuffling = false;
+    
+    function reshuffleCards() {
+        if (isReshuffling) return;
+        isReshuffling = true;
+        reshuffleBtn.disabled = true;
+        reshuffleBtn.classList.add('shuffling');
+        prompt.textContent = 'Reshuffling...';
+        hint.style.display = 'none';
+        
+        const cards = fan.querySelectorAll('.cert-poker-fan-card');
+        let delay = 0;
+        const cardDelay = 120;
+        
+        function showNextCard(index) {
+            if (index >= CERTS.length) {
+                setTimeout(() => {
+                    isReshuffling = false;
+                    reshuffleBtn.disabled = false;
+                    reshuffleBtn.classList.remove('shuffling');
+                    prompt.textContent = 'Pick a card — any card';
+                    hint.style.display = 'block';
+                    
+                    const randomIndex = Math.floor(Math.random() * CERTS.length);
+                    handleCardClick(CERTS[randomIndex].id);
+                }, 500);
+                return;
+            }
+            
+            const card = cards[index];
+            const cert = CERTS[index];
+            const cat = CATS[cert.category];
+            
+            card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            card.style.transform = `rotate(${getAngle(index)}deg) translateY(-60px) scale(1.15)`;
+            card.style.zIndex = 50;
+            card.innerHTML = createCardFace(cert);
+            
+            setTimeout(() => {
+                card.style.transform = `rotate(${getAngle(index)}deg) translateY(0) scale(1)`;
+                card.innerHTML = createCardBack(false, cat.color);
+                card.style.zIndex = index;
+            }, cardDelay - 50);
+            
+            setTimeout(() => {
+                showNextCard(index + 1);
+            }, cardDelay);
+        }
+        
+        showNextCard(0);
+    }
+    
+    reshuffleBtn.addEventListener('click', reshuffleCards);
 
     function createCardBack(highlighted, accentColor) {
         return `

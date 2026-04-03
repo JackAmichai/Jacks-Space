@@ -11541,6 +11541,52 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     pointer-events: none;
 }
 
+.cert-poker-reshuffle {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 55;
+}
+
+.cert-poker-reshuffle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cert-poker-reshuffle:active {
+    transform: translateX(-50%) translateY(0);
+}
+
+.cert-poker-reshuffle:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cert-poker-reshuffle.shuffling svg {
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .cert-poker-selected-card {
     position: absolute;
     top: 50px;
@@ -11818,6 +11864,17 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     .cert-poker-oval-2 {
         display: none;
     }
+
+    .cert-poker-reshuffle {
+        bottom: 28px;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .cert-poker-reshuffle svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -11932,6 +11989,17 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
     .cert-poker-info-dismiss {
         font-size: 8px;
+    }
+
+    .cert-poker-reshuffle {
+        bottom: 22px;
+        padding: 6px 14px;
+        font-size: 11px;
+    }
+
+    .cert-poker-reshuffle svg {
+        width: 14px;
+        height: 14px;
     }
 }
 
