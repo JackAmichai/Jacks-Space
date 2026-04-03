@@ -2084,7 +2084,134 @@ function trackAIAnalytics(feature, status) {
     } catch (e) { /* silent */ }
 }
 
+// ====================
+// CERTIFICATE SHUFFLE
+// ====================
+
+const CERTS_SHUFFLE = [
+    { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
+    { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
+    { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
+    { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
+    { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
+    { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
+    { id: 7, title: "AI Orchestration: Foundation", issuer: "LinkedIn", date: "Nov 2025", category: "AI & ML" },
+    { id: 8, title: "AI For Everyone", issuer: "DeepLearning.AI", date: "Sep 2025", category: "AI & ML" },
+    { id: 9, title: "AI Applications in People Management", issuer: "Univ. of Pennsylvania", date: "Jun 2025", category: "Psychology" },
+    { id: 10, title: "AI Applications in Marketing and Finance", issuer: "Univ. of Pennsylvania", date: "Jan 2025", category: "Psychology" },
+    { id: 11, title: "Managing Social and Human Capital", issuer: "Univ. of Pennsylvania", date: "Dec 2024", category: "Psychology" },
+    { id: 12, title: "Introduction to Financial Accounting", issuer: "Univ. of Pennsylvania", date: "May 2025", category: "Psychology" },
+    { id: 13, title: "Foundations of Positive Psychology Specialization", issuer: "Coursera / UPenn", date: "2024", category: "Psychology" },
+    { id: 14, title: "Foundations of Project Management", issuer: "Google", date: "Jun 2025", category: "Psychology" },
+    { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
+    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
+    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
+    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
+];
+
+const CATS_SHUFFLE = {
+    "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
+    "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
+    "Cloud": { symbol: "♣", short: "CL", color: "#3ab86a" },
+    "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
+};
+
+function shuffleArrayCerts(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+
+function initCertShuffle() {
+    const container = document.getElementById('certShuffleContainer');
+    if (!container) return;
+
+    let currentCards = shuffleArrayCerts(CERTS_SHUFFLE).slice(0, 4);
+    let flippedCards = {};
+    let isShuffling = false;
+
+    function createCardHTML(cert) {
+        const cat = CATS_SHUFFLE[cert.category];
+        const isFlipped = flippedCards[cert.id];
+        return `
+            <div class="cert-shuffle-card ${isFlipped ? 'flipped' : ''}" data-id="${cert.id}" style="--accent-color: ${cat.color}">
+                <div class="cert-shuffle-card-inner">
+                    <div class="cert-shuffle-card-back">
+                        <div class="cert-shuffle-card-back-design">
+                            <div class="cert-shuffle-card-back-inner"></div>
+                            <div class="cert-shuffle-card-back-logo">JA</div>
+                        </div>
+                    </div>
+                    <div class="cert-shuffle-card-front" style="border-color: ${cat.color}">
+                        <div class="cert-shuffle-card-corner" style="color: ${cat.color}">${cat.short}${cat.symbol}</div>
+                        <div class="cert-shuffle-card-center">
+                            <div class="cert-shuffle-card-symbol" style="color: ${cat.color}">${cat.symbol}</div>
+                            <div class="cert-shuffle-card-title">${cert.title}</div>
+                            <div class="cert-shuffle-card-issuer">${cert.issuer}</div>
+                            <div class="cert-shuffle-card-date" style="background: ${cat.color}">${cert.date}</div>
+                        </div>
+                        <div class="cert-shuffle-card-corner bottom" style="color: ${cat.color}">${cat.short}${cat.symbol}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderCards() {
+        const cardsHTML = currentCards.map(createCardHTML).join('');
+        container.innerHTML = `
+            <div class="cert-shuffle-legend">
+                ${Object.entries(CATS_SHUFFLE).map(([name, cat]) => `
+                    <div class="cert-shuffle-legend-item">
+                        <span style="color: ${cat.color}; font-size: 16px;">${cat.symbol}</span>
+                        ${name}
+                    </div>
+                `).join('')}
+            </div>
+            <div class="cert-shuffle-cards ${isShuffling ? 'shuffling' : ''}" id="shuffleCardsContainer">
+                ${cardsHTML}
+            </div>
+            <button class="cert-shuffle-btn" id="shuffleBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 3 21 3 21 8"/>
+                    <line x1="4" y1="20" x2="21" y2="3"/>
+                    <polyline points="21 16 21 21 16 21"/>
+                    <line x1="15" y1="15" x2="21" y2="21"/>
+                    <line x1="4" y1="4" x2="9" y2="9"/>
+                </svg>
+                Shuffle Cards
+            </button>
+        `;
+
+        container.querySelectorAll('.cert-shuffle-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = parseInt(card.dataset.id);
+                flippedCards[id] = !flippedCards[id];
+                card.classList.toggle('flipped');
+            });
+        });
+
+        document.getElementById('shuffleBtn').addEventListener('click', () => {
+            if (isShuffling) return;
+            isShuffling = true;
+            flippedCards = {};
+            renderCards();
+            setTimeout(() => {
+                currentCards = shuffleArrayCerts(CERTS_SHUFFLE).slice(0, 4);
+                isShuffling = false;
+                renderCards();
+            }, 300);
+        });
+    }
+
+    renderCards();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    initCertShuffle();
     initRefsCarousel();
 });
 
