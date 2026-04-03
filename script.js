@@ -2088,159 +2088,245 @@ function trackAIAnalytics(feature, status) {
 // CERTIFICATE SHUFFLE
 // ====================
 
-const CERTS_SHUFFLE = [
-    { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
-    { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
-    { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
-    { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
-    { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
-    { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
-    { id: 7, title: "AI Orchestration: Foundation", issuer: "LinkedIn", date: "Nov 2025", category: "AI & ML" },
-    { id: 8, title: "AI For Everyone", issuer: "DeepLearning.AI", date: "Sep 2025", category: "AI & ML" },
-    { id: 9, title: "AI Applications in People Management", issuer: "Univ. of Pennsylvania", date: "Jun 2025", category: "Psychology" },
-    { id: 10, title: "AI Applications in Marketing and Finance", issuer: "Univ. of Pennsylvania", date: "Jan 2025", category: "Psychology" },
-    { id: 11, title: "Managing Social and Human Capital", issuer: "Univ. of Pennsylvania", date: "Dec 2024", category: "Psychology" },
-    { id: 12, title: "Introduction to Financial Accounting", issuer: "Univ. of Pennsylvania", date: "May 2025", category: "Psychology" },
-    { id: 13, title: "Foundations of Positive Psychology Specialization", issuer: "Coursera / UPenn", date: "2024", category: "Psychology" },
-    { id: 14, title: "Foundations of Project Management", issuer: "Google", date: "Jun 2025", category: "Psychology" },
-    { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
-    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
-    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
-    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
-];
-
-const CATS_SHUFFLE = {
-    "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
-    "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
-    "Cloud": { symbol: "♣", short: "CL", color: "#3ab86a" },
-    "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
-};
-
-function shuffleArrayCerts(array) {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-}
-
 function initCertShuffle() {
     const container = document.getElementById('certShuffleContainer');
     if (!container) return;
 
-    let currentIdx = Math.floor(Math.random() * CERTS_SHUFFLE.length);
-    let animating = false;
-    let isFlipped = true; // Start showing the content
+    const CERTS = [
+        { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
+        { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
+        { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
+        { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
+        { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
+        { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
+        { id: 7, title: "AI Orchestration: Foundation", issuer: "LinkedIn", date: "Nov 2025", category: "AI & ML" },
+        { id: 8, title: "AI For Everyone", issuer: "DeepLearning.AI", date: "Sep 2025", category: "AI & ML" },
+        { id: 9, title: "AI Applications in People Management", issuer: "Univ. of Pennsylvania", date: "Jun 2025", category: "Psychology" },
+        { id: 10, title: "AI Applications in Marketing and Finance", issuer: "Univ. of Pennsylvania", date: "Jan 2025", category: "Psychology" },
+        { id: 11, title: "Managing Social and Human Capital", issuer: "Univ. of Pennsylvania", date: "Dec 2024", category: "Psychology" },
+        { id: 12, title: "Introduction to Financial Accounting", issuer: "Univ. of Pennsylvania", date: "May 2025", category: "Psychology" },
+        { id: 13, title: "Foundations of Positive Psychology Specialization", issuer: "Coursera / UPenn", date: "2024", category: "Psychology" },
+        { id: 14, title: "Foundations of Project Management", issuer: "Google", date: "Jun 2025", category: "Psychology" },
+        { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
+        { id: 16, title: "SAP Certified – Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
+        { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
+        { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
+        { id: 19, title: "B.A. Psychology & Computer Science", issuer: "Open University of Israel", date: "Expected Apr 2025", category: "Education" },
+    ];
 
-    function createCardHTML(cert, state) {
-        const cat = CATS_SHUFFLE[cert.category] || CATS_SHUFFLE["Education"];
+    const CATS = {
+        "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
+        "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
+        "Cloud": { symbol: "♣", short: "CL", color: "#3ab86a" },
+        "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
+    };
+
+    let shuffledCerts = [...CERTS];
+    let selectedId = null;
+    let flipped = false;
+    let hoveredId = null;
+
+    const FAN_SPREAD = 76;
+    const PIVOT_Y = 570;
+
+    function shuffle() {
+        for (let i = shuffledCerts.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledCerts[i], shuffledCerts[j]] = [shuffledCerts[j], shuffledCerts[i]];
+        }
+    }
+
+    function getCardFaceHTML(cert) {
+        const cat = CATS[cert.category];
         return `
-            <div class="cert-shuffle-card ${isFlipped ? 'flipped' : ''} ${state || ''}" style="--accent-color: ${cat.color}">
-                <div class="cert-shuffle-card-inner">
-                    <div class="cert-shuffle-card-back">
-                        <div class="cert-shuffle-card-back-design">
-                            <div class="cert-shuffle-card-back-inner"></div>
-                            <div class="cert-shuffle-card-back-logo">JA</div>
-                        </div>
-                    </div>
-                    <div class="cert-shuffle-card-front" style="border-color: ${cat.color}">
-                        <div class="cert-shuffle-card-corner" style="color: ${cat.color}">${cat.short}${cat.symbol}</div>
-                        <div class="cert-shuffle-card-center">
-                            <div class="cert-shuffle-card-symbol" style="color: ${cat.color}">${cat.symbol}</div>
-                            <div class="cert-shuffle-card-title">${cert.title}</div>
-                            <div class="cert-shuffle-card-issuer">${cert.issuer}</div>
-                            <div class="cert-shuffle-card-date" style="background: ${cat.color}">${cert.date}</div>
-                        </div>
-                        <div class="cert-shuffle-card-corner bottom" style="color: ${cat.color}">${cat.short}${cat.symbol}</div>
-                    </div>
+            <div class="poker-card-face" style="border-color: ${cat.color}">
+                <div class="poker-card-corner" style="color: ${cat.color}">
+                    ${cat.short}<br/>${cat.symbol}
+                </div>
+                <div class="poker-card-center">
+                    <div class="poker-card-symbol" style="color: ${cat.color}">${cat.symbol}</div>
+                    <div class="poker-card-title">${cert.title}</div>
+                    <div class="poker-card-issuer">${cert.issuer}</div>
+                    <div class="poker-card-date" style="background: ${cat.color}">${cert.date}</div>
+                </div>
+                <div class="poker-card-corner bottom" style="color: ${cat.color}">
+                    ${cat.short}<br/>${cat.symbol}
                 </div>
             </div>
         `;
     }
 
     function render() {
-        const cert = CERTS_SHUFFLE[currentIdx];
+        const selected = shuffledCerts.find(c => c.id === selectedId);
+        
         container.innerHTML = `
-            <div class="cert-shuffle-legend">
-                ${Object.entries(CATS_SHUFFLE).map(([name, cat]) => `
-                    <div class="cert-shuffle-legend-item">
-                        <span style="color: ${cat.color}; font-size: 16px;">${cat.symbol}</span>
-                        ${name}
+            <div class="poker-table">
+                <div class="poker-texture"></div>
+                <div class="poker-oval-1"></div>
+                <div class="poker-oval-2"></div>
+                
+                <div class="poker-prompt">
+                    ${selected ? "Your card" : "Pick a card — any card"}
+                </div>
+                
+                <div class="poker-legend">
+                    ${Object.entries(CATS).map(([name, cat]) => `
+                        <div class="poker-legend-item">
+                            <span style="color: ${cat.color}; font-size: 15px;">${cat.symbol}</span>
+                            ${name}
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <!-- Chips -->
+                <div class="poker-chip" style="bottom: 36px; left: 28px; background: #c0392b;">25</div>
+                <div class="poker-chip" style="bottom: 36px; left: 64px; background: #2471a3;">10</div>
+                <div class="poker-chip" style="bottom: 38px; right: 28px; background: #239b56;">5</div>
+                
+                ${!selected ? `
+                    <div class="poker-empty-hint">
+                        Hover to preview · Click to reveal
                     </div>
-                `).join('')}
+                ` : ''}
+                
+                <!-- Selected Card -->
+                ${selected ? `
+                    <div class="poker-selected-card-container ${flipped ? 'flipped' : ''}" id="pokerSelectedCard">
+                        <div class="poker-selected-card-inner">
+                            <div class="poker-selected-card-front">
+                                ${getCardFaceHTML(selected)}
+                            </div>
+                            <div class="poker-selected-card-back">
+                                <div class="poker-card-back" style="border-color: rgba(212,175,55,0.6);">
+                                    <div class="poker-card-back-inner-border" style="border-color: rgba(212,175,55,0.3); inset: 10px; border-radius: 8px;"></div>
+                                    <span class="poker-card-back-logo" style="font-size: 28px; color: rgba(212,175,55,0.4);">JA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${flipped ? `
+                        <div class="poker-info-panel">
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;">
+                                ${selected.category}
+                            </div>
+                            <div style="font-size: 12px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;">
+                                ${selected.title}
+                            </div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.65); margin-bottom: 5px;">
+                                ${selected.issuer}
+                            </div>
+                            <div style="font-size: 12px; font-weight: 700; color: ${CATS[selected.category].color}">
+                                ${selected.date}
+                            </div>
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 8px;">
+                                Click card to dismiss
+                            </div>
+                        </div>
+                    ` : ''}
+                ` : ''}
+                
+                <!-- Fan -->
+                <div class="poker-fan-container">
+                    ${shuffledCerts.map((cert, i) => {
+                        const angle = -FAN_SPREAD / 2 + (i / (shuffledCerts.length - 1)) * FAN_SPREAD;
+                        const isSelected = selectedId === cert.id;
+                        const isHovered = hoveredId === cert.id && !isSelected;
+                        const cat = CATS[cert.category];
+                        
+                        let transform = `rotate(${angle}deg)`;
+                        if (isSelected) {
+                            transform += ` translateY(-22px) scale(1.06)`;
+                        } else if (isHovered) {
+                            transform += ` translateY(-18px)`;
+                        }
+                        
+                        const zIndex = isSelected ? 40 : isHovered ? 35 : i;
+                        
+                        return `
+                            <div class="poker-fan-card" 
+                                 data-id="${cert.id}"
+                                 style="transform: ${transform}; transform-origin: 45px ${PIVOT_Y}px; z-index: ${zIndex};">
+                                <div class="poker-card-back ${isSelected ? 'poker-card-back-highlighted' : ''}" 
+                                     style="border-color: ${isSelected ? cat.color : 'rgba(212,175,55,0.55)'}">
+                                    <div class="poker-card-back-inner-border"></div>
+                                    <span class="poker-card-back-logo">JA</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+
+                <!-- Shuffle Button Overlay -->
+                <div class="poker-shuffle-btn-container">
+                    <button class="poker-shuffle-btn" id="pokerShuffleBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 3 21 3 21 8"/>
+                            <line x1="4" y1="20" x2="21" y2="3"/>
+                            <polyline points="21 16 21 21 16 21"/>
+                            <line x1="15" y1="15" x2="21" y2="21"/>
+                            <line x1="4" y1="4" x2="9" y2="9"/>
+                        </svg>
+                        Shuffle Hand
+                    </button>
+                </div>
             </div>
-            <div class="cert-shuffle-cards" id="shuffleCardsContainer">
-                ${createCardHTML(cert, 'enter')}
-            </div>
-            <button class="cert-shuffle-btn" id="shuffleBtn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 3 21 3 21 8"/>
-                    <line x1="4" y1="20" x2="21" y2="3"/>
-                    <polyline points="21 16 21 21 16 21"/>
-                    <line x1="15" y1="15" x2="21" y2="21"/>
-                    <line x1="4" y1="4" x2="9" y2="9"/>
-                </svg>
-                Shuffle Deck
-            </button>
         `;
 
-        const shuffleBtn = document.getElementById('shuffleBtn');
-        shuffleBtn.addEventListener('click', shuffle);
+        // Event Listeners
+        container.querySelectorAll('.poker-fan-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                hoveredId = parseInt(card.dataset.id);
+                render();
+            });
+            card.addEventListener('mouseleave', () => {
+                hoveredId = null;
+                render();
+            });
+            card.addEventListener('click', () => {
+                const id = parseInt(card.dataset.id);
+                handleCardClick(id);
+            });
+        });
 
-        // Allow manual flip too
-        const card = container.querySelector('.cert-shuffle-card');
-        card.addEventListener('click', () => {
-            if (animating) return;
-            isFlipped = !isFlipped;
-            card.classList.toggle('flipped', isFlipped);
+        const selectedCard = document.getElementById('pokerSelectedCard');
+        if (selectedCard) {
+            selectedCard.addEventListener('click', () => {
+                handleCardClick(selectedId);
+            });
+        }
+
+        document.getElementById('pokerShuffleBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectedId = null;
+            flipped = false;
+            shuffle();
+            render();
         });
     }
 
-    function shuffle() {
-        if (animating) return;
-        animating = true;
-
-        const cardContainer = document.getElementById('shuffleCardsContainer');
-        const currentCard = cardContainer.querySelector('.cert-shuffle-card');
-        
-        // 1. Flip back to show the deck pattern
-        isFlipped = false;
-        currentCard.classList.remove('flipped');
-        
-        setTimeout(() => {
-            // 2. Slide out
-            const direction = Math.random() > 0.5 ? 'exit-right' : 'exit-left';
-            currentCard.classList.remove('enter');
-            currentCard.classList.add(direction);
-            
+    function handleCardClick(id) {
+        if (selectedId === id) {
+            flipped = false;
+            render();
             setTimeout(() => {
-                // 3. Pick new cert
-                let nextIdx;
-                do {
-                    nextIdx = Math.floor(Math.random() * CERTS_SHUFFLE.length);
-                } while (nextIdx === currentIdx && CERTS_SHUFFLE.length > 1);
-                
-                currentIdx = nextIdx;
-                const nextCert = CERTS_SHUFFLE[currentIdx];
-                
-                // 4. Replace with new card (back side)
-                cardContainer.innerHTML = createCardHTML(nextCert, 'enter');
-                const newCard = cardContainer.querySelector('.cert-shuffle-card');
-                newCard.classList.remove('flipped'); // Ensure it's showing back
-                
-                setTimeout(() => {
-                    // 5. Flip to front
-                    isFlipped = true;
-                    newCard.classList.add('flipped');
-                    animating = false;
-                }, 400);
-            }, 400);
-        }, 300);
+                selectedId = null;
+                render();
+            }, 350);
+        } else {
+            selectedId = id;
+            flipped = false;
+            render();
+            setTimeout(() => {
+                flipped = true;
+                render();
+            }, 80);
+        }
     }
 
     render();
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     initCertShuffle();
@@ -2256,7 +2342,7 @@ const REFS = [
         id: "ben",
         name: "Dr. Ben Engelhard",
         role: "Lab Head, Technion Engelhard Lab",
-        linkedin: "https://www.linkedin.com/in/ben-engelhard/",
+        linkedin: "https://www.linkedin.com/in/engelhard-lab/",
         quote: "Jack demonstrated exceptional analytical skills and dedication during his time in the lab.",
         highlight: "His contributions to our research were invaluable.",
         photo: "Recommendations/Ben.png",
@@ -2266,7 +2352,7 @@ const REFS = [
         id: "tzvi",
         name: "Prof. Tzvi Dov",
         role: "TEAMS – American Medical Program, Technion",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "https://www.linkedin.com/in/tzvidov/",
         quote: "Outstanding research capabilities in cognitive psychology.",
         highlight: "Showed excellent leadership in coordinating lab experiments and team management.",
         photo: "Recommendations/Tzvi.png",
@@ -2276,31 +2362,21 @@ const REFS = [
         id: "alexandra",
         name: "Dr. Alexandra Kavushansky",
         role: "Technion Neuroscience Lab",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "https://www.linkedin.com/in/alexandra-kavushansky-a2959714/",
         quote: "A brilliant collaborator on cognitive psychology experiments.",
         highlight: "Jack's attention to detail and research methodology skills are exceptional.",
         photo: "Recommendations/Alexandra.png",
         letter: "documents/Recommendation Technion Sasha.pdf",
     },
     {
-        id: "offer",
-        name: "Offer",
-        role: "Reference",
-        linkedin: "https://www.linkedin.com/",
-        quote: "A dedicated and talented individual with exceptional technical abilities.",
-        highlight: "Jack consistently delivers results that exceed expectations.",
-        photo: "Recommendations/Offer.png",
-        letter: "documents/Offer.pdf",
-    },
-    {
         id: "tomer",
-        name: "Tomer",
-        role: "Reference",
-        linkedin: "https://www.linkedin.com/",
-        quote: "Working with Jack was an outstanding experience.",
-        highlight: "His technical depth combined with strong interpersonal skills is rare.",
+        name: "MA. Tomer Nussbaum",
+        role: "Hebrew University in Jerusalem",
+        linkedin: "https://www.linkedin.com/in/tussbaum/",
+        quote: "Demonstrated outstanding leadership and technical abilities.",
+        highlight: "A highly motivated professional with excellent problem-solving skills.",
         photo: "Recommendations/Tomer.png",
-        letter: "documents/Tomer.pdf",
+        letter: "documents/Yaron - recomendation Letter.pdf",
     },
 ];
 

@@ -104,6 +104,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     tour.addStep({
+        id: 'certifications',
+        title: 'Education & Certifications',
+        text: 'Interactive poker-style certifications. Hover to preview, click to reveal, and shuffle the hand!',
+        attachTo: {
+            element: '#certShuffleContainer',
+            on: 'top'
+        },
+        buttons: [
+            {
+                action() {
+                    return this.back();
+                },
+                secondary: true,
+                text: 'Back'
+            },
+            {
+                action() {
+                    return this.next();
+                },
+                text: 'Next'
+            }
+        ]
+    });
+
+    tour.addStep({
         id: 'recommendations',
         title: 'Resources',
         text: 'Download my resume, case studies, and recommendations',
@@ -262,19 +287,26 @@ function createTourModal(tour) {
                   <div class="tour-step">
                       <div class="step-number">4</div>
                       <div class="step-info">
+                          <strong>Certifications</strong>
+                          <p>Explore my certifications in a unique poker-style interactive hand</p>
+                      </div>
+                  </div>
+                  <div class="tour-step">
+                      <div class="step-number">5</div>
+                      <div class="step-info">
                           <strong>Resources</strong>
                           <p>Download my resume, case studies, and recommendations</p>
                       </div>
                   </div>
                   <div class="tour-step">
-                      <div class="step-number">5</div>
+                      <div class="step-number">6</div>
                       <div class="step-info">
                           <strong>AI Assistant</strong>
                           <p>Ask my AI assistant anything about me (bottom right)</p>
                       </div>
                   </div>
                   <div class="tour-step">
-                      <div class="step-number">6</div>
+                      <div class="step-number">7</div>
                       <div class="step-info">
                           <strong>Contact Me</strong>
                           <p>Ready to build? Let's connect directly!</p>
