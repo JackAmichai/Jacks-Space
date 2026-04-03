@@ -2129,15 +2129,14 @@ function initCertShuffle() {
     const container = document.getElementById('certShuffleContainer');
     if (!container) return;
 
-    let currentCards = shuffleArrayCerts(CERTS_SHUFFLE).slice(0, 4);
-    let flippedCards = {};
-    let isShuffling = false;
+    let currentIdx = Math.floor(Math.random() * CERTS_SHUFFLE.length);
+    let animating = false;
+    let isFlipped = true; // Start showing the content
 
-    function createCardHTML(cert) {
-        const cat = CATS_SHUFFLE[cert.category];
-        const isFlipped = flippedCards[cert.id];
+    function createCardHTML(cert, state) {
+        const cat = CATS_SHUFFLE[cert.category] || CATS_SHUFFLE["Education"];
         return `
-            <div class="cert-shuffle-card ${isFlipped ? 'flipped' : ''}" data-id="${cert.id}" style="--accent-color: ${cat.color}">
+            <div class="cert-shuffle-card ${isFlipped ? 'flipped' : ''} ${state || ''}" style="--accent-color: ${cat.color}">
                 <div class="cert-shuffle-card-inner">
                     <div class="cert-shuffle-card-back">
                         <div class="cert-shuffle-card-back-design">
@@ -2160,8 +2159,8 @@ function initCertShuffle() {
         `;
     }
 
-    function renderCards() {
-        const cardsHTML = currentCards.map(createCardHTML).join('');
+    function render() {
+        const cert = CERTS_SHUFFLE[currentIdx];
         container.innerHTML = `
             <div class="cert-shuffle-legend">
                 ${Object.entries(CATS_SHUFFLE).map(([name, cat]) => `
@@ -2171,8 +2170,8 @@ function initCertShuffle() {
                     </div>
                 `).join('')}
             </div>
-            <div class="cert-shuffle-cards ${isShuffling ? 'shuffling' : ''}" id="shuffleCardsContainer">
-                ${cardsHTML}
+            <div class="cert-shuffle-cards" id="shuffleCardsContainer">
+                ${createCardHTML(cert, 'enter')}
             </div>
             <button class="cert-shuffle-btn" id="shuffleBtn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2182,32 +2181,65 @@ function initCertShuffle() {
                     <line x1="15" y1="15" x2="21" y2="21"/>
                     <line x1="4" y1="4" x2="9" y2="9"/>
                 </svg>
-                Shuffle Cards
+                Shuffle Deck
             </button>
         `;
 
-        container.querySelectorAll('.cert-shuffle-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const id = parseInt(card.dataset.id);
-                flippedCards[id] = !flippedCards[id];
-                card.classList.toggle('flipped');
-            });
-        });
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        shuffleBtn.addEventListener('click', shuffle);
 
-        document.getElementById('shuffleBtn').addEventListener('click', () => {
-            if (isShuffling) return;
-            isShuffling = true;
-            flippedCards = {};
-            renderCards();
-            setTimeout(() => {
-                currentCards = shuffleArrayCerts(CERTS_SHUFFLE).slice(0, 4);
-                isShuffling = false;
-                renderCards();
-            }, 300);
+        // Allow manual flip too
+        const card = container.querySelector('.cert-shuffle-card');
+        card.addEventListener('click', () => {
+            if (animating) return;
+            isFlipped = !isFlipped;
+            card.classList.toggle('flipped', isFlipped);
         });
     }
 
-    renderCards();
+    function shuffle() {
+        if (animating) return;
+        animating = true;
+
+        const cardContainer = document.getElementById('shuffleCardsContainer');
+        const currentCard = cardContainer.querySelector('.cert-shuffle-card');
+        
+        // 1. Flip back to show the deck pattern
+        isFlipped = false;
+        currentCard.classList.remove('flipped');
+        
+        setTimeout(() => {
+            // 2. Slide out
+            const direction = Math.random() > 0.5 ? 'exit-right' : 'exit-left';
+            currentCard.classList.remove('enter');
+            currentCard.classList.add(direction);
+            
+            setTimeout(() => {
+                // 3. Pick new cert
+                let nextIdx;
+                do {
+                    nextIdx = Math.floor(Math.random() * CERTS_SHUFFLE.length);
+                } while (nextIdx === currentIdx && CERTS_SHUFFLE.length > 1);
+                
+                currentIdx = nextIdx;
+                const nextCert = CERTS_SHUFFLE[currentIdx];
+                
+                // 4. Replace with new card (back side)
+                cardContainer.innerHTML = createCardHTML(nextCert, 'enter');
+                const newCard = cardContainer.querySelector('.cert-shuffle-card');
+                newCard.classList.remove('flipped'); // Ensure it's showing back
+                
+                setTimeout(() => {
+                    // 5. Flip to front
+                    isFlipped = true;
+                    newCard.classList.add('flipped');
+                    animating = false;
+                }, 400);
+            }, 400);
+        }, 300);
+    }
+
+    render();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -2224,7 +2256,7 @@ const REFS = [
         id: "ben",
         name: "Dr. Ben Engelhard",
         role: "Lab Head, Technion Engelhard Lab",
-        linkedin: "https://www.linkedin.com/in/engelhard-lab/",
+        linkedin: "https://www.linkedin.com/in/ben-engelhard/",
         quote: "Jack demonstrated exceptional analytical skills and dedication during his time in the lab.",
         highlight: "His contributions to our research were invaluable.",
         photo: "Recommendations/Ben.png",
@@ -2234,7 +2266,7 @@ const REFS = [
         id: "tzvi",
         name: "Prof. Tzvi Dov",
         role: "TEAMS – American Medical Program, Technion",
-        linkedin: "https://www.linkedin.com/in/tzvidov/",
+        linkedin: "https://www.linkedin.com/",
         quote: "Outstanding research capabilities in cognitive psychology.",
         highlight: "Showed excellent leadership in coordinating lab experiments and team management.",
         photo: "Recommendations/Tzvi.png",
@@ -2244,21 +2276,31 @@ const REFS = [
         id: "alexandra",
         name: "Dr. Alexandra Kavushansky",
         role: "Technion Neuroscience Lab",
-        linkedin: "https://www.linkedin.com/in/alexandra-kavushansky-a2959714/",
+        linkedin: "https://www.linkedin.com/",
         quote: "A brilliant collaborator on cognitive psychology experiments.",
         highlight: "Jack's attention to detail and research methodology skills are exceptional.",
         photo: "Recommendations/Alexandra.png",
         letter: "documents/Recommendation Technion Sasha.pdf",
     },
     {
+        id: "offer",
+        name: "Offer",
+        role: "Reference",
+        linkedin: "https://www.linkedin.com/",
+        quote: "A dedicated and talented individual with exceptional technical abilities.",
+        highlight: "Jack consistently delivers results that exceed expectations.",
+        photo: "Recommendations/Offer.png",
+        letter: "documents/Offer.pdf",
+    },
+    {
         id: "tomer",
-        name: "MA. Tomer Nussbaum",
-        role: "Hebrew University in Jerusalem",
-        linkedin: "https://www.linkedin.com/in/tussbaum/",
-        quote: "Demonstrated outstanding leadership and technical abilities.",
-        highlight: "A highly motivated professional with excellent problem-solving skills.",
+        name: "Tomer",
+        role: "Reference",
+        linkedin: "https://www.linkedin.com/",
+        quote: "Working with Jack was an outstanding experience.",
+        highlight: "His technical depth combined with strong interpersonal skills is rare.",
         photo: "Recommendations/Tomer.png",
-        letter: "documents/Yaron - recomendation Letter.pdf",
+        letter: "documents/Tomer.pdf",
     },
 ];
 
