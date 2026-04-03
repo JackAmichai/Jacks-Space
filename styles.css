@@ -11744,24 +11744,194 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 @media (max-width: 768px) {
     .cert-poker-table {
-        min-height: 450px;
+        min-height: 400px;
+        border-radius: 14px;
     }
-    
+
+    .cert-poker-felt {
+        border-radius: 14px;
+    }
+
+    .cert-poker-prompt {
+        font-size: 9px;
+        top: 14px;
+        letter-spacing: 2px;
+    }
+
+    .cert-poker-legend {
+        top: 10px;
+        left: 12px;
+        gap: 6px;
+        flex-wrap: wrap;
+        max-width: 60%;
+    }
+
+    .cert-poker-legend-item {
+        font-size: 9px;
+    }
+
+    .cert-poker-legend-item span {
+        font-size: 12px;
+    }
+
+    .cert-poker-chip {
+        width: 24px;
+        height: 24px;
+        font-size: 8px;
+        border-width: 2px;
+    }
+
+    .cert-poker-hint {
+        font-size: 10px;
+        top: 140px;
+        letter-spacing: 1px;
+    }
+
     .cert-poker-fan {
-        bottom: -85px;
-        margin-left: -35px;
-        width: 70px;
-        height: 100px;
+        bottom: -95px;
+        margin-left: -40px;
+        width: 80px;
+        height: 115px;
+        transform: scale(0.85);
     }
-    
+
     .cert-poker-fan-card {
-        width: 70px;
-        height: 100px;
+        width: 80px;
+        height: 115px;
     }
-    
+
     .cert-poker-selected-card {
         width: 160px;
         height: 230px;
+        top: 30px;
+    }
+
+    .cert-poker-info-panel {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        top: auto;
+        bottom: 260px;
+    }
+
+    .cert-poker-oval,
+    .cert-poker-oval-2 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .cert-poker-table {
+        min-height: 350px;
+        border-radius: 12px;
+    }
+
+    .cert-poker-felt {
+        border-radius: 12px;
+    }
+
+    .cert-poker-prompt {
+        font-size: 8px;
+        top: 10px;
+    }
+
+    .cert-poker-legend {
+        display: none;
+    }
+
+    .cert-poker-chip {
+        width: 20px;
+        height: 20px;
+        font-size: 7px;
+    }
+
+    .cert-poker-chip:first-child {
+        bottom: 28px;
+        left: 16px;
+    }
+
+    .cert-poker-chip:nth-child(2) {
+        bottom: 28px;
+        left: 42px;
+    }
+
+    .cert-poker-chip:last-child {
+        bottom: 30px;
+        right: 16px;
+    }
+
+    .cert-poker-hint {
+        font-size: 9px;
+        top: 100px;
+    }
+
+    .cert-poker-fan {
+        bottom: -105px;
+        margin-left: -45px;
+        width: 90px;
+        height: 130px;
+        transform: scale(0.7);
+    }
+
+    .cert-poker-fan-card {
+        width: 90px;
+        height: 130px;
+    }
+
+    .cert-poker-selected-card {
+        width: 140px;
+        height: 200px;
+        top: 20px;
+    }
+
+    .cert-poker-card-face {
+        padding: 6px;
+    }
+
+    .cert-poker-card-corner {
+        font-size: 10px;
+    }
+
+    .cert-poker-card-title {
+        font-size: 9px;
+    }
+
+    .cert-poker-card-issuer {
+        font-size: 8px;
+    }
+
+    .cert-poker-card-date {
+        font-size: 8px;
+        padding: 1px 6px;
+    }
+
+    .cert-poker-card-center div:first-child {
+        font-size: 24px !important;
+    }
+
+    .cert-poker-info-panel {
+        padding: 8px 10px;
+        bottom: 240px;
+    }
+
+    .cert-poker-info-category {
+        font-size: 9px;
+    }
+
+    .cert-poker-info-title {
+        font-size: 10px;
+    }
+
+    .cert-poker-info-issuer {
+        font-size: 9px;
+    }
+
+    .cert-poker-info-date {
+        font-size: 10px;
+    }
+
+    .cert-poker-info-dismiss {
+        font-size: 8px;
     }
 }
 
@@ -11812,6 +11982,98 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .btn-view-all-certs {
+        margin-top: 60px;
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
+    .all-certs-grid {
+        margin-top: 30px;
+    }
+
+    .all-certs-grid h4 {
+        font-size: 0.9rem !important;
+        margin: 25px 0 12px !important;
+    }
+
+    .all-certs-grid .certifications-grid {
+        gap: 12px;
+    }
+
+    .all-certs-grid .certification-card {
+        padding: 16px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .all-certs-grid .cert-logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .all-certs-grid .cert-info h4 {
+        font-size: 0.85rem !important;
+    }
+
+    .all-certs-grid .cert-issuer {
+        font-size: 0.75rem;
+    }
+
+    .all-certs-grid .cert-date {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-view-all-certs {
+        margin-top: 50px;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .btn-view-all-certs svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .all-certs-grid {
+        margin-top: 20px;
+    }
+
+    .all-certs-grid h4 {
+        font-size: 0.85rem !important;
+        margin: 20px 0 10px !important;
+    }
+
+    .all-certs-grid .certifications-grid {
+        gap: 10px;
+    }
+
+    .all-certs-grid .certification-card {
+        padding: 12px;
+    }
+
+    .all-certs-grid .cert-logo {
+        width: 32px;
+        height: 32px;
+    }
+
+    .all-certs-grid .cert-info h4 {
+        font-size: 0.8rem !important;
+    }
+
+    .all-certs-grid .cert-issuer {
+        font-size: 0.7rem;
+    }
+
+    .all-certs-grid .cert-date {
+        font-size: 0.65rem;
     }
 }
 
@@ -12100,16 +12362,148 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 768px) {
     .refs-carousel-wrapper {
         max-width: 100%;
-        padding: 0 1rem;
+        padding: 1.5rem 0.75rem;
     }
+
+    .refs-card {
+        aspect-ratio: 3 / 4.5;
+        border-radius: 16px;
+    }
+
     .refs-content {
-        padding: 24px 20px 22px;
+        padding: 20px 16px 18px;
     }
+
     .refs-big-quote {
         font-size: 48px;
+    }
+
+    .refs-quote {
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .refs-avatar {
+        width: 52px;
+        height: 52px;
+    }
+
+    .refs-person-name {
+        font-size: 14px;
+    }
+
+    .refs-person-role {
+        font-size: 11px;
+    }
+
+    .refs-download-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .refs-card-arrow {
+        width: 34px;
+        height: 34px;
+    }
+
+    .refs-card-arrow-left {
+        left: 10px;
+    }
+
+    .refs-card-arrow-right {
+        right: 10px;
+    }
+
+    .refs-card-arrow svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .refs-quote-area {
+        max-width: 95%;
+    }
+
+    .refs-footer {
+        gap: 10px;
+    }
+
+    .refs-person-row {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .refs-carousel-wrapper {
+        padding: 1rem 0.5rem;
+    }
+
+    .refs-card {
+        aspect-ratio: 2 / 3;
+    }
+
+    .refs-content {
+        padding: 16px 12px 14px;
+    }
+
+    .refs-big-quote {
+        font-size: 36px;
+        margin-bottom: 6px;
+    }
+
+    .refs-quote {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .refs-avatar {
+        width: 46px;
+        height: 46px;
+    }
+
+    .refs-person-name {
+        font-size: 13px;
+        flex-wrap: wrap;
+    }
+
+    .refs-person-role {
+        font-size: 10px;
+    }
+
+    .refs-li-badge {
+        width: 20px;
+        height: 20px;
+    }
+
+    .refs-download-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .refs-download-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .refs-card-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .refs-card-arrow-left {
+        left: 6px;
+    }
+
+    .refs-card-arrow-right {
+        right: 6px;
+    }
+
+    .refs-dot {
+        width: 6px;
+        height: 6px;
     }
 }
 
