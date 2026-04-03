@@ -12166,6 +12166,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     overflow: hidden;
     cursor: default;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    z-index: 1;
 }
 
 .refs-card.enter {
@@ -12210,6 +12211,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 .refs-overlay-top {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.55) 0%,
@@ -12226,6 +12228,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     left: 0;
     right: 0;
     height: 60%;
+    z-index: 1;
     background: linear-gradient(
         to bottom,
         transparent,
@@ -12240,6 +12243,7 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     flex-direction: column;
     justify-content: space-between;
     padding: 32px 28px 28px;
+    z-index: 2;
 }
 
 .refs-quote-area {

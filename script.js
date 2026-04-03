@@ -95,6 +95,7 @@ const navbar = document.querySelector('.navbar');
 let lastScrollTop = 0;
 
 window.addEventListener('scroll', () => {
+    if (!navbar) return;
     const scrollTop = window.scrollY;
 
     // Add shadow on scroll
@@ -2109,6 +2110,7 @@ const OTHER_CERTS = [
 ];
 
 const CERTS_ALL = [...FEATURED_CERTS, ...OTHER_CERTS];
+const CERTS = CERTS_ALL; // Alias for backwards compatibility
 const CATS = {
     "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
     "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
