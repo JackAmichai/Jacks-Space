@@ -2195,7 +2195,12 @@ function initCertPoker() {
                     prompt.textContent = 'Pick a card — any card';
                     hint.style.display = 'block';
                     
-                    const randomIndex = Math.floor(Math.random() * CERTS.length);
+                    // Pick a random card different from current selection
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * CERTS.length);
+                    } while (CERTS[randomIndex].id === selectedId && CERTS.length > 1);
+                    
                     handleCardClick(CERTS[randomIndex].id);
                 }, 500);
                 return;
@@ -2357,7 +2362,7 @@ const REFS = [
         linkedin: "https://www.linkedin.com/in/engelhard-lab/",
         quote: "Jack demonstrated exceptional analytical skills and dedication during his time in the lab.",
         highlight: "His contributions to our research were invaluable.",
-        photo: "Recommendations/Ben.jpeg",
+        photo: "Recommendations/Ben.png",
         letter: "documents/Recommendation letter jack.pdf",
     },
     {
@@ -2367,7 +2372,7 @@ const REFS = [
         linkedin: "https://www.linkedin.com/in/tzvidov/",
         quote: "Outstanding research capabilities in cognitive psychology.",
         highlight: "Showed excellent leadership in coordinating lab experiments and team management.",
-        photo: "Recommendations/Tzvy.jpeg",
+        photo: "Recommendations/Tzvi.png",
         letter: "documents/Technion recommendation letter English.pdf",
     },
     {
@@ -2387,7 +2392,7 @@ const REFS = [
         linkedin: "https://www.linkedin.com/in/tussbaum/",
         quote: "Demonstrated outstanding leadership and technical abilities.",
         highlight: "A highly motivated professional with excellent problem-solving skills.",
-        photo: "Recommendations/Tomer.jpeg",
+        photo: "Recommendations/Tomer.png",
         letter: "documents/Yaron - recomendation Letter.pdf",
     },
 ];
