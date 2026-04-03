@@ -60,6 +60,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
         if (href === '#' || !href) return;
+        
+        // Skip if href contains file paths or URLs (not internal anchors)
+        if (href.includes('/') || href.startsWith('http') || href.startsWith('mailto')) return;
 
         e.preventDefault();
         const target = document.querySelector(href);

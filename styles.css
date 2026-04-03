@@ -11737,8 +11737,8 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     position: absolute;
     bottom: -95px;
     left: 50%;
-    margin-left: -90px;
-    width: 180px;
+    margin-left: -180px;
+    width: 360px;
     height: 130px;
 }
 
@@ -11835,8 +11835,8 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
     .cert-poker-fan {
         bottom: -85px;
-        margin-left: -85px;
-        width: 170px;
+        margin-left: -170px;
+        width: 340px;
         height: 115px;
     }
 
@@ -11923,10 +11923,10 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
     .cert-poker-fan {
         bottom: -105px;
-        margin-left: -45px;
-        width: 90px;
+        margin-left: -90px;
+        width: 180px;
         height: 130px;
-        transform: scale(0.7);
+        transform: scale(0.85);
     }
 
     .cert-poker-fan-card {
