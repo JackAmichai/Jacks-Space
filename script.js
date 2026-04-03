@@ -2278,3 +2278,20 @@ function initCertPoker() {
 }
 
 document.addEventListener('DOMContentLoaded', initCertPoker);
+
+function toggleAllCerts() {
+    const grid = document.getElementById('allCertsGrid');
+    const btn = document.getElementById('btnViewAllCerts');
+    
+    if (grid.style.display === 'none') {
+        grid.style.display = 'block';
+        btn.classList.add('expanded');
+        btn.querySelector('span').textContent = 'Hide Certifications';
+        
+        grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+        grid.style.display = 'none';
+        btn.classList.remove('expanded');
+        btn.querySelector('span').textContent = 'View All Certifications';
+    }
+}

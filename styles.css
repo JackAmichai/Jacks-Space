@@ -11765,3 +11765,53 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     }
 }
 
+/* ==================== */
+/* VIEW ALL CERTS BUTTON */
+/* ==================== */
+
+.btn-view-all-certs {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--accent), #c9a227);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-view-all-certs:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-view-all-certs svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-view-all-certs.expanded svg {
+    transform: rotate(180deg);
+}
+
+.all-certs-grid {
+    margin-top: 40px;
+    animation: fadeInCerts 0.4s ease;
+}
+
+@keyframes fadeInCerts {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

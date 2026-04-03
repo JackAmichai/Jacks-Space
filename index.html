@@ -544,6 +544,173 @@
 
             <!-- Poker Card Animation -->
             <div class="cert-poker-container" id="certPokerContainer"></div>
+            
+            <!-- View All Button -->
+            <button class="btn-view-all-certs" id="btnViewAllCerts" onclick="toggleAllCerts()">
+                <span>View All Certifications</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </button>
+            
+            <!-- All Certifications Grid (Hidden by default) -->
+            <div class="all-certs-grid" id="allCertsGrid" style="display: none;">
+                <h4 style="margin: 25px 0 15px; font-size: 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; text-align: center;">AI & Machine Learning</h4>
+                <div class="certifications-grid" style="text-align: left; justify-content: center;">
+                    <div class="certification-card">
+                        <img src="https://cdn.simpleicons.org/nvidia/76B900" alt="NVIDIA" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Compute Technical Curriculum</h4>
+                            <p class="cert-issuer">NVIDIA</p>
+                            <p class="cert-date">Dec 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="images/logos/aws.svg" alt="AWS" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Building Production-Ready AI Agents with Amazon Bedrock AgentCore</h4>
+                            <p class="cert-issuer">Amazon Web Services (AWS)</p>
+                            <p class="cert-date">Dec 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Introduction to Large Language Models</h4>
+                            <p class="cert-issuer">Google</p>
+                            <p class="cert-date">Aug 2024</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Introduction to Generative AI Learning Path</h4>
+                            <p class="cert-issuer">Google</p>
+                            <p class="cert-date">2024</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="Coursera" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Introduction to Artificial Intelligence (AI)</h4>
+                            <p class="cert-issuer">Coursera / IBM</p>
+                            <p class="cert-date">Apr 2020</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="Coursera" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Introduction to Augmented Reality and ARCore</h4>
+                            <p class="cert-issuer">Coursera / Google</p>
+                            <p class="cert-date">2020</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="images/logos/linkedin.svg" alt="LinkedIn" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>AI Orchestration: Foundation</h4>
+                            <p class="cert-issuer">LinkedIn</p>
+                            <p class="cert-date">Nov 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="DeepLearning.AI" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>AI For Everyone</h4>
+                            <p class="cert-issuer">DeepLearning.AI</p>
+                            <p class="cert-date">Sep 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin: 35px 0 15px; font-size: 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; text-align: center;">Psychology & Management</h4>
+                <div class="certifications-grid" style="text-align: left; justify-content: center;">
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/UPenn_shield_with_banner.svg" alt="UPenn" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>AI Applications in People Management</h4>
+                            <p class="cert-issuer">University of Pennsylvania</p>
+                            <p class="cert-date">Jun 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/UPenn_shield_with_banner.svg" alt="UPenn" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>AI Applications in Marketing and Finance</h4>
+                            <p class="cert-issuer">University of Pennsylvania</p>
+                            <p class="cert-date">Jan 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/UPenn_shield_with_banner.svg" alt="UPenn" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Managing Social and Human Capital</h4>
+                            <p class="cert-issuer">University of Pennsylvania</p>
+                            <p class="cert-date">Dec 2024</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/UPenn_shield_with_banner.svg" alt="UPenn" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Introduction to Financial Accounting</h4>
+                            <p class="cert-issuer">University of Pennsylvania</p>
+                            <p class="cert-date">May 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="Coursera" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Foundations of Positive Psychology Specialization</h4>
+                            <p class="cert-issuer">Coursera / UPenn</p>
+                            <p class="cert-date">2024</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>Foundations of Project Management</h4>
+                            <p class="cert-issuer">Google</p>
+                            <p class="cert-date">Jun 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="images/Technion uni.jpeg" alt="Technion" class="cert-logo" style="border-radius: 4px;">
+                        <div class="cert-info">
+                            <h4>Advanced Neurobiology</h4>
+                            <p class="cert-issuer">Technion - Israel Institute of Technology</p>
+                            <p class="cert-date">Feb 2021</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin: 35px 0 15px; font-size: 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; text-align: center;">Professional & Cloud</h4>
+                <div class="certifications-grid" style="text-align: left; justify-content: center;">
+                    <div class="certification-card">
+                        <img src="https://cdn.simpleicons.org/sap/0FAAFF" alt="SAP" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>SAP Certified - Solution Architect - SAP BTP</h4>
+                            <p class="cert-issuer">SAP</p>
+                            <p class="cert-date">Jan 2026</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="images/logos/aws.svg" alt="AWS" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>AWS Cloud Practitioner Essentials</h4>
+                            <p class="cert-issuer">Amazon Web Services (AWS)</p>
+                            <p class="cert-date">Nov 2025</p>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <img src="https://cdn.simpleicons.org/sap/0FAAFF" alt="SAP" class="cert-logo">
+                        <div class="cert-info">
+                            <h4>SAP Professional Fundamentals</h4>
+                            <p class="cert-issuer">SAP</p>
+                            <p class="cert-date">Jul 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Tech Stack section removed -->
