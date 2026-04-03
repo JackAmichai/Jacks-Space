@@ -1276,6 +1276,18 @@ function initTestimonialCarousel() {
 
     if (!track || !prevBtn || !nextBtn) return;
 
+    // Set background images from data-bg attribute
+    const cards = track.querySelectorAll('.testimonial-card');
+    cards.forEach(card => {
+        const bgImage = card.getAttribute('data-bg');
+        if (bgImage) {
+            const cardBg = card.querySelector('.card-bg');
+            if (cardBg) {
+                cardBg.style.backgroundImage = `url('${bgImage}')`;
+            }
+        }
+    });
+
     const cardWidth = 344; // 320px card + 24px gap
 
     const updateButtons = () => {
@@ -1293,6 +1305,20 @@ function initTestimonialCarousel() {
 
     track.addEventListener('scroll', updateButtons);
     updateButtons();
+
+    // Fan card animation effect - cards fan out on hover
+    cards.forEach((card, index) => {
+        const fanAngle = (index - (cards.length - 1) / 2) * 3;
+        card.style.setProperty('--fan-angle', `${fanAngle}deg`);
+
+        card.addEventListener('mouseenter', () => {
+            card.classList.add('selected');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('selected');
+        });
+    });
 }
 
 // ========================================
@@ -2053,3 +2079,202 @@ function trackAIAnalytics(feature, status) {
         localStorage.setItem(key, JSON.stringify(analytics));
     } catch (e) { /* silent */ }
 }
+
+// ====================
+// POKER CARD ANIMATION
+// ====================
+
+const CERTS = [
+    { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
+    { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
+    { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
+    { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
+    { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
+    { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
+    { id: 7, title: "AI Orchestration: Foundation", issuer: "LinkedIn", date: "Nov 2025", category: "AI & ML" },
+    { id: 8, title: "AI For Everyone", issuer: "DeepLearning.AI", date: "Sep 2025", category: "AI & ML" },
+    { id: 9, title: "AI Applications in People Management", issuer: "Univ. of Pennsylvania", date: "Jun 2025", category: "Psychology" },
+    { id: 10, title: "AI Applications in Marketing and Finance", issuer: "Univ. of Pennsylvania", date: "Jan 2025", category: "Psychology" },
+    { id: 11, title: "Managing Social and Human Capital", issuer: "Univ. of Pennsylvania", date: "Dec 2024", category: "Psychology" },
+    { id: 12, title: "Introduction to Financial Accounting", issuer: "Univ. of Pennsylvania", date: "May 2025", category: "Psychology" },
+    { id: 13, title: "Foundations of Positive Psychology Specialization", issuer: "Coursera / UPenn", date: "2024", category: "Psychology" },
+    { id: 14, title: "Foundations of Project Management", issuer: "Google", date: "Jun 2025", category: "Psychology" },
+    { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
+    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
+    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
+    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
+];
+
+const CATS = {
+    "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
+    "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
+    "Cloud": { symbol: "♣", short: "CL", color: "#3ab86a" },
+    "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
+};
+
+const N = CERTS.length;
+const FAN_SPREAD = 76;
+const PIVOT_Y = 570;
+
+function getAngle(i) {
+    return -FAN_SPREAD / 2 + (i / (N - 1)) * FAN_SPREAD;
+}
+
+function initCertPoker() {
+    const container = document.getElementById('certPokerContainer');
+    if (!container) return;
+
+    let selectedId = null;
+    let flipped = false;
+    let hoveredId = null;
+
+    const table = document.createElement('div');
+    table.className = 'cert-poker-table';
+    table.innerHTML = `
+        <div class="cert-poker-felt"></div>
+        <div class="cert-poker-oval"></div>
+        <div class="cert-poker-oval-2"></div>
+        <div class="cert-poker-prompt" id="pokerPrompt">Pick a card — any card</div>
+        <div class="cert-poker-legend">
+            ${Object.entries(CATS).map(([name, cat]) => `
+                <div class="cert-poker-legend-item">
+                    <span style="color: ${cat.color}; font-size: 15px;">${cat.symbol}</span>
+                    ${name}
+                </div>
+            `).join('')}
+        </div>
+        <div class="cert-poker-chip" style="background: #c0392b; bottom: 36px; left: 28px;">25</div>
+        <div class="cert-poker-chip" style="background: #2471a3; bottom: 36px; left: 64px;">10</div>
+        <div class="cert-poker-chip" style="background: #239b56; bottom: 38px; right: 28px;">5</div>
+        <div class="cert-poker-hint" id="pokerHint">Hover to preview · Click to reveal</div>
+        <div id="selectedCardContainer"></div>
+        <div id="infoPanelContainer"></div>
+        <div class="cert-poker-fan" id="pokerFan"></div>
+    `;
+
+    container.appendChild(table);
+
+    const fan = document.getElementById('pokerFan');
+    const selectedContainer = document.getElementById('selectedCardContainer');
+    const infoContainer = document.getElementById('infoPanelContainer');
+    const prompt = document.getElementById('pokerPrompt');
+    const hint = document.getElementById('pokerHint');
+
+    function createCardBack(highlighted, accentColor) {
+        return `
+            <div class="cert-poker-card-back-design" style="border-color: ${highlighted ? accentColor : 'rgba(212,175,55,0.55)'}; background: ${highlighted ? '#232a4a' : '#18243e'};">
+                <div class="cert-poker-card-back-inner"></div>
+                <div class="cert-poker-card-back-logo">JA</div>
+            </div>
+        `;
+    }
+
+    function createCardFace(cert) {
+        const cat = CATS[cert.category];
+        return `
+            <div class="cert-poker-card-face" style="border-color: ${cat.color}">
+                <div class="cert-poker-card-corner" style="color: ${cat.color}">${cat.short}<br>${cat.symbol}</div>
+                <div class="cert-poker-card-center">
+                    <div style="font-size: 32px; color: ${cat.color}; line-height: 1;">${cat.symbol}</div>
+                    <div class="cert-poker-card-title">${cert.title}</div>
+                    <div class="cert-poker-card-issuer">${cert.issuer}</div>
+                    <div class="cert-poker-card-date" style="background: ${cat.color}">${cert.date}</div>
+                </div>
+                <div class="cert-poker-card-corner" style="color: ${cat.color}; align-self: flex-end; transform: rotate(180deg);">${cat.short}<br>${cat.symbol}</div>
+            </div>
+        `;
+    }
+
+    function handleCardClick(id) {
+        const cert = CERTS.find(c => c.id === id);
+        const cat = CATS[cert.category];
+
+        if (selectedId === id) {
+            flipped = false;
+            selectedContainer.innerHTML = '';
+            setTimeout(() => {
+                selectedId = null;
+                prompt.textContent = 'Pick a card — any card';
+                hint.style.display = 'block';
+            }, 350);
+        } else {
+            selectedId = id;
+            flipped = false;
+            prompt.textContent = 'Your card';
+            hint.style.display = 'none';
+            infoContainer.innerHTML = '';
+
+            selectedContainer.innerHTML = `
+                <div class="cert-poker-selected-card" id="selectedCard">
+                    <div class="cert-poker-card-inner" id="cardInner">
+                        <div class="cert-poker-card-front">${createCardFace(cert)}</div>
+                        <div class="cert-poker-card-back">${createCardBack(false, cat.color)}</div>
+                    </div>
+                </div>
+            `;
+
+            const cardInner = document.getElementById('cardInner');
+            const selectedCard = document.getElementById('selectedCard');
+
+            selectedCard.addEventListener('click', () => handleCardClick(id));
+
+            setTimeout(() => {
+                flipped = true;
+                cardInner.classList.add('flipped');
+
+                setTimeout(() => {
+                    infoContainer.innerHTML = `
+                        <div class="cert-poker-info-panel">
+                            <div class="cert-poker-info-category">${cert.category}</div>
+                            <div class="cert-poker-info-title">${cert.title}</div>
+                            <div class="cert-poker-info-issuer">${cert.issuer}</div>
+                            <div class="cert-poker-info-date" style="color: ${cat.color}">${cert.date}</div>
+                            <div class="cert-poker-info-dismiss">Click card to dismiss</div>
+                        </div>
+                    `;
+                }, 100);
+            }, 80);
+        }
+
+        updateFanCards();
+    }
+
+    function updateFanCards() {
+        const cards = fan.querySelectorAll('.cert-poker-fan-card');
+        cards.forEach((card, i) => {
+            const cert = CERTS[i];
+            const isSelected = selectedId === cert.id;
+            const isHovered = hoveredId === cert.id && !isSelected;
+            const cat = CATS[cert.category];
+
+            card.classList.toggle('selected', isSelected);
+            card.classList.toggle('hovered', isHovered);
+            card.style.zIndex = isSelected ? 40 : isHovered ? 35 : i;
+        });
+    }
+
+    CERTS.forEach((cert, i) => {
+        const cat = CATS[cert.category];
+        const angle = getAngle(i);
+
+        const cardEl = document.createElement('div');
+        cardEl.className = 'cert-poker-fan-card';
+        cardEl.style.transform = `rotate(${angle}deg)`;
+        cardEl.style.transformOrigin = `45px ${PIVOT_Y}px`;
+        cardEl.innerHTML = createCardBack(false, cat.color);
+
+        cardEl.addEventListener('click', () => handleCardClick(cert.id));
+        cardEl.addEventListener('mouseenter', () => {
+            hoveredId = cert.id;
+            updateFanCards();
+        });
+        cardEl.addEventListener('mouseleave', () => {
+            hoveredId = null;
+            updateFanCards();
+        });
+
+        fan.appendChild(cardEl);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initCertPoker);
