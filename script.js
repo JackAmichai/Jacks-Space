@@ -2173,6 +2173,16 @@ function initCertPoker() {
     
     let reshuffleIndex = 0;
     let isReshuffling = false;
+    let shuffledOrder = [...Array(CERTS.length).keys()];
+    
+    function shuffleArray(array) {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
     
     function reshuffleCards() {
         if (isReshuffling) return;
@@ -2183,11 +2193,13 @@ function initCertPoker() {
         hint.style.display = 'none';
         
         const cards = fan.querySelectorAll('.cert-poker-fan-card');
-        let delay = 0;
-        const cardDelay = 120;
+        const cardDelay = 100;
+        shuffledOrder = shuffleArray(shuffledOrder);
         
-        function showNextCard(index) {
-            if (index >= CERTS.length) {
+        let currentIndex = 0;
+        
+        function animateCard() {
+            if (currentIndex >= CERTS.length) {
                 setTimeout(() => {
                     isReshuffling = false;
                     reshuffleBtn.disabled = false;
@@ -2195,38 +2207,41 @@ function initCertPoker() {
                     prompt.textContent = 'Pick a card — any card';
                     hint.style.display = 'block';
                     
-                    // Pick a random card different from current selection
-                    let randomIndex;
-                    do {
-                        randomIndex = Math.floor(Math.random() * CERTS.length);
-                    } while (CERTS[randomIndex].id === selectedId && CERTS.length > 1);
+                    let nextCardIndex = shuffledOrder[Math.floor(Math.random() * shuffledOrder.length)];
+                    let nextCert = CERTS.find(c => c.id === nextCardIndex);
                     
-                    handleCardClick(CERTS[randomIndex].id);
-                }, 500);
+                    while (nextCert.id === selectedId && CERTS.length > 1) {
+                        nextCardIndex = shuffledOrder[Math.floor(Math.random() * shuffledOrder.length)];
+                        nextCert = CERTS.find(c => c.id === nextCardIndex);
+                    }
+                    
+                    handleCardClick(nextCert.id);
+                }, 400);
                 return;
             }
             
-            const card = cards[index];
-            const cert = CERTS[index];
+            const card = cards[currentIndex];
+            const certIndex = shuffledOrder[currentIndex];
+            const cert = CERTS[certIndex];
             const cat = CATS[cert.category];
             
-            card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            card.style.transform = `rotate(${getAngle(index)}deg) translateY(-60px) scale(1.15)`;
+            card.style.transition = 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(-50px) scale(1.1)`;
             card.style.zIndex = 50;
             card.innerHTML = createCardFace(cert);
+            card.dataset.certId = cert.id;
             
             setTimeout(() => {
-                card.style.transform = `rotate(${getAngle(index)}deg) translateY(0) scale(1)`;
+                card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(0) scale(1)`;
                 card.innerHTML = createCardBack(false, cat.color);
-                card.style.zIndex = index;
-            }, cardDelay - 50);
+                card.style.zIndex = currentIndex;
+            }, cardDelay - 30);
             
-            setTimeout(() => {
-                showNextCard(index + 1);
-            }, cardDelay);
+            currentIndex++;
+            setTimeout(animateCard, cardDelay);
         }
         
-        showNextCard(0);
+        animateCard();
     }
     
     reshuffleBtn.addEventListener('click', reshuffleCards);
