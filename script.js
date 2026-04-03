@@ -2279,6 +2279,143 @@ function initCertPoker() {
 
 document.addEventListener('DOMContentLoaded', initCertPoker);
 
+// ====================
+// REFERENCES CAROUSEL
+// ====================
+
+const REFS = [
+    {
+        id: "ben",
+        name: "Dr. Ben Engelhard",
+        role: "Lab Head, Technion Engelhard Lab",
+        linkedin: "https://www.linkedin.com/in/engelhard-lab/",
+        quote: "Jack demonstrated exceptional analytical skills and dedication during his time in the lab.",
+        highlight: "His contributions to our research were invaluable.",
+        photo: "Recommendations/Ben.jpeg",
+        letter: "documents/Recommendation letter jack.pdf",
+    },
+    {
+        id: "tzvi",
+        name: "Prof. Tzvi Dov",
+        role: "TEAMS – American Medical Program, Technion",
+        linkedin: "https://www.linkedin.com/in/tzvidov/",
+        quote: "Outstanding research capabilities in cognitive psychology.",
+        highlight: "Showed excellent leadership in coordinating lab experiments and team management.",
+        photo: "Recommendations/Tzvy.jpeg",
+        letter: "documents/Technion recommendation letter English.pdf",
+    },
+    {
+        id: "alexandra",
+        name: "Dr. Alexandra Kavushansky",
+        role: "Technion Neuroscience Lab",
+        linkedin: "https://www.linkedin.com/in/alexandra-kavushansky-a2959714/",
+        quote: "A brilliant collaborator on cognitive psychology experiments.",
+        highlight: "Jack's attention to detail and research methodology skills are exceptional.",
+        photo: "Recommendations/Alexandra.png",
+        letter: "documents/Recommendation Technion Sasha.pdf",
+    },
+    {
+        id: "tomer",
+        name: "MA. Tomer Nussbaum",
+        role: "Hebrew University in Jerusalem",
+        linkedin: "https://www.linkedin.com/in/tussbaum/",
+        quote: "Demonstrated outstanding leadership and technical abilities.",
+        highlight: "A highly motivated professional with excellent problem-solving skills.",
+        photo: "Recommendations/Tomer.jpeg",
+        letter: "documents/Yaron - recomendation Letter.pdf",
+    },
+];
+
+function initRefsCarousel() {
+    const card = document.getElementById('refsCard');
+    const photoImg = document.getElementById('refsPhotoImg');
+    const avatarImg = document.getElementById('refsAvatarImg');
+    const quoteEl = document.getElementById('refsQuote');
+    const nameEl = document.getElementById('refsName');
+    const roleEl = document.getElementById('refsRole');
+    const linkedinEl = document.getElementById('refsLinkedIn');
+    const downloadBtn = document.getElementById('refsDownloadBtn');
+    const dotsContainer = document.getElementById('refsDots');
+    const prevBtn = document.getElementById('refsPrev');
+    const nextBtn = document.getElementById('refsNext');
+
+    if (!card) return;
+
+    let current = 0;
+    let animating = false;
+    let direction = null;
+
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        REFS.forEach((ref, i) => {
+            const dot = document.createElement('button');
+            dot.className = `refs-dot ${i === 0 ? 'active' : ''}`;
+            dot.setAttribute('role', 'tab');
+            dot.setAttribute('aria-selected', i === 0);
+            dot.setAttribute('aria-label', `Go to ${ref.name}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateCard(ref, animate = false) {
+        if (animate) {
+            card.classList.remove('enter', 'exit-left', 'exit-right');
+            void card.offsetWidth;
+            card.classList.add(`exit-${direction}`);
+            
+            setTimeout(() => {
+                card.classList.remove('exit-left', 'exit-right');
+                setContent(ref);
+                card.classList.add('enter');
+            }, 400);
+        } else {
+            setContent(ref);
+            card.classList.add('enter');
+        }
+
+        document.querySelectorAll('.refs-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === current);
+            dot.setAttribute('aria-selected', i === current);
+        });
+    }
+
+    function setContent(ref) {
+        photoImg.src = ref.photo;
+        photoImg.alt = ref.name;
+        avatarImg.src = ref.photo;
+        avatarImg.alt = ref.name;
+        quoteEl.innerHTML = `"${ref.quote} <span class="refs-quote-highlight">${ref.highlight}</span>"`;
+        nameEl.textContent = ref.name;
+        roleEl.textContent = ref.role;
+        linkedinEl.href = ref.linkedin;
+        downloadBtn.href = ref.letter;
+    }
+
+    function goTo(idx) {
+        if (animating) return;
+        
+        const next = (idx + REFS.length) % REFS.length;
+        direction = idx > current ? 'right' : 'left';
+        animating = true;
+        
+        updateCard(REFS[next], true);
+        
+        setTimeout(() => {
+            current = next;
+            animating = false;
+        }, 400);
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    createDots();
+    updateCard(REFS[0]);
+}
+
+document.addEventListener('DOMContentLoaded', initRefsCarousel);
+
 function toggleAllCerts() {
     const grid = document.getElementById('allCertsGrid');
     const btn = document.getElementById('btnViewAllCerts');
