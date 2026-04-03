@@ -2207,16 +2207,28 @@ section {
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     opacity: 1;
-    filter: brightness(0.7);
+    filter: brightness(0.7) contrast(1.1);
     transition: all 0.5s ease;
+}
+
+.card-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center 30%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+    pointer-events: none;
 }
 
 .testimonial-card:hover .card-bg {
     opacity: 1;
-    filter: brightness(0.5);
+    filter: brightness(0.55) contrast(1.05);
     transform: scale(1.1);
+}
+
+.testimonial-card:hover .card-bg::after {
+    background: radial-gradient(ellipse at center 30%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
 }
 
 .card-content {
@@ -2229,23 +2241,28 @@ section {
     justify-content: center;
     padding: 30px;
     text-align: center;
-    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
 }
 
 .profile-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.4);
+    border: 4px solid rgba(255, 255, 255, 0.7);
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 25px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.15);
+    position: relative;
+    z-index: 2;
 }
 
 .profile-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(1.05) contrast(1.05);
 }
 
 .testimonial-quote {
