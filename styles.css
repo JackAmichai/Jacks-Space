@@ -2224,7 +2224,6 @@ section {
     border: 3px solid rgba(75, 63, 51, 0.4);
     overflow: hidden;
     margin-bottom: 20px;
-    filter: sepia(0.3) saturate(0.8);
 }
 
 .profile-image img {
@@ -2250,11 +2249,33 @@ section {
     margin-bottom: 8px;
 }
 
+.testimonial-name-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.testimonial-linkedin {
+    color: #0077b5;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-linkedin:hover {
+    color: #00a0dc;
+    transform: scale(1.1) translateY(-1px);
+}
+
 .testimonial-name {
     font-size: 1.1rem;
     font-weight: 600;
     color: rgba(75, 63, 51, 0.9);
-    margin-bottom: 4px;
+    margin: 0;
     font-family: Georgia, serif;
 }
 
