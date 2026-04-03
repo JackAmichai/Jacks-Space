@@ -1835,6 +1835,77 @@
         setTimeout(() => { fill.style.width = r.pct + '%'; }, 50);
         document.getElementById('rf-skills-list').innerHTML =
           r.skills.map(s => `<div class="rf-skill-row"><div class="rf-skill-dot"></div><span>${s}</span></div>`).join('');
+        
+        // Trigger confetti celebration!
+        triggerRoleFitConfetti();
+      }
+      
+      // Confetti effect for role fit quiz completion
+      function triggerRoleFitConfetti() {
+        if (window.roleFitConfettiFired) return;
+        window.roleFitConfettiFired = true;
+        
+        const colors = ['#0066cc', '#10b981', '#ffcc00', '#ff6b6b', '#9b59b6', '#e67e22'];
+        const confettiCount = 80;
+        const duration = 3000;
+        const end = Date.now() + duration;
+        
+        function createConfettiPiece() {
+          const confetti = document.createElement('div');
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const size = Math.random() * 8 + 6;
+          const isCircle = Math.random() > 0.5;
+          
+          confetti.style.cssText = `
+            position: fixed;
+            left: ${Math.random() * 100}vw;
+            top: -20px;
+            width: ${size}px;
+            height: ${size}px;
+            background: ${color};
+            border-radius: ${isCircle ? '50%' : '2px'};
+            z-index: 100001;
+            pointer-events: none;
+            opacity: 1;
+          `;
+          
+          document.body.appendChild(confetti);
+          
+          const animation = confetti.animate([
+            { 
+              transform: `translate3d(0, 0, 0) rotate(0deg) scale(1)`,
+              opacity: 1 
+            },
+            { 
+              transform: `translate3d(${(Math.random() - 0.5) * 200}px, 110vh, 0) rotate(${Math.random() * 1080 - 540}deg) scale(0.5)`,
+              opacity: 0 
+            }
+          ], {
+            duration: Math.random() * 1500 + 2000,
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          });
+          
+          animation.onfinish = () => confetti.remove();
+        }
+        
+        // Create confetti burst
+        function frame() {
+          if (Math.random() > 0.7) createConfettiPiece();
+          if (Date.now() < end) requestAnimationFrame(frame);
+        }
+        
+        // Initial burst
+        for (let i = 0; i < 30; i++) {
+          setTimeout(createConfettiPiece, i * 30);
+        }
+        
+        // Continuous confetti
+        frame();
+        
+        // Reset after modal closes
+        setTimeout(() => {
+          window.roleFitConfettiFired = false;
+        }, 10000);
       }
 
       function showRFMain() {
