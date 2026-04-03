@@ -2088,16 +2088,10 @@ function trackAIAnalytics(feature, status) {
 // POKER CARD ANIMATION
 // ====================
 
-const FEATURED_CERTS = [
+const CERTS_ALL = [
     { id: 1, title: "Compute Technical Curriculum", issuer: "NVIDIA", date: "Dec 2025", category: "AI & ML" },
     { id: 2, title: "Building Production-Ready AI Agents with Amazon Bedrock AgentCore", issuer: "Amazon Web Services", date: "Dec 2025", category: "AI & ML" },
     { id: 3, title: "Introduction to Large Language Models", issuer: "Google", date: "Aug 2024", category: "AI & ML" },
-    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
-    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
-    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
-];
-
-const OTHER_CERTS = [
     { id: 4, title: "Introduction to Generative AI Learning Path", issuer: "Google", date: "2024", category: "AI & ML" },
     { id: 5, title: "Introduction to Artificial Intelligence", issuer: "Coursera / IBM", date: "Apr 2020", category: "AI & ML" },
     { id: 6, title: "Introduction to AR and ARCore", issuer: "Coursera / Google", date: "2020", category: "AI & ML" },
@@ -2110,10 +2104,11 @@ const OTHER_CERTS = [
     { id: 13, title: "Foundations of Positive Psychology Specialization", issuer: "Coursera / UPenn", date: "2024", category: "Psychology" },
     { id: 14, title: "Foundations of Project Management", issuer: "Google", date: "Jun 2025", category: "Psychology" },
     { id: 15, title: "Advanced Neurobiology", issuer: "Technion", date: "Feb 2021", category: "Psychology" },
+    { id: 16, title: "SAP Certified - Solution Architect BTP", issuer: "SAP", date: "Jan 2026", category: "Cloud" },
+    { id: 17, title: "AWS Cloud Practitioner Essentials", issuer: "Amazon Web Services", date: "Nov 2025", category: "Cloud" },
+    { id: 18, title: "SAP Professional Fundamentals", issuer: "SAP", date: "Jul 2025", category: "Cloud" },
 ];
 
-const CERTS_ALL = [...FEATURED_CERTS, ...OTHER_CERTS];
-const CERTS = CERTS_ALL; // Alias for backwards compatibility
 const CATS = {
     "AI & ML": { symbol: "♠", short: "AI", color: "#3a8bde" },
     "Psychology": { symbol: "♥", short: "PS", color: "#d94040" },
@@ -2121,280 +2116,114 @@ const CATS = {
     "Education": { symbol: "♦", short: "ED", color: "#d4a017" },
 };
 
-const FAN_CARDS = 4; // Show 4 cards in the fan
-const FAN_SPREAD = 80;
-const PIVOT_Y = 570;
-
-function getAngle(i) {
-    return -FAN_SPREAD / 2 + (i / (FAN_CARDS - 1)) * FAN_SPREAD;
-}
-
-function shuffleArray(array) {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-}
-
-function getInitialFanCerts(round) {
-    const shuffledFeatured = shuffleArray(FEATURED_CERTS);
-    const shuffledOther = shuffleArray(OTHER_CERTS);
-    
-    if (round === 0) {
-        // First round: 3 featured + 1 other
-        return [...shuffledFeatured.slice(0, 3), shuffledOther[0]];
-    } else if (round === 1) {
-        // Second round: 3 different featured + 1 other
-        return [...shuffledFeatured.slice(3, 6), shuffledOther[1]];
-    } else {
-        // Third+ round: all random
-        return shuffleArray(CERTS_ALL).slice(0, FAN_CARDS);
-    }
-}
+const CARDS_PER_PAGE = 4;
 
 function initCertPoker() {
     const container = document.getElementById('certPokerContainer');
     if (!container) return;
 
+    let currentPage = 0;
     let selectedId = null;
-    let flipped = false;
-    let hoveredId = null;
-    let currentFanCerts = getInitialFanCerts(0);
-    let reshuffleCount = 0;
-    let featuredUsed = [];
 
-    const table = document.createElement('div');
-    table.className = 'cert-poker-table';
-    table.innerHTML = `
-        <div class="cert-poker-felt"></div>
-        <div class="cert-poker-oval"></div>
-        <div class="cert-poker-oval-2"></div>
-        <div class="cert-poker-prompt" id="pokerPrompt">Pick a card — any card</div>
-        <div class="cert-poker-legend">
-            ${Object.entries(CATS).map(([name, cat]) => `
-                <div class="cert-poker-legend-item">
-                    <span style="color: ${cat.color}; font-size: 15px;">${cat.symbol}</span>
-                    ${name}
-                </div>
-            `).join('')}
+    container.innerHTML = `
+        <div class="cert-poker-table">
+            <div class="cert-poker-felt"></div>
+            <div class="cert-poker-prompt" id="pokerPrompt">Click any card to learn more</div>
+            <div class="cert-poker-legend">
+                ${Object.entries(CATS).map(([name, cat]) => `
+                    <div class="cert-poker-legend-item">
+                        <span style="color: ${cat.color}; font-size: 15px;">${cat.symbol}</span>
+                        ${name}
+                    </div>
+                `).join('')}
+            </div>
+            <div class="cert-poker-cards-row" id="pokerCardsRow"></div>
+            <div class="cert-poker-nav">
+                <span class="cert-poker-page-indicator" id="pokerPageIndicator"></span>
+                <button class="cert-poker-reshuffle" id="pokerReshuffle">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 3 21 3 21 8"/>
+                        <line x1="4" y1="20" x2="21" y2="3"/>
+                        <polyline points="21 16 21 21 16 21"/>
+                        <line x1="15" y1="15" x2="21" y2="21"/>
+                        <line x1="4" y1="4" x2="9" y2="9"/>
+                    </svg>
+                    Next 4 Cards
+                </button>
+            </div>
+            <div id="pokerInfoPanel"></div>
         </div>
-        <div class="cert-poker-chip" style="background: #c0392b; bottom: 36px; left: 28px;">25</div>
-        <div class="cert-poker-chip" style="background: #2471a3; bottom: 36px; left: 64px;">10</div>
-        <div class="cert-poker-chip" style="background: #239b56; bottom: 38px; right: 28px;">5</div>
-        <div class="cert-poker-hint" id="pokerHint">Hover to preview · Click to reveal</div>
-        <button class="cert-poker-reshuffle" id="pokerReshuffle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 3 21 3 21 8"/>
-                <line x1="4" y1="20" x2="21" y2="3"/>
-                <polyline points="21 16 21 21 16 21"/>
-                <line x1="15" y1="15" x2="21" y2="21"/>
-                <line x1="4" y1="4" x2="9" y2="9"/>
-            </svg>
-            Reshuffle
-        </button>
-        <div id="selectedCardContainer"></div>
-        <div id="infoPanelContainer"></div>
-        <div class="cert-poker-fan" id="pokerFan"></div>
     `;
 
-    container.appendChild(table);
-
-    const fan = document.getElementById('pokerFan');
-    const selectedContainer = document.getElementById('selectedCardContainer');
-    const infoContainer = document.getElementById('infoPanelContainer');
+    const cardsRow = document.getElementById('pokerCardsRow');
     const prompt = document.getElementById('pokerPrompt');
-    const hint = document.getElementById('pokerHint');
+    const pageIndicator = document.getElementById('pokerPageIndicator');
     const reshuffleBtn = document.getElementById('pokerReshuffle');
-    
-    let isReshuffling = false;
-    
-    function reshuffleCards() {
-        if (isReshuffling) return;
-        isReshuffling = true;
-        reshuffleBtn.disabled = true;
-        reshuffleBtn.classList.add('shuffling');
-        prompt.textContent = 'Reshuffling...';
-        hint.style.display = 'none';
-        reshuffleCount++;
-        
-        const cards = fan.querySelectorAll('.cert-poker-fan-card');
-        const cardDelay = 100;
-        
-        // Get new fan certs based on reshuffle round
-        const newFanCerts = getInitialFanCerts(reshuffleCount);
-        
-        let currentIndex = 0;
-        
-        function animateCard() {
-            if (currentIndex >= FAN_CARDS) {
-                setTimeout(() => {
-                    isReshuffling = false;
-                    reshuffleBtn.disabled = false;
-                    reshuffleBtn.classList.remove('shuffling');
-                    prompt.textContent = 'Pick a card — any card';
-                    hint.style.display = 'block';
-                    
-                    // Pick random card from the new fan
-                    let randomCert = newFanCerts[Math.floor(Math.random() * newFanCerts.length)];
-                    while (randomCert.id === selectedId && newFanCerts.length > 1) {
-                        randomCert = newFanCerts[Math.floor(Math.random() * newFanCerts.length)];
-                    }
-                    
-                    currentFanCerts = newFanCerts;
-                    createFanCards();
-                    handleCardClick(randomCert.id);
-                }, 400);
-                return;
-            }
-            
-            const card = cards[currentIndex];
-            const cert = newFanCerts[currentIndex];
-            const cat = CATS[cert.category];
-            
-            card.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(-50px) scale(1.1)`;
-            card.style.zIndex = 50;
-            card.innerHTML = createCardFace(cert);
-            card.dataset.certId = cert.id;
-            
-            setTimeout(() => {
-                card.style.transform = `rotate(${getAngle(currentIndex)}deg) translateY(0) scale(1)`;
-                card.style.zIndex = currentIndex;
-            }, cardDelay - 30);
-            
-            currentIndex++;
-            setTimeout(animateCard, cardDelay);
-        }
-        
-        animateCard();
-    }
-    
-    reshuffleBtn.addEventListener('click', reshuffleCards);
+    const infoPanel = document.getElementById('pokerInfoPanel');
 
-    function createCardBack(highlighted, accentColor) {
-        return `
-            <div class="cert-poker-card-back-design" style="border-color: ${highlighted ? accentColor : 'rgba(212,175,55,0.55)'}; background: ${highlighted ? '#232a4a' : '#18243e'};">
-                <div class="cert-poker-card-back-inner"></div>
-                <div class="cert-poker-card-back-logo">JA</div>
-            </div>
-        `;
+    function getPageCerts(page) {
+        const start = page * CARDS_PER_PAGE;
+        return CERTS_ALL.slice(start, start + CARDS_PER_PAGE);
     }
 
-    function createCardFace(cert) {
+    function createCardHTML(cert) {
         const cat = CATS[cert.category];
         return `
-            <div class="cert-poker-card-face" style="border-color: ${cat.color}">
-                <div class="cert-poker-card-corner" style="color: ${cat.color}">${cat.short}<br>${cat.symbol}</div>
+            <div class="cert-poker-card" data-id="${cert.id}" style="border-color: ${cat.color}">
+                <div class="cert-poker-card-corner" style="color: ${cat.color}">${cat.short}${cat.symbol}</div>
                 <div class="cert-poker-card-center">
-                    <div style="font-size: 32px; color: ${cat.color}; line-height: 1;">${cat.symbol}</div>
+                    <div class="cert-poker-card-symbol" style="color: ${cat.color}">${cat.symbol}</div>
                     <div class="cert-poker-card-title">${cert.title}</div>
                     <div class="cert-poker-card-issuer">${cert.issuer}</div>
-                    <div class="cert-poker-card-date" style="background: ${cat.color}">${cert.date}</div>
                 </div>
-                <div class="cert-poker-card-corner" style="color: ${cat.color}; align-self: flex-end; transform: rotate(180deg);">${cat.short}<br>${cat.symbol}</div>
+                <div class="cert-poker-card-corner" style="color: ${cat.color}; align-self: flex-end; transform: rotate(180deg);">${cat.short}${cat.symbol}</div>
             </div>
         `;
+    }
+
+    function renderCards() {
+        const certs = getPageCerts(currentPage);
+        const totalPages = Math.ceil(CERTS_ALL.length / CARDS_PER_PAGE);
+        
+        cardsRow.innerHTML = certs.map(createCardHTML).join('');
+        pageIndicator.textContent = `${currentPage * CARDS_PER_PAGE + 1}-${currentPage * CARDS_PER_PAGE + certs.length} of ${CERTS_ALL.length}`;
+        
+        cardsRow.querySelectorAll('.cert-poker-card').forEach(card => {
+            card.addEventListener('click', () => handleCardClick(parseInt(card.dataset.id)));
+        });
     }
 
     function handleCardClick(id) {
-        const cert = CERTS.find(c => c.id === id);
+        const cert = CERTS_ALL.find(c => c.id === id);
         if (!cert) return;
         const cat = CATS[cert.category];
 
         if (selectedId === id) {
-            flipped = false;
-            selectedContainer.innerHTML = '';
-            setTimeout(() => {
-                selectedId = null;
-                prompt.textContent = 'Pick a card — any card';
-                hint.style.display = 'block';
-            }, 350);
+            selectedId = null;
+            infoPanel.innerHTML = '';
+            prompt.textContent = 'Click any card to learn more';
         } else {
             selectedId = id;
-            flipped = false;
-            prompt.textContent = 'Your card';
-            hint.style.display = 'none';
-            infoContainer.innerHTML = '';
-
-            selectedContainer.innerHTML = `
-                <div class="cert-poker-selected-card" id="selectedCard">
-                    <div class="cert-poker-card-inner" id="cardInner">
-                        <div class="cert-poker-card-front">${createCardFace(cert)}</div>
-                        <div class="cert-poker-card-back">${createCardBack(false, cat.color)}</div>
-                    </div>
+            infoPanel.innerHTML = `
+                <div class="cert-poker-info-panel">
+                    <div class="cert-poker-info-category">${cert.category}</div>
+                    <div class="cert-poker-info-title">${cert.title}</div>
+                    <div class="cert-poker-info-issuer">${cert.issuer}</div>
+                    <div class="cert-poker-info-date" style="color: ${cat.color}">${cert.date}</div>
                 </div>
             `;
-
-            const cardInner = document.getElementById('cardInner');
-            const selectedCard = document.getElementById('selectedCard');
-
-            selectedCard.addEventListener('click', () => handleCardClick(id));
-
-            setTimeout(() => {
-                flipped = true;
-                cardInner.classList.add('flipped');
-
-                setTimeout(() => {
-                    infoContainer.innerHTML = `
-                        <div class="cert-poker-info-panel">
-                            <div class="cert-poker-info-category">${cert.category}</div>
-                            <div class="cert-poker-info-title">${cert.title}</div>
-                            <div class="cert-poker-info-issuer">${cert.issuer}</div>
-                            <div class="cert-poker-info-date" style="color: ${cat.color}">${cert.date}</div>
-                            <div class="cert-poker-info-dismiss">Click card to dismiss</div>
-                        </div>
-                    `;
-                }, 100);
-            }, 80);
+            prompt.textContent = cert.title;
         }
-
-        updateFanCards();
     }
 
-    function updateFanCards() {
-        const cards = fan.querySelectorAll('.cert-poker-fan-card');
-        cards.forEach((card, i) => {
-            const cert = currentFanCerts[i];
-            if (!cert) return;
-            const isSelected = selectedId === cert.id;
-            const isHovered = hoveredId === cert.id && !isSelected;
-            const cat = CATS[cert.category];
+    reshuffleBtn.addEventListener('click', () => {
+        currentPage = (currentPage + 1) % Math.ceil(CERTS_ALL.length / CARDS_PER_PAGE);
+        selectedId = null;
+        infoPanel.innerHTML = '';
+        renderCards();
+    });
 
-            card.classList.toggle('selected', isSelected);
-            card.classList.toggle('hovered', isHovered);
-            card.style.zIndex = isSelected ? 40 : isHovered ? 35 : i;
-        });
-    }
-
-    function createFanCards() {
-        fan.innerHTML = '';
-        currentFanCerts.forEach((cert, i) => {
-            const cat = CATS[cert.category];
-            const angle = getAngle(i);
-
-            const cardEl = document.createElement('div');
-            cardEl.className = 'cert-poker-fan-card';
-            cardEl.style.transform = `rotate(${angle}deg)`;
-            cardEl.style.transformOrigin = `45px ${PIVOT_Y}px`;
-            cardEl.innerHTML = createCardBack(false, cat.color);
-
-            cardEl.addEventListener('click', () => handleCardClick(cert.id));
-            cardEl.addEventListener('mouseenter', () => {
-                hoveredId = cert.id;
-                updateFanCards();
-            });
-            cardEl.addEventListener('mouseleave', () => {
-                hoveredId = null;
-                updateFanCards();
-            });
-
-            fan.appendChild(cardEl);
-        });
-    }
-
-    createFanCards();
+    renderCards();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
