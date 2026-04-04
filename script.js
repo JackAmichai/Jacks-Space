@@ -366,6 +366,26 @@ document.querySelectorAll('.timeline').forEach(timelineSection => {
     timelineObserver.observe(timelineSection);
 });
 
+// Horizontal timeline animation
+document.querySelectorAll('.horizontal-timeline').forEach(horizontalTimeline => {
+    const line = horizontalTimeline.querySelector('.horizontal-timeline-line');
+    
+    const hTimelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (line) line.classList.add('active');
+                horizontalTimeline.querySelectorAll('.horizontal-timeline-item').forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    hTimelineObserver.observe(horizontalTimeline);
+});
+
 // ========================================
 // 13. ACTIVE NAV LINK HIGHLIGHTING
 // ========================================
