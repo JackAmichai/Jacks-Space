@@ -89,16 +89,19 @@ const jackKnowledgeBase = {
 };
 
 // Sample questions to display
-const sampleQuestions = [
-    "Tell me about Sentinel OS",
-    "What is Hatrick?",
-    "Tell me about Jack's research",
-    "Does Jack know SAP BTP?",
-    "What is his tech stack?",
-    "How can I contact Jack?",
-    "Is Jack looking for work?",
-    "Does Jack have recommendations?"
-];
+const getSampleQuestions = () => {
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+    return [
+        t('sample_q1'),
+        t('sample_q2'),
+        t('sample_q3'),
+        t('sample_q4'),
+        t('sample_q5'),
+        t('sample_q6'),
+        t('sample_q7'),
+        t('sample_q8')
+    ];
+};
 
 class CloudChatbot {
     constructor() {
@@ -114,12 +117,14 @@ class CloudChatbot {
     }
 
     createChatbotUI() {
+        const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+
         // Chatbot bubble button
         const bubble = document.createElement('div');
         bubble.id = 'chatbot-bubble';
         bubble.className = 'chatbot-bubble floating-btn';
         bubble.innerHTML = `
-            <img src="images/cloud-bot.jpg" alt="Cloud Assistant" class="chatbot-avatar">
+            <img src="images/cloud-bot.jpg" alt="${t('bot_header_title')}" class="chatbot-avatar">
             <div class="chatbot-bubble-pulse"></div>
         `;
         
@@ -133,15 +138,22 @@ class CloudChatbot {
         popup.innerHTML = `
             <div class="chatbot-popup-header">
                 <div class="chatbot-popup-avatar"></div>
-                <h4 class="chatbot-popup-title">Hey! I'm Cloud</h4>
+                <h4 class="chatbot-popup-title" data-i18n="bot_popup_title">${t('bot_popup_title')}</h4>
                 <button class="chatbot-popup-close" id="popup-close">✕</button>
             </div>
-            <p class="chatbot-popup-message">
-                I'm Jack's AI assistant! I can answer questions about his experience, projects, or how to get in touch. Try me out!
+            <p class="chatbot-popup-message" data-i18n="bot_popup_message">
+                ${t('bot_popup_message')}
             </p>
-            <button class="chatbot-popup-cta" id="popup-cta">Ask Me Anything</button>
+            <button class="chatbot-popup-cta" id="popup-cta" data-i18n="bot_popup_cta">${t('bot_popup_cta')}</button>
         `;
         document.body.appendChild(popup);
+
+        // Listen for language change to refresh sample questions
+        window.addEventListener('languageChanged', () => {
+            if (!this.isOpen) {
+                this.displaySuggestions();
+            }
+        });
 
         // Show popup after 2 seconds, hide after 10 seconds or when dismissed
         setTimeout(() => {
@@ -179,8 +191,8 @@ class CloudChatbot {
                 <div class="chatbot-header-content">
                     <img src="images/cloud-bot.jpg" alt="Cloud" class="chatbot-header-avatar">
                     <div class="chatbot-header-text">
-                        <h3>Cloud</h3>
-                        <p>Powered by NVIDIA Nemotron 🧠</p>
+                        <h3 data-i18n="bot_header_title">${t('bot_header_title')}</h3>
+                        <p data-i18n="bot_header_sub">${t('bot_header_sub')}</p>
                     </div>
                 </div>
                 <button class="chatbot-close" id="chatbot-close">✕</button>
@@ -191,7 +203,8 @@ class CloudChatbot {
                 <input 
                     type="text" 
                     id="chatbot-input" 
-                    placeholder="Ask about projects, skills, or contact info..."
+                    placeholder="${t('bot_input_placeholder')}"
+                    data-i18n-placeholder="bot_input_placeholder"
                     autocomplete="off"
                 >
                 <button id="chatbot-send">
@@ -240,11 +253,9 @@ class CloudChatbot {
     }
 
     displayWelcomeMessage() {
+        const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
         setTimeout(() => {
-            this.addMessage(
-                "Hi! I'm Cloud, Jack's AI assistant powered by **NVIDIA Nemotron** 🧠\n\nI can answer questions about his projects, skills, experience, or even discuss AI concepts. Ask me anything!",
-                'bot'
-            );
+            this.addMessage(t('bot_welcome'), 'bot');
             this.displaySuggestions();
         }, 500);
     }
@@ -253,7 +264,7 @@ class CloudChatbot {
         const suggestionsContainer = document.getElementById('chatbot-suggestions');
 
         // Show 3 random suggestions
-        const randomSuggestions = this.getRandomItems(sampleQuestions, 3);
+        const randomSuggestions = this.getRandomItems(getSampleQuestions(), 3);
 
         suggestionsContainer.innerHTML = randomSuggestions.map(question =>
             `<button class="suggestion-btn" data-question="${question}">${question}</button>`
@@ -332,7 +343,8 @@ class CloudChatbot {
                 const data = await response.json();
                 typingDiv.remove();
                 this.showRateLimitWarning(data.retryAfter || retryAfter || 60);
-                this.addMessage('⏳ You\'ve reached the message limit. Please wait a moment before trying again.', 'bot');
+                const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+                this.addMessage(t('bot_rate_limit'), 'bot');
                 // Track rate limit hit
                 this.trackAIUsage('chatbot', 'rate_limited');
                 return;
@@ -364,8 +376,9 @@ class CloudChatbot {
             typingDiv.remove();
 
             // Fallback to local dictionary with visible indicator
+            const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
             const answer = this.findAnswer(message);
-            this.addMessage(answer + "\n\n---\n_⚡ Offline mode — using local knowledge base. [Deploy to Vercel](https://vercel.com) with NVIDIA_API_KEY for full AI responses._", 'bot');
+            this.addMessage(answer + "\n\n---\n" + t('bot_offline'), 'bot');
         }
 
         // Show new suggestions after answer
@@ -454,9 +467,11 @@ class CloudChatbot {
     }
 
     showRemainingHint(remaining) {
+        const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
         const hint = document.createElement('div');
         hint.className = 'chatbot-message bot-message rate-hint';
-        hint.innerHTML = `<div class="message-content" style="font-size: 0.8rem; opacity: 0.7; padding: 4px 8px;">💡 ${remaining} message${remaining !== 1 ? 's' : ''} remaining this minute</div>`;
+        const msg = remaining === 1 ? t('bot_remaining') : t('bot_remaining_plural');
+        hint.innerHTML = `<div class="message-content" style="font-size: 0.8rem; opacity: 0.7; padding: 4px 8px;">💡 ${remaining} ${msg}</div>`;
         document.getElementById('chatbot-messages').appendChild(hint);
         setTimeout(() => hint.remove(), 5000);
     }

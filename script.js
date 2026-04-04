@@ -987,12 +987,13 @@ function renderProject(project, view = 'business') {
     // Since external video files are not available, we use the generated visual
     // and animate it on hover/click to simulate a "Live Preview".
 
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
     let mediaHtml = `
         <div class="project-media" onclick="this.classList.toggle('playing')">
             <div class="visual-wrapper">
                 ${customVisual}
             </div>
-            <div class="media-badge">▶ Code Preview</div>
+            <div class="media-badge">${t('proj_code_preview')}</div>
         </div>
     `;
 
@@ -1306,11 +1307,13 @@ function openProjectModal(projectId) {
 
     // Links handling
     links.innerHTML = '';
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+
     if (project.links?.demo) {
-        links.innerHTML += `<a href="${project.links.demo}" target="_blank" class="cta-button primary" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">Live Demo</a>`;
+        links.innerHTML += `<a href="${project.links.demo}" target="_blank" class="cta-button primary" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">${t('proj_live_demo')}</a>`;
     }
     if (project.links?.github) {
-        links.innerHTML += `<a href="${project.links.github}" target="_blank" class="cta-button secondary" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">GitHub</a>`;
+        links.innerHTML += `<a href="${project.links.github}" target="_blank" class="cta-button secondary" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center;">${t('proj_github')}</a>`;
     }
 
     // Show modal

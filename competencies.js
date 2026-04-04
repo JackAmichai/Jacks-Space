@@ -53,6 +53,7 @@
     };
 
     window.showCompetencyEvidence = function(key) {
+        const t = (k) => window.translationManager ? window.translationManager.t(k) : k;
         const data = competencyData[key];
         if (!data) return;
 
@@ -60,13 +61,23 @@
         const title = document.getElementById('compModalTitle');
         const list = document.getElementById('compModalList');
 
-        title.textContent = data.title + ' Evidence';
-        list.innerHTML = data.evidence.map(item => `
-            <div class="evidence-item">
-                <h5>${item.title}</h5>
-                <p>${item.desc}</p>
-            </div>
-        `).join('');
+        // Translate the title and items if keys exist
+        const translatedTitle = t(`skill_${key.replace('-','_')}_title`);
+        title.textContent = (translatedTitle !== `skill_${key.replace('-','_')}_title` ? translatedTitle : data.title) + ' ' + t('comp_evidence_title');
+        
+        list.innerHTML = data.evidence.map((item, index) => {
+            const itemTitleKey = `comp_${key.replace('-','_')}_item${index+1}_title`;
+            const itemDescKey = `comp_${key.replace('-','_')}_item${index+1}_desc`;
+            const translatedItemTitle = t(itemTitleKey);
+            const translatedItemDesc = t(itemDescKey);
+            
+            return `
+                <div class="evidence-item">
+                    <h5>${translatedItemTitle !== itemTitleKey ? translatedItemTitle : item.title}</h5>
+                    <p>${translatedItemDesc !== itemDescKey ? translatedItemDesc : item.desc}</p>
+                </div>
+            `;
+        }).join('');
 
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
