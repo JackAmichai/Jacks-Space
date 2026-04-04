@@ -395,6 +395,12 @@ window.translations = {
     tour_btn_skip: "Skip Tour",
     tour_btn_go: "Let's Go!",
     tour_dont_show: "Don't show this again",
+    
+    // Exit Popup
+    exit_title: "Are you sure?",
+    exit_stay: "Stay",
+    exit_contact: "Leave but stay in touch",
+    exit_quit: "Quit",
   },
   
   he: {
@@ -793,5 +799,11 @@ window.translations = {
     tour_btn_skip: "דלג על המדריך",
     tour_btn_go: "בואו נתחיל!",
     tour_dont_show: "אל תציג זאת שוב",
+    
+    // Exit Popup
+    exit_title: "בטוח שברצונך לעזוב?",
+    exit_stay: "הישאר",
+    exit_contact: "עזוב אך הישאר בקשר",
+    exit_quit: "צא",
   }
 };

@@ -2203,6 +2203,20 @@
         }
     </script>
 
+    <!-- Exit Intent Popup -->
+    <div id="exitPopup" class="refs-popup-overlay" style="display: none;">
+        <div class="refs-popup exit-popup-content" style="background-image: url('images/hero-bg-3.jpg'); background-size: cover; background-position: center;">
+            <div class="exit-popup-inner">
+                <h2 data-i18n="exit_title" style="margin-bottom: 30px; font-size: 2rem;">Are you sure?</h2>
+                <div class="exit-popup-buttons">
+                    <button id="exitStayBtn" class="cta-button primary" style="background: #0066cc;" data-i18n="exit_stay">Stay</button>
+                    <button id="exitContactBtn" class="cta-button secondary" style="background: #8b5cf6;" data-i18n="exit_contact">Leave but stay in touch</button>
+                    <button id="exitQuitBtn" class="cta-button" style="background: #ef4444; color: white; border: none; padding: 12px 24px; border-radius: 30px; cursor: pointer;" data-i18n="exit_quit">Quit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- References Popup -->
     <div class="refs-popup-overlay" id="refsPopupOverlay" onclick="closeRefsPopup(event)">
         <div class="refs-popup" onclick="event.stopPropagation()">

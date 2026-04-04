@@ -2911,3 +2911,49 @@ function selectRefFromPopup(id) {
 window.openRefsPopup = openRefsPopup;
 window.closeRefsPopup = closeRefsPopup;
 window.selectRefFromPopup = selectRefFromPopup;
+
+// ========================================
+// EXIT INTENT POPUP
+// ========================================
+function initExitIntent() {
+    const exitPopup = document.getElementById('exitPopup');
+    const stayBtn = document.getElementById('exitStayBtn');
+    const contactBtn = document.getElementById('exitContactBtn');
+    const quitBtn = document.getElementById('exitQuitBtn');
+    
+    if (!exitPopup) return;
+
+    let hasShownExit = false;
+
+    // Show popup when mouse leaves the top of the window
+    document.addEventListener('mouseout', (e) => {
+        if (e.clientY <= 0 && !hasShownExit) {
+            exitPopup.style.display = 'flex';
+            exitPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            hasShownExit = true;
+        }
+    });
+
+    const closeExit = () => {
+        exitPopup.style.display = 'none';
+        exitPopup.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    stayBtn?.addEventListener('click', closeExit);
+
+    contactBtn?.addEventListener('click', () => {
+        closeExit();
+        // Open the stay connected modal
+        const scModal = document.getElementById('stayConnectedModal');
+        if (scModal) {
+            scModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    quitBtn?.addEventListener('click', closeExit);
+}
+
+document.addEventListener('DOMContentLoaded', initExitIntent);
