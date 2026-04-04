@@ -99,6 +99,11 @@ class TranslationManager {
         el.setAttribute('aria-label', t[key]);
       }
     });
+
+    // Update Page Title
+    if (t['page_title']) {
+        document.title = t['page_title'];
+    }
     
     // Dispatch event for custom handling (e.g. updating dynamically rendered projects)
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
