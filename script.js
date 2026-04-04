@@ -2953,7 +2953,9 @@ function initExitIntent() {
         }
     });
 
-    quitBtn?.addEventListener('click', closeExit);
+    quitBtn?.addEventListener('click', () => {
+        window.location.href = "https://www.google.com";
+    });
 }
 
 document.addEventListener('DOMContentLoaded', initExitIntent);
