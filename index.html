@@ -1256,6 +1256,18 @@
                             <polyline points="9 18 15 12 9 6"/>
                         </svg>
                     </button>
+                    
+                    <!-- See More Button -->
+                    <div class="refs-see-more">
+                        <button class="refs-see-more-btn" onclick="openRefsPopup()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="16" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            </svg>
+                            <span data-i18n="refs_see_all">See All</span>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Dot navigation -->
@@ -2157,6 +2169,20 @@
             });
         }
     </script>
+
+    <!-- References Popup -->
+    <div class="refs-popup-overlay" id="refsPopupOverlay" onclick="closeRefsPopup(event)">
+        <div class="refs-popup" onclick="event.stopPropagation()">
+            <button class="refs-popup-close" onclick="closeRefsPopup()">×</button>
+            <div class="refs-popup-header">
+                <h3 data-i18n="refs_all_title">All Recommendations</h3>
+                <p data-i18n="refs_all_subtitle">Click any reference to view it</p>
+            </div>
+            <div class="refs-popup-list" id="refsPopupList">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
 
 </body>
 

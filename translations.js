@@ -205,6 +205,9 @@ window.translations = {
     cert_dismiss: "Click card to dismiss",
     refs_pick_card: "Pick a card — any card",
     refs_your_card: "Your card",
+    refs_see_all: "See All",
+    refs_all_title: "All Recommendations",
+    refs_all_subtitle: "Click any reference to view it",
     
     // Role Fit Modal
     role_fit_title: "Is Jack right for your team?",
@@ -472,6 +475,9 @@ window.translations = {
     cert_dismiss: "לחץ על הכרטיס לסגירה",
     refs_pick_card: "בחר כרטיס — כל כרטיס",
     refs_your_card: "הכרטיס שלך",
+    refs_see_all: "ראה הכל",
+    refs_all_title: "כל ההמלצות",
+    refs_all_subtitle: "לחץ על כל המלצה לצפייה",
     
     // Role Fit Modal
     role_fit_title: "האם גאק (ירון) עמיחי מתאים לצוות שלך?",

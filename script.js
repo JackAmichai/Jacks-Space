@@ -2852,6 +2852,9 @@ function initRefsCarousel() {
 
     createDots();
     updateCard(REFS[0]);
+    
+    // Expose goTo globally for popup
+    window.goToRef = function(idx) { goTo(idx); };
 }
 
 function toggleAllCerts() {
@@ -2870,3 +2873,50 @@ function toggleAllCerts() {
         btn.querySelector('span').textContent = 'View All Certifications';
     }
 }
+
+// ====================
+// REFERENCES POPUP
+// ====================
+function openRefsPopup() {
+    const overlay = document.getElementById('refsPopupOverlay');
+    const list = document.getElementById('refsPopupList');
+    
+    if (!overlay || !list) return;
+    
+    list.innerHTML = REFS.map(ref => `
+        <div class="refs-popup-item" onclick="selectRefFromPopup('${ref.id}')">
+            <img src="${ref.photo}" alt="${ref.name}" class="refs-popup-item-img">
+            <div class="refs-popup-item-info">
+                <h4>${ref.name}</h4>
+                <p>${ref.role}</p>
+                <span>${ref.quote.substring(0, 60)}...</span>
+            </div>
+        </div>
+    `).join('');
+    
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeRefsPopup(event) {
+    if (event && event.target !== event.currentTarget) return;
+    
+    const overlay = document.getElementById('refsPopupOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function selectRefFromPopup(id) {
+    const index = REFS.findIndex(ref => ref.id === id);
+    if (index !== -1) {
+        window.goToRef(index);
+        closeRefsPopup();
+    }
+}
+
+// Make functions global
+window.openRefsPopup = openRefsPopup;
+window.closeRefsPopup = closeRefsPopup;
+window.selectRefFromPopup = selectRefFromPopup;
