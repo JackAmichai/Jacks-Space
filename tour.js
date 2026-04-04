@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+
     const tour = new Shepherd.Tour({
         defaultStepOptions: {
             cancelIcon: {
@@ -12,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tour.addStep({
         id: 'welcome',
-        title: 'Welcome to My Portfolio!',
-        text: `I'm Jack Amichai, an AI Solutions Engineer & Product Builder.<br>Here's a quick guide to explore my work:`,
+        title: t('tour_welcome_title'),
+        text: t('tour_welcome_text'),
         attachTo: {
             element: '.hero-name-minimal',
             on: 'bottom'
@@ -23,15 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'about',
-        title: 'Core Competencies',
-        text: 'Discover my specialized technical strengths in AI Solutions, Architecture, and Product Engineering.',
+        title: t('tour_skills_title'),
+        text: t('tour_skills_text'),
         attachTo: {
             element: '#skills',
             on: 'bottom'
@@ -42,21 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'experience',
-        title: 'Experience',
-        text: 'Deloitte consulting, SAP BTP, and research at Technion',
+        title: t('tour_exp_title'),
+        text: t('tour_exp_text'),
         attachTo: {
             element: '#experience',
             on: 'bottom'
@@ -67,21 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'projects',
-        title: 'Projects',
-        text: 'AI-powered apps including LeAIrn, Hatrick, and Scholar 2.6',
+        title: t('tour_proj_title'),
+        text: t('tour_proj_text'),
         attachTo: {
             element: '#projects',
             on: 'bottom'
@@ -92,21 +94,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'certifications',
-        title: 'Education & Certifications',
-        text: 'Interactive poker-style certifications. Hover to preview, click to reveal, and shuffle the hand!',
+        title: t('tour_cert_title'),
+        text: t('tour_cert_text'),
         attachTo: {
             element: '#certShuffleContainer',
             on: 'top'
@@ -117,21 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'recommendations',
-        title: 'Resources',
-        text: 'Download my resume, case studies, and recommendations',
+        title: t('tour_res_title'),
+        text: t('tour_res_text'),
         attachTo: {
             element: '#recommendations',
             on: 'bottom'
@@ -142,21 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'ai-assistant',
-        title: 'AI Assistant',
-        text: 'Ask my AI assistant anything about me (bottom right)',
+        title: t('tour_ai_title'),
+        text: t('tour_ai_text'),
         attachTo: {
             element: '#chatbot-bubble',
             on: 'top'
@@ -167,21 +169,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.next();
                 },
-                text: 'Next'
+                text: t('tour_btn_next')
             }
         ]
     });
 
     tour.addStep({
         id: 'contact',
-        title: 'Contact Me',
-        text: 'Ready to build something great? Connect with me directly through any of these channels!',
+        title: t('tour_contact_title'),
+        text: t('tour_contact_text'),
         attachTo: {
             element: '#contact',
             on: 'top'
@@ -192,13 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     return this.back();
                 },
                 secondary: true,
-                text: 'Back'
+                text: t('tour_btn_back')
             },
             {
                 action() {
                     return this.complete();
                 },
-                text: 'Finish'
+                text: t('tour_btn_finish')
             }
         ]
     });
@@ -249,6 +251,8 @@ function closeTourModal(tour, dontShowAgain = false) {
 }
 
 function createTourModal(tour) {
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+    
     const modalHTML = `
       <div class="tour-modal-overlay">
           <div class="tour-modal-content">
@@ -258,69 +262,69 @@ function createTourModal(tour) {
                   <div class="tour-avatar">
                       <img src="images/intro pic Elon-Jack tour.png" alt="Jack Amichai">
                   </div>
-                  <h2>Welcome to My Portfolio!</h2>
-                  <p>I'm Jack Amichai, an AI Solutions Engineer & Product Builder.<br>Here's a quick guide to explore my work:</p>
+                  <h2 data-i18n="tour_welcome_title">${t('tour_welcome_title')}</h2>
+                  <p data-i18n="tour_welcome_text">${t('tour_welcome_text')}</p>
               </div>
 
               <div class="tour-steps">
                   <div class="tour-step">
                       <div class="step-number">1</div>
                       <div class="step-info">
-                          <strong>Core Competencies</strong>
-                          <p>Discover my specialized technical strengths in AI & Architecture</p>
+                          <strong data-i18n="tour_skills_title">${t('tour_skills_title')}</strong>
+                          <p data-i18n="tour_skills_text">${t('tour_skills_text')}</p>
                       </div>
                   </div>
                   <div class="tour-step">
                       <div class="step-number">2</div>
                       <div class="step-info">
-                          <strong>Experience</strong>
-                          <p>Deloitte consulting, SAP BTP, and research at Technion</p>
+                          <strong data-i18n="tour_exp_title">${t('tour_exp_title')}</strong>
+                          <p data-i18n="tour_exp_text">${t('tour_exp_text')}</p>
                       </div>
                   </div>
                   <div class="tour-step">
                       <div class="step-number">3</div>
                       <div class="step-info">
-                          <strong>Projects</strong>
-                          <p>AI-powered apps including LeAIrn, Hatrick, and Scholar 2.6</p>
+                          <strong data-i18n="tour_proj_title">${t('tour_proj_title')}</strong>
+                          <p data-i18n="tour_proj_text">${t('tour_proj_text')}</p>
                       </div>
                   </div>
                   <div class="tour-step">
                       <div class="step-number">4</div>
                       <div class="step-info">
-                          <strong>Certifications</strong>
-                          <p>Explore my certifications in a unique poker-style interactive hand</p>
+                          <strong data-i18n="tour_cert_title">${t('tour_cert_title')}</strong>
+                          <p data-i18n="tour_cert_text">${t('tour_cert_text')}</p>
                       </div>
                   </div>
                   <div class="tour-step">
                       <div class="step-number">5</div>
                       <div class="step-info">
-                          <strong>Resources</strong>
-                          <p>Download my resume, case studies, and recommendations</p>
+                          <strong data-i18n="tour_res_title">${t('tour_res_title')}</strong>
+                          <p data-i18n="tour_res_text">${t('tour_res_text')}</p>
                       </div>
                   </div>
                   <div class="tour-step">
                       <div class="step-number">6</div>
                       <div class="step-info">
-                          <strong>AI Assistant</strong>
-                          <p>Ask my AI assistant anything about me (bottom right)</p>
+                          <strong data-i18n="tour_ai_title">${t('tour_ai_title')}</strong>
+                          <p data-i18n="tour_ai_text">${t('tour_ai_text')}</p>
                       </div>
                   </div>
                   <div class="tour-step">
                       <div class="step-number">7</div>
                       <div class="step-info">
-                          <strong>Contact Me</strong>
-                          <p>Ready to build? Let's connect directly!</p>
+                          <strong data-i18n="tour_contact_title">${t('tour_contact_title')}</strong>
+                          <p data-i18n="tour_contact_text">${t('tour_contact_text')}</p>
                       </div>
                   </div>
               </div>
 
               <div class="tour-footer">
                   <div class="tour-buttons">
-                      <button class="btn-secondary" id="tour-skip">Skip Tour</button>
-                      <button class="btn-primary" id="tour-start">Let's Go!</button>
+                      <button class="btn-secondary" id="tour-skip" data-i18n="tour_btn_skip">${t('tour_btn_skip')}</button>
+                      <button class="btn-primary" id="tour-start" data-i18n="tour_btn_go">${t('tour_btn_go')}</button>
                   </div>
                   <label class="tour-checkbox">
-                      <input type="checkbox" id="tour-dont-show"> Don't show this again
+                      <input type="checkbox" id="tour-dont-show"> <span data-i18n="tour_dont_show">${t('tour_dont_show')}</span>
                   </label>
               </div>
           </div>

@@ -2130,12 +2130,14 @@ function initCertShuffle() {
     const PIVOT_Y = 600;
 
     // Initialize Table Structure
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+    
     container.innerHTML = `
         <div class="poker-table">
             <div class="poker-texture"></div>
             <div class="poker-oval-1"></div>
             <div class="poker-oval-2"></div>
-            <div class="poker-prompt" id="pokerPrompt">Pick a card — any card</div>
+            <div class="poker-prompt" id="pokerPrompt" data-i18n="refs_pick_card">${t('refs_pick_card')}</div>
             
             <div class="poker-legend">
                 ${Object.entries(CATS).map(([name, cat]) => `
@@ -2150,7 +2152,7 @@ function initCertShuffle() {
             <div class="poker-chip" style="bottom: 36px; left: 64px; background: #2471a3;">10</div>
             <div class="poker-chip" style="bottom: 38px; right: 28px; background: #239b56;">5</div>
             
-            <div class="poker-empty-hint" id="pokerHint">Hover to preview · Click to reveal</div>
+            <div class="poker-empty-hint" id="pokerHint" data-i18n="cert_poker_hint">${t('cert_poker_hint')}</div>
             
             <div class="poker-selected-card-wrapper" id="selectedCardWrapper"></div>
             
@@ -2165,7 +2167,7 @@ function initCertShuffle() {
                         <line x1="15" y1="15" x2="21" y2="21"/>
                         <line x1="4" y1="4" x2="9" y2="9"/>
                     </svg>
-                    Shuffle Hand
+                    <span data-i18n="cert_resuffle">${t('cert_resuffle')}</span>
                 </button>
             </div>
         </div>
@@ -2177,6 +2179,11 @@ function initCertShuffle() {
     const hintEl = document.getElementById('pokerHint');
     const shuffleBtn = document.getElementById('pokerShuffleBtn');
     let isShuffling = false;
+
+    // Listen for language changes to update dynamic strings
+    window.addEventListener('languageChanged', () => {
+        updateSelected(); // Will re-render with new translations
+    });
 
     function shuffle() {
         if (isShuffling) return;
@@ -2295,13 +2302,13 @@ function initCertShuffle() {
         if (!selected) {
             selectedWrapper.innerHTML = '';
             selectedWrapper.style.pointerEvents = 'none';
-            promptEl.textContent = "Pick a card — any card";
+            promptEl.textContent = t('refs_pick_card');
             hintEl.style.display = 'block';
             return;
         }
 
         selectedWrapper.style.pointerEvents = 'auto';
-        promptEl.textContent = "Your card";
+        promptEl.textContent = t('refs_your_card');
         hintEl.style.display = 'none';
 
         selectedWrapper.innerHTML = `
@@ -2332,8 +2339,8 @@ function initCertShuffle() {
                     <div style="font-size: 12px; font-weight: 700; color: ${CATS[selected.category].color}">
                         ${selected.date}
                     </div>
-                    <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 8px;">
-                        Click card to dismiss
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 8px;" data-i18n="cert_dismiss">
+                        ${t('cert_dismiss')}
                     </div>
                 </div>
             ` : ''}

@@ -11847,8 +11847,180 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 
 
 /* ==================== */
-/* VIEW ALL CERTS BUTTON */
+/* RTL SUPPORT          */
 /* ==================== */
+
+[dir="rtl"] {
+    text-align: right;
+    font-family: 'Heebo', 'Rubik', 'Inter', sans-serif;
+}
+
+[dir="rtl"] .nav-links-new {
+    margin-left: 0;
+    margin-right: auto;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-right-new {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+[dir="rtl"] .hero-left-new {
+    text-align: right;
+}
+
+[dir="rtl"] .accent-line-new {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+[dir="rtl"] .ctas-new {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .location-row-new {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .photo-stats-row-new {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .stat-card-new {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-bar-new {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .about-content-wrapper {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .about-text {
+    text-align: right;
+}
+
+[dir="rtl"] .vision-quote {
+    border-left: none;
+    border-right: 4px solid var(--accent);
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+[dir="rtl"] .timeline-item {
+    border-left: none;
+    border-right: 2px solid var(--border-color);
+    padding-left: 0;
+    padding-right: 30px;
+    text-align: right;
+}
+
+[dir="rtl"] .timeline-date {
+    left: auto;
+    right: -120px;
+    text-align: left;
+}
+
+[dir="rtl"] .skill-card {
+    text-align: right;
+}
+
+[dir="rtl"] .certification-card {
+    border-left: none;
+    border-right: 4px solid var(--accent);
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cert-info {
+    text-align: right;
+}
+
+[dir="rtl"] .poker-legend {
+    left: auto;
+    right: 18px;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .poker-chip {
+    /* Adjust chip positions for RTL if needed */
+}
+
+[dir="rtl"] .refs-content {
+    text-align: right;
+}
+
+[dir="rtl"] .refs-footer {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .refs-person-row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .refs-person-info {
+    text-align: right;
+}
+
+[dir="rtl"] .refs-card-arrow-left {
+    left: auto;
+    right: 14px;
+}
+
+[dir="rtl"] .refs-card-arrow-right {
+    right: auto;
+    left: 14px;
+}
+
+[dir="rtl"] .bento-header {
+    text-align: right;
+}
+
+[dir="rtl"] .panel-arrow {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .rf-header {
+    text-align: right;
+}
+
+[dir="rtl"] .rf-card {
+    text-align: right;
+}
+
+[dir="rtl"] .rf-back {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .skill-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .skill-chevron {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Custom font for Hebrew */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Rubik:wght@300;400;500;700;800;900&display=swap');
+
+.lang-toggle-new {
+    min-width: 40px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .btn-view-all-certs {
     display: inline-flex;
