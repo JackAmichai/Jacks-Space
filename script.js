@@ -12,57 +12,54 @@ function initTypewriter() {
     const container = document.getElementById('typewriter-name');
     if (!container) return;
 
-    // Default to Amichai (family name) - will be overridden by translation if available
-    let WORD = "Amichai";
-    
-    // Try to get translation
-    if (window.translationManager) {
-        const translated = window.translationManager.t('hero_name');
-        if (translated && translated !== 'hero_name') {
-            WORD = translated;
-        }
-    }
-
+    let WORD = "Jack (Yaron) Amichai";
+    let timeoutId = null;
     let displayed = "";
     let phase = "typing";
 
-    // Re-init on language change
-    window.addEventListener('languageChanged', () => {
-        if (window.translationManager) {
-            WORD = window.translationManager.t('hero_name') || "Amichai";
-        }
-        displayed = "";
-        phase = "typing";
-    });    
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+
     function tick() {
-        let timeout;
-        
+        if (window.translationManager) {
+            const currentTranslated = t('hero_name');
+            if (currentTranslated && currentTranslated !== 'hero_name' && currentTranslated !== WORD) {
+                // If word changed (language switch), reset
+                WORD = currentTranslated;
+                displayed = "";
+                phase = "typing";
+            }
+        }
+
         if (phase === "typing") {
             if (displayed.length < WORD.length) {
-                timeout = setTimeout(() => {
-                    displayed = WORD.slice(0, displayed.length + 1);
-                    container.innerHTML = displayed + '<span class="typewriter-cursor"></span>';
-                    tick();
-                }, 90);
+                displayed = WORD.slice(0, displayed.length + 1);
+                container.innerHTML = displayed + '<span class="typewriter-cursor"></span>';
+                timeoutId = setTimeout(tick, 90);
             } else {
-                timeout = setTimeout(() => { phase = "pausing"; tick(); }, 2000);
+                timeoutId = setTimeout(() => { phase = "pausing"; tick(); }, 2000);
             }
         } else if (phase === "pausing") {
-            timeout = setTimeout(() => { phase = "erasing"; tick(); }, 500);
+            timeoutId = setTimeout(() => { phase = "erasing"; tick(); }, 500);
         } else if (phase === "erasing") {
             if (displayed.length > 0) {
-                timeout = setTimeout(() => {
-                    displayed = WORD.slice(0, displayed.length - 1);
-                    container.innerHTML = displayed + '<span class="typewriter-cursor"></span>';
-                    tick();
-                }, 55);
+                displayed = WORD.slice(0, displayed.length - 1);
+                container.innerHTML = displayed + '<span class="typewriter-cursor"></span>';
+                timeoutId = setTimeout(tick, 55);
             } else {
-                timeout = setTimeout(() => { phase = "typing"; tick(); }, 400);
+                timeoutId = setTimeout(() => { phase = "typing"; tick(); }, 400);
             }
         }
     }
-    
-    container.innerHTML = '<span class="typewriter-cursor"></span>';
+
+    // Handle language change explicitly too
+    window.addEventListener('languageChanged', () => {
+        clearTimeout(timeoutId);
+        WORD = t('hero_name') || "Jack (Yaron) Amichai";
+        displayed = "";
+        phase = "typing";
+        tick();
+    });
+
     tick();
 }
 
@@ -2853,17 +2850,18 @@ function initRefsCarousel() {
 function toggleAllCerts() {
     const grid = document.getElementById('allCertsGrid');
     const btn = document.getElementById('btnViewAllCerts');
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
     
     if (grid.style.display === 'none') {
         grid.style.display = 'block';
         btn.classList.add('expanded');
-        btn.querySelector('span').textContent = 'Hide Certifications';
+        btn.querySelector('span').textContent = t('hide_all_certs');
         
         grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } else {
         grid.style.display = 'none';
         btn.classList.remove('expanded');
-        btn.querySelector('span').textContent = 'View All Certifications';
+        btn.querySelector('span').textContent = t('view_all_certs');
     }
 }
 

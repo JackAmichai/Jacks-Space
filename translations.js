@@ -315,6 +315,7 @@ window.translations = {
     // Others
     loading: "Loading...",
     view_all_certs: "View All Certifications",
+    hide_all_certs: "Hide Certifications",
     company_name: "Company Name",
     generate_pitch: "Generate Pitch",
     copy: "Copy",
@@ -711,6 +712,7 @@ window.translations = {
     // Others
     loading: "טוען...",
     view_all_certs: "צפה בכל ההסמכות",
+    hide_all_certs: "הסתר הסמכות",
     company_name: "שם החברה",
     generate_pitch: "צור פיץ'",
     copy: "העתק",
