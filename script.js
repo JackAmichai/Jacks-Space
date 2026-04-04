@@ -237,26 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // POLAROID BOARD FUNCTIONALITY
 // ========================================
 function initPolaroidBoard() {
-    const hobbyDetails = {
-        travel: {
-            detail: "35+ countries and counting. Every trip is a systems design problem — resource constraints, unknown variables, emergent outcomes."
-        },
-        violin: {
-            detail: "Classical training since childhood. Back at it after a break — currently working on Bach Partita No. 2."
-        },
-        drawing: {
-            detail: "Mostly pencil portraits and architectural sketches. Drawing trains the same spatial reasoning muscle as system design."
-        },
-        reading: {
-            detail: "Philosophy, psychology, literary fiction. Current stack: Dostoevsky, Yalom, Brené Brown. Books are long-form system specs."
-        },
-        plants: {
-            detail: "A small jungle at home. Growing things slowly teaches patience — a rare skill in software engineering."
-        },
-        gym: {
-            detail: "4x a week, strength + HIIT. Physical discipline directly correlates with mental clarity. No exceptions."
-        }
-    };
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
     
     const cards = document.querySelectorAll('.polaroid-card');
     const drawer = document.getElementById('hobbyDrawer');
@@ -267,16 +248,16 @@ function initPolaroidBoard() {
     cards.forEach(card => {
         card.addEventListener('click', () => {
             const hobby = card.dataset.hobby;
-            const details = hobbyDetails[hobby];
-            const labelEl = card.querySelector('.polaroid-label');
-            const label = labelEl ? labelEl.textContent : hobby;
+            const translatedTitle = t(`hobby_${hobby}`);
+            const translatedDesc = t(`hobby_${hobby}_desc`);
+            
             const imgEl = card.querySelector('.polaroid-photo img');
             const imgSrc = imgEl ? imgEl.src : '';
             
             if (drawerImg && drawerTitle && drawerDesc && drawer) {
                 drawerImg.src = imgSrc;
-                drawerTitle.textContent = label;
-                drawerDesc.textContent = details.detail;
+                drawerTitle.textContent = translatedTitle;
+                drawerDesc.textContent = translatedDesc;
                 drawer.classList.add('open');
             }
         });

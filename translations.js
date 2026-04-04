@@ -10,8 +10,8 @@ window.translations = {
     
     // Hero Section
     hero_badge: "OPEN TO OPPORTUNITIES",
-    hero_eyebrow: "01 / JACK YARON",
-    hero_name: "Amichai",
+    hero_eyebrow: "01 / SOLUTIONS ARCHITECT",
+    hero_name: "Jack (Yaron) Amichai",
     hero_role: "AI Solutions Engineer · Cloud Architect",
     hero_tagline: "Applying psychology & CS to architect scalable, adaptive AI solutions for enterprise environments.",
     hero_pitch: "Watch my Pitch",
@@ -160,6 +160,7 @@ window.translations = {
     ht_military_title: "Staff Sergeant",
     ht_military_company: "IDF",
     ht_military_desc: "Operations & leadership",
+    timeline_hint: "📱 Rotate device for full horizontal experience",
 
     // Volunteering
     vol_frontend: "Frontend Developer",
@@ -173,11 +174,17 @@ window.translations = {
     
     // Hobbies
     hobby_travel: "Traveling",
+    hobby_travel_desc: "35+ countries and counting. Every trip is a systems design problem — resource constraints, unknown variables, and emergent outcomes. It keeps my mind fresh and adaptive.",
     hobby_violin: "Violin",
+    hobby_violin_desc: "Classical training since childhood. Playing music is my ultimate way to find flow and calm. It requires precision and emotion, perfectly balancing my technical work.",
     hobby_drawing: "Drawing",
+    hobby_drawing_desc: "Mostly pencil portraits and architectural sketches. Drawing trains the same spatial reasoning muscle as system design while providing a creative outlet for mindfulness.",
     hobby_reading: "Reading",
+    hobby_reading_desc: "Philosophy, psychology, and literary fiction. Current stack: Dostoevsky, Yalom, Brené Brown. Books are long-form system specs that fuel my curiosity and broaden my perspective.",
     hobby_plants: "Plants",
+    hobby_plants_desc: "A small jungle at home. Growing things slowly teaches patience and care — a rare grounding skill in the fast-paced world of software engineering.",
     hobby_gym: "Gym",
+    hobby_gym_desc: "4x a week, strength + HIIT. Physical discipline directly correlates with mental clarity and health. It's where I build the resilience needed for complex problem-solving.",
     
     // Projects View Toggle
     proj_view_business: "Business Impact",
@@ -255,6 +262,9 @@ window.translations = {
     cert_dismiss: "Click card to dismiss",
     refs_pick_card: "Pick a card — any card",
     refs_your_card: "Your card",
+    refs_see_all: "See All Recommendations",
+    refs_all_title: "All Recommendations",
+    refs_all_subtitle: "Click any reference to view it",
     
     // Role Fit Modal
     role_fit_title: "Is Jack right for your team?",
@@ -267,7 +277,7 @@ window.translations = {
     role_fit_back: "← Back",
     role_fit_score: "Fit score",
     role_fit_ask: "Ask about this fit →",
-    rf_genai_desc: "Building agents, RAG pipelines, multi-modal",
+    rf_genai_desc: "Building agents, RAG pipelines, milti-modal",
     rf_arch_desc: "Cloud integrations, API design, enterprise systems",
     rf_pm_desc: "Pipelines, analytics, research software",
     rf_solutions_desc: "Client-facing, enterprise sales, technical demos",
@@ -332,6 +342,27 @@ window.translations = {
     sample_q7: "Is Jack looking for work?",
     sample_q8: "Does Jack have recommendations?",
 
+    // Chatbot Knowledge Base
+    bot_kb_hello: "Hello! 👋 I'm Cloud, Jack's AI assistant. How can I help you today? You can ask me about Jack's experience, projects, or how to contact him.",
+    bot_kb_thanks: "You're welcome! Let me know if you have any other questions about Jack's work.",
+    bot_kb_who: "I'm Cloud, a custom-built AI assistant designed to help you navigate Jack's portfolio. I can answer questions about his background, skills, and projects!",
+    bot_kb_army: "Jack served in the **Israel Defense Forces (IDF)** as a **Staff Sergeant**. He led team operations, managed logistics, and trained personnel. This leadership experience taught him how to handle high-pressure environments—skills he now applies to architecting resilient AI systems.",
+    bot_kb_work: "Jack currently wears two hats: \n\n1. **Junior Consultant at Deloitte:** Specializing in **SAP BTP & Integrations**.\n\n2. **Freelance Data Engineer:** Building revenue optimization tools for **Adi Ohayon Revenue Management**.",
+    bot_kb_edu: "Jack holds a **Bachelor's degree in Psychology and Computer Science** from the **Open University of Israel**. This dual background allows him to build AI systems that are technically robust and cognitively adaptive.",
+    bot_kb_projects: "Jack has built a diverse portfolio of AI solutions. You can ask me about:\n\n **Sentinel OS** - AI Robotics\n **Hatrick** - Multi-Agent Cyber Defense\n **NVIDIA Doc Navigator** - RAG Agent",
+    bot_kb_skills: "Jack's toolbox leverages his Psychology + CS background:\n\n**AI/GenAI:** Multi-Agent Systems, RAG Pipelines, LangChain\n**Backend:** Python, FastAPI, SAP BTP, AWS\n**Data:** Pandas, SQL, Scikit-learn",
+    bot_kb_contact: "You can reach Jack through:\n\n📧 **Email:** jackamichai@gmail.com\n💼 **LinkedIn:** linkedin.com/in/jack-amichai-1157181a4/\n📅 **Schedule a Call:** calendly.com/jackamichai",
+    bot_kb_resume: "Jack is actively seeking **AI Solutions Engineer or Product roles**! You can download his CV from the Resources section.",
+    bot_kb_achievements: "Jack's measurable impact includes: **Improved revenue forecast accuracy**, **60% time saved** on pricing analysis, and **High-accuracy ML models**.",
+    bot_kb_languages: "Jack is multilingual! 🌍\n\n🇮🇱 **Hebrew** - Native speaker\n🇺🇸 **English** - Fluent\n🇫🇷 **French** - Conversational",
+    bot_kb_research: "Jack has research engineering experience at the **Technion** and **Hebrew University**, where he built software for cognitive simulations and 3D astrophysics.",
+    bot_kb_hatrick: "Jack built **Hatrick**, an AI Agent orchestration system that autonomously demonstrates cyber attacks and defense mechanisms using LangGraph and Groq.",
+    bot_kb_leairn: "Jack created **LeAIrn**, an AI-powered learning platform that dynamically adapts content and pace to the individual student's needs.",
+    bot_kb_scholar: "Jack built **Scholar2.6**, a modern academic search tool that streamlines the research process with intuitive library management.",
+    bot_kb_sleepcall: "Jack developed **SleepCall**, an intelligent audio tool that alerts you whenever your name is spoken in a call using local speech recognition.",
+    bot_kb_vision: "Jack's vision is to become an **AI Solutions Architect** who builds systems that are powerful, transparent, and aligned with human intent.",
+    bot_kb_fallback: "That's a great question! I don't have specific info about that, but feel free to email Jack at jackamichai@gmail.com or connect on LinkedIn!",
+
     // Accessibility
     a11y_title: "Accessibility Settings",
     a11y_large_text: "Large Text",
@@ -375,8 +406,8 @@ window.translations = {
     
     // Hero Section
     hero_badge: "פתוח להצעות עבודה",
-    hero_eyebrow: "01 / ג'ק ירון",
-    hero_name: "עמיחי",
+    hero_eyebrow: "01 / ארכיטקט פתרונות",
+    hero_name: "גאק (ירון) עמיחי",
     hero_role: "מהנדס פתרונות AI · ארכיטקט ענן",
     hero_tagline: "שילוב פסיכולוגיה ומדעי המחשב לארכיטקטורת פתרונות AI סקיילביליים ומסתגלים לסביבות ארגוניות.",
     hero_pitch: "צפה בפיץ' שלי",
@@ -525,6 +556,7 @@ window.translations = {
     ht_military_title: "סמל ראשון",
     ht_military_company: "צה\"ל",
     ht_military_desc: "תפעול ומנהיגות",
+    timeline_hint: "📱 סובבו את המכשיר לחוויה אופקית מלאה",
 
     // Volunteering
     vol_frontend: "מפתח Frontend",
@@ -538,11 +570,17 @@ window.translations = {
     
     // Hobbies
     hobby_travel: "טיולים",
+    hobby_travel_desc: "35+ מדינות וספירה נמשכת. כל טיול הוא בעיית עיצוב מערכות - אילוצי משאבים, משתנים לא ידועים ותוצאות מתהוות. זה שומר על המחשבה שלי רעננה וגמישה.",
     hobby_violin: "כינור",
+    hobby_violin_desc: "הכשרה קלאסית מילדות. נגינה היא הדרך האולטימטיבית שלי למצוא זרימה (flow) ורוגע. היא דורשת דיוק ורגש, ומאזנת בצורה מושלמת את העבודה הטכנית שלי.",
     hobby_drawing: "ציור",
+    hobby_drawing_desc: "בעיקר דיוקנאות בעיפרון וסקיצות אדריכליות. ציור מאמן את אותו שריר של חשיבה מרחבית כמו עיצוב מערכות, תוך מתן פורקן יצירתי לקשיבות (mindfulness).",
     hobby_reading: "קריאה",
+    hobby_reading_desc: "פילוסופיה, פסיכולוגיה ופרוזה ספרותית. ערימה נוכחית: דוסטויבסקי, יאלום, ברנה בראון. ספרים הם מפרטי מערכת ארוכי טווח שמזינים את הסקרנות שלי ומרחיבים את האופקים שלי.",
     hobby_plants: "צמחים",
+    hobby_plants_desc: "ג'ונגל קטן בבית. גידול דברים לאט מלמד סבלנות וטיפול - מיומנות קרקוע נדירה בעולם המהיר של הנדסת תוכנה.",
     hobby_gym: "חדר כושר",
+    hobby_gym_desc: "4 פעמים בשבוע, כוח + HIIT. משמעת פיזית קשורה ישירות לצלילות מחשבתית ובריאות. זה המקום שבו אני בונה את החוסן הדרוש לפתרון בעיות מורכבות.",
     
     // Projects View Toggle
     proj_view_business: "אימפקט עסקי",
@@ -620,6 +658,9 @@ window.translations = {
     cert_dismiss: "לחץ על הכרטיס לסגירה",
     refs_pick_card: "בחר כרטיס — כל כרטיס",
     refs_your_card: "הכרטיס שלך",
+    refs_see_all: "צפה בכל ההמלצות",
+    refs_all_title: "כל ההמלצות",
+    refs_all_subtitle: "לחץ על המלצה כדי לצפות בה",
     
     // Role Fit Modal
     role_fit_title: "האם גאק (ירון) עמיחי מתאים לצוות שלך?",
@@ -696,6 +737,27 @@ window.translations = {
     sample_q6: "איך יוצרים קשר עם ג'ק?",
     sample_q7: "האם ג'ק מחפש עבודה?",
     sample_q8: "האם לג'ק יש המלצות?",
+
+    // Chatbot Knowledge Base
+    bot_kb_hello: "שלום! 👋 אני קלאוד, עוזר ה-AI של ג'ק. איך אוכל לעזור לך היום? תוכל לשאול אותי על הניסיון של ג'ק, הפרויקטים שלו, או איך ליצור איתו קשר.",
+    bot_kb_thanks: "בשמחה! תודיע לי אם יש לך שאלות נוספות על העבודה של ג'ק.",
+    bot_kb_who: "אני קלאוד, עוזר AI שנבנה במיוחד כדי לעזור לך לנווט בפורטפוליו של ג'ק. אני יכול לענות על שאלות לגבי הרקע, המיומנויות והפרויקטים שלו!",
+    bot_kb_army: "ג'ק שירת ב**צה\"ל** כ**סמל ראשון**. הוא הוביל מבצעי צוות, ניהל לוגיסטיקה ואימן כוח אדם. ניסיון פיקודי זה לימד אותו כיצד להתמודד עם סביבות בלחץ גבוה - כישורים שהוא מיישם כעת בתכנון מערכות AI חסונות.",
+    bot_kb_work: "ג'ק חובש כעת שני כובעים: \n\n1. **יועץ בדלויט (Deloitte):** מתמחה ב-**SAP BTP ואינטגרציות**.\n\n2. **מהנדס נתונים פרילנס:** בניית כלי אופטימיזציית הכנסות עבור **עדי אוחיון ניהול הכנסות**.",
+    bot_kb_edu: "ג'ק מחזיק ב**תואר ראשון בפסיכולוגיה ומדעי המחשב** מה**אוניברסיטה הפתוחה**. רקע כפול זה מאפשר לו לבנות מערכות AI חזקות טכנית ומסתגלות קוגניטיבית.",
+    bot_kb_projects: "ג'ק בנה פורטפוליו מגוון של פתרונות AI. תוכל לשאול אותי על:\n\n **Sentinel OS** - רובוטיקה מבוססת AI\n **Hatrick** - הגנת סייבר מרובת סוכנים\n **NVIDIA Doc Navigator** - סוכן RAG",
+    bot_kb_skills: "ארגז הכלים של ג'ק מנצל את הרקע שלו בפסיכולוגיה ומדעי המחשב:\n\n**AI/GenAI:** מערכות מרובות סוכנים, צינורות RAG, LangChain\n**Backend:** Python, FastAPI, SAP BTP, AWS\n**Data:** Pandas, SQL, Scikit-learn",
+    bot_kb_contact: "תוכל להשיג את ג'ק דרך:\n\n📧 **אימייל:** jackamichai@gmail.com\n💼 **לינקדאין:** linkedin.com/in/jack-amichai-1157181a4/\n📅 **תיאום שיחה:** calendly.com/jackamichai",
+    bot_kb_resume: "ג'ק מחפש כעת תפקידי **מהנדס פתרונות AI או ניהול מוצר**! תוכל להוריד את קורות החיים שלו מחלק המשאבים.",
+    bot_kb_achievements: "האימפקט המדיד של ג'ק כולל: **שיפור דיוק תחזיות הכנסה**, **60% חיסכון בזמן** בניתוח תמחור, ו**מודלי ML בדיוק גבוה**.",
+    bot_kb_languages: "ג'ק רב-לשוני! 🌍\n\n🇮🇱 **עברית** - שפת אם\n🇺🇸 **אנגלית** - שוטפת\n🇫🇷 **צרפתית** - שיחתית",
+    bot_kb_research: "לג'ק ניסיון נרחב בהנדסת מחקר ב**טכניון** וב**אוניברסיטה העברית**, שם בנה תוכנה לסימולציות קוגניטיביות ואסטרופיזיקה.",
+    bot_kb_hatrick: "ג'ק בנה את **Hatrick**, מערכת תזמור סוכני AI המדגימה אוטונומית מתקפות והגנות סייבר באמצעות LangGraph ו-Groq.",
+    bot_kb_leairn: "ג'ק יצר את **LeAIrn**, פלטפורמת למידה מבוססת AI המתאימה דינמית את התוכן והקצב לצרכי הסטודנט.",
+    bot_kb_scholar: "ג'ק בנה את **Scholar2.6**, כלי חיפוש אקדמי מודרני המייעל את תהליך המחקר עם ניהול ספריה אינטואיטיבי.",
+    bot_kb_sleepcall: "ג'ק פיתח את **SleepCall**, כלי אודיו חכם המתריע כששמך נאמר בשיחה באמצעות זיהוי דיבור מקומי.",
+    bot_kb_vision: "החזון של ג'ק הוא להפוך ל**ארכיטקט פתרונות AI** שבונה מערכות עוצמתיות, שקופות ומיושרות עם כוונה אנושית.",
+    bot_kb_fallback: "זו שאלה מצוינת! אין לי מידע ספציפי על זה, אבל אתה מוזמן לשלוח מייל לג'ק ב-jackamichai@gmail.com או להתחבר בלינקדאין!",
 
     // Accessibility
     a11y_title: "הגדרות נגישות",
