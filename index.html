@@ -2205,13 +2205,15 @@
 
     <!-- Exit Intent Popup -->
     <div id="exitPopup" class="refs-popup-overlay" style="display: none;">
-        <div class="refs-popup exit-popup-content" style="background-image: url('images/hero-bg-3.jpg'); background-size: cover; background-position: center;">
+        <div class="refs-popup exit-popup-content">
+            <button class="exit-popup-close" onclick="closeExitPopup()">×</button>
             <div class="exit-popup-inner">
-                <h2 data-i18n="exit_title" style="margin-bottom: 30px; font-size: 2rem;">Are you sure?</h2>
+                <h2 data-i18n="exit_title">Wait, don't go yet!</h2>
+                <p data-i18n="exit_subtitle">I'd love to hear from you. Let's stay connected.</p>
                 <div class="exit-popup-buttons">
-                    <button id="exitStayBtn" class="cta-button primary" style="background: #0066cc;" data-i18n="exit_stay">Stay</button>
-                    <button id="exitContactBtn" class="cta-button secondary" style="background: #8b5cf6;" data-i18n="exit_contact">Leave but stay in touch</button>
-                    <button id="exitQuitBtn" class="cta-button" style="background: #ef4444; color: white; border: none; padding: 12px 24px; border-radius: 30px; cursor: pointer;" data-i18n="exit_quit">Quit</button>
+                    <button id="exitStayBtn" class="cta-button primary" data-i18n="exit_stay">I'll stay</button>
+                    <button id="exitContactBtn" class="cta-button secondary" data-i18n="exit_contact">Let's connect</button>
+                    <button id="exitQuitBtn" class="cta-button danger" data-i18n="exit_quit">Goodbye</button>
                 </div>
             </div>
         </div>

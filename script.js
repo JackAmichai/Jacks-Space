@@ -2925,6 +2925,12 @@ function initExitIntent() {
 
     let hasShownExit = false;
 
+    const closeExitPopup = () => {
+        exitPopup.style.display = 'none';
+        exitPopup.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
     // Show popup when mouse leaves the top of the window
     document.addEventListener('mouseout', (e) => {
         if (e.clientY <= 0 && !hasShownExit) {

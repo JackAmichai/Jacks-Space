@@ -397,10 +397,11 @@ window.translations = {
     tour_dont_show: "Don't show this again",
     
     // Exit Popup
-    exit_title: "Are you sure?",
-    exit_stay: "Stay",
-    exit_contact: "Leave but stay in touch",
-    exit_quit: "Quit",
+    exit_title: "Wait, don't go yet!",
+    exit_subtitle: "I'd love to hear from you. Let's stay connected.",
+    exit_stay: "I'll stay",
+    exit_contact: "Let's connect",
+    exit_quit: "Goodbye",
   },
   
   he: {
@@ -801,9 +802,10 @@ window.translations = {
     tour_dont_show: "אל תציג זאת שוב",
     
     // Exit Popup
-    exit_title: "בטוח שברצונך לעזוב?",
-    exit_stay: "הישאר",
-    exit_contact: "עזוב אך הישאר בקשר",
-    exit_quit: "צא",
+    exit_title: "רגע, אל תלך עדיין!",
+    exit_subtitle: "אשמח לשמוע ממך. בוא נישאר בקשר.",
+    exit_stay: "אשאר",
+    exit_contact: "בוא נתחבר",
+    exit_quit: "להתראות",
   }
 };
