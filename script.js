@@ -2129,11 +2129,63 @@ function initCertShuffle() {
     const FAN_SPREAD = 80;
     const PIVOT_Y = 600;
 
+    // Initialize Table Structure
+    container.innerHTML = `
+        <div class="poker-table">
+            <div class="poker-texture"></div>
+            <div class="poker-oval-1"></div>
+            <div class="poker-oval-2"></div>
+            <div class="poker-prompt" id="pokerPrompt">Pick a card — any card</div>
+            
+            <div class="poker-legend">
+                ${Object.entries(CATS).map(([name, cat]) => `
+                    <div class="poker-legend-item">
+                        <span style="color: ${cat.color}; font-size: 15px;">${cat.symbol}</span>
+                        ${name}
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div class="poker-chip" style="bottom: 36px; left: 28px; background: #c0392b;">25</div>
+            <div class="poker-chip" style="bottom: 36px; left: 64px; background: #2471a3;">10</div>
+            <div class="poker-chip" style="bottom: 38px; right: 28px; background: #239b56;">5</div>
+            
+            <div class="poker-empty-hint" id="pokerHint">Hover to preview · Click to reveal</div>
+            
+            <div class="poker-selected-card-wrapper" id="selectedCardWrapper"></div>
+            
+            <div class="poker-fan-container" id="pokerFan"></div>
+
+            <div class="poker-shuffle-btn-container">
+                <button class="poker-shuffle-btn" id="pokerShuffleBtn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 3 21 3 21 8"/>
+                        <line x1="4" y1="20" x2="21" y2="3"/>
+                        <polyline points="21 16 21 21 16 21"/>
+                        <line x1="15" y1="15" x2="21" y2="21"/>
+                        <line x1="4" y1="4" x2="9" y2="9"/>
+                    </svg>
+                    Shuffle Hand
+                </button>
+            </div>
+        </div>
+    `;
+
+    const fanContainer = document.getElementById('pokerFan');
+    const selectedWrapper = document.getElementById('selectedCardWrapper');
+    const promptEl = document.getElementById('pokerPrompt');
+    const hintEl = document.getElementById('pokerHint');
+    const shuffleBtn = document.getElementById('pokerShuffleBtn');
+
     function shuffle() {
         for (let i = shuffledCerts.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffledCerts[i], shuffledCerts[j]] = [shuffledCerts[j], shuffledCerts[i]];
         }
+        selectedId = null;
+        flipped = false;
+        renderFan();
+        updateSelected();
     }
 
     function getCardFaceHTML(cert) {
@@ -2156,179 +2208,155 @@ function initCertShuffle() {
         `;
     }
 
-    function render() {
-        const selected = shuffledCerts.find(c => c.id === selectedId);
-        
-        container.innerHTML = `
-            <div class="poker-table">
-                <div class="poker-texture"></div>
-                <div class="poker-oval-1"></div>
-                <div class="poker-oval-2"></div>
-                
-                <div class="poker-prompt">
-                    ${selected ? "Your card" : "Pick a card — any card"}
-                </div>
-                
-                <div class="poker-legend">
-                    ${Object.entries(CATS).map(([name, cat]) => `
-                        <div class="poker-legend-item">
-                            <span style="color: ${cat.color}; font-size: 15px;">${cat.symbol}</span>
-                            ${name}
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <!-- Chips -->
-                <div class="poker-chip" style="bottom: 36px; left: 28px; background: #c0392b;">25</div>
-                <div class="poker-chip" style="bottom: 36px; left: 64px; background: #2471a3;">10</div>
-                <div class="poker-chip" style="bottom: 38px; right: 28px; background: #239b56;">5</div>
-                
-                ${!selected ? `
-                    <div class="poker-empty-hint">
-                        Hover to preview · Click to reveal
+    function renderFan() {
+        fanContainer.innerHTML = shuffledCerts.map((cert, i) => {
+            const cat = CATS[cert.category];
+            return `
+                <div class="poker-fan-card" data-id="${cert.id}" data-index="${i}">
+                    <div class="poker-card-back">
+                        <div class="poker-card-back-inner-border"></div>
+                        <span class="poker-card-back-logo">JA</span>
                     </div>
-                ` : ''}
-                
-                <!-- Selected Card Container -->
-                <div style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); width: 200px; height: 290px; pointer-events: ${selected ? 'auto' : 'none'};">
-                    ${selected ? `
-                        <div class="poker-selected-card-container ${flipped ? 'flipped' : ''}" id="pokerSelectedCard">
-                            <div class="poker-selected-card-inner">
-                                <div class="poker-selected-card-front">
-                                    <div class="poker-card-back" style="border-color: rgba(212,175,55,0.6);">
-                                        <div class="poker-card-back-inner-border" style="border-color: rgba(212,175,55,0.3); inset: 10px; border-radius: 8px;"></div>
-                                        <span class="poker-card-back-logo" style="font-size: 28px; color: rgba(212,175,55,0.4);">JA</span>
-                                    </div>
-                                </div>
-                                <div class="poker-selected-card-back">
-                                    ${getCardFaceHTML(selected)}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        ${flipped ? `
-                            <div class="poker-info-panel">
-                                <div style="font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;">
-                                    ${selected.category}
-                                </div>
-                                <div style="font-size: 12px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;">
-                                    ${selected.title}
-                                </div>
-                                <div style="font-size: 11px; color: rgba(255,255,255,0.65); margin-bottom: 5px;">
-                                    ${selected.issuer}
-                                </div>
-                                <div style="font-size: 12px; font-weight: 700; color: ${CATS[selected.category].color}">
-                                    ${selected.date}
-                                </div>
-                                <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 8px;">
-                                    Click card to dismiss
-                                </div>
-                            </div>
-                        ` : ''}
-                    ` : ''}
                 </div>
-                
-                <!-- Fan -->
-                <div class="poker-fan-container">
-                    ${shuffledCerts.map((cert, i) => {
-                        const angle = -FAN_SPREAD / 2 + (i / (shuffledCerts.length - 1)) * FAN_SPREAD;
-                        const isSelected = selectedId === cert.id;
-                        const isHovered = hoveredId === cert.id && !isSelected;
-                        const cat = CATS[cert.category];
-                        
-                        let transform = `rotate(${angle}deg)`;
-                        if (isSelected) {
-                            transform += ` translateY(-40px) scale(1.1)`;
-                        } else if (isHovered) {
-                            transform += ` translateY(-20px)`;
-                        }
-                        
-                        const zIndex = isSelected ? 40 : isHovered ? 35 : i;
-                        
-                        return `
-                            <div class="poker-fan-card" 
-                                 data-id="${cert.id}"
-                                 style="transform: ${transform}; transform-origin: 45px ${PIVOT_Y}px; z-index: ${zIndex}; opacity: ${selectedId && !isSelected ? 0.4 : 1}">
-                                <div class="poker-card-back ${isSelected ? 'poker-card-back-highlighted' : ''}" 
-                                     style="border-color: ${isSelected ? cat.color : 'rgba(212,175,55,0.55)'}">
-                                    <div class="poker-card-back-inner-border"></div>
-                                    <span class="poker-card-back-logo">JA</span>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
+            `;
+        }).join('');
 
-                <!-- Shuffle Button Overlay -->
-                <div class="poker-shuffle-btn-container">
-                    <button class="poker-shuffle-btn" id="pokerShuffleBtn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="16 3 21 3 21 8"/>
-                            <line x1="4" y1="20" x2="21" y2="3"/>
-                            <polyline points="21 16 21 21 16 21"/>
-                            <line x1="15" y1="15" x2="21" y2="21"/>
-                            <line x1="4" y1="4" x2="9" y2="9"/>
-                        </svg>
-                        Shuffle Hand
-                    </button>
-                </div>
-            </div>
-        `;
-
-
-        // Event Listeners
-        container.querySelectorAll('.poker-fan-card').forEach(card => {
+        fanContainer.querySelectorAll('.poker-fan-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 hoveredId = parseInt(card.dataset.id);
-                render();
+                updateFanStyles();
             });
             card.addEventListener('mouseleave', () => {
                 hoveredId = null;
-                render();
+                updateFanStyles();
             });
-            card.addEventListener('click', () => {
-                const id = parseInt(card.dataset.id);
-                handleCardClick(id);
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleCardClick(parseInt(card.dataset.id));
             });
         });
+        updateFanStyles();
+    }
 
-        const selectedCard = document.getElementById('pokerSelectedCard');
-        if (selectedCard) {
-            selectedCard.addEventListener('click', () => {
+    function updateFanStyles() {
+        const cards = fanContainer.querySelectorAll('.poker-fan-card');
+        cards.forEach((card, i) => {
+            const id = parseInt(card.dataset.id);
+            const angle = -FAN_SPREAD / 2 + (i / (shuffledCerts.length - 1)) * FAN_SPREAD;
+            const isSelected = selectedId === id;
+            const isHovered = hoveredId === id && !isSelected;
+            
+            let transform = `rotate(${angle}deg)`;
+            if (isSelected) {
+                transform += ` translateY(-40px) scale(1.1)`;
+            } else if (isHovered) {
+                transform += ` translateY(-20px)`;
+            }
+            
+            card.style.transform = transform;
+            card.style.transformOrigin = `45px ${PIVOT_Y}px`;
+            card.style.zIndex = isSelected ? 40 : isHovered ? 35 : i;
+            card.style.opacity = (selectedId && !isSelected) ? '0.4' : '1';
+            
+            const back = card.querySelector('.poker-card-back');
+            if (isSelected) {
+                const cat = CATS[shuffledCerts.find(c => c.id === id).category];
+                back.classList.add('poker-card-back-highlighted');
+                back.style.borderColor = cat.color;
+            } else {
+                back.classList.remove('poker-card-back-highlighted');
+                back.style.borderColor = 'rgba(212,175,55,0.55)';
+            }
+        });
+    }
+
+    function updateSelected() {
+        const selected = shuffledCerts.find(c => c.id === selectedId);
+        if (!selected) {
+            selectedWrapper.innerHTML = '';
+            selectedWrapper.style.pointerEvents = 'none';
+            promptEl.textContent = "Pick a card — any card";
+            hintEl.style.display = 'block';
+            return;
+        }
+
+        selectedWrapper.style.pointerEvents = 'auto';
+        promptEl.textContent = "Your card";
+        hintEl.style.display = 'none';
+
+        selectedWrapper.innerHTML = `
+            <div class="poker-selected-card-container ${flipped ? 'flipped' : ''}" id="pokerSelectedCard">
+                <div class="poker-selected-card-inner">
+                    <div class="poker-selected-card-front">
+                        <div class="poker-card-back" style="border-color: rgba(212,175,55,0.6);">
+                            <div class="poker-card-back-inner-border" style="border-color: rgba(212,175,55,0.3); inset: 10px; border-radius: 8px;"></div>
+                            <span class="poker-card-back-logo" style="font-size: 28px; color: rgba(212,175,55,0.4);">JA</span>
+                        </div>
+                    </div>
+                    <div class="poker-selected-card-back">
+                        ${getCardFaceHTML(selected)}
+                    </div>
+                </div>
+            </div>
+            ${flipped ? `
+                <div class="poker-info-panel">
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;">
+                        ${selected.category}
+                    </div>
+                    <div style="font-size: 12px; font-weight: 700; line-height: 1.4; margin-bottom: 5px;">
+                        ${selected.title}
+                    </div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.65); margin-bottom: 5px;">
+                        ${selected.issuer}
+                    </div>
+                    <div style="font-size: 12px; font-weight: 700; color: ${CATS[selected.category].color}">
+                        ${selected.date}
+                    </div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 8px;">
+                        Click card to dismiss
+                    </div>
+                </div>
+            ` : ''}
+        `;
+
+        const card = document.getElementById('pokerSelectedCard');
+        if (card) {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
                 handleCardClick(selectedId);
             });
         }
-
-        document.getElementById('pokerShuffleBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            selectedId = null;
-            flipped = false;
-            shuffle();
-            render();
-        });
     }
 
     function handleCardClick(id) {
         if (selectedId === id) {
             flipped = false;
-            render();
+            updateSelected();
             setTimeout(() => {
                 selectedId = null;
-                render();
+                updateSelected();
+                updateFanStyles();
             }, 350);
         } else {
             selectedId = id;
             flipped = false;
-            render();
+            updateSelected();
+            updateFanStyles();
             setTimeout(() => {
                 flipped = true;
-                render();
-            }, 80);
+                updateSelected();
+            }, 50);
         }
     }
 
-    render();
+    shuffleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        shuffle();
+    });
+
+    renderFan();
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {

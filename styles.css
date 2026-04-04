@@ -11541,15 +11541,20 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 }
 
 /* Selected Card Flip */
-.poker-selected-card-container {
+.poker-selected-card-wrapper {
     position: absolute;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
     height: 290px;
-    perspective: 1200px;
     z-index: 60;
+}
+
+.poker-selected-card-container {
+    width: 100%;
+    height: 100%;
+    perspective: 1200px;
     cursor: pointer;
 }
 
@@ -11746,23 +11751,78 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     transform: translateY(-2px);
 }
 
+@media (max-width: 1024px) {
+    .poker-info-panel {
+        left: calc(50% + 105px);
+        width: 140px;
+        padding: 10px 12px;
+    }
+}
+
 @media (max-width: 768px) {
     .poker-table {
-        min-height: 500px;
+        min-height: 520px;
+    }
+    .poker-selected-card-wrapper {
+        top: 40px;
+        width: 180px;
+        height: 260px;
     }
     .poker-info-panel {
         left: 50%;
-        top: 350px;
+        top: 310px;
         transform: translateX(-50%);
-        width: 200px;
+        width: 220px;
+        max-width: 90%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.85);
     }
     .poker-legend {
-        bottom: 70px;
         top: auto;
+        bottom: 80px;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
         justify-content: center;
+        padding: 0 10px;
+        flex-wrap: wrap;
+    }
+    .poker-empty-hint {
+        top: 160px;
+        font-size: 10px;
+    }
+    .poker-shuffle-btn-container {
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .poker-table {
+        min-height: 480px;
+    }
+    .poker-selected-card-wrapper {
+        top: 30px;
+        width: 160px;
+        height: 230px;
+    }
+    .poker-info-panel {
+        top: 270px;
+        padding: 8px 10px;
+    }
+    .poker-legend {
+        bottom: 65px;
+        gap: 8px;
+    }
+    .poker-legend-item {
+        font-size: 9px;
+    }
+    .poker-prompt {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+    .poker-fan-container {
+        bottom: -95px;
     }
 }
 
