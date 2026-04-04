@@ -1785,6 +1785,10 @@
               <div class="rf-cards">
                 <!-- GenAI -->
                 <div class="rf-card" onclick="showRFResult('genai')">
+                  <div class="rf-card-bg">
+                    <img src="images/role-genai.jpg" alt="GenAI" onerror="this.style.display='none'">
+                    <div class="rf-card-overlay"></div>
+                  </div>
                   <div class="rf-card-top">
                     <div class="rf-icon rf-icon-blue">
                       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1a56c4" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -1799,6 +1803,10 @@
                 </div>
                 <!-- Solutions Architect -->
                 <div class="rf-card" onclick="showRFResult('architect')">
+                  <div class="rf-card-bg">
+                    <img src="images/role-architect.jpg" alt="Solutions Architect" onerror="this.style.display='none'">
+                    <div class="rf-card-overlay"></div>
+                  </div>
                   <div class="rf-card-top">
                     <div class="rf-icon rf-icon-amber">
                       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#b45309" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -1813,6 +1821,10 @@
                 </div>
                 <!-- Data Engineer -->
                 <div class="rf-card" onclick="showRFResult('pm')">
+                  <div class="rf-card-bg">
+                    <img src="images/role-data.jpg" alt="Data Engineer" onerror="this.style.display='none'">
+                    <div class="rf-card-overlay"></div>
+                  </div>
                   <div class="rf-card-top">
                     <div class="rf-icon rf-icon-green">
                       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1e7e34" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
@@ -1827,6 +1839,10 @@
                 </div>
                 <!-- Solutions Engineer -->
                 <div class="rf-card" onclick="showRFResult('solutions')">
+                  <div class="rf-card-bg">
+                    <img src="images/role-solutions.jpg" alt="Solutions Engineer" onerror="this.style.display='none'">
+                    <div class="rf-card-overlay"></div>
+                  </div>
                   <div class="rf-card-top">
                     <div class="rf-icon rf-icon-red">
                       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#b91c1c" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
@@ -1911,17 +1927,33 @@
       };
 
       function showRFResult(key) {
+        const t = (k) => window.translationManager ? window.translationManager.t(k) : k;
         const r = rfRoles[key];
         document.getElementById('rf-main-view').style.display = 'none';
         const rv = document.getElementById('rf-result-view');
         rv.style.display = 'block';
-        document.getElementById('rf-result-title').textContent = r.title;
-        document.getElementById('rf-match-pct').textContent = r.pct + '% match';
+        
+        // Use translated title if exists
+        const translatedTitle = t(`role_fit_${key}`);
+        document.getElementById('rf-result-title').textContent = translatedTitle !== `role_fit_${key}` ? translatedTitle : r.title;
+        
+        document.getElementById('rf-match-pct').textContent = r.pct + '% ' + (document.documentElement.lang === 'he' ? 'התאמה' : 'match');
+        
         const fill = document.getElementById('rf-match-fill');
         fill.style.width = '0%';
         setTimeout(() => { fill.style.width = r.pct + '%'; }, 50);
-        document.getElementById('rf-skills-list').innerHTML =
-          r.skills.map(s => `<div class="rf-skill-row"><div class="rf-skill-dot"></div><span>${s}</span></div>`).join('');
+        
+        // Render translated skills
+        let skillsHtml = '';
+        for(let i=1; i<=4; i++) {
+            const skillKey = `rf_${key}_skill${i}`;
+            const translatedSkill = t(skillKey);
+            const skillText = (translatedSkill !== skillKey) ? translatedSkill : r.skills[i-1];
+            if (skillText) {
+                skillsHtml += `<div class="rf-skill-row"><div class="rf-skill-dot"></div><span>${skillText}</span></div>`;
+            }
+        }
+        document.getElementById('rf-skills-list').innerHTML = skillsHtml;
         
         // Trigger confetti celebration!
         triggerRoleFitConfetti();
