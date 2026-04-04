@@ -146,10 +146,12 @@
                     </div>
 
                     <div class="eyebrow-new" data-i18n="hero_eyebrow">01 / JACK YARON</div>
-                    <h1 class="h1-new sparkles-text" data-sparkles-count="15" data-i18n="hero_name">Amichai</h1>
+                    <h1 class="h1-new sparkles-text" data-sparkles-count="15">
+                        <span id="typewriter-name"></span>
+                    </h1>
                     <div class="accent-line-new"></div>
 
-                    <p class="role-new" data-i18n="hero_role">AI Solutions Engineer · Cloud Architect</p>
+                    <p class="role-new shimmer-text" data-i18n="hero_role">AI Solutions Engineer · Cloud Architect</p>
                     <p class="tagline-new" data-i18n="hero_tagline">Applying psychology & CS to architect scalable, adaptive AI solutions for enterprise environments.</p>
 
                     <div class="chips-new">
@@ -193,7 +195,9 @@
                         <div class="photo-wrap-new">
                             <div class="photo-ring-outer-new"></div>
                             <div class="photo-ring-new"></div>
-                            <img class="photo-img-new" src="images/me.jpeg" alt="Jack Yaron Amichai" />
+                            <div class="photo-float-container">
+                                <img class="photo-img-new" src="images/me.jpeg" alt="Jack Yaron Amichai" />
+                            </div>
                         </div>
                         <div class="stat-col-new">
                             <div class="stat-card-new">
@@ -213,23 +217,23 @@
                     <div class="tiles-new">
                         <a href="Jack solutions architect 20-1-26.pdf" download class="tile-new">
                             <img src="images/Resume.png" alt="Resume" />
-                            <div class="tile-label-new" data-i18n="nav_about">Resume</div>
+                            <div class="tile-label-new" data-i18n="hero_tile_resume">Resume</div>
                         </a>
                         <a href="#projects" class="tile-new">
                             <img src="images/Coding.png" alt="Projects" />
-                            <div class="tile-label-new" data-i18n="nav_projects">Projects</div>
+                            <div class="tile-label-new" data-i18n="hero_tile_projects">Projects</div>
                         </a>
                         <a href="#contact" class="tile-new">
                             <img src="images/contact me.png" alt="Contact" />
-                            <div class="tile-label-new" data-i18n="nav_contact">Contact</div>
+                            <div class="tile-label-new" data-i18n="hero_tile_contact">Contact</div>
                         </a>
                         <a href="#about" class="tile-new">
                             <img src="images/my story image real.png" alt="Story" />
-                            <div class="tile-label-new" data-i18n="nav_about">Story</div>
+                            <div class="tile-label-new" data-i18n="hero_tile_story">Story</div>
                         </a>
                         <a href="#hobbies" class="tile-new tile-wide-new">
                             <img src="images/Hobbies button.png" alt="Hobbies" />
-                            <div class="tile-label-new" data-i18n="section_hobbies">Hobbies</div>
+                            <div class="tile-label-new" data-i18n="hero_tile_hobbies">Hobbies</div>
                         </a>
                     </div>
                 </div>
@@ -281,20 +285,20 @@
                         </div>
                     </div>
 
-                    <p class="story-lead">
+                    <p class="story-lead" data-i18n="about_p1">
                         Most engineers optimize for performance. I optimize for <strong>adoption</strong>. With a dual background in <strong>Psychology and Computer Science</strong>, I build cognitively adaptive AI systems where human-centric design meets complex technical execution.
                     </p>
 
-                    <p>
+                    <p data-i18n="about_p2">
                         My journey began in the <strong><a href="https://www.givati.org.il/" target="_blank" style="color: inherit; text-decoration: underline;">IDF</a></strong> as a Staff Sergeant. Leading operations in high-pressure environments taught me that clear communication, empathy, and rapid decision-making are the real infrastructure of any successful mission.
                     </p>
 
-                    <p>
+                    <p data-i18n="about_p3">
                         Later, as a <strong>Research Software Engineer at the <a href="https://teams.technion.ac.il/" target="_blank" style="color: inherit; text-decoration: underline;">Technion</a></strong> (specifically the <strong><a href="https://engelhardlab.net.technion.ac.il/" target="_blank" style="color: inherit; text-decoration: underline;">Engelhard Lab</a></strong>), I led cross-functional teams to translate complex scientific hypotheses into production-grade software—including a cutting-edge VR maze for neuroscience research. Today, as a Consultant at <strong>Deloitte</strong>, I architect event-driven enterprise integrations using <strong>SAP BTP, Python, and FastAPI</strong> to replace legacy workflows with scalable, automated solutions.
                     </p>
 
                     <blockquote class="vision-quote"
-                        style="margin: 25px 0; border-left: 4px solid var(--accent); padding-left: 20px; font-style: italic; color: var(--text-primary);">
+                        style="margin: 25px 0; border-left: 4px solid var(--accent); padding-left: 20px; font-style: italic; color: var(--text-primary);" data-i18n="about_quote">
                         "I believe the best technology disappears into the workflow. My goal is to build systems that work so seamlessly, people forget there's complex engineering behind them."
                     </blockquote>
 
@@ -303,17 +307,17 @@
                         style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; padding: 20px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-color);">
                         <div style="text-align: center;">
                             <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent);">40%</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Faster Integration at
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);" data-i18n="about_stat_integration">Faster Integration at
                                 Deloitte</div>
                         </div>
                         <div style="text-align: center;">
                             <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent);">15+</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Production Projects Shipped
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);" data-i18n="about_stat_projects">Production Projects Shipped
                             </div>
                         </div>
                         <div style="text-align: center;">
                             <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent);">6</div>
-                            <div style="font-size: 0.75rem; color: var(--text-secondary);">Autonomous AI Agents Deployed
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);" data-i18n="about_stat_agents">Autonomous AI Agents Deployed
                             </div>
                         </div>
                     </div>
@@ -342,11 +346,11 @@
                 <div class="skills-grid">
                     <!-- AI & ML -->
                     <button class="skill-card" onclick="showCompetencyEvidence('ai-ml')">
-                        <h4><i class="fas fa-brain"></i> AI & ML</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Generative AI &
+                        <h4 data-i18n="skill_ai_title"><i class="fas fa-brain"></i> AI & ML</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;" data-i18n="skill_ai_desc">Generative AI &
                             Applied Machine Learning</p>
                         <span class="skill-badge"
-                            style="font-size: 0.75rem; background: var(--accent); color: white; padding: 2px 8px; border-radius: 12px;">See
+                            style="font-size: 0.75rem; background: var(--accent); color: white; padding: 2px 8px; border-radius: 12px;" data-i18n="skill_see_how">See
                             How</span>
                     </button>
 
@@ -410,7 +414,7 @@
                 A Day in My Life as a Solutions Engineer</h3>
 
             <p
-                style="margin-top: 20px; font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); max-width: 900px; margin-left: auto; margin-right: auto;">
+                style="margin-top: 20px; font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); max-width: 900px; margin-left: auto; margin-right: auto;" data-i18n="day_life_p1">
                 As a Solutions Engineer, I serve as the bridge between complex technical capabilities and real business
                 outcomes.
                 My role combines deep technical expertise with strategic thinking—understanding client challenges,
@@ -430,7 +434,7 @@
                     </video>
                 </div>
                 <p
-                    style="text-align: center; margin-top: 25px; color: var(--text-secondary); font-style: italic; font-size: 1.1rem;">
+                    style="text-align: center; margin-top: 25px; color: var(--text-secondary); font-style: italic; font-size: 1.1rem;" data-i18n="day_life_footer">
                     From morning coffee to evening deployments — building the future, one solution at a time </p>
             </div>
         </section>
@@ -449,9 +453,9 @@
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
                         <span
                             style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
-                        <h4 style="margin: 0; color: var(--text-primary);">Understand & Clarify</h4>
+                        <h4 style="margin: 0; color: var(--text-primary);" data-i18n="sys_step1_title">Understand & Clarify</h4>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;" data-i18n="sys_step1_desc">
                         Ask the right questions. What's the actual problem? Who are the users? What does success look
                         like? I never jump to solutions before understanding constraints.
                     </p>
@@ -463,9 +467,9 @@
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
                         <span
                             style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
-                        <h4 style="margin: 0; color: var(--text-primary);">High-Level Architecture</h4>
+                        <h4 style="margin: 0; color: var(--text-primary);" data-i18n="sys_step2_title">High-Level Architecture</h4>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;" data-i18n="sys_step2_desc">
                         Sketch the major components. APIs, databases, services, integrations. I focus on data flow first
                         — how does information move through the system?
                     </p>
@@ -477,9 +481,9 @@
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
                         <span
                             style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</span>
-                        <h4 style="margin: 0; color: var(--text-primary);">Deep Dive & Tradeoffs</h4>
+                        <h4 style="margin: 0; color: var(--text-primary);" data-i18n="sys_step3_title">Deep Dive & Tradeoffs</h4>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;" data-i18n="sys_step3_desc">
                         Every decision has tradeoffs. Consistency vs availability? Build vs buy? I articulate options
                         clearly and recommend based on business priorities.
                     </p>
@@ -491,9 +495,9 @@
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
                         <span
                             style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</span>
-                        <h4 style="margin: 0; color: var(--text-primary);">Scale & Edge Cases</h4>
+                        <h4 style="margin: 0; color: var(--text-primary);" data-i18n="sys_step4_title">Scale & Edge Cases</h4>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;" data-i18n="sys_step4_desc">
                         What happens at 10x load? 100x? I think about caching, sharding, async processing. And I always
                         ask: "What could go wrong?" before it does.
                     </p>
@@ -503,25 +507,25 @@
             <!-- Mini Case Study -->
             <div
                 style="margin-top: 30px; padding: 24px; background: linear-gradient(135deg, rgba(0,102,204,0.08), rgba(139,92,246,0.08)); border-radius: 16px; border: 1px solid var(--border-color);">
-                <h4 style="margin-bottom: 15px; color: var(--accent);">📋 Mini Case Study: Hatrick Multi-Agent System
+                <h4 style="margin-bottom: 15px; color: var(--accent);" data-i18n="sys_case_title">📋 Mini Case Study: Hatrick Multi-Agent System
                 </h4>
                 <div
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; color: var(--text-secondary); font-size: 0.95rem;">
                     <div>
-                        <strong style="color: var(--text-primary);">Challenge:</strong><br>
-                        6+ autonomous agents needing sub-second coordination for cyber defense simulation.
+                        <strong style="color: var(--text-primary);" data-i18n="sys_case_challenge">Challenge:</strong><br>
+                        <span data-i18n="sys_case_challenge_text">6+ autonomous agents needing sub-second coordination for cyber defense simulation.</span>
                     </div>
                     <div>
-                        <strong style="color: var(--text-primary);">Architecture:</strong><br>
-                        LangGraph orchestration → Groq LPU inference → Event-driven state management.
+                        <strong style="color: var(--text-primary);" data-i18n="sys_case_arch">Architecture:</strong><br>
+                        <span data-i18n="sys_case_arch_text">LangGraph orchestration → Groq LPU inference → Event-driven state management.</span>
                     </div>
                     <div>
-                        <strong style="color: var(--text-primary);">Key Decision:</strong><br>
-                        Chose Groq over OpenAI for 10x faster inference (critical for real-time battles).
+                        <strong style="color: var(--text-primary);" data-i18n="sys_case_decision">Key Decision:</strong><br>
+                        <span data-i18n="sys_case_decision_text">Chose Groq over OpenAI for 10x faster inference (critical for real-time battles).</span>
                     </div>
                     <div>
-                        <strong style="color: var(--text-primary);">Result:</strong><br>
-                        Working demo at hatrick.vercel.app with live agent interactions.
+                        <strong style="color: var(--text-primary);" data-i18n="sys_case_result">Result:</strong><br>
+                        <span data-i18n="sys_case_result_text">Working demo at hatrick.vercel.app with live agent interactions.</span>
                     </div>
                 </div>
             </div>
@@ -798,15 +802,13 @@
                 <div class="timeline-item">
                     <div class="timeline-date">2025 - Present</div>
                     <div class="timeline-content">
-                        <h3>Consultant (SAP BTP & Integrations)</h3>
-                        <h4>Deloitte</h4>
+                        <h3 data-i18n="exp_deloitte_role">Consultant (SAP BTP & Integrations)</h3>
+                        <h4 data-i18n="ht_deloitte_company">Deloitte</h4>
                         <ul>
-                            <li>Design and implement complex integrations using SAP Business Technology Platform (BTP)
-                            </li>
-                            <li>Develop Python/FastAPI microservices to support data flow between SAP modules</li>
-                            <li>Collaborate with clients to define technical requirements and integration strategies
-                            </li>
-                            <li>Connect disparate enterprise systems to streamline workflows</li>
+                            <li data-i18n="exp_deloitte_bullet1">Design and implement complex integrations using SAP Business Technology Platform (BTP)</li>
+                            <li data-i18n="exp_deloitte_bullet2">Develop Python/FastAPI microservices to support data flow between SAP modules</li>
+                            <li data-i18n="exp_deloitte_bullet3">Collaborate with clients to define technical requirements and integration strategies</li>
+                            <li data-i18n="exp_deloitte_bullet4">Connect disparate enterprise systems to streamline workflows</li>
                         </ul>
                         <div class="tech-tags">
                             <span>SAP BTP</span>
@@ -821,13 +823,13 @@
                 <div class="timeline-item">
                     <div class="timeline-date">2025 - Present</div>
                     <div class="timeline-content">
-                        <h3>Freelance Data Engineer & Developer</h3>
-                        <h4>Adi Ohayon Revenue Management</h4>
+                        <h3 data-i18n="exp_freelance_role">Freelance Data Engineer & Developer</h3>
+                        <h4 data-i18n="ht_freelance_company">Adi Ohayon Revenue Management</h4>
                         <ul>
-                            <li>Engineer automated scraping and data analysis tools for competitor pricing</li>
-                            <li>Build algorithms to identify pricing gaps and yield improvement opportunities</li>
-                            <li>Create dashboards comparing real-time market data for revenue managers</li>
-                            <li>Develop proprietary tools for yield management in hospitality sector</li>
+                            <li data-i18n="exp_freelance_bullet1">Engineer automated scraping and data analysis tools for competitor pricing</li>
+                            <li data-i18n="exp_freelance_bullet2">Build algorithms to identify pricing gaps and yield improvement opportunities</li>
+                            <li data-i18n="exp_freelance_bullet3">Create dashboards comparing real-time market data for revenue managers</li>
+                            <li data-i18n="exp_freelance_bullet4">Develop proprietary tools for yield management in hospitality sector</li>
                         </ul>
                         <div class="tech-tags">
                             <span>Python</span>
@@ -842,14 +844,13 @@
                 <div class="timeline-item">
                     <div class="timeline-date">2021 - 2023</div>
                     <div class="timeline-content">
-                        <h3>Research Software Engineer & Team Lead</h3>
-                        <h4>Technion - Israel Institute of Technology</h4>
+                        <h3 data-i18n="exp_technion_role">Research Software Engineer & Team Lead</h3>
+                        <h4 data-i18n="ht_technion_company">Technion - Israel Institute of Technology</h4>
                         <ul>
-                            <li>Managed a cross-functional team, translating research hypotheses into executable code
-                            </li>
-                            <li>Engineered robust backend tools in Python for large-scale cognitive simulations</li>
-                            <li>Led development of cutting-edge VR maze for behavioral neuroscience research</li>
-                            <li>Coordinated lab operations ensuring strict adherence to research protocols</li>
+                            <li data-i18n="exp_technion_bullet1">Managed a cross-functional team, translating research hypotheses into executable code</li>
+                            <li data-i18n="exp_technion_bullet2">Engineered robust backend tools in Python for large-scale cognitive simulations</li>
+                            <li data-i18n="exp_technion_bullet3">Led development of cutting-edge VR maze for behavioral neuroscience research</li>
+                            <li data-i18n="exp_technion_bullet4">Coordinated lab operations ensuring strict adherence to research protocols</li>
                         </ul>
                         <div class="tech-tags">
                             <span>Python</span>
@@ -863,13 +864,13 @@
                 <div class="timeline-item">
                     <div class="timeline-date">2020 - 2021</div>
                     <div class="timeline-content">
-                        <h3>Software Engineer (Project Alpha)</h3>
-                        <h4><a href="https://en.community-youth.huji.ac.il/alpha-and-idea-future-scientists" target="_blank" style="color: inherit; text-decoration: none;">Hebrew University of Jerusalem</a></h4>
+                        <h3 data-i18n="exp_huji_role">Software Engineer (Project Alpha)</h3>
+                        <h4 data-i18n="ht_hebrew_company"><a href="https://en.community-youth.huji.ac.il/alpha-and-idea-future-scientists" target="_blank" style="color: inherit; text-decoration: none;">Hebrew University of Jerusalem</a></h4>
                         <ul>
-                            <li>Co-managed development of data analysis tools for astrophysical research</li>
-                            <li>Integrated C++ and Python for cutting-edge 3D astrophysics simulations</li>
-                            <li>Coordinated between research and technical teams</li>
-                            <li>Delivered project milestones bridging research needs with technical execution</li>
+                            <li data-i18n="exp_huji_bullet1">Co-managed development of data analysis tools for astrophysical research</li>
+                            <li data-i18n="exp_huji_bullet2">Integrated C++ and Python for cutting-edge 3D astrophysics simulations</li>
+                            <li data-i18n="exp_huji_bullet3">Coordinated between research and technical teams</li>
+                            <li data-i18n="exp_huji_bullet4">Delivered project milestones bridging research needs with technical execution</li>
                         </ul>
                         <div class="tech-tags">
                             <span>C++</span>
@@ -883,13 +884,13 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Mar 2017 - Aug 2018</div>
                     <div class="timeline-content">
-                        <h3>Staff Sergeant - Operations & Leadership</h3>
-                        <h4>Israel Defense Forces (IDF)</h4>
+                        <h3 data-i18n="exp_idf_role">Staff Sergeant - Operations & Leadership</h3>
+                        <h4 data-i18n="ht_military_company">Israel Defense Forces (IDF)</h4>
                         <ul>
-                            <li>Led team operations and mission planning</li>
-                            <li>Managed logistics and resource allocation</li>
-                            <li>Trained and mentored junior personnel</li>
-                            <li>Developed leadership skills under pressure</li>
+                            <li data-i18n="exp_idf_bullet1">Led team operations and mission planning</li>
+                            <li data-i18n="exp_idf_bullet2">Managed logistics and resource allocation</li>
+                            <li data-i18n="exp_idf_bullet3">אימון וחניכת כוח אדם צעיר</li>
+                            <li data-i18n="exp_idf_bullet4">Developed leadership skills under pressure</li>
                         </ul>
                         <div class="tech-tags">
                             <span>Leadership</span>
@@ -911,7 +912,7 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Oct 2023 - Mar 2024</div>
                     <div class="timeline-content">
-                        <h3>Frontend Developer</h3>
+                        <h3 data-i18n="vol_frontend">Frontend Developer</h3>
                         <h4>
                             <a href="https://www.octseven.com/?lang=he" target="_blank" class="highlight-link">
                                 <span>🕯</span>
@@ -919,9 +920,9 @@
                             </a>
                         </h4>
                         <ul>
-                            <li>Developed a memorial website for victims of the October 7th attacks</li>
-                            <li>Collaborated with a volunteer team to launch the site rapidly</li>
-                            <li>Implemented responsive design and accessible UI components</li>
+                            <li data-i18n="vol_oct_desc1">Developed a memorial website for victims of the October 7th attacks</li>
+                            <li data-i18n="vol_oct_desc2">Collaborated with a volunteer team to launch the site rapidly</li>
+                            <li data-i18n="vol_oct_desc3">Implemented responsive design and accessible UI components</li>
                         </ul>
                         <div class="tech-tags">
                             <span class="comp-tag">React</span>
@@ -938,7 +939,7 @@
                 <div class="timeline-item">
                     <div class="timeline-date">Jul 2023 - Present</div>
                     <div class="timeline-content">
-                        <h3>Back End Developer</h3>
+                        <h3 data-i18n="vol_backend">Back End Developer</h3>
                         <h4>
                             <a href="https://lirashapira.org/" target="_blank" class="highlight-link">
                                 <span>💚</span>
@@ -946,9 +947,9 @@
                             </a>
                         </h4>
                         <ul>
-                            <li>Developing a communal currency platform for economic empowerment</li>
-                            <li>Building backend services to support local currency transactions</li>
-                            <li>Contributing to open-source code for social impact</li>
+                            <li data-i18n="vol_lira_desc1">Developing a communal currency platform for economic empowerment</li>
+                            <li data-i18n="vol_lira_desc2">Building backend services to support local currency transactions</li>
+                            <li data-i18n="vol_lira_desc3">Contributing to open-source code for social impact</li>
                         </ul>
                         <div class="tech-tags">
                             <span class="comp-tag">Python</span>
@@ -978,42 +979,42 @@
                 <button class="hobby-mode-btn skill-card" onclick="firePaws('dog')">
                     <img src="images/hobbies/airplane.png" alt="Travel" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
-                    <div class="hobby-card-title" style="margin-top: 10px;">Traveling</div>
+                    <div class="hobby-card-title" style="margin-top: 10px;" data-i18n="hobby_travel">Traveling</div>
                 </button>
 
                 <!-- Violin -->
                 <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/violin.png" alt="Violin" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
-                    <div class="hobby-card-title" style="margin-top: 10px;">Violin</div>
+                    <div class="hobby-card-title" style="margin-top: 10px;" data-i18n="hobby_violin">Violin</div>
                 </button>
 
                 <!-- Drawing -->
                 <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/drawing_comic.jpg" alt="Drawing" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
-                    <div class="hobby-card-title" style="margin-top: 10px;">Drawing</div>
+                    <div class="hobby-card-title" style="margin-top: 10px;" data-i18n="hobby_drawing">Drawing</div>
                 </button>
 
                 <!-- Reading -->
                 <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/reading.png" alt="Reading" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
-                    <div class="hobby-card-title" style="margin-top: 10px;">Reading</div>
+                    <div class="hobby-card-title" style="margin-top: 10px;" data-i18n="hobby_reading">Reading</div>
                 </button>
 
                 <!-- Plants -->
                 <button class="hobby-mode-btn skill-card" onclick="firePaws('cat')">
                     <img src="images/hobbies/garden.jpg" alt="Gardening" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
-                    <div class="hobby-card-title" style="margin-top: 10px;">Plants</div>
+                    <div class="hobby-card-title" style="margin-top: 10px;" data-i18n="hobby_plants">Plants</div>
                 </button>
 
                 <!-- Gym -->
                 <button class="hobby-mode-btn skill-card" onclick="firePaws('dog')">
                     <img src="images/hobbies/fitness.png" alt="Gym" class="hobby-card-img"
                         style="height: 120px; object-fit: cover; width: 100%; border-radius: 12px;">
-                    <div class="hobby-card-title" style="margin-top: 10px;">Gym</div>
+                    <div class="hobby-card-title" style="margin-top: 10px;" data-i18n="hobby_gym">Gym</div>
                 </button>
             </div>
         </div>

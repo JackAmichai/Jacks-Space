@@ -4,17 +4,215 @@
 // ========================================
 
 // ========================================
-// 1. PAGE LOADER - Fast load using DOMContentLoaded
+// ANIMATION UTILITIES
 // ========================================
+
+// 1. TYPEWRITER EFFECT
+const WORD = "Amichai";
+
+function initTypewriter() {
+    const container = document.getElementById('typewriter-name');
+    if (!container) return;
+    
+    let displayed = "";
+    let phase = "typing";
+    
+    function tick() {
+        let timeout;
+        
+        if (phase === "typing") {
+            if (displayed.length < WORD.length) {
+                timeout = setTimeout(() => {
+                    displayed = WORD.slice(0, displayed.length + 1);
+                    container.innerHTML = displayed + '<span class="typewriter-cursor"></span>';
+                    tick();
+                }, 90);
+            } else {
+                timeout = setTimeout(() => { phase = "pausing"; tick(); }, 2000);
+            }
+        } else if (phase === "pausing") {
+            timeout = setTimeout(() => { phase = "erasing"; tick(); }, 500);
+        } else if (phase === "erasing") {
+            if (displayed.length > 0) {
+                timeout = setTimeout(() => {
+                    displayed = WORD.slice(0, displayed.length - 1);
+                    container.innerHTML = displayed + '<span class="typewriter-cursor"></span>';
+                    tick();
+                }, 55);
+            } else {
+                timeout = setTimeout(() => { phase = "typing"; tick(); }, 400);
+            }
+        }
+    }
+    
+    container.innerHTML = '<span class="typewriter-cursor"></span>';
+    tick();
+}
+
+// 2. COUNT UP ANIMATION
+function initCountUp() {
+    const stats = document.querySelectorAll('.stat-value-new');
+    stats.forEach(stat => {
+        const text = stat.textContent;
+        const match = text.match(/^(\d+)/);
+        if (!match) return;
+        
+        const target = parseInt(match[1]);
+        const suffix = text.replace(/^\d+/, '');
+        
+        let current = 0;
+        const duration = 1500;
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            current = Math.floor(eased * target);
+            
+            stat.textContent = current + suffix;
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+        
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                requestAnimationFrame(update);
+                observer.disconnect();
+            }
+        }, { threshold: 0.5 });
+        
+        observer.observe(stat);
+    });
+}
+
+// 3. STAGGERED SCROLL-IN
+function initStaggeredScroll() {
+    const containers = document.querySelectorAll('.timeline, .cert-grid, .projects-grid, .volunteering-list');
+    
+    containers.forEach(container => {
+        const items = container.querySelectorAll(':scope > *');
+        if (items.length === 0) return;
+        
+        items.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(22px)';
+            item.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+            item.style.transitionDelay = `${index * 0.1}s`;
+        });
+        
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+                observer.disconnect();
+            }
+        }, { threshold: 0.1 });
+        
+        observer.observe(container);
+    });
+}
+
+// 4. 3D TILT EFFECT
+function initTiltCards() {
+    const cards = document.querySelectorAll('.project-card, .competency-card, .rf-card, .skill-card, .hobby-mode-btn, .resource-card-new');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / centerY * -10;
+            const rotateY = (x - centerX) / centerX * 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            card.style.transition = 'transform 0.1s ease';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        });
+    });
+}
+
+// 5. SKILL BARS ANIMATION
+function initSkillBars() {
+    const competencyCards = document.querySelectorAll('.skill-card');
+    
+    competencyCards.forEach(card => {
+        const label = card.querySelector('h4')?.textContent?.trim() || 'Skills';
+        const level = { 'AI & ML': 90, 'Architecture': 85, 'Infrastructure': 78, 'UX & HCI': 82, 'Product': 75, 'Communication': 92 }[label] || 80;
+        
+        const barContainer = document.createElement('div');
+        barContainer.className = 'skill-bar-container';
+        barContainer.style.cssText = 'margin-top: 12px;';
+        
+        barContainer.innerHTML = `
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary); margin-bottom: 5px;">
+                <span>${label}</span>
+                <span>${level}%</span>
+            </div>
+            <div style="height: 3px; background: var(--border); border-radius: 2px; overflow: hidden;">
+                <div class="skill-bar-fill" style="height: 100%; background: #378ADD; border-radius: 2px; width: 0%;"></div>
+            </div>
+        `;
+        
+        card.appendChild(barContainer);
+        
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                setTimeout(() => {
+                    barContainer.querySelector('.skill-bar-fill').style.width = level + '%';
+                    barContainer.querySelector('.skill-bar-fill').style.transition = 'width 1.2s ease';
+                }, 100);
+                observer.disconnect();
+            }
+        }, { threshold: 0.5 });
+        
+        observer.observe(card);
+    });
+}
+
+// 6. PULSING ACTIVE TIMELINE DOT
+function initTimelinePulse() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        if (index === 0) {
+            const dot = item.querySelector('.timeline-item::before');
+            if (dot) {
+                item.classList.add('timeline-item-current');
+            }
+        }
+    });
+}
+
+// Initialize all animations on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Existing loader code...
     const loader = document.getElementById('pageLoader');
     if (loader) {
-        // Hide loader quickly once DOM is ready (don't wait for all images)
         setTimeout(() => {
             loader.classList.add('fade-out');
             setTimeout(() => loader.style.display = 'none', 300);
         }, 200);
     }
+    
+    // Init all animations
+    initTypewriter();
+    initCountUp();
+    initStaggeredScroll();
+    initTiltCards();
+    initSkillBars();
+    initTimelinePulse();
 });
 
 // ========================================

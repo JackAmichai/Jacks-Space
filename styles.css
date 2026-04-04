@@ -46,6 +46,99 @@ body {
     overflow-x: hidden;
 }
 
+/* ======================================== */
+/* ANIMATIONS */
+/* ======================================== */
+
+/* Typewriter cursor blink */
+@keyframes tw-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Shimmer text effect */
+.shimmer-text {
+    background: linear-gradient(
+        90deg,
+        currentColor 0%,
+        #378ADD 35%,
+        #1D9E75 55%,
+        currentColor 100%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-sweep 3s linear infinite;
+}
+
+@keyframes shimmer-sweep {
+    0% { background-position: 0% center; }
+    100% { background-position: 250% center; }
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: currentColor;
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: tw-blink 0.75s step-end infinite;
+}
+
+.photo-float-container {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.photo-img-new {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Skill pills hover */
+.chip-new {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                background-color 0.25s ease, 
+                color 0.25s ease,
+                border-color 0.25s ease;
+    cursor: default;
+}
+
+.chip-new:hover {
+    transform: scale(1.2) translateY(-4px);
+    background-color: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+}
+
+/* Count up animation - handled by JS */
+
+/* Pulsing timeline dot */
+@keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(55, 138, 221, 0.55); }
+    70% { box-shadow: 0 0 0 10px rgba(55, 138, 221, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(55, 138, 221, 0); }
+}
+
+/* First timeline item is current - pulsing dot */
+.timeline-item:first-child::before {
+    animation: pulse-ring 1.6s ease-out infinite;
+}
+
+/* Staggered scroll-in - handled by JS */
+
+/* 3D tilt - handled by JS */
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
