@@ -5,21 +5,28 @@ class TranslationManager {
   }
   
   init() {
-    // Re-check translations
+    console.log('TranslationManager: Initializing...');
+    
+    // 1. Load translations from window if available
     if (Object.keys(this.translations).length === 0 && window.translations) {
       this.translations = window.translations;
     }
 
-    // Check for saved language preference, otherwise default to 'en'
+    // 2. Determine initial language - FORCE 'en' as default if no preference
     const savedLang = localStorage.getItem('preferred-language');
     if (savedLang && this.translations[savedLang]) {
       this.currentLang = savedLang;
     } else {
       this.currentLang = 'en';
+      localStorage.setItem('preferred-language', 'en');
     }
     
-    // Apply initial language
+    console.log('TranslationManager: Current language is', this.currentLang);
+    
+    // 3. Apply the language
     this.applyLanguage(this.currentLang);
+    
+    // 4. Setup the toggle button
     this.createLanguageToggle();
   }
   
@@ -33,25 +40,30 @@ class TranslationManager {
   }
   
   setLanguage(lang) {
+    console.log('TranslationManager: Setting language to', lang);
     if (this.translations[lang]) {
       this.currentLang = lang;
       localStorage.setItem('preferred-language', lang);
       this.applyLanguage(lang);
-      
-      // Update toggle buttons text/emoji
       this.updateToggleButton();
     }
   }
 
   updateToggleButton() {
-    document.querySelectorAll('.lang-toggle-text').forEach(el => {
+    const textEls = document.querySelectorAll('.lang-toggle-text');
+    textEls.forEach(el => {
+        // If current is EN, button should show HE (to switch to it)
+        // If current is HE, button should show EN (to switch to it)
         el.innerHTML = this.currentLang === 'en' ? 'עב 🇮🇱' : 'EN 🇬🇧';
     });
   }
   
   applyLanguage(lang) {
     const t = this.translations[lang];
-    if (!t) return;
+    if (!t) {
+        console.error('TranslationManager: No translations found for', lang);
+        return;
+    }
     
     // Update document direction for RTL languages
     const isRTL = lang === 'he';
@@ -88,31 +100,42 @@ class TranslationManager {
       }
     });
     
-    // Dispatch event for custom handling
+    // Dispatch event for custom handling (e.g. updating dynamically rendered projects)
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
   }
   
   createLanguageToggle() {
     const toggle = document.getElementById('langToggle');
     if (toggle) {
-      // Clear existing listeners by replacing the element or just adding once
-      const newToggle = toggle.cloneNode(true);
-      toggle.parentNode.replaceChild(newToggle, toggle);
+      console.log('TranslationManager: Found langToggle button, attaching listener...');
       
-      newToggle.addEventListener('click', (e) => {
+      // Use a named function to avoid duplicate listeners if init is called multiple times
+      const handleToggle = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         const newLang = this.currentLang === 'en' ? 'he' : 'en';
         this.setLanguage(newLang);
-      });
+      };
       
-      // Update initial state
+      // Clear and re-attach
+      toggle.removeEventListener('click', toggle._handler);
+      toggle.addEventListener('click', handleToggle);
+      toggle._handler = handleToggle;
+      
       this.updateToggleButton();
+    } else {
+      console.warn('TranslationManager: langToggle button not found in DOM.');
     }
   }
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.translationManager = new TranslationManager();
+        window.translationManager.init();
+    });
+} else {
     window.translationManager = new TranslationManager();
     window.translationManager.init();
-});
+}
