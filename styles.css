@@ -1356,7 +1356,9 @@ section {
     .horizontal-timeline {
         flex-direction: column;
         align-items: flex-start;
-        padding-left: 30px;
+        padding-left: 40px;
+        padding-right: 20px;
+        gap: 0;
     }
     
     .horizontal-timeline::before,
@@ -1382,14 +1384,85 @@ section {
     .horizontal-timeline-item {
         width: 100%;
         max-width: none;
-        padding-bottom: 30px;
+        padding-bottom: 35px;
+        padding-left: 25px;
+    }
+    
+    .horizontal-timeline-item::before {
+        left: -38px !important;
     }
     
     .horizontal-timeline-dot {
         position: absolute;
-        left: -30px;
+        left: -38px !important;
         top: 0;
         margin: 0;
+    }
+    
+    .horizontal-timeline-content {
+        padding: 15px;
+    }
+    
+    .horizontal-timeline-content h3 {
+        font-size: 14px;
+    }
+    
+    .horizontal-timeline-content h4,
+    .horizontal-timeline-content p {
+        font-size: 12px;
+    }
+    
+    /* Rotate to horizontal on landscape */
+    @media (orientation: landscape) and (max-height: 500px) {
+        .horizontal-timeline {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 30px 0;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+        
+        .horizontal-timeline::before,
+        .horizontal-timeline-line {
+            display: none;
+        }
+        
+        .horizontal-timeline-item {
+            min-width: 180px;
+            flex-shrink: 0;
+            padding-left: 0;
+            padding-bottom: 60px;
+        }
+        
+        .horizontal-timeline-dot {
+            position: relative;
+            left: auto !important;
+            top: auto;
+            margin: 0 auto 15px;
+        }
+    }
+}
+
+/* Horizontal Timeline Hint */
+.horizontal-timeline-hint {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .horizontal-timeline-hint {
+        display: block;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .horizontal-timeline-hint {
+        display: none;
     }
 }
 
@@ -13435,6 +13508,38 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     box-shadow: 0 8px 25px rgba(0, 102, 204, 0.5);
 }
 
+@media (max-width: 768px) {
+    .refs-see-more {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+}
+
+.refs-see-more-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, var(--accent) 0%, #4fc3f7 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+}
+
+.refs-see-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.5);
+}
+
 .refs-popup-overlay {
     position: fixed;
     top: 0;
@@ -13566,6 +13671,54 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
 .refs-popup-item-info span {
     font-size: 0.75rem;
     color: var(--accent);
+}
+
+/* Responsive popup */
+@media (max-width: 768px) {
+    .refs-popup {
+        width: 95%;
+        max-height: 85vh;
+        margin: 10px;
+    }
+    
+    .refs-popup-header {
+        padding: 20px 20px 15px;
+    }
+    
+    .refs-popup-header h3 {
+        font-size: 1.2rem;
+        padding-right: 30px;
+    }
+    
+    .refs-popup-header p {
+        font-size: 0.8rem;
+    }
+    
+    .refs-popup-list {
+        padding: 15px 20px 20px;
+    }
+    
+    .refs-popup-item {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .refs-popup-item-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .refs-popup-item-info h4 {
+        font-size: 0.9rem;
+    }
+    
+    .refs-popup-item-info p {
+        font-size: 0.75rem;
+    }
+    
+    .refs-popup-item-info span {
+        font-size: 0.7rem;
+    }
 }
 
 .refs-dots {
