@@ -12,15 +12,25 @@ function initTypewriter() {
     const container = document.getElementById('typewriter-name');
     if (!container) return;
 
-    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
-    let WORD = t('hero_name') || "Amichai";
+    // Default to Amichai (family name) - will be overridden by translation if available
+    let WORD = "Amichai";
+    
+    // Try to get translation
+    if (window.translationManager) {
+        const translated = window.translationManager.t('hero_name');
+        if (translated && translated !== 'hero_name') {
+            WORD = translated;
+        }
+    }
 
     let displayed = "";
     let phase = "typing";
 
     // Re-init on language change
     window.addEventListener('languageChanged', () => {
-        WORD = t('hero_name');
+        if (window.translationManager) {
+            WORD = window.translationManager.t('hero_name') || "Amichai";
+        }
         displayed = "";
         phase = "typing";
     });    
