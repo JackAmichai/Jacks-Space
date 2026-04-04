@@ -349,6 +349,23 @@ document.querySelectorAll('.section, .project-card, .timeline-item, .testimonial
     observer.observe(el);
 });
 
+// Timeline line animation for all timeline sections
+document.querySelectorAll('.timeline').forEach(timelineSection => {
+    const timelineLine = document.createElement('div');
+    timelineLine.className = 'timeline-line';
+    timelineSection.insertBefore(timelineLine, timelineSection.firstChild);
+    
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                timelineLine.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    timelineObserver.observe(timelineSection);
+});
+
 // ========================================
 // 13. ACTIVE NAV LINK HIGHLIGHTING
 // ========================================
@@ -2280,8 +2297,9 @@ function initCertShuffle() {
                 transform += ` translateY(-20px)`;
             }
             
+            const cardWidth = window.innerWidth <= 480 ? 70 : 90;
             card.style.transform = transform;
-            card.style.transformOrigin = `45px ${PIVOT_Y}px`;
+            card.style.transformOrigin = `${cardWidth / 2}px ${PIVOT_Y}px`;
             card.style.zIndex = isSelected ? 40 : isHovered ? 35 : i;
             card.style.opacity = (selectedId && !isSelected) ? '0.4' : '1';
             

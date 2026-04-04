@@ -1,4 +1,4 @@
-const translations = {
+window.translations = {
   en: {
     // Navigation
     nav_about: "About",

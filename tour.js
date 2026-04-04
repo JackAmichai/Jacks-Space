@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         title: t('tour_welcome_title'),
         text: t('tour_welcome_text'),
         attachTo: {
-            element: '.hero-name-minimal',
+            element: '.h1-new',
             on: 'bottom'
         },
         buttons: [

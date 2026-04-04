@@ -1,11 +1,16 @@
 class TranslationManager {
   constructor(defaultLang = 'en') {
     this.currentLang = defaultLang;
-    this.translations = window.translations;
+    this.translations = window.translations || {};
     this.init();
   }
   
   init() {
+    // Re-check translations if they weren't loaded in constructor
+    if (Object.keys(this.translations).length === 0 && window.translations) {
+      this.translations = window.translations;
+    }
+
     // Check for saved language preference
     const savedLang = localStorage.getItem('preferred-language');
     if (savedLang && this.translations[savedLang]) {
@@ -18,7 +23,10 @@ class TranslationManager {
   }
   
   t(key) {
-    return this.translations[this.currentLang]?.[key] || 
+    if (!this.translations[this.currentLang]) {
+        return this.translations['en']?.[key] || key;
+    }
+    return this.translations[this.currentLang][key] || 
            this.translations['en']?.[key] || 
            key;
   }
@@ -29,11 +37,15 @@ class TranslationManager {
       localStorage.setItem('preferred-language', lang);
       this.applyLanguage(lang);
       
-      // Update toggle buttons text
-      document.querySelectorAll('.lang-toggle-text').forEach(el => {
-        el.textContent = lang === 'en' ? 'עב' : 'EN';
-      });
+      // Update toggle buttons text/emoji
+      this.updateToggleButton();
     }
+  }
+
+  updateToggleButton() {
+    document.querySelectorAll('.lang-toggle-text').forEach(el => {
+        el.innerHTML = this.currentLang === 'en' ? 'עב 🇮🇱' : 'EN 🇬🇧';
+    });
   }
   
   applyLanguage(lang) {
@@ -55,22 +67,20 @@ class TranslationManager {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (t[key]) {
-        // Preserve any inner HTML like icons if present, but usually data-i18n is for text
-        if (el.children.length === 0) {
+        // Handle elements with nested structure (like icons + text)
+        const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+        if (textNode) {
+            textNode.textContent = t[key];
+        } else if (el.children.length === 0) {
             el.textContent = t[key];
         } else {
-            // If there are children (like icons), we might need to be more careful.
-            // For now, let's assume we use data-i18n on elements that only contain text
-            // or we handle them specifically.
-            const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-            if (textNode) {
-                textNode.textContent = t[key];
+            // Check if there's a span specifically for text
+            const span = el.querySelector('span:not([data-i18n])') || el.querySelector('.btn-text');
+            if (span) {
+                span.textContent = t[key];
             } else {
-                // Fallback for elements like buttons that might have a span inside
-                const span = el.querySelector('span:not([data-i18n])');
-                if (span) {
-                    span.textContent = t[key];
-                }
+                // If it's a menu link or similar, it might be just text inside
+                el.innerHTML = el.innerHTML.replace(el.innerText.trim(), t[key]);
             }
         }
       }
@@ -92,33 +102,21 @@ class TranslationManager {
       }
     });
     
-    // Dispatch event for custom handling (e.g. updating dynamically rendered projects)
+    // Dispatch event for custom handling
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
   }
   
   createLanguageToggle() {
-    // Instead of creating a new one, we'll look for placeholders in the HTML
-    // or add it to the nav if it doesn't exist.
-    const navRight = document.querySelector('.nav-right-new');
-    if (navRight && !document.querySelector('.lang-toggle-new')) {
-      const toggle = document.createElement('button');
-      toggle.className = 'theme-toggle-new lang-toggle-new';
-      toggle.id = 'langToggle';
-      toggle.setAttribute('aria-label', 'Toggle language');
-      toggle.innerHTML = `<span class="lang-toggle-text">${this.currentLang === 'en' ? 'עב' : 'EN'}</span>`;
-      
-      toggle.addEventListener('click', () => {
+    const toggle = document.getElementById('langToggle');
+    if (toggle) {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
         const newLang = this.currentLang === 'en' ? 'he' : 'en';
         this.setLanguage(newLang);
       });
       
-      // Insert before theme toggle
-      const themeToggle = document.getElementById('themeToggle');
-      if (themeToggle) {
-        navRight.insertBefore(toggle, themeToggle);
-      } else {
-        navRight.appendChild(toggle);
-      }
+      // Update initial state
+      this.updateToggleButton();
     }
   }
 }
