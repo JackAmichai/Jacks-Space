@@ -90,7 +90,7 @@ function initCountUp() {
 
 // 3. STAGGERED SCROLL-IN
 function initStaggeredScroll() {
-    const containers = document.querySelectorAll('.timeline, .cert-grid, .projects-grid, .volunteering-list');
+    const containers = document.querySelectorAll('.timeline, .cert-grid, .projects-grid, .volunteering-list, .hobbies-showcase');
     
     containers.forEach(container => {
         const items = container.querySelectorAll(':scope > *');
@@ -121,7 +121,7 @@ function initStaggeredScroll() {
 
 // 4. 3D TILT EFFECT
 function initTiltCards() {
-    const cards = document.querySelectorAll('.project-card, .competency-card, .rf-card, .skill-card, .hobby-mode-btn, .resource-card-new');
+    const cards = document.querySelectorAll('.project-card, .competency-card, .rf-card, .skill-card, .hobby-mode-btn, .resource-card-new, .hobby-card-new');
     
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -920,21 +920,27 @@ function renderProject(project, view = 'business') {
         ? `<a href="${project.links.demo}" target="_blank" class="icon-link" title="Live Demo" onclick="trackCTAClick('demo_${project.id}')"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg></a>`
         : '';
 
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+    const title = t(`proj_${project.id}_title`);
+    const role = t(`proj_${project.id}_role`);
+    const solution = t(`proj_${project.id}_solution`);
+    const techDetails = t(`proj_${project.id}_techDetails`);
+
     return `
         <div class="project-card ${isFeatured ? 'featured' : ''}" data-project-id="${project.id}">
             ${mediaHtml}
             <div class="project-content">
                 <div class="project-header">
-                    <h3 class="project-title">${project.title}</h3>
+                    <h3 class="project-title">${title !== `proj_${project.id}_title` ? title : project.title}</h3>
                     <div class="project-links-mini">
                         ${demoLink}
                         ${githubLink}
                     </div>
                 </div>
-                <span class="project-role">${project.role}</span>
+                <span class="project-role">${role !== `proj_${project.id}_role` ? role : project.role}</span>
 
                 <div class="project-description">
-                    ${isTechnical && project.techDetails ? project.techDetails : project.solution}
+                    ${isTechnical && project.techDetails ? (techDetails !== `proj_${project.id}_techDetails` ? techDetails : project.techDetails) : (solution !== `proj_${project.id}_solution` ? solution : project.solution)}
                 </div>
 
                 <div class="tech-stack-mini">
