@@ -970,124 +970,80 @@
 
     <!-- Hobbies Section -->
     <section id="hobbies" class="hobbies-section">
-        <div class="hobbies-bg-pattern"></div>
         <div class="container">
             <h2 class="section-title sparkles-text" data-sparkles-count="10" data-i18n="section_hobbies">Outside of Work</h2>
             <p class="section-subtitle" data-i18n="section_hobbies_sub">Click a card to start "stamping" the page with your favorite hobbies!</p>
-
-            <div class="hobbies-showcase">
-                <!-- Traveling -->
-                <div class="hobby-card-new">
-                    <div class="hobby-card-inner">
-                        <div class="hobby-card-image">
-                            <img src="images/hobbies/airplane.png" alt="Travel">
-                            <div class="hobby-card-glow"></div>
-                        </div>
-                        <div class="hobby-card-content">
-                            <div class="hobby-card-icon">✈️</div>
-                            <h3 data-i18n="hobby_travel">Traveling</h3>
-                            <p>Exploring new cultures & perspectives</p>
-                        </div>
-                    </div>
-                    <button class="hobby-activate-btn" onclick="firePaws('dog')">
-                        <span>Activate</span>
-                        <div class="btn-particles"></div>
-                    </button>
+            
+            <div class="polaroid-board">
+            <!-- String with pins -->
+            <div class="polaroid-string"></div>
+            <div class="polaroid-pins">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            
+            <!-- Polaroid Cards -->
+            <div class="polaroid-card" data-hobby="travel" style="left: 8%; top: 70px; transform: rotate(-6deg); z-index: 5;">
+                <div class="polaroid-tape" style="transform: rotate(-1deg);"></div>
+                <div class="polaroid-photo">
+                    <img src="images/hobbies/airplane.png" alt="Traveling">
                 </div>
-
-                <!-- Violin -->
-                <div class="hobby-card-new hobby-card-featured">
-                    <div class="hobby-card-inner">
-                        <div class="hobby-card-image">
-                            <img src="images/hobbies/violin.png" alt="Violin">
-                            <div class="hobby-card-glow"></div>
-                        </div>
-                        <div class="hobby-card-content">
-                            <div class="hobby-card-icon">🎻</div>
-                            <h3 data-i18n="hobby_violin">Violin</h3>
-                            <p>Classical melodies & soulful sessions</p>
-                        </div>
-                    </div>
-                    <button class="hobby-activate-btn" onclick="firePaws('cat')">
-                        <span>Activate</span>
-                        <div class="btn-particles"></div>
-                    </button>
+                <div class="polaroid-label" data-i18n="hobby_travel">Traveling</div>
+            </div>
+            
+            <div class="polaroid-card" data-hobby="violin" style="left: 22%; top: 60px; transform: rotate(4deg); z-index: 4;">
+                <div class="polaroid-tape" style="transform: rotate(2deg);"></div>
+                <div class="polaroid-photo">
+                    <img src="images/hobbies/violin.png" alt="Violin">
                 </div>
-
-                <!-- Drawing -->
-                <div class="hobby-card-new">
-                    <div class="hobby-card-inner">
-                        <div class="hobby-card-image">
-                            <img src="images/hobbies/drawing_comic.jpg" alt="Drawing">
-                            <div class="hobby-card-glow"></div>
-                        </div>
-                        <div class="hobby-card-content">
-                            <div class="hobby-card-icon">🎨</div>
-                            <h3 data-i18n="hobby_drawing">Drawing</h3>
-                            <p>Comics, characters & visual stories</p>
-                        </div>
-                    </div>
-                    <button class="hobby-activate-btn" onclick="firePaws('cat')">
-                        <span>Activate</span>
-                        <div class="btn-particles"></div>
-                    </button>
+                <div class="polaroid-label" data-i18n="hobby_violin">Violin</div>
+            </div>
+            
+            <div class="polaroid-card" data-hobby="drawing" style="left: 38%; top: 68px; transform: rotate(-2deg); z-index: 6;">
+                <div class="polaroid-tape" style="transform: rotate(-2deg);"></div>
+                <div class="polaroid-photo">
+                    <img src="images/hobbies/drawing_comic.jpg" alt="Drawing">
                 </div>
-
-                <!-- Reading -->
-                <div class="hobby-card-new">
-                    <div class="hobby-card-inner">
-                        <div class="hobby-card-image">
-                            <img src="images/hobbies/reading.png" alt="Reading">
-                            <div class="hobby-card-glow"></div>
-                        </div>
-                        <div class="hobby-card-content">
-                            <div class="hobby-card-icon">📚</div>
-                            <h3 data-i18n="hobby_reading">Reading</h3>
-                            <p>Psychology, sci-fi & biographies</p>
-                        </div>
-                    </div>
-                    <button class="hobby-activate-btn" onclick="firePaws('cat')">
-                        <span>Activate</span>
-                        <div class="btn-particles"></div>
-                    </button>
+                <div class="polaroid-label" data-i18n="hobby_drawing">Drawing</div>
+            </div>
+            
+            <div class="polaroid-card" data-hobby="reading" style="left: 55%; top: 55px; transform: rotate(5deg); z-index: 3;">
+                <div class="polaroid-tape" style="transform: rotate(1deg);"></div>
+                <div class="polaroid-photo">
+                    <img src="images/hobbies/reading.png" alt="Reading">
                 </div>
-
-                <!-- Plants -->
-                <div class="hobby-card-new hobby-card-featured">
-                    <div class="hobby-card-inner">
-                        <div class="hobby-card-image">
-                            <img src="images/hobbies/garden.jpg" alt="Gardening">
-                            <div class="hobby-card-glow"></div>
-                        </div>
-                        <div class="hobby-card-content">
-                            <div class="hobby-card-icon">🌿</div>
-                            <h3 data-i18n="hobby_plants">Plants</h3>
-                            <p>Urban jungle & green therapy</p>
-                        </div>
-                    </div>
-                    <button class="hobby-activate-btn" onclick="firePaws('cat')">
-                        <span>Activate</span>
-                        <div class="btn-particles"></div>
-                    </button>
+                <div class="polaroid-label" data-i18n="hobby_reading">Reading</div>
+            </div>
+            
+            <div class="polaroid-card" data-hobby="plants" style="left: 71%; top: 65px; transform: rotate(-4deg); z-index: 5;">
+                <div class="polaroid-tape" style="transform: rotate(-1deg);"></div>
+                <div class="polaroid-photo">
+                    <img src="images/hobbies/garden.jpg" alt="Plants">
                 </div>
-
-                <!-- Gym -->
-                <div class="hobby-card-new">
-                    <div class="hobby-card-inner">
-                        <div class="hobby-card-image">
-                            <img src="images/hobbies/fitness.png" alt="Gym">
-                            <div class="hobby-card-glow"></div>
-                        </div>
-                        <div class="hobby-card-content">
-                            <div class="hobby-card-icon">💪</div>
-                            <h3 data-i18n="hobby_gym">Gym</h3>
-                            <p>Strength, discipline & clarity</p>
-                        </div>
+                <div class="polaroid-label" data-i18n="hobby_plants">Plants</div>
+            </div>
+            
+            <div class="polaroid-card" data-hobby="gym" style="left: 86%; top: 58px; transform: rotate(3deg); z-index: 4;">
+                <div class="polaroid-tape" style="transform: rotate(2deg);"></div>
+                <div class="polaroid-photo">
+                    <img src="images/hobbies/fitness.png" alt="Gym">
+                </div>
+                <div class="polaroid-label" data-i18n="hobby_gym">Gym</div>
+            </div>
+            
+            <!-- Hint text -->
+            <p class="polaroid-hint">click any photo to learn more</p>
+            
+            <!-- Detail Drawer -->
+            <div class="polaroid-drawer" id="hobbyDrawer">
+                <button class="polaroid-close" onclick="closeHobbyDrawer()">×</button>
+                <div class="polaroid-drawer-content">
+                    <div class="polaroid-drawer-thumb">
+                        <img id="drawerImg" src="" alt="">
                     </div>
-                    <button class="hobby-activate-btn" onclick="firePaws('dog')">
-                        <span>Activate</span>
-                        <div class="btn-particles"></div>
-                    </button>
+                    <div class="polaroid-drawer-info">
+                        <h3 id="drawerTitle"></h3>
+                        <p id="drawerDesc"></p>
+                    </div>
                 </div>
             </div>
         </div>
