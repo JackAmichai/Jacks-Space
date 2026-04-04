@@ -2,19 +2,20 @@ class TranslationManager {
   constructor(defaultLang = 'en') {
     this.currentLang = defaultLang;
     this.translations = window.translations || {};
-    this.init();
   }
   
   init() {
-    // Re-check translations if they weren't loaded in constructor
+    // Re-check translations
     if (Object.keys(this.translations).length === 0 && window.translations) {
       this.translations = window.translations;
     }
 
-    // Check for saved language preference
+    // Check for saved language preference, otherwise default to 'en'
     const savedLang = localStorage.getItem('preferred-language');
     if (savedLang && this.translations[savedLang]) {
       this.currentLang = savedLang;
+    } else {
+      this.currentLang = 'en';
     }
     
     // Apply initial language
@@ -67,7 +68,6 @@ class TranslationManager {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (t[key]) {
-        // Use innerHTML to allow for bold text, links, etc.
         el.innerHTML = t[key];
       }
     });
@@ -95,7 +95,11 @@ class TranslationManager {
   createLanguageToggle() {
     const toggle = document.getElementById('langToggle');
     if (toggle) {
-      toggle.addEventListener('click', (e) => {
+      // Clear existing listeners by replacing the element or just adding once
+      const newToggle = toggle.cloneNode(true);
+      toggle.parentNode.replaceChild(newToggle, toggle);
+      
+      newToggle.addEventListener('click', (e) => {
         e.preventDefault();
         const newLang = this.currentLang === 'en' ? 'he' : 'en';
         this.setLanguage(newLang);
@@ -107,11 +111,8 @@ class TranslationManager {
   }
 }
 
-// Initialize
-if (window.translations) {
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
     window.translationManager = new TranslationManager();
-} else {
-    document.addEventListener('DOMContentLoaded', () => {
-        window.translationManager = new TranslationManager();
-    });
-}
+    window.translationManager.init();
+});
