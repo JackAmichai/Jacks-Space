@@ -2176,16 +2176,36 @@ function initCertShuffle() {
     const promptEl = document.getElementById('pokerPrompt');
     const hintEl = document.getElementById('pokerHint');
     const shuffleBtn = document.getElementById('pokerShuffleBtn');
+    let isShuffling = false;
 
     function shuffle() {
-        for (let i = shuffledCerts.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledCerts[i], shuffledCerts[j]] = [shuffledCerts[j], shuffledCerts[i]];
-        }
+        if (isShuffling) return;
+        isShuffling = true;
+        
         selectedId = null;
         flipped = false;
-        renderFan();
         updateSelected();
+        
+        // 1. Collapse and Move up (Start shuffle animation)
+        fanContainer.classList.add('shuffling');
+        
+        setTimeout(() => {
+            // 2. Perform actual data shuffle
+            for (let i = shuffledCerts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledCerts[i], shuffledCerts[j]] = [shuffledCerts[j], shuffledCerts[i]];
+            }
+            
+            // 3. Re-render the cards while they are collapsed
+            renderFan();
+            fanContainer.classList.add('shuffling'); // Keep it on during the quick re-render
+            
+            setTimeout(() => {
+                // 4. Spread them back out
+                fanContainer.classList.remove('shuffling');
+                isShuffling = false;
+            }, 600); // 0.6s of wiggle
+        }, 600); // 0.6s to collapse
     }
 
     function getCardFaceHTML(cert) {
