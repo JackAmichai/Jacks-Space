@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initTour() {
     const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
 
     const tour = new Shepherd.Tour({
@@ -12,198 +12,203 @@ document.addEventListener('DOMContentLoaded', () => {
         useModalOverlay: true
     });
 
-    tour.addStep({
-        id: 'welcome',
-        title: t('tour_welcome_title'),
-        text: t('tour_welcome_text'),
-        attachTo: {
-            element: '.h1-new',
-            on: 'bottom'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.next();
-                },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
-
-    tour.addStep({
-        id: 'about',
-        title: t('tour_skills_title'),
-        text: t('tour_skills_text'),
-        attachTo: {
-            element: '#skills',
-            on: 'bottom'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+    // Function to add steps (called once)
+    function addSteps() {
+        tour.addStep({
+            id: 'welcome',
+            title: t('tour_welcome_title'),
+            text: t('tour_welcome_text'),
+            attachTo: {
+                element: '.h1-new',
+                on: 'bottom'
             },
-            {
-                action() {
-                    return this.next();
-                },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
+            buttons: [
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
 
-    tour.addStep({
-        id: 'experience',
-        title: t('tour_exp_title'),
-        text: t('tour_exp_text'),
-        attachTo: {
-            element: '#experience',
-            on: 'bottom'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+        tour.addStep({
+            id: 'about',
+            title: t('tour_skills_title'),
+            text: t('tour_skills_text'),
+            attachTo: {
+                element: '#skills',
+                on: 'bottom'
             },
-            {
-                action() {
-                    return this.next();
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
                 },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
 
-    tour.addStep({
-        id: 'projects',
-        title: t('tour_proj_title'),
-        text: t('tour_proj_text'),
-        attachTo: {
-            element: '#projects',
-            on: 'bottom'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+        tour.addStep({
+            id: 'experience',
+            title: t('tour_exp_title'),
+            text: t('tour_exp_text'),
+            attachTo: {
+                element: '#experience',
+                on: 'bottom'
             },
-            {
-                action() {
-                    return this.next();
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
                 },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
 
-    tour.addStep({
-        id: 'certifications',
-        title: t('tour_cert_title'),
-        text: t('tour_cert_text'),
-        attachTo: {
-            element: '#certShuffleContainer',
-            on: 'top'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+        tour.addStep({
+            id: 'projects',
+            title: t('tour_proj_title'),
+            text: t('tour_proj_text'),
+            attachTo: {
+                element: '#projects',
+                on: 'bottom'
             },
-            {
-                action() {
-                    return this.next();
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
                 },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
 
-    tour.addStep({
-        id: 'recommendations',
-        title: t('tour_res_title'),
-        text: t('tour_res_text'),
-        attachTo: {
-            element: '#recommendations',
-            on: 'bottom'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+        tour.addStep({
+            id: 'certifications',
+            title: t('tour_cert_title'),
+            text: t('tour_cert_text'),
+            attachTo: {
+                element: '#certShuffleContainer',
+                on: 'top'
             },
-            {
-                action() {
-                    return this.next();
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
                 },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
 
-    tour.addStep({
-        id: 'ai-assistant',
-        title: t('tour_ai_title'),
-        text: t('tour_ai_text'),
-        attachTo: {
-            element: '#chatbot-bubble',
-            on: 'top'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+        tour.addStep({
+            id: 'recommendations',
+            title: t('tour_res_title'),
+            text: t('tour_res_text'),
+            attachTo: {
+                element: '#recommendations',
+                on: 'bottom'
             },
-            {
-                action() {
-                    return this.next();
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
                 },
-                text: t('tour_btn_next')
-            }
-        ]
-    });
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
 
-    tour.addStep({
-        id: 'contact',
-        title: t('tour_contact_title'),
-        text: t('tour_contact_text'),
-        attachTo: {
-            element: '#contact',
-            on: 'top'
-        },
-        buttons: [
-            {
-                action() {
-                    return this.back();
-                },
-                secondary: true,
-                text: t('tour_btn_back')
+        tour.addStep({
+            id: 'ai-assistant',
+            title: t('tour_ai_title'),
+            text: t('tour_ai_text'),
+            attachTo: {
+                element: '#chatbot-bubble',
+                on: 'top'
             },
-            {
-                action() {
-                    return this.complete();
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
                 },
-                text: t('tour_btn_finish')
-            }
-        ]
-    });
+                {
+                    action() {
+                        return this.next();
+                    },
+                    text: t('tour_btn_next')
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'contact',
+            title: t('tour_contact_title'),
+            text: t('tour_contact_text'),
+            attachTo: {
+                element: '#contact',
+                on: 'top'
+            },
+            buttons: [
+                {
+                    action() {
+                        return this.back();
+                    },
+                    secondary: true,
+                    text: t('tour_btn_back')
+                },
+                {
+                    action() {
+                        return this.complete();
+                    },
+                    text: t('tour_btn_finish')
+                }
+            ]
+        });
+    }
+
+    addSteps();
 
     // Check if user has already seen the tour
     const tourSeen = localStorage.getItem('tour_seen');
@@ -212,12 +217,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show the modal after a short delay
         setTimeout(() => {
             displayTourModal(tour);
-        }, 500);
+        }, 800);
     }
 
     // Make tour trigger globally accessible
     window.showTourModal = () => displayTourModal(tour);
     window.startTour = () => tour.start();
+    
+    // Refresh modal content on language change
+    window.addEventListener('languageChanged', () => {
+        const modal = document.getElementById('tour-modal');
+        if (modal) {
+            // Remove and recreate modal to refresh content
+            modal.remove();
+            displayTourModal(tour);
+        }
+        // Update tour steps titles/text (requires recreating the tour instance ideally, but for now we refresh modal)
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for translationManager to be ready
+    if (window.translationManager) {
+        initTour();
+    } else {
+        const checkInterval = setInterval(() => {
+            if (window.translationManager) {
+                initTour();
+                clearInterval(checkInterval);
+            }
+        }, 100);
+    }
 });
 
 function displayTourModal(tour) {
@@ -528,12 +558,18 @@ function createTourModal(tour) {
           border: 1px solid var(--border-color, #e2e8f0);
           transition: transform 0.2s;
       }
+      [dir='rtl'] .tour-step {
+          flex-direction: row-reverse;
+      }
       [data-theme='dark'] .tour-step {
           background: rgba(0, 102, 204, 0.2);
           border-color: #66b3ff;
       }
       .tour-step:hover {
           transform: translateX(4px);
+      }
+      [dir='rtl'] .tour-step:hover {
+          transform: translateX(-4px);
       }
       .step-number {
           width: 32px;
@@ -548,6 +584,16 @@ function createTourModal(tour) {
           font-weight: 700;
           margin-right: 16px;
           flex-shrink: 0;
+      }
+      [dir='rtl'] .step-number {
+          margin-right: 0;
+          margin-left: 16px;
+      }
+      .step-info {
+          text-align: left;
+      }
+      [dir='rtl'] .step-info {
+          text-align: right;
       }
       .step-info strong {
           display: block;

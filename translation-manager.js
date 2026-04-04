@@ -67,22 +67,8 @@ class TranslationManager {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (t[key]) {
-        // Handle elements with nested structure (like icons + text)
-        const textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-        if (textNode) {
-            textNode.textContent = t[key];
-        } else if (el.children.length === 0) {
-            el.textContent = t[key];
-        } else {
-            // Check if there's a span specifically for text
-            const span = el.querySelector('span:not([data-i18n])') || el.querySelector('.btn-text');
-            if (span) {
-                span.textContent = t[key];
-            } else {
-                // If it's a menu link or similar, it might be just text inside
-                el.innerHTML = el.innerHTML.replace(el.innerText.trim(), t[key]);
-            }
-        }
+        // Use innerHTML to allow for bold text, links, etc.
+        el.innerHTML = t[key];
       }
     });
     
@@ -121,7 +107,11 @@ class TranslationManager {
   }
 }
 
-// Initialize when translations are loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize
+if (window.translations) {
     window.translationManager = new TranslationManager();
-});
+} else {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.translationManager = new TranslationManager();
+    });
+}

@@ -8,15 +8,22 @@
 // ========================================
 
 // 1. TYPEWRITER EFFECT
-const WORD = "Amichai";
-
 function initTypewriter() {
     const container = document.getElementById('typewriter-name');
     if (!container) return;
-    
+
+    const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+    let WORD = t('hero_name') || "Amichai";
+
     let displayed = "";
     let phase = "typing";
-    
+
+    // Re-init on language change
+    window.addEventListener('languageChanged', () => {
+        WORD = t('hero_name');
+        displayed = "";
+        phase = "typing";
+    });    
     function tick() {
         let timeout;
         

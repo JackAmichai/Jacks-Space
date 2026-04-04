@@ -12506,10 +12506,66 @@ body.dark-mode .icon-cloud img[src^="data:image/svg"],
     text-align: right;
 }
 
-[dir="rtl"] .accent-line-new {
-    margin-left: auto;
-    margin-right: 0;
+[dir="rtl"] .tiles-new {
+    flex-direction: row-reverse;
 }
+
+[dir="rtl"] .tile-label-new {
+    text-align: right;
+}
+
+[dir="rtl"] ul {
+    padding-right: 20px;
+    padding-left: 0;
+}
+
+[dir="rtl"] .timeline-item ul {
+    list-style-type: none;
+}
+
+[dir="rtl"] .timeline-item ul li::before {
+    content: "•";
+    color: var(--accent);
+    display: inline-block;
+    width: 1em;
+    margin-right: -1em;
+    margin-left: 0.5em;
+}
+
+[dir="rtl"] .experience-photo {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .bento-primary .panel-arrow {
+    transform: scaleX(-1);
+    left: 30px;
+    right: auto;
+}
+
+/* Ensure language toggle is always visible and nicely styled */
+.lang-toggle-new {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-new);
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-toggle-new:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    [dir="rtl"] .photo-stats-row-new {
+        flex-direction: column;
+    }
+    [dir="rtl"] .stat-card-new {
+        text-align: center;
+    }
+}
+
 
 [dir="rtl"] .ctas-new {
     justify-content: flex-start;
