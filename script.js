@@ -2924,6 +2924,12 @@ function initExitIntent() {
     if (!exitPopup) return;
 
     let hasShownExit = false;
+    let hasInteracted = false;
+
+    // Track that user has interacted with the page (scroll, click, etc.)
+    const markInteracted = () => { hasInteracted = true; };
+    window.addEventListener('scroll', markInteracted, { once: true, passive: true });
+    document.addEventListener('click', markInteracted, { once: true });
 
     const closeExitPopup = () => {
         exitPopup.style.display = 'none';
@@ -2931,26 +2937,47 @@ function initExitIntent() {
         document.body.style.overflow = '';
     };
 
-    // Show popup when mouse leaves the top of the window
-    document.addEventListener('mouseout', (e) => {
-        if (e.clientY <= 0 && !hasShownExit) {
-            exitPopup.style.display = 'flex';
-            exitPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            hasShownExit = true;
+    // Make closeExitPopup available globally
+    window.closeExitPopup = closeExitPopup;
+
+    const showExitPopup = () => {
+        if (hasShownExit || !hasInteracted) return;
+        exitPopup.style.display = 'flex';
+        exitPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        hasShownExit = true;
+    };
+
+    // Method 1: beforeunload - fires when user is actually leaving/closing
+    window.addEventListener('beforeunload', (e) => {
+        if (!hasShownExit && hasInteracted) {
+            showExitPopup();
+            // Show browser's built-in "Leave site?" dialog as well
+            e.preventDefault();
+            e.returnValue = '';
         }
     });
 
-    const closeExit = () => {
-        exitPopup.style.display = 'none';
-        exitPopup.classList.remove('active');
-        document.body.style.overflow = '';
-    };
+    // Method 2: Mouse leaving the viewport from the TOP (closing tab/address bar)
+    // Only trigger when mouse goes above the page (toward browser chrome)
+    document.addEventListener('mouseout', (e) => {
+        if (e.clientY <= 0 && !e.relatedTarget && !hasShownExit && hasInteracted) {
+            showExitPopup();
+        }
+    });
 
-    stayBtn?.addEventListener('click', closeExit);
+    // Method 3: visibilitychange (mobile/tab switching)
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden' && !hasShownExit && hasInteracted) {
+            // User is switching tabs or minimizing - don't show popup, just mark
+            // We'll show it when they come back
+        }
+    });
+
+    stayBtn?.addEventListener('click', closeExitPopup);
 
     contactBtn?.addEventListener('click', () => {
-        closeExit();
+        closeExitPopup();
         // Open the stay connected modal
         const scModal = document.getElementById('stayConnectedModal');
         if (scModal) {
