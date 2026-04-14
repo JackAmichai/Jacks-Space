@@ -2,12 +2,29 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) with consent mode -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FS61NR5JTP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
+        
+        // Default to denied, update after consent
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+        });
+        
+        // Check if user previously consented
+        try {
+            const consent = JSON.parse(localStorage.getItem('cookieConsent'));
+            if (consent?.analytics) {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {}
+        
         gtag('config', 'G-FS61NR5JTP');
     </script>
     <meta charset="UTF-8">
@@ -83,6 +100,77 @@
 </head>
 
 <body>
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="8" cy="10" r="1.5" fill="currentColor"/>
+                    <circle cx="15" cy="8" r="1" fill="currentColor"/>
+                    <circle cx="12" cy="14" r="1.5" fill="currentColor"/>
+                    <circle cx="16" cy="13" r="1" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="cookie-text">
+                <strong>Cookie Notice</strong>
+                <p>This site uses <strong>Google Analytics</strong> to understand how visitors interact with the site. We also use <strong>session storage</strong> to enhance your experience. By continuing to browse, you agree to our use of cookies.</p>
+            </div>
+            <div class="cookie-actions">
+                <button id="cookieAccept" class="cookie-btn cookie-btn-primary">Accept All</button>
+                <button id="cookieSettings" class="cookie-btn cookie-btn-secondary">Settings</button>
+                <a href="#" onclick="document.getElementById('cookieConsent').style.display='none'; localStorage.setItem('cookiesRejected', 'true'); return false;" class="cookie-btn cookie-btn-text">Decline</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookieSettingsModal" class="cookie-modal" style="display: none;">
+        <div class="cookie-modal-overlay" onclick="closeCookieSettings()"></div>
+        <div class="cookie-modal-content">
+            <h3>Cookie Preferences</h3>
+            <p class="cookie-modal-desc">Manage your cookie settings below. Essential cookies are required for the site to function and cannot be disabled.</p>
+            
+            <div class="cookie-option">
+                <div class="cookie-option-info">
+                    <strong>Essential Cookies</strong>
+                    <span>Required for basic site functionality</span>
+                </div>
+                <label class="cookie-toggle">
+                    <input type="checkbox" checked disabled>
+                    <span class="cookie-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="cookie-option">
+                <div class="cookie-option-info">
+                    <strong>Analytics Cookies</strong>
+                    <span>Help us understand how visitors use our site</span>
+                </div>
+                <label class="cookie-toggle">
+                    <input type="checkbox" id="analyticsCookie" checked>
+                    <span class="cookie-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="cookie-option">
+                <div class="cookie-option-info">
+                    <strong>Session Storage</strong>
+                    <span>Remember your preferences during this session</span>
+                </div>
+                <label class="cookie-toggle">
+                    <input type="checkbox" id="sessionCookie" checked>
+                    <span class="cookie-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="cookie-modal-actions">
+                <button onclick="saveCookieSettings()" class="cookie-btn cookie-btn-primary">Save Preferences</button>
+                <button onclick="acceptAllCookies()" class="cookie-btn cookie-btn-secondary">Accept All</button>
+            </div>
+        </div>
+    </div>
+
     <div class="cursor-pointer" id="cursorPointer"></div>
     <!-- Scroll Progress Bar -->
     <div id="scrollProgress" class="scroll-progress"></div>

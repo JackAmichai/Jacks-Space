@@ -1105,6 +1105,120 @@ setTimeout(() => {
 }, 30000);
 
 // ========================================
+// 19C. COOKIE CONSENT (GDPR COMPLIANCE)
+// ========================================
+function initCookieConsent() {
+    const consent = localStorage.getItem('cookieConsent');
+    const consentBanner = document.getElementById('cookieConsent');
+    const settingsModal = document.getElementById('cookieSettingsModal');
+    
+    if (!consent && consentBanner) {
+        consentBanner.style.display = 'block';
+        
+        // Check if user was previously on the page
+        setTimeout(() => {
+            consentBanner.style.display = 'flex';
+        }, 500);
+    }
+    
+    // Accept all cookies
+    document.getElementById('cookieAccept')?.addEventListener('click', acceptAllCookies);
+    
+    // Open settings
+    document.getElementById('cookieSettings')?.addEventListener('click', () => {
+        settingsModal.style.display = 'flex';
+    });
+}
+
+function acceptAllCookies() {
+    localStorage.setItem('cookieConsent', JSON.stringify({
+        essential: true,
+        analytics: true,
+        session: true,
+        timestamp: Date.now()
+    }));
+    
+    document.getElementById('cookieConsent').style.display = 'none';
+    document.getElementById('cookieSettingsModal').style.display = 'none';
+    
+    // Enable GA4 tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+    }
+    
+    trackEvent('cookies_accepted');
+}
+
+function closeCookieSettings() {
+    document.getElementById('cookieSettingsModal').style.display = 'none';
+}
+
+function saveCookieSettings() {
+    const analyticsChecked = document.getElementById('analyticsCookie')?.checked ?? true;
+    const sessionChecked = document.getElementById('sessionCookie')?.checked ?? true;
+    
+    localStorage.setItem('cookieConsent', JSON.stringify({
+        essential: true,
+        analytics: analyticsChecked,
+        session: sessionChecked,
+        timestamp: Date.now()
+    }));
+    
+    // Update GA4 consent
+    if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+            'analytics_storage': analyticsChecked ? 'granted' : 'denied'
+        });
+    }
+    
+    document.getElementById('cookieSettingsModal').style.display = 'none';
+    document.getElementById('cookieConsent').style.display = 'none';
+    
+    trackEvent('cookies_customized', {
+        analytics: analyticsChecked,
+        session: sessionChecked
+    });
+}
+
+function isAnalyticsEnabled() {
+    try {
+        const consent = JSON.parse(localStorage.getItem('cookieConsent'));
+        return consent?.analytics !== false;
+    } catch {
+        return true; // Default to enabled if no consent stored
+    }
+}
+
+function isSessionEnabled() {
+    try {
+        const consent = JSON.parse(localStorage.getItem('cookieConsent'));
+        return consent?.session !== false;
+    } catch {
+        return true;
+    }
+}
+
+// Modified trackEvent to respect consent
+const originalTrackEvent = trackEvent;
+trackEvent = function(eventName, params = {}) {
+    if (isAnalyticsEnabled()) {
+        originalTrackEvent(eventName, params);
+    }
+};
+
+const originalTrackCTAClick = trackCTAClick;
+trackCTAClick = function(ctaName, additionalData = {}) {
+    if (isAnalyticsEnabled()) {
+        originalTrackCTAClick(ctaName, additionalData);
+    }
+};
+
+// Initialize cookie consent on DOM ready
+document.addEventListener('DOMContentLoaded', initCookieConsent);
+
+// ========================================
 // 20. DYNAMIC PROJECTS RENDERING (ENHANCED)
 // ========================================
 
