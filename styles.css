@@ -3822,7 +3822,7 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     z-index: 10000;
     transition: opacity 0.5s ease;
 }
@@ -3831,25 +3831,135 @@ html {
     opacity: 0;
 }
 
-.loader-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid var(--bg-tertiary);
-    border-top-color: var(--accent);
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.loader-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(var(--accent-rgb), 0.3);
+    animation: loaderPulse 2s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.loader-logo-text {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -1px;
+}
+
+.loader-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 200px;
+}
+
+.loader-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.loader-step.active {
+    opacity: 1;
+}
+
+.loader-step.completed {
+    opacity: 1;
+}
+
+.loader-step-dot {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    background: var(--bg-tertiary);
+    transition: all 0.4s ease;
+    position: relative;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+.loader-step.active .loader-step-dot {
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
 }
 
-.page-loader p {
+.loader-step.active .loader-step-dot::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    animation: loaderDotRing 1s ease-out infinite;
+}
+
+@keyframes loaderDotRing {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.loader-step.completed .loader-step-dot {
+    background: #10b981;
+}
+
+.loader-step.completed .loader-step-dot::after {
+    display: none;
+}
+
+.loader-step-text {
     font-size: 14px;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-weight: 500;
+    transition: all 0.4s ease;
+}
+
+.loader-step.active .loader-step-text {
+    color: var(--text-primary);
+}
+
+.loader-step.completed .loader-step-text {
+    color: var(--text-secondary);
+}
+
+.loader-progress-bar {
+    width: 240px;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loader-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.loader-percentage {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
 }
 
 /* 10. TOAST NOTIFICATIONS */

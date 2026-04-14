@@ -57,6 +57,10 @@ const getJackKnowledgeBase = () => {
             answer: t('bot_kb_languages'),
             keywords: ["languages", "Hebrew", "English", "French"]
         },
+        "passport|citizenship|nationality|british|german|israeli|triple|identity|id card": {
+            answer: t('bot_kb_nationality'),
+            keywords: ["passport", "citizenship", "nationality", "British", "German", "Israeli", "triple", "ID"]
+        },
         "research|neuroscience|technion|university|lab": {
             answer: t('bot_kb_research'),
             keywords: ["research", "neuroscience", "Technion", "Hebrew University", "cognitive"]

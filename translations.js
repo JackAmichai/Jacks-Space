@@ -357,6 +357,7 @@ window.translations = {
     bot_kb_resume: "Jack is actively seeking **AI Solutions Engineer or Product roles**! You can download his CV from the Resources section.",
     bot_kb_achievements: "Jack's measurable impact includes: **Improved revenue forecast accuracy**, **60% time saved** on pricing analysis, and **High-accuracy ML models**.",
     bot_kb_languages: "Jack is multilingual! 🌍\n\n🇮🇱 **Hebrew** - Native speaker\n🇺🇸 **English** - Fluent\n🇫🇷 **French** - Conversational",
+    bot_kb_nationality: "Jack holds **triple citizenship** with multiple passports:\n\n🇬🇧 **British** - UK Passport\n🇩🇪 **German** - German Passport\n🇮🇱 **Israeli** - Israeli Passport\n\nHe also holds **German** and **Israeli national ID cards** (Personalausweis & Teudat Zehut).",
     bot_kb_research: "Jack has research engineering experience at the **Technion** and **Hebrew University**, where he built software for cognitive simulations and 3D astrophysics.",
     bot_kb_hatrick: "Jack built **Hatrick**, an AI Agent orchestration system that autonomously demonstrates cyber attacks and defense mechanisms using LangGraph and Groq.",
     bot_kb_leairn: "Jack created **LeAIrn**, an AI-powered learning platform that dynamically adapts content and pace to the individual student's needs.",

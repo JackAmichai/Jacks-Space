@@ -211,23 +211,55 @@ function initTimelinePulse() {
 
 // Initialize all animations on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    // Existing loader code...
     const loader = document.getElementById('pageLoader');
-    if (loader) {
-        setTimeout(() => {
-            loader.classList.add('fade-out');
-            setTimeout(() => loader.style.display = 'none', 300);
-        }, 200);
+    const progressFill = document.getElementById('loaderProgressFill');
+    const percentageEl = document.getElementById('loaderPercentage');
+    const steps = document.querySelectorAll('.loader-step');
+    
+    function setStep(stepIndex, progress) {
+        steps.forEach((step, i) => {
+            step.classList.remove('active', 'completed');
+            if (i < stepIndex) {
+                step.classList.add('completed');
+            } else if (i === stepIndex) {
+                step.classList.add('active');
+            }
+        });
+        if (progressFill) progressFill.style.width = progress + '%';
+        if (percentageEl) percentageEl.textContent = Math.round(progress) + '%';
     }
     
-    // Init all animations
-    initTypewriter();
-    initCountUp();
-    initStaggeredScroll();
-    initTiltCards();
-    initSkillBars();
-    initTimelinePulse();
-    initPolaroidBoard();
+    function hideLoader() {
+        if (loader) {
+            loader.classList.add('fade-out');
+            setTimeout(() => loader.style.display = 'none', 500);
+        }
+    }
+    
+    setStep(0, 10);
+    
+    setTimeout(() => {
+        setStep(1, 40);
+        initTypewriter();
+    }, 300);
+    
+    setTimeout(() => {
+        setStep(2, 70);
+        initCountUp();
+        initStaggeredScroll();
+        initTiltCards();
+    }, 600);
+    
+    setTimeout(() => {
+        setStep(3, 100);
+        initSkillBars();
+        initTimelinePulse();
+        initPolaroidBoard();
+    }, 900);
+    
+    setTimeout(() => {
+        hideLoader();
+    }, 1200);
 });
 
 // ========================================
@@ -806,30 +838,271 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ========================================
-// 19. ANALYTICS TRACKING
+// 19. ENHANCED ANALYTICS & TRACKING
 // ========================================
+
+// Engagement scoring system
+const engagementMetrics = {
+    scrollDepth: 0,
+    maxScrollDepth: 0,
+    timeOnPage: 0,
+    sectionsViewed: new Set(),
+    buttonsClicked: 0,
+    projectsViewed: new Set(),
+    chatbotOpened: false,
+    formStarted: false,
+    formCompleted: false,
+    resumeViewed: false,
+    totalScore: 0
+};
+
+const SECTION_SCORES = { hero: 5, about: 10, experience: 15, projects: 20, contact: 25 };
+const SCROLL_MILESTONES = [25, 50, 75, 100];
+const TRACKED_SCROLL_MILESTONES = new Set();
+const TRACKED_TIME_INTERVALS = new Set([30, 60, 120, 180, 300]);
+
+function calculateEngagementScore() {
+    let score = 0;
+    score += engagementMetrics.maxScrollDepth;
+    score += engagementMetrics.sectionsViewed.size * 10;
+    score += engagementMetrics.buttonsClicked * 2;
+    score += engagementMetrics.projectsViewed.size * 15;
+    if (engagementMetrics.chatbotOpened) score += 20;
+    if (engagementMetrics.formStarted) score += 15;
+    if (engagementMetrics.formCompleted) score += 50;
+    if (engagementMetrics.resumeViewed) score += 30;
+    engagementMetrics.totalScore = score;
+    return score;
+}
+
+function trackEvent(eventName, params = {}) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+            ...params,
+            engagement_score: engagementMetrics.totalScore,
+            timestamp: Date.now()
+        });
+    }
+    console.log(`[Analytics] ${eventName}`, params);
+}
+
 function trackPageView() {
     if (typeof gtag !== 'undefined') {
         gtag('event', 'page_view', {
             page_title: document.title,
             page_location: window.location.href,
-            page_path: window.location.pathname
+            page_path: window.location.pathname,
+            screen_width: screen.width,
+            screen_height: screen.height,
+            referrer: document.referrer || 'direct'
         });
     }
 }
 
-function trackCTAClick(ctaName) {
+function trackCTAClick(ctaName, additionalData = {}) {
+    engagementMetrics.buttonsClicked++;
+    calculateEngagementScore();
     if (typeof gtag !== 'undefined') {
         gtag('event', 'cta_click', {
             event_category: 'engagement',
             event_label: ctaName,
-            value: 1
+            value: 1,
+            ...additionalData
         });
     }
 }
 
+function trackScrollDepth(percent) {
+    engagementMetrics.scrollDepth = percent;
+    if (percent > engagementMetrics.maxScrollDepth) {
+        engagementMetrics.maxScrollDepth = percent;
+    }
+    const milestone = Math.floor(percent / 25) * 25;
+    if (milestone > 0 && !TRACKED_SCROLL_MILESTONES.has(milestone)) {
+        TRACKED_SCROLL_MILESTONES.add(milestone);
+        trackEvent('scroll_depth', {
+            depth_percent: milestone,
+            depth_category: `${milestone}%`
+        });
+    }
+}
+
+function trackSectionView(sectionId) {
+    if (!engagementMetrics.sectionsViewed.has(sectionId)) {
+        engagementMetrics.sectionsViewed.add(sectionId);
+        calculateEngagementScore();
+        trackEvent('section_viewed', {
+            section_id: sectionId,
+            sections_total: engagementMetrics.sectionsViewed.size
+        });
+    }
+}
+
+function trackProjectView(projectId) {
+    engagementMetrics.projectsViewed.add(projectId);
+    calculateEngagementScore();
+    trackEvent('project_viewed', {
+        project_id: projectId,
+        projects_count: engagementMetrics.projectsViewed.size
+    });
+}
+
+function trackFormInteraction(action, fieldName = null) {
+    if (action === 'start') {
+        engagementMetrics.formStarted = true;
+        calculateEngagementScore();
+        trackEvent('form_started');
+    } else if (action === 'field_focus' && fieldName) {
+        trackEvent('form_field_focus', { field_name: fieldName });
+    } else if (action === 'submit') {
+        engagementMetrics.formCompleted = true;
+        calculateEngagementScore();
+        trackEvent('form_completed', {
+            form_name: 'stay_connected'
+        });
+    } else if (action === 'abandon') {
+        trackEvent('form_abandoned', {
+            form_name: 'stay_connected',
+            fields_completed: fieldName
+        });
+    }
+}
+
+function trackResumeView() {
+    engagementMetrics.resumeViewed = true;
+    calculateEngagementScore();
+    trackEvent('resume_viewed', {
+        resume_type: 'download'
+    });
+}
+
+function trackChatbotOpen() {
+    engagementMetrics.chatbotOpened = true;
+    calculateEngagementScore();
+    trackEvent('chatbot_opened');
+}
+
+function trackExitIntent() {
+    trackEvent('exit_intent', {
+        engagement_score: engagementMetrics.totalScore,
+        time_on_page: engagementMetrics.timeOnPage,
+        sections_viewed: engagementMetrics.sectionsViewed.size
+    });
+}
+
+// Scroll depth tracking
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+            trackScrollDepth(scrollPercent);
+            
+            // Track visible sections
+            const sections = document.querySelectorAll('section[id]');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.5 && rect.bottom > 0) {
+                    trackSectionView(section.id);
+                }
+            });
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
+
+// Time on page tracking (every 10 seconds)
+setInterval(() => {
+    engagementMetrics.timeOnPage += 10;
+    if (TRACKED_TIME_INTERVALS.has(engagementMetrics.timeOnPage)) {
+        trackEvent('time_on_page', {
+            seconds: engagementMetrics.timeOnPage,
+            category: `${engagementMetrics.timeOnPage}s`
+        });
+    }
+}, 10000);
+
+// Track form field interactions
+document.addEventListener('DOMContentLoaded', () => {
+    const scForm = document.getElementById('stayConnectedForm');
+    if (scForm) {
+        const fields = scForm.querySelectorAll('input');
+        let formTouched = false;
+        
+        fields.forEach(field => {
+            field.addEventListener('focus', () => {
+                if (!formTouched) {
+                    trackFormInteraction('start');
+                    formTouched = true;
+                }
+                trackFormInteraction('field_focus', field.id || field.name);
+            });
+        });
+        
+        scForm.addEventListener('submit', () => {
+            trackFormInteraction('submit');
+        });
+        
+        // Track abandonment on page leave
+        window.addEventListener('beforeunload', () => {
+            if (formTouched && !engagementMetrics.formCompleted) {
+                const filledFields = Array.from(fields).filter(f => f.value.trim()).map(f => f.id || f.name).join(',');
+                trackFormInteraction('abandon', filledFields || 'none');
+            }
+        });
+    }
+});
+
+// Exit intent detection (desktop)
+document.addEventListener('mouseout', (e) => {
+    if (e.clientY < 10 && !sessionStorage.getItem('exitTracked')) {
+        sessionStorage.setItem('exitTracked', 'true');
+        trackExitIntent();
+    }
+});
+
+// Enhanced chatbot tracking - wrap after DOM ready to ensure function exists
+document.addEventListener('DOMContentLoaded', () => {
+    const originalOpenCloud = window.openCloudAssistant;
+    if (typeof originalOpenCloud === 'function') {
+        window.openCloudAssistant = function() {
+            trackChatbotOpen();
+            originalOpenCloud.apply(this, arguments);
+        };
+    }
+});
+
 // Track page view on load
-trackPageView();
+document.addEventListener('DOMContentLoaded', trackPageView);
+
+// ========================================
+// 19B. SMART LEAD SCORING TRIGGER
+// ========================================
+// Trigger contact popup based on engagement score - unified with timer trigger
+function checkEngagementTrigger() {
+    const score = calculateEngagementScore();
+    const stayConnectedModal = document.getElementById('stayConnectedModal');
+    const hasShownAny = sessionStorage.getItem('hasShownStayConnected') || sessionStorage.getItem('engagementPopupShown');
+    
+    if (score >= 50 && !hasShownAny && stayConnectedModal && !stayConnectedModal.classList.contains('active')) {
+        // Close any other modals first
+        document.querySelectorAll('.role-fit-modal.active').forEach(m => m.classList.remove('active'));
+        
+        stayConnectedModal.classList.add('active');
+        sessionStorage.setItem('engagementPopupShown', 'true');
+        sessionStorage.setItem('hasShownStayConnected', 'true');
+        trackCTAClick('engagement_based_popup_shown');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Check engagement score every 20 seconds after initial 30 second period
+setTimeout(() => {
+    setInterval(checkEngagementTrigger, 20000);
+}, 30000);
 
 // ========================================
 // 20. DYNAMIC PROJECTS RENDERING (ENHANCED)
@@ -2129,7 +2402,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasShownPopup = sessionStorage.getItem('hasShownStayConnected');
 
     const openStayConnectedModal = () => {
-        if (!hasShownPopup && !document.querySelector('.role-fit-modal.active:not(#stayConnectedModal)')) {
+        const hasShownAny = sessionStorage.getItem('hasShownStayConnected') || sessionStorage.getItem('engagementPopupShown');
+        if (!hasShownAny && !document.querySelector('.role-fit-modal.active:not(#stayConnectedModal)')) {
             scModal.classList.add('active');
             sessionStorage.setItem('hasShownStayConnected', 'true');
             hasShownPopup = true;
@@ -2171,6 +2445,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('scName').value;
             const email = document.getElementById('scEmail').value;
             const company = document.getElementById('scCompany').value;
+            const intent = document.getElementById('scIntent')?.value || '';
             const submitBtn = scForm.querySelector('button[type="submit"]');
 
             submitBtn.innerHTML = 'Sending...';
@@ -2187,7 +2462,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         name: name,
                         email: email,
                         company: company || 'Not specified',
-                        _subject: `New Connection Request from ${name} via Portfolio!`,
+                        intent: intent || 'Not specified',
+                        _subject: `New Connection: ${intent || 'General'} - ${name}`,
                         _replyto: email,
                         _template: 'table'
                     })
@@ -2196,7 +2472,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     scSuccessMessage.style.display = 'block';
                     setTimeout(closeStayConnectedModal, 3000);
-                    trackCTAClick('stay_connected_form_submitted');
+                    trackCTAClick('stay_connected_form_submitted', { intent: intent });
                 } else {
                     showToast('⚠ Failed to send. Please try again or email directly.');
                     submitBtn.innerHTML = 'Send Details';
