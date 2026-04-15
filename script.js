@@ -3303,7 +3303,7 @@ window.closeRefsPopup = closeRefsPopup;
 window.selectRefFromPopup = selectRefFromPopup;
 
 // ========================================
-// EXIT INTENT POPUP
+// EXIT INTENT POPUP - Only shows when user tries to leave
 // ========================================
 function initExitIntent() {
     const exitPopup = document.getElementById('exitPopup');
@@ -3313,13 +3313,14 @@ function initExitIntent() {
     
     if (!exitPopup) return;
 
-    let hasShownExit = false;
+    let hasShownExit = sessionStorage.getItem('exitPopupShown') === 'true';
     let hasInteracted = false;
 
     // Track that user has interacted with the page (scroll, click, etc.)
     const markInteracted = () => { hasInteracted = true; };
     window.addEventListener('scroll', markInteracted, { once: true, passive: true });
     document.addEventListener('click', markInteracted, { once: true });
+    document.addEventListener('mousemove', markInteracted, { once: true, passive: true });
 
     const closeExitPopup = () => {
         exitPopup.style.display = 'none';
@@ -3331,36 +3332,37 @@ function initExitIntent() {
     window.closeExitPopup = closeExitPopup;
 
     const showExitPopup = () => {
+        // Only show if: hasn't been shown, user has interacted, and not on mobile
         if (hasShownExit || !hasInteracted) return;
+        
+        // Don't show on mobile (touch devices)
+        if ('ontouchstart' in window) return;
+        
         exitPopup.style.display = 'flex';
         exitPopup.classList.add('active');
         document.body.style.overflow = 'hidden';
         hasShownExit = true;
+        sessionStorage.setItem('exitPopupShown', 'true');
     };
 
-    // Method 1: beforeunload - fires when user is actually leaving/closing
-    window.addEventListener('beforeunload', (e) => {
-        if (!hasShownExit && hasInteracted) {
-            showExitPopup();
-            // Show browser's built-in "Leave site?" dialog as well
-            e.preventDefault();
-            e.returnValue = '';
-        }
-    });
-
-    // Method 2: Mouse leaving the viewport from the TOP (closing tab/address bar)
-    // Only trigger when mouse goes above the page (toward browser chrome)
+    // Only trigger when mouse leaves from the TOP of the viewport (toward browser UI)
+    // This is the classic "exit intent" trigger
+    let exitTimeout = null;
     document.addEventListener('mouseout', (e) => {
-        if (e.clientY <= 0 && !e.relatedTarget && !hasShownExit && hasInteracted) {
-            showExitPopup();
+        // Only trigger if mouse is leaving toward the top (clientY <= 5 to be more precise)
+        // and not going to a child element
+        if (e.clientY <= 5 && !e.relatedTarget && !hasShownExit && hasInteracted) {
+            // Add small delay to prevent false triggers
+            if (exitTimeout) clearTimeout(exitTimeout);
+            exitTimeout = setTimeout(showExitPopup, 100);
         }
     });
 
-    // Method 3: visibilitychange (mobile/tab switching)
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden' && !hasShownExit && hasInteracted) {
-            // User is switching tabs or minimizing - don't show popup, just mark
-            // We'll show it when they come back
+    // Clear timeout if mouse comes back
+    document.addEventListener('mouseover', (e) => {
+        if (e.clientY > 5 && exitTimeout) {
+            clearTimeout(exitTimeout);
+            exitTimeout = null;
         }
     });
 

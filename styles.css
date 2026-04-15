@@ -14661,22 +14661,22 @@ body.dark-mode .wa-preview-arrow,
     background: white;
     border-radius: 16px;
     padding: 16px 20px;
-    max-width: 280px;
+    max-width: 260px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     z-index: 9999;
     animation: introPopupSlide 0.5s ease-out;
     border: 1px solid var(--border);
     text-align: center;
+    right: 30px;
 }
 
+/* Stack popups vertically on the right side */
 .intro-popup.tour-intro {
-    bottom: 30px;
-    right: 120px;
+    bottom: 160px;
 }
 
 .intro-popup.whatsapp-intro {
-    bottom: 30px;
-    left: 120px;
+    bottom: 160px;
 }
 
 [data-theme="dark"] .intro-popup {
@@ -14685,26 +14685,33 @@ body.dark-mode .wa-preview-arrow,
 }
 
 .intro-popup-icon {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     margin: 0 auto 10px;
     object-fit: cover;
     border: 3px solid var(--accent);
 }
 
+.intro-popup-icon.whatsapp-icon {
+    width: 44px;
+    height: 44px;
+    border: none;
+    padding: 0;
+}
+
 .intro-popup-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0 0 6px 0;
 }
 
 .intro-popup-text {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-secondary);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .intro-popup-close {
