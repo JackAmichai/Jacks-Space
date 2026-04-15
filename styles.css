@@ -14733,13 +14733,33 @@ body.dark-mode .wa-preview-arrow,
 
 @keyframes introPopupSlide {
     from {
-        transform: translateY(20px) scale(0.9);
+        transform: translateX(50px);
         opacity: 0;
     }
     to {
-        transform: translateY(0) scale(1);
+        transform: translateX(0);
         opacity: 1;
     }
+}
+
+/* Pulse animation for the popup to catch attention */
+.intro-popup::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
+    z-index: -1;
+    opacity: 0;
+    animation: introPopupPulse 2s ease-in-out infinite;
+}
+
+@keyframes introPopupPulse {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.02); }
 }
 
 @media (max-width: 768px) {

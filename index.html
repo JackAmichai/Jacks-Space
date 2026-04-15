@@ -1885,6 +1885,7 @@
 
     <script>
         // Floating Images Intro Popups - Sequential Introduction (Right Side)
+        // For testing: run sessionStorage.clear() in console to reset popups
         document.addEventListener('DOMContentLoaded', function() {
             // Helper function for translations with fallbacks
             function getText(key, fallback) {
@@ -1904,11 +1905,11 @@
             };
 
             // WhatsApp SVG Icon
-            const whatsappIconSVG = `<svg class="intro-popup-icon whatsapp-icon" viewBox="0 0 24 24" fill="#25D366" style="background: #25D366; border-radius: 50%; padding: 8px;">
+            const whatsappIconSVG = `<svg class="intro-popup-icon whatsapp-icon" viewBox="0 0 24 24" style="width:44px;height:44px;background:#25D366;border-radius:50%;padding:8px;margin:0 auto 10px;display:block;">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
             </svg>`;
 
-            // Tour Intro Popup - Shows on right side, near floating buttons (15 seconds)
+            // Tour Intro Popup - Shows on right side, near floating buttons (10 seconds - faster for testing)
             setTimeout(() => {
                 if (!sessionStorage.getItem('tourIntroShown')) {
                     const popup = document.createElement('div');
@@ -1922,6 +1923,7 @@
                     `;
                     document.body.appendChild(popup);
                     sessionStorage.setItem('tourIntroShown', 'true');
+                    console.log('Tour intro popup shown');
 
                     // Auto-hide after 8 seconds
                     setTimeout(() => {
@@ -1931,9 +1933,9 @@
                         }
                     }, 8000);
                 }
-            }, 15000); // 15 seconds after page load
+            }, 10000); // 10 seconds after page load
 
-            // WhatsApp Intro Popup - Shows on right side (30 seconds)
+            // WhatsApp Intro Popup - Shows on right side (20 seconds)
             setTimeout(() => {
                 if (!sessionStorage.getItem('whatsappIntroShown')) {
                     const popup = document.createElement('div');
@@ -1947,6 +1949,7 @@
                     `;
                     document.body.appendChild(popup);
                     sessionStorage.setItem('whatsappIntroShown', 'true');
+                    console.log('WhatsApp intro popup shown');
 
                     // Auto-hide after 8 seconds
                     setTimeout(() => {
@@ -1956,9 +1959,9 @@
                         }
                     }, 8000);
                 }
-            }, 30000); // 30 seconds after page load
+            }, 20000); // 20 seconds after page load
 
-            // WhatsApp Button Appear - After intro popup (38 seconds)
+            // WhatsApp Button Appear - After intro popup (28 seconds)
             setTimeout(() => {
                 const waWrapper = document.getElementById('whatsappWrapper');
                 if (waWrapper) {
@@ -1967,6 +1970,7 @@
                     waWrapper.style.transform = 'scale(1)';
                     waWrapper.style.transition = 'none';
                     waWrapper.classList.add('whatsapp-pop-in');
+                    console.log('WhatsApp button appeared');
                     
                     // Play notification sound effect (visual vibration)
                     setTimeout(() => {
@@ -1984,7 +1988,44 @@
                         }, 600);
                     }, 400);
                 }
-            }, 38000); // 38 seconds after page load
+            }, 28000); // 28 seconds after page load
+
+            // Debug: Manual show functions (run in console)
+            window.showTourIntro = function() {
+                if (!sessionStorage.getItem('tourIntroShown')) {
+                    const popup = document.createElement('div');
+                    popup.className = 'intro-popup tour-intro';
+                    popup.id = 'tourIntroPopup';
+                    popup.innerHTML = `
+                        <button class="intro-popup-close" onclick="this.parentElement.remove()">×</button>
+                        <img src="images/intro pic Elon-Jack tour.png" alt="Tour Guide" class="intro-popup-icon">
+                        <h4 class="intro-popup-title">Take a Tour!</h4>
+                        <p class="intro-popup-text">Explore my portfolio with an interactive guide</p>
+                    `;
+                    document.body.appendChild(popup);
+                    sessionStorage.setItem('tourIntroShown', 'true');
+                    return 'Tour popup shown';
+                }
+                return 'Tour popup already shown';
+            };
+
+            window.showWhatsAppIntro = function() {
+                if (!sessionStorage.getItem('whatsappIntroShown')) {
+                    const popup = document.createElement('div');
+                    popup.className = 'intro-popup whatsapp-intro';
+                    popup.id = 'whatsappIntroPopup';
+                    popup.innerHTML = `
+                        <button class="intro-popup-close" onclick="this.parentElement.remove()">×</button>
+                        ${whatsappIconSVG}
+                        <h4 class="intro-popup-title">Chat with Jack!</h4>
+                        <p class="intro-popup-text">WhatsApp for quick conversations</p>
+                    `;
+                    document.body.appendChild(popup);
+                    sessionStorage.setItem('whatsappIntroShown', 'true');
+                    return 'WhatsApp popup shown';
+                }
+                return 'WhatsApp popup already shown';
+            };
         });
     </script>
 
