@@ -14631,3 +14631,137 @@ body.dark-mode .wa-preview-arrow,
     }
 }
 
+/* ==================== */
+/* STAY CONNECTED MODAL */
+/* ==================== */
+
+.sc-modal-content {
+    border-color: var(--accent) !important;
+}
+
+.sc-hero-section {
+    position: relative;
+}
+
+.sc-hero-section .sc-title {
+    font-family: 'Caveat', cursive;
+}
+
+.sc-hero-section .sc-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem !important;
+}
+
+/* ==================== */
+/* INTRO POPUPS         */
+/* ==================== */
+
+.intro-popup {
+    position: fixed;
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    max-width: 280px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    animation: introPopupSlide 0.5s ease-out;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.intro-popup.tour-intro {
+    bottom: 30px;
+    right: 120px;
+}
+
+.intro-popup.whatsapp-intro {
+    bottom: 30px;
+    left: 120px;
+}
+
+[data-theme="dark"] .intro-popup {
+    background: var(--bg-secondary);
+    border-color: var(--border);
+}
+
+.intro-popup-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+}
+
+.intro-popup-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 6px 0;
+}
+
+.intro-popup-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.intro-popup-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 2px;
+}
+
+.intro-popup-close:hover {
+    color: var(--text-primary);
+}
+
+@keyframes introPopupSlide {
+    from {
+        transform: translateY(20px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .intro-popup.tour-intro,
+    .intro-popup.whatsapp-intro {
+        bottom: auto;
+        top: 50%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+    }
+    
+    .intro-popup.tour-intro {
+        animation: introPopupSlideMobile 0.5s ease-out;
+    }
+    
+    .intro-popup.whatsapp-intro {
+        animation: introPopupSlideMobile 0.5s ease-out 0.2s both;
+    }
+}
+
+@keyframes introPopupSlideMobile {
+    from {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+

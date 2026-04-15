@@ -1884,33 +1884,168 @@
     </div>
 
     <script>
-        // Show WhatsApp button after 3 minutes of website usage
-        setTimeout(() => {
-            const waWrapper = document.getElementById('whatsappWrapper');
-            if (waWrapper) {
-                waWrapper.style.visibility = 'visible';
-                waWrapper.style.opacity = '1';
-                waWrapper.style.transform = 'scale(1)';
-                waWrapper.style.transition = 'none';
-                waWrapper.classList.add('whatsapp-pop-in');
-                
-                // Play notification sound effect (visual vibration)
-                setTimeout(() => {
-                    waWrapper.classList.add('whatsapp-notification-shake');
-                    // Show message preview after the shake
-                    setTimeout(() => {
-                        const preview = document.getElementById('whatsappPreview');
-                        if (preview) {
-                            preview.classList.add('wa-preview-show');
-                            // Auto-hide after 6 seconds
-                            setTimeout(() => {
-                                preview.classList.remove('wa-preview-show');
-                            }, 6000);
+        // Floating Images Intro Popups - Sequential Introduction
+        document.addEventListener('DOMContentLoaded', function() {
+            const t = (key) => window.translationManager ? window.translationManager.t(key) : key;
+
+            // Create intro popup styles if not exist
+            if (!document.getElementById('intro-popup-styles')) {
+                const style = document.createElement('style');
+                style.id = 'intro-popup-styles';
+                style.textContent = `
+                    .intro-popup {
+                        position: fixed;
+                        background: white;
+                        border-radius: 16px;
+                        padding: 16px 20px;
+                        max-width: 280px;
+                        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+                        z-index: 9999;
+                        animation: introPopupSlide 0.5s ease-out;
+                        border: 1px solid var(--border);
+                        text-align: center;
+                    }
+                    .intro-popup.tour-intro {
+                        bottom: 30px;
+                        right: 120px;
+                    }
+                    .intro-popup.whatsapp-intro {
+                        bottom: 30px;
+                        left: 120px;
+                    }
+                    [data-theme="dark"] .intro-popup {
+                        background: var(--bg-secondary);
+                        border-color: var(--border);
+                    }
+                    .intro-popup-icon {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        margin: 0 auto 10px;
+                        object-fit: cover;
+                        border: 3px solid var(--accent);
+                    }
+                    .intro-popup-title {
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: var(--text-primary);
+                        margin: 0 0 6px 0;
+                    }
+                    .intro-popup-text {
+                        font-size: 13px;
+                        color: var(--text-secondary);
+                        margin: 0;
+                        line-height: 1.5;
+                    }
+                    .intro-popup-close {
+                        position: absolute;
+                        top: 8px;
+                        right: 10px;
+                        background: none;
+                        border: none;
+                        color: var(--text-secondary);
+                        cursor: pointer;
+                        font-size: 18px;
+                        line-height: 1;
+                        padding: 2px;
+                    }
+                    .intro-popup-close:hover {
+                        color: var(--text-primary);
+                    }
+                    @keyframes introPopupSlide {
+                        from {
+                            transform: translateY(20px) scale(0.9);
+                            opacity: 0;
                         }
-                    }, 600);
-                }, 400);
+                        to {
+                            transform: translateY(0) scale(1);
+                            opacity: 1;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
             }
-        }, 180000); // 3 minutes
+
+            // Tour Intro Popup - Shows after chatbot popup (15 seconds)
+            setTimeout(() => {
+                const tourBtn = document.getElementById('tourTriggerBtn');
+                if (tourBtn && !sessionStorage.getItem('tourIntroShown')) {
+                    const popup = document.createElement('div');
+                    popup.className = 'intro-popup tour-intro';
+                    popup.id = 'tourIntroPopup';
+                    popup.innerHTML = `
+                        <button class="intro-popup-close" onclick="this.parentElement.remove()">×</button>
+                        <img src="images/intro pic Elon-Jack tour.png" alt="Tour Guide" class="intro-popup-icon">
+                        <h4 class="intro-popup-title">${t('tour_popup_title') || 'Take a Tour!'}</h4>
+                        <p class="intro-popup-text">${t('tour_popup_text') || 'Explore my portfolio with an interactive guide'}</p>
+                    `;
+                    document.body.appendChild(popup);
+                    sessionStorage.setItem('tourIntroShown', 'true');
+
+                    // Auto-hide after 8 seconds
+                    setTimeout(() => {
+                        if (popup.parentElement) {
+                            popup.style.animation = 'introPopupSlide 0.3s ease-in reverse';
+                            setTimeout(() => popup.remove(), 300);
+                        }
+                    }, 8000);
+                }
+            }, 15000); // 15 seconds after page load
+
+            // WhatsApp Intro Popup - Shows after tour intro (30 seconds)
+            setTimeout(() => {
+                const waWrapper = document.getElementById('whatsappWrapper');
+                if (waWrapper && !sessionStorage.getItem('whatsappIntroShown')) {
+                    const popup = document.createElement('div');
+                    popup.className = 'intro-popup whatsapp-intro';
+                    popup.id = 'whatsappIntroPopup';
+                    popup.innerHTML = `
+                        <button class="intro-popup-close" onclick="this.parentElement.remove()">×</button>
+                        <img src="images/me.jpeg" alt="Jack" class="intro-popup-icon" style="border-color: #25D366;">
+                        <h4 class="intro-popup-title">${t('wa_popup_title') || 'Chat with Jack!'}</h4>
+                        <p class="intro-popup-text">${t('wa_popup_text') || 'WhatsApp for quick conversations'}</p>
+                    `;
+                    document.body.appendChild(popup);
+                    sessionStorage.setItem('whatsappIntroShown', 'true');
+
+                    // Auto-hide after 8 seconds
+                    setTimeout(() => {
+                        if (popup.parentElement) {
+                            popup.style.animation = 'introPopupSlide 0.3s ease-in reverse';
+                            setTimeout(() => popup.remove(), 300);
+                        }
+                    }, 8000);
+                }
+            }, 30000); // 30 seconds after page load
+
+            // WhatsApp Button Appear - After intro popup (38 seconds)
+            setTimeout(() => {
+                const waWrapper = document.getElementById('whatsappWrapper');
+                if (waWrapper) {
+                    waWrapper.style.visibility = 'visible';
+                    waWrapper.style.opacity = '1';
+                    waWrapper.style.transform = 'scale(1)';
+                    waWrapper.style.transition = 'none';
+                    waWrapper.classList.add('whatsapp-pop-in');
+                    
+                    // Play notification sound effect (visual vibration)
+                    setTimeout(() => {
+                        waWrapper.classList.add('whatsapp-notification-shake');
+                        // Show message preview after the shake
+                        setTimeout(() => {
+                            const preview = document.getElementById('whatsappPreview');
+                            if (preview) {
+                                preview.classList.add('wa-preview-show');
+                                // Auto-hide after 6 seconds
+                                setTimeout(() => {
+                                    preview.classList.remove('wa-preview-show');
+                                }, 6000);
+                            }
+                        }, 600);
+                    }, 400);
+                }
+            }, 38000); // 38 seconds after page load
+        });
     </script>
 
     <!-- Toast Notification -->
@@ -2232,22 +2367,22 @@
     <!-- Stay Connected Modal -->
     <div id="stayConnectedModal" class="role-fit-modal" style="z-index: 10000;">
         <div class="role-fit-overlay" id="stayConnectedOverlay"></div>
-        <div class="role-fit-content"
+        <div class="role-fit-content sc-modal-content"
             style="max-width: min(480px, 95%); padding: 0; overflow: hidden; display: flex; flex-direction: column; margin: auto;">
             <button class="role-fit-close" id="closeStayConnected" aria-label="Close modal"
                 style="top: 15px; right: 15px; color: white; background: rgba(0,0,0,0.3); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; z-index: 10;">&times;</button>
 
-            <!-- Hero Image -->
-            <div style="width: 100%; height: 160px; position: relative; background: linear-gradient(135deg, var(--accent), var(--accent-secondary));">
-                <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; color: white;">
-                    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 12px;">
+            <!-- Hero Image with Background -->
+            <div class="sc-hero-section" style="width: 100%; height: 180px; position: relative; background: url('../images/stay%20connected.png') center/cover no-repeat;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
+                    <svg width="40" height="40" fill="none" stroke="white" stroke-width="2" style="margin-bottom: 12px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                         <circle cx="9" cy="7" r="4"/>
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
-                    <h3 style="margin: 0; font-size: 1.4rem; font-weight: 700;">Let's Connect</h3>
-                    <p style="margin: 8px 0 0; font-size: 0.9rem; opacity: 0.9;">Get job opportunities, collaborations, or just say hi!</p>
+                    <h3 class="sc-title" style="margin: 0; font-size: 1.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Let's Connect</h3>
+                    <p class="sc-subtitle" style="margin: 8px 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.4);">Get job opportunities, collaborations, or just say hi!</p>
                 </div>
             </div>
 

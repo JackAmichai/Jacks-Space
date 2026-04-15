@@ -396,13 +396,23 @@ window.translations = {
     tour_btn_skip: "Skip Tour",
     tour_btn_go: "Let's Go!",
     tour_dont_show: "Don't show this again",
+    tour_popup_title: "Take a Tour!",
+    tour_popup_text: "Explore my portfolio with an interactive guide",
+    wa_popup_title: "Chat with Jack!",
+    wa_popup_text: "WhatsApp for quick conversations",
     
     // Exit Popup
-    exit_title: "Wait, don't go yet!",
-    exit_subtitle: "I'd love to hear from you. Let's stay connected.",
-    exit_stay: "I'll stay",
-    exit_contact: "Let's connect",
-    exit_quit: "Goodbye",
+    tour_popup_title: "קחו סיור!",
+    tour_popup_text: "חקרו את הפורטפוליו שלי עם מדריך אינטראקטיבי",
+    wa_popup_title: "צ'אט עם גאק!",
+    wa_popup_text: "וואטסאפ לשיחות מהירות",
+    
+    // Exit Popup
+    exit_title: "רגע, לא ללכת עדיין!",
+    exit_subtitle: "אשמח לשמוע ממך. בוא נישאר בקשר.",
+    exit_stay: "אשאר",
+    exit_contact: "בוא נתחבר",
+    exit_quit: "להתראות",
   },
   
   he: {

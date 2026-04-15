@@ -1099,10 +1099,10 @@ function checkEngagementTrigger() {
     }
 }
 
-// Check engagement score every 20 seconds after initial 30 second period
+// Check engagement score every 20 seconds after initial 2 minute period (to not interfere with popup timing)
 setTimeout(() => {
     setInterval(checkEngagementTrigger, 20000);
-}, 30000);
+}, 120000);
 
 // ========================================
 // 19C. COOKIE CONSENT (GDPR COMPLIANCE)
@@ -2463,7 +2463,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auto Trigger after 15 seconds
+    // Auto Trigger after 90 seconds (1.5 minutes - after floating images have introduced themselves)
     setTimeout(() => {
         const tourModal = document.getElementById('tour-modal');
         const roleFitModal = document.getElementById('roleFitModal');
@@ -2476,7 +2476,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hasAutoTriggered = true;
             openVideoModal();
         }
-    }, 15000);
+    }, 90000);
 
     // Event Listeners for closing
     closeBtn?.addEventListener('click', closeVideoModal);
@@ -2531,10 +2531,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     };
 
-    // 1. Timer Trigger - 60 seconds
+    // 1. Timer Trigger - 150 seconds (2.5 minutes - after video popup)
     const stayConnectedTimer = setTimeout(() => {
         openStayConnectedModal();
-    }, 60000); // 60 seconds
+    }, 150000); // 150 seconds (2.5 minutes)
 
     // Bento Contact Button Trigger
     const bentoSendEmailBtn = document.getElementById('bentoSendEmailBtn');
