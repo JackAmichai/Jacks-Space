@@ -159,7 +159,7 @@ class CloudChatbot {
             }
         });
 
-        // Show popup after 2 seconds, hide after 10 seconds or when dismissed
+        // Show popup after 5 seconds, hide after 10 seconds or when dismissed
         setTimeout(() => {
             popup.style.display = 'block';
 
@@ -170,7 +170,7 @@ class CloudChatbot {
                     setTimeout(() => popup.style.display = 'none', 300);
                 }
             }, 10000);
-        }, 2000);
+        }, 5000);
 
         // Popup close handler
         document.getElementById('popup-close').addEventListener('click', () => {
