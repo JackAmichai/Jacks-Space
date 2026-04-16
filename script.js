@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setTimeout(() => {
         hideLoader();
-    }, 1200);
+    }, 2400);
 });
 
 // ========================================
