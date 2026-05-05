@@ -11,10 +11,10 @@ window.translations = {
     
     // Hero Section
     hero_badge: "OPEN TO OPPORTUNITIES",
-    hero_eyebrow: "01 / JACK (YARON) AMICHAI",
+    hero_eyebrow: "PSYCHOLOGY × ENGINEERING",
     hero_name: "Jack (Yaron) Amichai",
-    hero_role: "AI Solutions Engineer · Cloud Architect",
-    hero_tagline: "Applying psychology & CS to architect scalable, adaptive AI solutions for enterprise environments.",
+    hero_role: "AI Solutions Engineer · Agent Systems Builder",
+    hero_tagline: "I build AI systems people actually use. Psychology degree, CS brain, shipping code.",
     hero_pitch: "Watch my Pitch",
     hero_github: "GitHub Profile",
     hero_fit: "✦ Is your role for Jack?",
@@ -34,6 +34,25 @@ window.translations = {
     
     // Section Titles
     section_about_magic: "This is where the magic happens.",
+
+    // Currently building — Joints.AI
+    now_building_label: "BUILDING NOW",
+    now_building_title: "Joints.AI — Your AI Physiotherapy Companion",
+    now_building_tagline: "AI-generated rehab plans, clinically reviewed. Free to start, no credit card.",
+    now_building_lead: "Users describe their pain three ways — a structured form, a conversational AI chat, or free-form text — and get a personalized recovery program with video demonstrations and progress tracking. Every plan is reviewed by clinicians before delivery, so the AI accelerates care without replacing the human in the loop.",
+    now_building_why_label: "Why I'm building it",
+    now_building_why_text: "Most rehab apps prescribe. This one <em>listens first.</em> It's the same pattern as Hatrick — agents that earn trust before they act. People follow exercises they trust; they ignore exercises that feel arbitrary.",
+    now_building_features_label: "What it does",
+    now_building_feature_1: "Three ways to describe pain — form, AI chat, or free text",
+    now_building_feature_2: "Personalized exercise plans with video demos",
+    now_building_feature_3: "Clinical review workflow before plans go live",
+    now_building_feature_4: "Progress tracking + a directory of vetted physiotherapists",
+    now_building_cta_demo: "▶ Try the Live Demo",
+    now_building_cta_code: "⌘ Source on GitHub",
+    now_building_visual_headline: "Personalized Exercise Plans for Your Recovery",
+    now_building_visual_sub: "AI-powered · Clinically reviewed · Free to start",
+    now_building_visual_cta: "Open in new tab →",
+
     section_skills: "Core Competencies",
     section_skills_sub: "Scannable technical strengths specialized for AI Solutions & Architecture",
     section_day_life: "A Day in My Life as a Solutions Engineer",
@@ -43,7 +62,7 @@ window.translations = {
     section_experience_sub: "From military leadership to research to enterprise AI — architecting solutions that bridge business needs and technical implementation",
     
     // About Text
-    about_p1: "Most engineers optimize for performance. I optimize for <strong>adoption</strong>. With a dual background in <strong>Psychology and Computer Science</strong>, I build cognitively adaptive AI systems where human-centric design meets complex technical execution.",
+    about_p1: "I started in a psychology lab studying <em>why people abandon tools that \"work.\"</em> Now I build AI agents and LLM orchestration systems — and when I make design calls, I'm still asking the same question: <strong>will anyone actually use this?</strong> That question is how <a href=\"https://github.com/JackAmichai/Hatrick\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Hatrick</a> and <a href=\"https://github.com/JackAmichai/GhostOrc-\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">GhostOrc</a> got built.",
     about_p2: "My journey began in the <strong><a href=\"https://www.givati.org.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">IDF</a></strong> as a Staff Sergeant. Leading operations in high-pressure environments taught me that clear communication, empathy, and rapid decision-making are the real infrastructure of any successful mission.",
     about_p3: "Later, as a <strong>Research Software Engineer at the <a href=\"https://teams.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Technion</a></strong> (specifically the <strong><a href=\"https://engelhardlab.net.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Engelhard Lab</a></strong>), I led cross-functional teams to translate complex scientific hypotheses into production-grade software—including a cutting-edge VR maze for neuroscience research. Today, as a Consultant at <strong>Deloitte</strong>, I architect event-driven enterprise integrations using <strong>SAP BTP, Python, and FastAPI</strong> to replace legacy workflows with scalable, automated solutions.",
     about_quote: "\"I believe the best technology disappears into the workflow. My goal is to build systems that work so seamlessly, people forget there's complex engineering behind them.\"",
@@ -161,7 +180,7 @@ window.translations = {
     ht_military_title: "Staff Sergeant",
     ht_military_company: "IDF",
     ht_military_desc: "Operations & leadership",
-    timeline_hint: "📱 Rotate device for full horizontal experience",
+    timeline_hint: "Tap any role to see what I shipped →",
 
     // Volunteering
     vol_frontend: "Frontend Developer",
@@ -242,7 +261,7 @@ window.translations = {
     
     // FAQ
     faq_q1: "Why should we hire Jack instead of a standard Full-Stack developer?",
-    faq_a1: "Standard developers write code; I architect systems that understand intent. With my dual background in Psychology and Computer Science, I specialize in building AI agents and human-centric workflows that don't just \"work\"—they adapt, reason, and solve real business problems without needing constant micro-management.",
+    faq_a1: "Standard developers ship code; I ship code that survives contact with real users. On <strong>Hatrick</strong>, that meant building a 6-agent orchestration layer where agents confirm intent before chaining tools — because users abandon systems that act without them. It's the pattern across my work: agents that <strong>earn trust</strong>, not just execute.",
     faq_q2: "Can he handle large-scale enterprise environments?",
     faq_a2: "Absolutely. At Deloitte, I've designed microservices and event-driven architectures using SAP BTP and AWS for massive corporate clients. I know exactly how to bridge the gap between cutting-edge AI innovation and strict enterprise reliability.",
     faq_q3: "Does he have leadership or cross-functional experience?",
@@ -255,7 +274,7 @@ window.translations = {
     // Degree
     degree_title: "B.A. Psychology and Computer Science",
     degree_issuer: "The Open University of Israel",
-    degree_date: "Expected April 2025",
+    degree_date: "Completed Dec 2024",
     
     // Certifications Poker
     cert_poker_hint: "Hover to preview · Click to reveal",
@@ -307,6 +326,8 @@ window.translations = {
     contact_whatsapp: "WhatsApp",
     contact_interviewing: "Interviewing Now!",
     contact_available: "AVAILABLE FOR NEW ROLES",
+    copy_intro_label: "Copy intro for a friend",
+    copy_intro_sub: "Know someone hiring? One click copies a ready-to-forward intro.",
     
     // Footer
     footer_built: "© 2025 Jack (Yaron) Amichai. Built with precision and passion.",
@@ -421,10 +442,10 @@ window.translations = {
     
     // Hero Section
     hero_badge: "פתוח להצעות עבודה",
-    hero_eyebrow: "01 / ארכיטקט פתרונות",
+    hero_eyebrow: "פסיכולוגיה × הנדסה",
     hero_name: "גאק (ירון) עמיחי",
-    hero_role: "מהנדס פתרונות AI · ארכיטקט ענן",
-    hero_tagline: "שילוב פסיכולוגיה ומדעי המחשב לארכיטקטורת פתרונות AI סקיילביליים ומסתגלים לסביבות ארגוניות.",
+    hero_role: "מהנדס פתרונות AI · בונה מערכות סוכנים",
+    hero_tagline: "אני בונה מערכות AI שאנשים באמת משתמשים בהן. תואר בפסיכולוגיה, ראש של מדעי המחשב, קוד שעולה לאוויר.",
     hero_pitch: "צפה בפיץ' שלי",
     hero_github: "פרופיל GitHub",
     hero_fit: "✦ האם גאק (ירון) עמיחי מתאים לתפקיד?",
@@ -444,6 +465,25 @@ window.translations = {
     
     // Section Titles
     section_about_magic: "כאן קורה הקסם.",
+
+    // Currently building — Joints.AI
+    now_building_label: "בונה עכשיו",
+    now_building_title: "Joints.AI — מלווה הפיזיותרפיה החכם שלך",
+    now_building_tagline: "תוכניות שיקום שנוצרות על ידי AI ועוברות בדיקה קלינית. חינם להתחלה, ללא כרטיס אשראי.",
+    now_building_lead: "המשתמשים מתארים את הכאב בשלוש דרכים — טופס מובנה, שיחת AI אינטראקטיבית, או טקסט חופשי — ומקבלים תוכנית שיקום מותאמת אישית עם הדגמות וידאו ומעקב התקדמות. כל תוכנית עוברת בדיקה של קלינאי לפני שהיא נמסרת, כך ש-AI מאיץ את הטיפול בלי להחליף את הגורם האנושי.",
+    now_building_why_label: "למה אני בונה את זה",
+    now_building_why_text: "רוב אפליקציות השיקום רושמות תרגילים. זאת <em>מקשיבה קודם.</em> אותו דפוס כמו ב-Hatrick — סוכנים שזוכים באמון לפני שהם פועלים. אנשים מבצעים תרגילים שהם בוטחים בהם; הם מתעלמים מתרגילים שמרגישים שרירותיים.",
+    now_building_features_label: "מה זה עושה",
+    now_building_feature_1: "שלוש דרכים לתאר כאב — טופס, שיחת AI, או טקסט חופשי",
+    now_building_feature_2: "תוכניות תרגילים מותאמות עם הדגמות וידאו",
+    now_building_feature_3: "תהליך בדיקה קלינית לפני שתוכניות יוצאות לאוויר",
+    now_building_feature_4: "מעקב התקדמות + מאגר פיזיותרפיסטים מומלצים",
+    now_building_cta_demo: "▶ נסו את ההדגמה החיה",
+    now_building_cta_code: "⌘ קוד מקור ב-GitHub",
+    now_building_visual_headline: "תוכניות תרגילים מותאמות אישית להחלמה שלך",
+    now_building_visual_sub: "מבוסס AI · נבדק קלינית · חינם להתחלה",
+    now_building_visual_cta: "פתחו בכרטיסייה חדשה ←",
+
     section_skills: "מיומנויות ליבה",
     section_skills_sub: "חוזקות טכניות המתמחות בפתרונות AI וארכיטקטורה",
     section_day_life: "יום בחיי כמהנדס פתרונות",
@@ -453,7 +493,7 @@ window.translations = {
     section_experience_sub: "ממנהיגות צבאית למחקר ועד AI ארגוני — בניית פתרונות המגשרים בין צרכים עסקיים ליישום טכני",
     
     // About Text
-    about_p1: "רוב המהנדסים מבצעים אופטימיזציה לביצועים. אני מבצע אופטימיזציה ל<strong>אימוץ (Adoption)</strong>. עם רקע כפול בפסיכולוגיה ומדעי המחשב, אני בונה מערכות AI המסתגלות קוגניטיבית, שבהן עיצוב ממוקד-אדם פוגש ביצוע טכני מורכב.",
+    about_p1: "התחלתי במעבדת פסיכולוגיה שחקרה <em>למה אנשים נוטשים כלים ש\"עובדים\".</em> היום אני בונה סוכני AI ומערכות תזמור LLM — וכשאני מקבל החלטות עיצוב, אני עדיין שואל את אותה השאלה: <strong>האם מישהו באמת ישתמש בזה?</strong> השאלה הזו היא הסיבה ש<a href=\"https://github.com/JackAmichai/Hatrick\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Hatrick</a> ו-<a href=\"https://github.com/JackAmichai/GhostOrc-\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">GhostOrc</a> נבנו.",
     about_p2: "המסע שלי התחיל ב<strong><a href=\"https://www.givati.org.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">צה\"ל</a></strong> כסמל ראשון. הובלת מבצעים בסביבות בעלות לחץ גבוה לימדה אותי שתקשורת ברורה, אמפתיה וקבלת החלטות מהירה הם התשתית האמיתית של כל משימה מוצלחת.",
     about_p3: "מאוחר יותר, כ<strong>מהנדס תוכנה מחקרי ב<a href=\"https://teams.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">טכניון</a></strong> (במיוחד ב<strong><a href=\"https://engelhardlab.net.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">מעבדת אנגלהרד</a></strong>), הובלתי צוותים רב-תחומיים לתרגום היפותזות מדעיות מורכבות לתוכנה ברמת ייצור - כולל מבוך VR חדשני למחקר מדעי המוח. כיום, כיועץ ב-<strong>Deloitte</strong>, אני מתכנן אינטגרציות ארגוניות מונעות אירועים באמצעות <strong>SAP BTP, Python ו-FastAPI</strong> כדי להחליף תהליכי עבודה ישנים בפתרונות אוטומטיים וסקיילביליים.",
     about_quote: "\"אני מאמין שהטכנולוגיה הטובה ביותר נעלמת לתוך תהליך העבודה. המטרה שלי היא לבנות מערכות שעובדות בצורה כל כך חלקה, שאנשים שוכחים שיש מאחוריהן הנדסה מורכבת.\"",
@@ -571,7 +611,7 @@ window.translations = {
     ht_military_title: "סמל ראשון",
     ht_military_company: "צה\"ל",
     ht_military_desc: "תפעול ומנהיגות",
-    timeline_hint: "📱 סובבו את המכשיר לחוויה אופקית מלאה",
+    timeline_hint: "← הקישו על כל תפקיד כדי לראות מה בניתי",
 
     // Volunteering
     vol_frontend: "מפתח Frontend",
@@ -652,7 +692,7 @@ window.translations = {
     
     // FAQ
     faq_q1: "למה כדאי להעסיק את גאק במקום מפתח Full-Stack סטנדרטי?",
-    faq_a1: "מפתחים סטנדרטיים כותבים קוד; אני מתכנן מערכות שמבינות כוונה. עם הרקע הכפול שלי בפסיכולוגיה ומדעי המחשב, אני מתמחה בבניית סוכני AI ותהליכי עבודה ממוקדי-אדם שלא רק \"עובדים\" - הם מסתגלים, מסיקים מסקנות ופותרים בעיות עסקיות אמיתיות ללא צורך בניהול מיקרו מתמיד.",
+    faq_a1: "מפתחים סטנדרטיים כותבים קוד; אני כותב קוד ששורד מפגש עם משתמשים אמיתיים. ב-<strong>Hatrick</strong>, זה אומר לבנות שכבת תזמור של 6 סוכנים שבה סוכנים מאמתים כוונה לפני שרשור כלים — כי משתמשים נוטשים מערכות שפועלות בלעדיהם. זה הדפוס החוזר בעבודה שלי: סוכנים ש<strong>זוכים באמון</strong>, לא רק מבצעים.",
     faq_q2: "האם הוא יכול להתמודד עם סביבות ארגוניות גדולות?",
     faq_a2: "בהחלט. בדלויט, תכננתי מיקרו-שירותים וארכיטקטורות מונעות אירועים באמצעות SAP BTP ו-AWS עבור לקוחות תאגידיים ענקיים. אני יודע בדיוק איך לגשר על הפער בין חדשנות AI פורצת דרך לבין אמינות ארגונית קפדנית.",
     faq_q3: "האם יש לו ניסיון ניהולי או רב-תחומי?",
@@ -665,7 +705,7 @@ window.translations = {
     // Degree
     degree_title: "תואר ראשון בפסיכולוגיה ומדעי המחשב",
     degree_issuer: "האוניברסיטה הפתוחה",
-    degree_date: "צפוי אפריל 2025",
+    degree_date: "הושלם דצמבר 2024",
     
     // Certifications Poker
     cert_poker_hint: "רחף לתצוגה מקדימה · לחץ לחשיפה",
@@ -717,6 +757,8 @@ window.translations = {
     contact_whatsapp: "וואטסאפ",
     contact_interviewing: "מתראיין עכשיו!",
     contact_available: "זמין לתפקידים חדשים",
+    copy_intro_label: "העתיקו הקדמה להמלצה",
+    copy_intro_sub: "מכירים מישהו שמגייס? לחיצה אחת מעתיקה הקדמה מוכנה לשליחה.",
     
     // Footer
     footer_built: "© 2025 גאק (ירון) עמיחי. נבנה בדיוק ותשוקה.",

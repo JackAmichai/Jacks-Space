@@ -209,57 +209,30 @@ function initTimelinePulse() {
     });
 }
 
-// Initialize all animations on DOM ready
+// Initialize all animations on DOM ready (no artificial delays — hide loader fast)
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('pageLoader');
     const progressFill = document.getElementById('loaderProgressFill');
-    const percentageEl = document.getElementById('loaderPercentage');
-    const steps = document.querySelectorAll('.loader-step');
-    
-    function setStep(stepIndex, progress) {
-        steps.forEach((step, i) => {
-            step.classList.remove('active', 'completed');
-            if (i < stepIndex) {
-                step.classList.add('completed');
-            } else if (i === stepIndex) {
-                step.classList.add('active');
-            }
-        });
-        if (progressFill) progressFill.style.width = progress + '%';
-        if (percentageEl) percentageEl.textContent = Math.round(progress) + '%';
-    }
-    
+
     function hideLoader() {
         if (loader) {
             loader.classList.add('fade-out');
-            setTimeout(() => loader.style.display = 'none', 500);
+            setTimeout(() => loader.style.display = 'none', 250);
         }
     }
-    
-    setStep(0, 10);
-    
-    setTimeout(() => {
-        setStep(1, 40);
-        initTypewriter();
-    }, 300);
-    
-    setTimeout(() => {
-        setStep(2, 70);
-        initCountUp();
-        initStaggeredScroll();
-        initTiltCards();
-    }, 600);
-    
-    setTimeout(() => {
-        setStep(3, 100);
-        initSkillBars();
-        initTimelinePulse();
-        initPolaroidBoard();
-    }, 900);
-    
-    setTimeout(() => {
-        hideLoader();
-    }, 2400);
+
+    // Fire all inits immediately — recruiters get the page in <300ms not >2.4s
+    if (progressFill) progressFill.style.width = '100%';
+    initTypewriter();
+    initCountUp();
+    initStaggeredScroll();
+    initTiltCards();
+    initSkillBars();
+    initTimelinePulse();
+    initPolaroidBoard();
+
+    // Hide on next frame so the bar visibly fills before fading
+    requestAnimationFrame(() => requestAnimationFrame(hideLoader));
 });
 
 // ========================================
@@ -544,6 +517,57 @@ if (copyEmailBtn) {
         });
     });
 }
+
+// Copy a ready-to-forward intro snippet for referrers.
+function copyJackIntro(btn) {
+    const intro = [
+        "Meet Jack Amichai — AI Solutions Engineer based in Tel Aviv (open to relocation / remote).",
+        "",
+        "He builds AI agents and LLM orchestration systems — psychology degree, CS brain, shipping code.",
+        "Flagship work: Hatrick (multi-agent cyber defense), GhostOrc (LLM orchestrator), FleetSentinal (autonomous fleet defense).",
+        "",
+        "Portfolio: https://jacks-space.vercel.app/",
+        "GitHub: https://github.com/JackAmichai",
+        "Email: jackamichai@gmail.com",
+        "Calendly: https://calendly.com/jackamichai"
+    ].join("\n");
+
+    const finish = (ok) => {
+        if (!btn) return;
+        const label = btn.querySelector('.copy-intro-label');
+        const original = label ? label.textContent : btn.textContent;
+        btn.classList.add(ok ? 'is-copied' : 'is-error');
+        if (label) label.textContent = ok ? '✓ Copied — paste anywhere' : 'Copy failed — try again';
+        setTimeout(() => {
+            btn.classList.remove('is-copied', 'is-error');
+            if (label) label.textContent = original;
+        }, 2400);
+    };
+
+    const onOk = () => {
+        finish(true);
+        if (typeof trackCTAClick === 'function') trackCTAClick('intro_copied');
+    };
+    const onErr = () => finish(false);
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(intro).then(onOk).catch(onErr);
+    } else {
+        try {
+            const ta = document.createElement('textarea');
+            ta.value = intro;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            ok ? onOk() : onErr();
+        } catch (e) { onErr(); }
+    }
+}
+if (typeof window !== 'undefined') window.copyJackIntro = copyJackIntro;
 
 // ========================================
 // 9. SOCIAL SHARE FUNCTIONS
@@ -875,10 +899,37 @@ function calculateEngagementScore() {
     return score;
 }
 
+// Capture UTM params once on load, persist for the session, attach to all events.
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+function captureUtmParams() {
+    try {
+        const url = new URL(window.location.href);
+        const stored = JSON.parse(sessionStorage.getItem('utm_params') || '{}');
+        let dirty = false;
+        UTM_KEYS.forEach(k => {
+            const v = url.searchParams.get(k);
+            if (v && !stored[k]) { stored[k] = v; dirty = true; }
+        });
+        if (dirty) sessionStorage.setItem('utm_params', JSON.stringify(stored));
+        const referrer = document.referrer;
+        if (referrer && !stored.first_referrer) {
+            stored.first_referrer = referrer;
+            sessionStorage.setItem('utm_params', JSON.stringify(stored));
+        }
+        return stored;
+    } catch (e) { return {}; }
+}
+function getUtmParams() {
+    try { return JSON.parse(sessionStorage.getItem('utm_params') || '{}'); }
+    catch (e) { return {}; }
+}
+captureUtmParams();
+
 function trackEvent(eventName, params = {}) {
     if (typeof gtag !== 'undefined') {
         gtag('event', eventName, {
             ...params,
+            ...getUtmParams(),
             engagement_score: engagementMetrics.totalScore,
             timestamp: Date.now()
         });
@@ -907,6 +958,7 @@ function trackCTAClick(ctaName, additionalData = {}) {
             event_category: 'engagement',
             event_label: ctaName,
             value: 1,
+            ...getUtmParams(),
             ...additionalData
         });
     }
@@ -1654,7 +1706,11 @@ function openProjectModal(projectId) {
     title.textContent = project.title;
     role.textContent = project.role || 'Lead Developer';
     problem.innerHTML = project.problem || 'N/A';
-    solution.innerHTML = project.solution || 'N/A';
+    const solutionHtml = project.solution || 'N/A';
+    const psychHtml = project.psychologyNote
+        ? `<aside class="psychology-note"><span class="psychology-note-label">Psychology in practice</span><p>${project.psychologyNote}</p></aside>`
+        : '';
+    solution.innerHTML = solutionHtml + psychHtml;
     impact.innerHTML = project.outcome || project.metrics?.join(', ') || 'N/A';
 
     // Video handling - using mediaUrl or video field

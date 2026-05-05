@@ -19,6 +19,7 @@ const projectsData = [
             "Modeled <strong>autonomous decision loops</strong> for attack/defense agents"
         ],
         outcome: "Autonomous simulation environment for testing security protocols against adaptive AI adversaries.",
+        psychologyNote: "Why the orchestrator confirms before chaining tools: users don't trust agents that act without checking in. A small confirmation step turned out to be the difference between \"cool demo\" and \"I'd actually use this.\"",
         metrics: [
             " <strong>6+ Autonomous Agents</strong> interacting",
             " <strong>Sub-second</strong> inference on Groq",
