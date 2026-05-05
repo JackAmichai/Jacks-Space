@@ -159,43 +159,6 @@ function initTiltCards() {
 }
 
 // 5. SKILL BARS ANIMATION
-function initSkillBars() {
-    const competencyCards = document.querySelectorAll('.skill-card');
-    
-    competencyCards.forEach(card => {
-        const label = card.querySelector('h4')?.textContent?.trim() || 'Skills';
-        const level = { 'AI & ML': 90, 'Architecture': 85, 'Infrastructure': 78, 'UX & HCI': 82, 'Product': 75, 'Communication': 92 }[label] || 80;
-        
-        const barContainer = document.createElement('div');
-        barContainer.className = 'skill-bar-container';
-        barContainer.style.cssText = 'margin-top: 12px;';
-        
-        barContainer.innerHTML = `
-            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary); margin-bottom: 5px;">
-                <span>${label}</span>
-                <span>${level}%</span>
-            </div>
-            <div style="height: 3px; background: var(--border); border-radius: 2px; overflow: hidden;">
-                <div class="skill-bar-fill" style="height: 100%; background: #378ADD; border-radius: 2px; width: 0%;"></div>
-            </div>
-        `;
-        
-        card.appendChild(barContainer);
-        
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                setTimeout(() => {
-                    barContainer.querySelector('.skill-bar-fill').style.width = level + '%';
-                    barContainer.querySelector('.skill-bar-fill').style.transition = 'width 1.2s ease';
-                }, 100);
-                observer.disconnect();
-            }
-        }, { threshold: 0.5 });
-        
-        observer.observe(card);
-    });
-}
-
 // 6. PULSING ACTIVE TIMELINE DOT
 function initTimelinePulse() {
     const timelineItems = document.querySelectorAll('.timeline-item');
@@ -227,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCountUp();
     initStaggeredScroll();
     initTiltCards();
-    initSkillBars();
     initTimelinePulse();
     initPolaroidBoard();
 
