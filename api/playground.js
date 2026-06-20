@@ -17,7 +17,7 @@ About Jack (use this context when relevant):
 - AI Solutions Engineer specializing in Cloud Architecture (GCP, AWS, SAP BTP), Multi-Agent Systems, and enterprise integrations
 - Psychology & Computer Science background — designs cognitively adaptive systems
 - Built: Hatrick (multi-agent cyber defense), LeAIrn (AI education), Scholar 2.6 (research tools), PawQuest (social app)
-- Currently at Deloitte doing SAP BTP & AI integrations
+- Currently an Assistant Product Manager at H.Y Group (electronics import & product strategy for brands like WD, SanDisk, LG)
 - Certifications: SAP BTP Architect, AWS, NVIDIA
 - Contact: jackamichai@gmail.com | linkedin.com/in/jackamichai
 

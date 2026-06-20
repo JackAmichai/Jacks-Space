@@ -11,7 +11,7 @@ Herzliya, Israel | +972 54-484-4125 | jackamichai@gmail.com
 
 **AI Solutions Engineer and Product Builder** with a dual background in **Psychology and Computer Science**, bridging the gap between human-centric requirements and complex technical implementation.
 Experienced in designing **Multi-Agent Systems**, **RAG pipelines**, and **Enterprise Integrations** that connect business goals with measurable results.
-Proven track record at **Deloitte** and in independent ventures, delivering scalable architectures that are not just technically robust but cognitively adaptive.
+Proven track record at **H.Y Group**, **Deloitte**, and in independent ventures, delivering scalable architectures that are not just technically robust but cognitively adaptive.
 
 ---
 
@@ -26,13 +26,21 @@ Proven track record at **Deloitte** and in independent ventures, delivering scal
 
 ## PROFESSIONAL EXPERIENCE
 
-### DELOITTE | Tel Aviv, Israel
-**Junior Consultant (SAP BTP & Integrations)** | *Aug 2025 – Present*
+### H.Y GROUP | Kfar Saba, Israel
+**Assistant Product Manager** | *Jun 2026 – Present*
 
-- **Designing and implementing complex integrations** using SAP Business Technology Platform (BTP), connecting disparate enterprise systems to streamline workflows.
-- **Developing Python/FastAPI microservices** to orchestrate data flow between SAP SuccessFactors and external applications.
-- **Collaborating with clients** to define technical requirements and integration strategies, ensuring scalable and secure architecture.
-- **Driving digital transformation** by replacing legacy manual processes with automated, event-driven architectures.
+- **Managing product strategy and lifecycle** for imported electronics brands, collaborating with top-tier partners including Western Digital, SanDisk, and LG.
+- **Collaborating with international vendors** to align global product roadmaps with Israeli market demand and distribution channels.
+- **Analyzing market trends, competitive pricing, and sales data** to drive optimal product positioning and pricing decisions.
+- **Coordinating cross-functional efforts** across procurement, marketing, sales, and distribution teams to execute successful product launches.
+
+### DELOITTE | Tel Aviv, Israel
+**Junior Consultant (SAP BTP & Integrations)** | *Aug 2025 – Mar 2026*
+
+- **Designed and implemented complex integrations** using SAP Business Technology Platform (BTP), connecting disparate enterprise systems to streamline workflows.
+- **Developed Python/FastAPI microservices** to orchestrate data flow between SAP SuccessFactors and external applications.
+- **Collaborated with clients** to define technical requirements and integration strategies, ensuring scalable and secure architecture.
+- **Drove digital transformation** by replacing legacy manual processes with automated, event-driven architectures.
 
 ### ADI OHAYON REVENUE MANAGEMENT | Remote / Hybrid
 **Freelance Data Engineer & Developer** | *Apr 2025 – Present*

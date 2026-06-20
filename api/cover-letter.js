@@ -17,8 +17,9 @@ export default async function handler(req, res) {
 
 Jack's complete background:
 - AI Solutions Engineer with a dual degree in Psychology & Computer Science (Open University of Israel)
-- Currently: Junior Consultant at Deloitte Israel — SAP BTP integrations, Python/FastAPI microservices, cloud architecture
+- Currently: Assistant Product Manager at H.Y Group (electronics import, managing product strategy for brands like WD, SanDisk, LG, etc., since June 2026)
 - Also: Freelance Data Engineer for Adi Ohayon Revenue Management — scraping tools, pricing algorithms, dashboards
+- Past: Junior Consultant at Deloitte Israel — SAP BTP integrations, Python/FastAPI microservices, cloud architecture (2025 - Mar 2026)
 - Past: Research Software Engineer & Team Lead at the Technion (2021-2023) — Python backend, cognitive simulations, VR maze development, cross-functional team management
 - Past: Software Engineer at Hebrew University (2020-2021) — C++ & Python for astrophysics simulations
 - Military: Staff Sergeant in the IDF — team operations, leadership under pressure

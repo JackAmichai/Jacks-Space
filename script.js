@@ -2386,7 +2386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Data mapping for custom tailored messages
         const roleMessages = {
             'genai': 'Jack brings hands-on experience building GenAI applications. He created Hatrick, an AI Agents orchestrator for multi-agent cyber defense, and Scholar 2.6. He works daily with LangChain, foundational models, and agent routing.',
-            'arch': 'As a certified SAP BTP Solution Architect and AWS builder, Jack designs cloud-native, event-driven architectures and API integrations for Deloitte\'s enterprise clients.',
+            'arch': 'As a certified SAP BTP Solution Architect and AWS builder, Jack has a proven track record designing cloud-native, event-driven architectures and API integrations, previously delivering enterprise solutions for Deloitte\'s corporate clients.',
             'devex': 'Jack prioritizes human-centric design. He built LeAIrn (an adaptive AI education platform) and SleepCall (an audio accessibility tool), focusing heavily on Human-Computer Interaction and seamless UX.',
             'pm': 'Jack led Project Alpha at Hebrew University, co-managing software delivery from user requirements to deployed Python/C++ astrophysics simulations.',
             'comms': 'Jack\'s dual background in Psychology & Computer Science allows him to translate complex business needs into technical architecture—he speaks both "Business" and "Code".'

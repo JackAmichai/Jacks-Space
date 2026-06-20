@@ -13,7 +13,7 @@ I'm writing to express my strong interest in joining your team. As an **AI Solut
 
 Most engineers optimize for performance. I optimize for **adoption**. My psychology training means I don't just ask "Can we build this?" — I ask "Will anyone actually use it?" This mindset has shaped every product I've delivered:
 
-- At **Deloitte**, I design and implement enterprise integrations on **SAP Business Technology Platform (BTP)**, connecting disparate systems and replacing legacy manual processes with automated, event-driven architectures. I collaborate directly with clients to define technical requirements and ensure scalable, secure solutions.
+- At **H.Y Group**, as an **Assistant Product Manager**, I manage product strategy and lifecycles for major imported electronics brands like WD, SanDisk, and LG, collaborating with international partners to align roadmap goals. Previously, at **Deloitte**, I designed and implemented enterprise integrations on **SAP Business Technology Platform (BTP)**, building event-driven architectures to replace legacy workflows.
 
 - At the **Technion – Israel Institute of Technology**, I led a cross-functional research team, translating complex cognitive science hypotheses into production-grade software — including a cutting-edge **VR maze environment** for behavioral neuroscience research that integrated hardware sensors with custom software logic.
 

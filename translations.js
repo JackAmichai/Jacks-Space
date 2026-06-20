@@ -64,7 +64,7 @@ window.translations = {
     // About Text
     about_p1: "I started in a psychology lab studying <em>why people abandon tools that \"work.\"</em> Now I build AI agents and LLM orchestration systems — and when I make design calls, I'm still asking the same question: <strong>will anyone actually use this?</strong> That question is how <a href=\"https://github.com/JackAmichai/Hatrick\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Hatrick</a> and <a href=\"https://github.com/JackAmichai/GhostOrc-\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">GhostOrc</a> got built.",
     about_p2: "My journey began in the <strong><a href=\"https://www.givati.org.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">IDF</a></strong> as a Staff Sergeant. Leading operations in high-pressure environments taught me that clear communication, empathy, and rapid decision-making are the real infrastructure of any successful mission.",
-    about_p3: "Later, as a <strong>Research Software Engineer at the <a href=\"https://teams.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Technion</a></strong> (specifically the <strong><a href=\"https://engelhardlab.net.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Engelhard Lab</a></strong>), I led cross-functional teams to translate complex scientific hypotheses into production-grade software—including a cutting-edge VR maze for neuroscience research. Today, as a Consultant at <strong>Deloitte</strong>, I architect event-driven enterprise integrations using <strong>SAP BTP, Python, and FastAPI</strong> to replace legacy workflows with scalable, automated solutions.",
+    about_p3: "Later, as a <strong>Research Software Engineer at the <a href=\"https://teams.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Technion</a></strong> (specifically the <strong><a href=\"https://engelhardlab.net.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Engelhard Lab</a></strong>), I led cross-functional teams to translate complex scientific hypotheses into production-grade software—including a cutting-edge VR maze for neuroscience research. After consulting at <strong>Deloitte</strong> on enterprise <strong>SAP BTP</strong> integrations, I now serve as an <strong>Assistant Product Manager at <a href=\"https://www.hye.co.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">H.Y Group (קבוצת ח.י)</a></strong>, managing product strategy for top-tier electronics brands like WD, SanDisk, and LG.",
     about_quote: "\"I believe the best technology disappears into the workflow. My goal is to build systems that work so seamlessly, people forget there's complex engineering behind them.\"",
     about_stat_integration: "Faster Integration at Deloitte",
     about_stat_projects: "Production Projects Shipped",
@@ -138,6 +138,11 @@ window.translations = {
     sys_case_result_text: "Working demo at hatrick.vercel.app with live agent interactions.",
     
     // Experience details
+    exp_hygroup_role: "Assistant Product Manager",
+    exp_hygroup_bullet1: "Manage product strategy and lifecycle for imported electronics brands including Western Digital, SanDisk, LG, and more",
+    exp_hygroup_bullet2: "Collaborate with international vendors to align product roadmaps with Israeli market demand",
+    exp_hygroup_bullet3: "Analyze market trends, competitive pricing, and sales data to drive product positioning decisions",
+    exp_hygroup_bullet4: "Coordinate cross-functional efforts between procurement, marketing, and distribution teams",
     exp_deloitte_role: "Consultant (SAP BTP & Integrations)",
     exp_deloitte_bullet1: "Design and implement complex integrations using SAP Business Technology Platform (BTP)",
     exp_deloitte_bullet2: "Develop Python/FastAPI microservices to support data flow between SAP modules",
@@ -165,6 +170,9 @@ window.translations = {
     exp_idf_bullet4: "Developed leadership skills under pressure",
     
     // Horizontal Timeline (Short versions)
+    ht_hygroup_title: "Asst. Product Manager",
+    ht_hygroup_company: "H.Y Group (\u05e7\u05d1\u05d5\u05e6\u05ea \u05d7.\u05d9)",
+    ht_hygroup_desc: "Electronics import & product strategy",
     ht_deloitte_title: "Consultant (SAP BTP)",
     ht_deloitte_company: "Deloitte",
     ht_deloitte_desc: "Enterprise integrations & GenAI solutions",
@@ -370,7 +378,7 @@ window.translations = {
     bot_kb_thanks: "You're welcome! Let me know if you have any other questions about Jack's work.",
     bot_kb_who: "I'm Cloud, a custom-built AI assistant designed to help you navigate Jack's portfolio. I can answer questions about his background, skills, and projects!",
     bot_kb_army: "Jack served in the **Israel Defense Forces (IDF)** as a **Staff Sergeant**. He led team operations, managed logistics, and trained personnel. This leadership experience taught him how to handle high-pressure environments—skills he now applies to architecting resilient AI systems.",
-    bot_kb_work: "Jack currently wears two hats: \n\n1. **Junior Consultant at Deloitte:** Specializing in **SAP BTP & Integrations**.\n\n2. **Freelance Data Engineer:** Building revenue optimization tools for **Adi Ohayon Revenue Management**.",
+    bot_kb_work: "Jack currently wears two hats: \n\n1. **Assistant Product Manager at H.Y Group:** Managing product strategy and lifecycle for imported electronics brands (WD, SanDisk, LG, etc.).\n\n2. **Freelance Data Engineer:** Building revenue optimization tools for **Adi Ohayon Revenue Management**.",
     bot_kb_edu: "Jack holds a **Bachelor's degree in Psychology and Computer Science** from the **Open University of Israel**. This dual background allows him to build AI systems that are technically robust and cognitively adaptive.",
     bot_kb_projects: "Jack has built a diverse portfolio of AI solutions. You can ask me about:\n\n **Sentinel OS** - AI Robotics\n **Hatrick** - Multi-Agent Cyber Defense\n **NVIDIA Doc Navigator** - RAG Agent",
     bot_kb_skills: "Jack's toolbox leverages his Psychology + CS background:\n\n**AI/GenAI:** Multi-Agent Systems, RAG Pipelines, LangChain\n**Backend:** Python, FastAPI, SAP BTP, AWS\n**Data:** Pandas, SQL, Scikit-learn",
@@ -400,7 +408,7 @@ window.translations = {
     tour_skills_title: "Core Competencies",
     tour_skills_text: "Discover my specialized technical strengths in AI Solutions, Architecture, and Product Engineering.",
     tour_exp_title: "Experience",
-    tour_exp_text: "Deloitte consulting, SAP BTP, and research at Technion",
+    tour_exp_text: "Product Management at H.Y Group, Deloitte consulting, SAP BTP, and research at Technion",
     tour_proj_title: "Projects",
     tour_proj_text: "AI-powered apps including LeAIrn, Hatrick, and Scholar 2.6",
     tour_cert_title: "Education & Certifications",
@@ -495,7 +503,7 @@ window.translations = {
     // About Text
     about_p1: "התחלתי במעבדת פסיכולוגיה שחקרה <em>למה אנשים נוטשים כלים ש\"עובדים\".</em> היום אני בונה סוכני AI ומערכות תזמור LLM — וכשאני מקבל החלטות עיצוב, אני עדיין שואל את אותה השאלה: <strong>האם מישהו באמת ישתמש בזה?</strong> השאלה הזו היא הסיבה ש<a href=\"https://github.com/JackAmichai/Hatrick\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">Hatrick</a> ו-<a href=\"https://github.com/JackAmichai/GhostOrc-\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">GhostOrc</a> נבנו.",
     about_p2: "המסע שלי התחיל ב<strong><a href=\"https://www.givati.org.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">צה\"ל</a></strong> כסמל ראשון. הובלת מבצעים בסביבות בעלות לחץ גבוה לימדה אותי שתקשורת ברורה, אמפתיה וקבלת החלטות מהירה הם התשתית האמיתית של כל משימה מוצלחת.",
-    about_p3: "מאוחר יותר, כ<strong>מהנדס תוכנה מחקרי ב<a href=\"https://teams.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">טכניון</a></strong> (במיוחד ב<strong><a href=\"https://engelhardlab.net.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">מעבדת אנגלהרד</a></strong>), הובלתי צוותים רב-תחומיים לתרגום היפותזות מדעיות מורכבות לתוכנה ברמת ייצור - כולל מבוך VR חדשני למחקר מדעי המוח. כיום, כיועץ ב-<strong>Deloitte</strong>, אני מתכנן אינטגרציות ארגוניות מונעות אירועים באמצעות <strong>SAP BTP, Python ו-FastAPI</strong> כדי להחליף תהליכי עבודה ישנים בפתרונות אוטומטיים וסקיילביליים.",
+    about_p3: "מאוחר יותר, כ<strong>מהנדס תוכנה מחקרי ב<a href=\"https://teams.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">טכניון</a></strong> (במיוחד ב<strong><a href=\"https://engelhardlab.net.technion.ac.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">מעבדת אנגלהרד</a></strong>), הובלתי צוותים רב-תחומיים לתרגום היפותזות מדעיות מורכבות לתוכנה ברמת ייצור - כולל מבוך VR חדשני למחקר מדעי המוח. לאחר עבודה כיועץ ב-<strong>Deloitte</strong> על אינטגרציות <strong>SAP BTP</strong> ארגוניות, אני כיום <strong>עוזר מנהל מוצר ב<a href=\"https://www.hye.co.il/\" target=\"_blank\" style=\"color: inherit; text-decoration: underline;\">קבוצת ח.י</a></strong>, מנהל אסטרטגיית מוצר עבור מותגי אלקטרוניקה מובילים כמו WD, SanDisk ו-LG.",
     about_quote: "\"אני מאמין שהטכנולוגיה הטובה ביותר נעלמת לתוך תהליך העבודה. המטרה שלי היא לבנות מערכות שעובדות בצורה כל כך חלקה, שאנשים שוכחים שיש מאחוריהן הנדסה מורכבת.\"",
     about_stat_integration: "אינטגרציה מהירה יותר בדלויט",
     about_stat_projects: "פרויקטי ייצור שבוצעו",
@@ -569,6 +577,11 @@ window.translations = {
     sys_case_result_text: "הדגמה עובדת ב-hatrick.vercel.app עם אינטראקציות חיות בין סוכנים.",
     
     // Experience details
+    exp_hygroup_role: "עוזר/ת מנהל מוצר",
+    exp_hygroup_bullet1: "ניהול אסטרטגיית מוצר ומחזור חיים למותגי אלקטרוניקה מיובאים כולל WD, SanDisk, LG ועוד",
+    exp_hygroup_bullet2: "שיתוף פעולה עם ספקים בינלאומיים להתאמת מפת מוצרים לדרישות השוק הישראלי",
+    exp_hygroup_bullet3: "ניתוח מגמות שוק, תמחור תחרותי ונתוני מכירות לקבלת החלטות מיצוב מוצר",
+    exp_hygroup_bullet4: "תיאום מאמצים חוצי-צוותיים בין רכש, שיווק והפצה",
     exp_deloitte_role: "יועץ (SAP BTP ואינטגרציות)",
     exp_deloitte_bullet1: "תכנון וביצוע אינטגרציות מורכבות באמצעות פלטפורמת הטכנולוגיה העסקית של SAP (BTP)",
     exp_deloitte_bullet2: "פיתוח מיקרו-שירותים ב-Python/FastAPI לתמיכה בזרימת נתונים בין מודולי SAP",
@@ -596,6 +609,9 @@ window.translations = {
     exp_idf_bullet4: "פיתוח מיומנויות מנהיגות תחת לחץ",
     
     // Horizontal Timeline (Short versions)
+    ht_hygroup_title: "עוזר/ת מנהל מוצר",
+    ht_hygroup_company: "קבוצת ח.י",
+    ht_hygroup_desc: "יבוא אלקטרוניקה ואסטרטגיית מוצר",
     ht_deloitte_title: "יועץ (SAP BTP)",
     ht_deloitte_company: "דלויט",
     ht_deloitte_desc: "אינטגרציות ארגוניות ופתרונות GenAI",
@@ -801,7 +817,7 @@ window.translations = {
     bot_kb_thanks: "בשמחה! תודיע לי אם יש לך שאלות נוספות על העבודה של גאק.",
     bot_kb_who: "אני קלאוד, עוזר AI שנבנה במיוחד כדי לעזור לך לנווט בפורטפוליו של גאק. אני יכול לענות על שאלות לגבי הרקע, המיומנויות והפרויקטים שלו!",
     bot_kb_army: "גאק שירת ב**צה\"ל** כ**סמל ראשון**. הוא הוביל מבצעי צוות, ניהל לוגיסטיקה ואימן כוח אדם. ניסיון פיקודי זה לימד אותו כיצד להתמודד עם סביבות בלחץ גבוה - כישורים שהוא מיישם כעת בתכנון מערכות AI חסונות.",
-    bot_kb_work: "גאק חובש כעת שני כובעים: \n\n1. **יועץ בדלויט (Deloitte):** מתמחה ב-**SAP BTP ואינטגרציות**.\n\n2. **מהנדס נתונים פרילנס:** בניית כלי אופטימיזציית הכנסות עבור **עדי אוחיון ניהול הכנסות**.",
+    bot_kb_work: "גאק חובש כעת שני כובעים: \n\n1. **עוזר מנהל מוצר בקבוצת ח.י:** ניהול אסטרטגיית מוצר ומחזור חיים עבור מותגי אלקטרוניקה מיובאים (WD, SanDisk, LG ועוד).\n\n2. **מהנדס נתונים פרילנס:** בניית כלי אופטימיזציית הכנסות עבור **עדי אוחיון ניהול הכנסות**.",
     bot_kb_edu: "גאק מחזיק ב**תואר ראשון בפסיכולוגיה ומדעי המחשב** מה**אוניברסיטה הפתוחה**. רקע כפול זה מאפשר לו לבנות מערכות AI חזקות טכנית ומסתגלות קוגניטיבית.",
     bot_kb_projects: "גאק בנה פורטפוליו מגוון של פתרונות AI. תוכל לשאול אותי על:\n\n **Sentinel OS** - רובוטיקה מבוססת AI\n **Hatrick** - הגנת סייבר מרובת סוכנים\n **NVIDIA Doc Navigator** - סוכן RAG",
     bot_kb_skills: "ארגז הכלים של גאק מנצל את הרקע שלו בפסיכולוגיה ומדעי המחשב:\n\n**AI/GenAI:** מערכות מרובות סוכנים, צינורות RAG, LangChain\n**Backend:** Python, FastAPI, SAP BTP, AWS\n**Data:** Pandas, SQL, Scikit-learn",
@@ -830,7 +846,7 @@ window.translations = {
     tour_skills_title: "מיומנויות ליבה",
     tour_skills_text: "גלו את החוזקות הטכניות שלי בפתרונות AI, ארכיטקטורה והנדסת מוצר.",
     tour_exp_title: "ניסיון",
-    tour_exp_text: "ייעוץ בדלויט, SAP BTP ומחקר בטכניון",
+    tour_exp_text: "ניהול מוצר בקבוצת ח.י, ייעוץ בדלויט, SAP BTP ומחקר בטכניון",
     tour_proj_title: "פרויקטים",
     tour_proj_text: "אפליקציות מבוססות AI כולל LeAIrn, Hatrick ו-Scholar 2.6",
     tour_cert_title: "השכלה והסמכות",

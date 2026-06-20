@@ -25,9 +25,9 @@ const getJackKnowledgeBase = () => {
             answer: t('bot_kb_army'),
             keywords: ["IDF", "military", "leadership", "Staff Sergeant"]
         },
-        "hospitality|consultant|consulting|current|work|job|adi|ohayon|deloitte": {
+        "hospitality|consultant|consulting|current|work|job|adi|ohayon|deloitte|hy group|h.y|product manager|electronics|import|wd|sandisk|lg": {
             answer: t('bot_kb_work'),
-            keywords: ["Deloitte", "Adi Ohayon", "hospitality", "consulting", "Business Analyst", "current role", "SAP BTP"]
+            keywords: ["Deloitte", "Adi Ohayon", "hospitality", "consulting", "Business Analyst", "current role", "SAP BTP", "H.Y Group", "Product Manager", "WD", "SanDisk", "LG"]
         },
         "education|university|degree|studied|psychology|computer science": {
             answer: t('bot_kb_edu'),
